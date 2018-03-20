@@ -118,7 +118,7 @@ class ProductTable:
       param='heightOfProduct',
       paramType='&xsd;float'),
     ProductTableColumn('depth',
-      labels=['Artikel Tiefe (DANf) cm'],
+      labels=['Artikel Laenge (DANf) cm'],
       coltype='parameter',
       param='depthOfProduct',
       paramType='&xsd;float'),
@@ -175,7 +175,8 @@ class ProductTable:
       articleClass  = self.article(articleNumber)
       for i in range(len(self.header)):
         column = self.header[i]
-        if column!=None and column.role!=None: self.read_cell(articleClass,row,column)
+        if column!=None and (column.role!=None or column.param!=None):
+          self.read_cell(articleClass,row,column)
 
   def read_cell(self,article,row,column):
     rawLabel = self.read_value(row,column)
@@ -195,7 +196,7 @@ class ProductTable:
       self.read_cell_types(article,cellInstance,row,column)
       self.read_cell_property(article,cellInstance,column)
     elif column.coltype=='parameter':
-      self.read_cell_property(article,cellInstance,column)
+      self.read_cell_property(article,rawLabel,column)
     return label
 
   def read_cell_types(self,article,resource,row,column):
@@ -208,7 +209,7 @@ class ProductTable:
     elif column.role!=None:
       article.has_object_value(column.role, str(resource))
     elif column.param!=None and column.paramType!=None:
-      article.has_data_value(column.role, column.dataType, str(resource))
+      article.has_data_value(column.param, column.paramType, str(resource))
 
   def read_value(self, row, column):
     index=self.get_column_index(column)
