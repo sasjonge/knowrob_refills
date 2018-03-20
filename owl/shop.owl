@@ -315,6 +315,21 @@
         <rdfs:domain rdf:resource="&shop;EuropeanArticleNumber"/>
         <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&shop;widthOfProduct">
+        <rdfs:range rdf:resource="&shop;Product"/>
+        <rdfs:subPropertyOf rdf:resource="&knowrob;widthOfObject"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&shop;heightOfProduct">
+        <rdfs:range rdf:resource="&shop;Product"/>
+        <rdfs:subPropertyOf rdf:resource="&knowrob;heightOfObject"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&shop;depthOfProduct">
+        <rdfs:range rdf:resource="&shop;Product"/>
+        <rdfs:subPropertyOf rdf:resource="&knowrob;depthOfObject"/>
+    </owl:DatatypeProperty>
     
 
 
