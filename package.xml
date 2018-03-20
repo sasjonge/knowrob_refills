@@ -1,0 +1,27 @@
+<package>
+  <name>knowrob_refills</name>
+  <version>0.1.0</version>
+  <description>knowrob_refills
+
+     Ontologies, definitions and computables for the integration of the
+     KnowRob knowledge base and the CRAM plan-based executive.</description>
+   <maintainer email="danielb@cs.uni-bremen.de">Daniel Beler</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://ros.org/wiki/knowrob_refills</url>
+
+  <author email="danielb@cs.uni-bremen.de">Daniel Beler</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>knowrob_common</build_depend>
+  <build_depend>knowrob_assembly</build_depend>
+  <build_depend>knowrob_objects</build_depend>
+
+  <run_depend>knowrob_common</run_depend>
+  <run_depend>knowrob_assembly</run_depend>
+  <run_depend>knowrob_objects</run_depend>
+
+</package>
+

@@ -1,0 +1,1744 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY shop "http://knowrob.org/kb/shop.owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY knowrob "http://knowrob.org/kb/knowrob.owl#" >
+    <!ENTITY computable "http://knowrob.org/kb/computable.owl#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://knowrob.org/kb/shop.owl#"
+     xml:base="http://knowrob.org/kb/shop.owl"
+     xmlns:shop="http://knowrob.org/kb/shop.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:computable="http://knowrob.org/kb/computable.owl#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#">
+    <owl:Ontology rdf:about="http://knowrob.org/kb/shop.owl">
+        <owl:imports rdf:resource="package://knowrob_assembly/owl/knowrob_assembly.owl"/>
+        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#adjacentMountingBar -->
+
+    <owl:ObjectProperty rdf:about="&shop;adjacentMountingBar">
+        <rdfs:range rdf:resource="&shop;ShelfMountingBar"/>
+        <rdfs:domain rdf:resource="&shop;ShelfMountingBar"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#adjacentProductFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;adjacentProductFacing">
+        <rdfs:comment>Adjacent facings do share one separator. Each facing is adjacent to itself (due to chain axiom).</rdfs:comment>
+        <rdfs:domain rdf:resource="&shop;ProductFacing"/>
+        <rdfs:range rdf:resource="&shop;ProductFacing"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&shop;separatorOfFacing"/>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&shop;separatorOfFacing"/>
+            </rdf:Description>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#articleNumber -->
+
+    <owl:ObjectProperty rdf:about="&shop;articleNumber">
+        <rdfs:range rdf:resource="&shop;ArticleNumber"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#articleNumberOfFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;articleNumberOfFacing">
+        <rdfs:range rdf:resource="&shop;ArticleNumber"/>
+        <rdfs:domain rdf:resource="&shop;ProductFacing"/>
+        <rdfs:subPropertyOf rdf:resource="&shop;articleNumber"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#articleNumberOfLabel -->
+
+    <owl:ObjectProperty rdf:about="&shop;articleNumberOfLabel">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="&shop;ArticleNumber"/>
+        <rdfs:domain rdf:resource="&shop;ShelfLabel"/>
+        <rdfs:subPropertyOf rdf:resource="&shop;articleNumber"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#articleNumberOfProduct -->
+
+    <owl:ObjectProperty rdf:about="&shop;articleNumberOfProduct">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:comment>SKUs are unique for products (functional), and products may only have one SKU (inverse functional)</rdfs:comment>
+        <rdfs:range rdf:resource="&shop;ArticleNumber"/>
+        <rdfs:domain rdf:resource="&shop;Product"/>
+        <rdfs:subPropertyOf rdf:resource="&shop;articleNumber"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#barcodeOfProduct -->
+
+    <owl:ObjectProperty rdf:about="&shop;barcodeOfProduct">
+        <rdfs:domain rdf:resource="&shop;Product"/>
+        <rdfs:range rdf:resource="&shop;ShelfLabel"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&shop;articleNumberOfProduct"/>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&shop;articleNumberOfLabel"/>
+            </rdf:Description>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#belowFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;belowFacing">
+        <rdfs:domain rdf:resource="&knowrob;SpatialThing-Localized"/>
+        <rdfs:subPropertyOf rdf:resource="&knowrob;locatedAtRelative"/>
+        <rdfs:range rdf:resource="&shop;ProductFacing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#currentActivity -->
+
+    <owl:ObjectProperty rdf:about="&shop;currentActivity"/>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#emptySpaceOfShelf -->
+
+    <owl:ObjectProperty rdf:about="&shop;emptySpaceOfShelf"/>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#labelOfFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;labelOfFacing">
+        <rdfs:domain rdf:resource="&shop;ProductFacing"/>
+        <rdfs:range rdf:resource="&shop;ShelfLabel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#layerOfFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;layerOfFacing"/>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#leftOfProductFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;leftOfProductFacing">
+        <rdfs:subPropertyOf rdf:resource="&shop;adjacentProductFacing"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&shop;leftSeparator"/>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&shop;rightSeparator"/>
+            </rdf:Description>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#leftSeparator -->
+
+    <owl:ObjectProperty rdf:about="&shop;leftSeparator">
+        <rdfs:subPropertyOf rdf:resource="&shop;separatorOfFacing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#mountingBarOfFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;mountingBarOfFacing">
+        <rdfs:domain rdf:resource="&shop;ProductFacing"/>
+        <rdfs:range rdf:resource="&shop;ShelfMountingBar"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#nextMountingBar -->
+
+    <owl:ObjectProperty rdf:about="&shop;nextMountingBar">
+        <rdfs:range rdf:resource="&shop;ShelfMountingBar"/>
+        <rdfs:domain rdf:resource="&shop;ShelfMountingBar"/>
+        <rdfs:subPropertyOf rdf:resource="&shop;adjacentMountingBar"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#nextShelfAffordance -->
+
+    <owl:ObjectProperty rdf:about="&shop;nextShelfAffordance">
+        <rdfs:domain rdf:resource="&shop;ShelfLayerSlideInF"/>
+        <rdfs:range rdf:resource="&shop;ShelfLayerSlideInF"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#previousMountingBar -->
+
+    <owl:ObjectProperty rdf:about="&shop;previousMountingBar">
+        <rdfs:domain rdf:resource="&shop;ShelfMountingBar"/>
+        <rdfs:range rdf:resource="&shop;ShelfMountingBar"/>
+        <rdfs:subPropertyOf rdf:resource="&shop;adjacentMountingBar"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#productInFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;productInFacing">
+        <rdfs:comment>yields all objects that are part of some facing</rdfs:comment>
+        <rdfs:range rdf:resource="&shop;Product"/>
+        <rdfs:domain rdf:resource="&shop;ProductFacing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#rightOfProductFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;rightOfProductFacing">
+        <rdfs:subPropertyOf rdf:resource="&shop;adjacentProductFacing"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&shop;rightSeparator"/>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&shop;leftSeparator"/>
+            </rdf:Description>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#rightSeparator -->
+
+    <owl:ObjectProperty rdf:about="&shop;rightSeparator">
+        <rdfs:subPropertyOf rdf:resource="&shop;separatorOfFacing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#separatorOfFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;separatorOfFacing">
+        <rdfs:domain rdf:resource="&shop;ProductFacing"/>
+        <rdfs:range rdf:resource="&shop;ShelfSeparator"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#siblingProductInFacing -->
+
+    <owl:ObjectProperty rdf:about="&shop;siblingProductInFacing">
+        <rdfs:domain rdf:resource="&shop;Product"/>
+        <rdfs:range rdf:resource="&shop;Product"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&shop;validFacingForProduct"/>
+            <rdf:Description rdf:about="&shop;productInFacing"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#targetGroupOfProduct -->
+
+    <owl:ObjectProperty rdf:about="&shop;targetGroupOfProduct">
+        <rdfs:domain rdf:resource="&shop;Product"/>
+        <rdfs:range rdf:resource="&shop;ShopPersona"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#validFacingForProduct -->
+
+    <owl:ObjectProperty rdf:about="&shop;validFacingForProduct">
+        <rdfs:comment>yields all facings associated with the sku of some product</rdfs:comment>
+        <rdfs:domain rdf:resource="&shop;Product"/>
+        <rdfs:range rdf:resource="&shop;ProductFacing"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&shop;articleNumberOfProduct"/>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="&shop;articleNumberOfFacing"/>
+            </rdf:Description>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ean -->
+
+    <owl:DatatypeProperty rdf:about="&shop;ean">
+        <rdfs:domain rdf:resource="&shop;EuropeanArticleNumber"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#isSpaceRemainingInFacing -->
+
+    <owl:DatatypeProperty rdf:about="&shop;isSpaceRemainingInFacing"/>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#priceOfProduct -->
+
+    <owl:DatatypeProperty rdf:about="&shop;priceOfProduct"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://knowrob.org/kb/computable.owl#PrologTemporalProperty -->
+
+    <owl:Class rdf:about="&computable;PrologTemporalProperty"/>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ArticleNumber -->
+
+    <owl:Class rdf:about="&shop;ArticleNumber">
+        <rdfs:subClassOf rdf:resource="&knowrob;InformationBearingThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#BackRoomOfShop -->
+
+    <owl:Class rdf:about="&shop;BackRoomOfShop">
+        <rdfs:subClassOf rdf:resource="&shop;ShopRoom"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;typePrimaryFunction-StoragePlaceFor"/>
+                <owl:someValuesFrom rdf:resource="&shop;Product"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#BottomLayerConnectedToShelf -->
+
+    <owl:Class rdf:about="&shop;BottomLayerConnectedToShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfConnection"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfBottomLayerAffordanceM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfBottomLayerAffordanceF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Customer -->
+
+    <owl:Class rdf:about="&shop;Customer">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&knowrob;Person"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&shop;currentActivity"/>
+                        <owl:someValuesFrom rdf:resource="&shop;Shopping"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&shop;ShopPersona"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#EmptyProductFacing -->
+
+    <owl:Class rdf:about="&shop;EmptyProductFacing">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&shop;ProductFacing"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&shop;articleNumberOfFacing"/>
+                        <owl:onClass rdf:resource="&shop;ArticleNumber"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&shop;productInFacing"/>
+                        <owl:onClass rdf:resource="&shop;Product"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">0</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&shop;ProductFacing"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Facing with associated SKU, but without any product item.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#EmptyShelfSpace -->
+
+    <owl:Class rdf:about="&shop;EmptyShelfSpace">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfSpace"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Shelf space that is not assigned to a specific product and can be used for additional facings of other products or new products. See also “Free Shelf Space”, “Facing”</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#EuropeanArticleNumber -->
+
+    <owl:Class rdf:about="&shop;EuropeanArticleNumber">
+        <rdfs:subClassOf rdf:resource="&shop;ArticleNumber"/>
+        <rdfs:comment>short: EAN</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#FemaleCustomer -->
+
+    <owl:Class rdf:about="&shop;FemaleCustomer">
+        <rdfs:subClassOf rdf:resource="&shop;Customer"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#FreeProductFacing -->
+
+    <owl:Class rdf:about="&shop;FreeProductFacing">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&shop;ProductFacing"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&shop;articleNumberOfFacing"/>
+                        <owl:onClass rdf:resource="&shop;ArticleNumber"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&shop;isSpaceRemainingInFacing"/>
+                        <owl:hasValue rdf:datatype="&xsd;boolean">true</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&shop;ProductFacing"/>
+        <knowrob:todo>compute `isSpaceRemainingInFacing`</knowrob:todo>
+        <rdfs:comment>Facing that has a SKU associated, and has some space left for at least one other item of that SKU. Note: `skuOfFacing` can be computed based on barcode locations, and `isSpaceRemainingInFacing` based how many items are in this facing, and what their size is.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#FreeShelfSpace -->
+
+    <owl:Class rdf:about="&shop;FreeShelfSpace">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfSpace"/>
+        <rdfs:comment rdf:datatype="&xsd;string">Shelf space that is assigned to a specific product. It can either be an empty facing or available shelf capacity behind products on the shelf. See also “Empty Shelf Space”, “Empty Facing”, “Facing”</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#FullProductFacing -->
+
+    <owl:Class rdf:about="&shop;FullProductFacing">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&shop;ProductFacing"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&shop;articleNumberOfFacing"/>
+                        <owl:onClass rdf:resource="&shop;ArticleNumber"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&shop;isSpaceRemainingInFacing"/>
+                        <owl:hasValue rdf:datatype="&xsd;boolean">false</owl:hasValue>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&shop;ProductFacing"/>
+        <rdfs:comment>Facing with associated SKU and without space for any additional items. Note: `skuOfFacing` is computed based on location of barcodes, and `isSpaceRemainingInFacing` based on number of objects in the facing and their size,</rdfs:comment>
+        <knowrob:todo>compute `isSpaceRemainingInFacing`</knowrob:todo>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#FullShelfSpace -->
+
+    <owl:Class rdf:about="&shop;FullShelfSpace">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfSpace"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#HangInAffordance -->
+
+    <owl:Class rdf:about="&shop;HangInAffordance">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#AssemblyAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#HangingProductOnShelf -->
+
+    <owl:Class rdf:about="&shop;HangingProductOnShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShopActivity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;goalLocation"/>
+                <owl:onClass rdf:resource="&shop;ShelfMountingBar"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;objectActedOn"/>
+                <owl:onClass rdf:resource="&shop;MountableProduct"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#LabelConnectedToShelf -->
+
+    <owl:Class rdf:about="&shop;LabelConnectedToShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfConnection"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLabelSlideInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#needsAffordance"/>
+                <owl:allValuesFrom rdf:resource="&shop;ShelfLabelAffordance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#needsAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLabelSlideInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#LargeVolumeShelf -->
+
+    <owl:Class rdf:about="&shop;LargeVolumeShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#LayerConnectedToShelf -->
+
+    <owl:Class rdf:about="&shop;LayerConnectedToShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfConnection"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:allValuesFrom rdf:resource="&shop;ShelfLayerAffordance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#MaleCustomor -->
+
+    <owl:Class rdf:about="&shop;MaleCustomor">
+        <rdfs:subClassOf rdf:resource="&shop;Customer"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#MisplacedProduct -->
+
+    <owl:Class rdf:about="&shop;MisplacedProduct">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&shop;PlacedProduct"/>
+                    <owl:Class>
+                        <owl:complementOf rdf:resource="&shop;WellPlacedProduct"/>
+                    </owl:Class>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&shop;PlacedProduct"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#MisplacedProductFacing -->
+
+    <owl:Class rdf:about="&shop;MisplacedProductFacing">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&shop;ProductFacing"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&shop;productInFacing"/>
+                        <owl:someValuesFrom rdf:resource="&shop;MisplacedProduct"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&shop;ProductFacing"/>
+        <rdfs:comment>Facing that has some displaced items (i.e., not of the same sku as the facing). Note: `productInFacing` must be asserted (e.g., by perception), `isItemDisplaced` can be computed.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#MountableProduct -->
+
+    <owl:Class rdf:about="&shop;MountableProduct">
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ProductHangInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#MountingBarConnectedToLayer -->
+
+    <owl:Class rdf:about="&shop;MountingBarConnectedToLayer">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfConnection"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfMountingBarSlideInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#needsAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfMountingBarSlideInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#needsAffordance"/>
+                <owl:allValuesFrom rdf:resource="&shop;ShelfMountingBarAffordance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#MountingBarWithProduct -->
+
+    <owl:Class rdf:about="&shop;MountingBarWithProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#Assemblage"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+                <owl:onClass rdf:resource="&shop;ProductConnectedToMountingBar"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasPart"/>
+                <owl:onClass rdf:resource="&shop;ShelfMountingBar"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+                <owl:allValuesFrom rdf:resource="&shop;ProductConnectedToMountingBar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasPart"/>
+                <owl:onClass rdf:resource="&shop;Product"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#MountingLayerConnectedToShelf -->
+
+    <owl:Class rdf:about="&shop;MountingLayerConnectedToShelf">
+        <rdfs:subClassOf rdf:resource="&shop;LayerConnectedToShelf"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerSlideInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerSlideInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Palette -->
+
+    <owl:Class rdf:about="&shop;Palette">
+        <rdfs:subClassOf rdf:resource="&shop;ProductContainer"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;typePrimaryFunction-containerFor"/>
+                <owl:allValuesFrom rdf:resource="&shop;ProductCase"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#PlacedProduct -->
+
+    <owl:Class rdf:about="&shop;PlacedProduct">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&shop;Product"/>
+                    <owl:Restriction>
+                        <owl:onProperty>
+                            <rdf:Description>
+                                <owl:inverseOf rdf:resource="&shop;productInFacing"/>
+                            </rdf:Description>
+                        </owl:onProperty>
+                        <owl:someValuesFrom rdf:resource="&shop;ProductFacing"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Product -->
+
+    <owl:Class rdf:about="&shop;Product">
+        <rdfs:subClassOf rdf:resource="&knowrob;HumanScaleObject"/>
+        <rdfs:subClassOf rdf:resource="&shop;StockKeepingUnit"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;priceOfProduct"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="&xsd;int"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;articleNumberOfProduct"/>
+                <owl:onClass rdf:resource="&shop;ArticleNumber"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ProductCase -->
+
+    <owl:Class rdf:about="&shop;ProductCase">
+        <rdfs:subClassOf rdf:resource="&shop;ProductContainer"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;typePrimaryFunction-containerFor"/>
+                <owl:allValuesFrom rdf:resource="&shop;Product"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">A (cardboard) box as found on incoming pallets with one or multiple items in it. Needs to be unpacked for shelf refilling. Also instead of Package, Cardboard Box.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ProductConnectedToMountingBar -->
+
+    <owl:Class rdf:about="&shop;ProductConnectedToMountingBar">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfConnection"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#needsAffordance"/>
+                <owl:onClass rdf:resource="&shop;ProductHangInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:onClass rdf:resource="&shop;ProductHangInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#needsAffordance"/>
+                <owl:allValuesFrom rdf:resource="&shop;ProductMountingAffordance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ProductContainer -->
+
+    <owl:Class rdf:about="&shop;ProductContainer">
+        <rdfs:subClassOf rdf:resource="&knowrob;StorageConstruct"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ProductFacing -->
+
+    <owl:Class rdf:about="&shop;ProductFacing">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfSpace"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;rightSeparator"/>
+                <owl:onClass rdf:resource="&shop;ShelfSeparator"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;layerOfFacing"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayer"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;leftSeparator"/>
+                <owl:onClass rdf:resource="&shop;ShelfSeparator"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <knowrob:todo rdf:datatype="&xsd;string">computables for width/height/depth</knowrob:todo>
+        <rdfs:comment rdf:datatype="&xsd;string">section of a ShelfLayer, determined by two ShelfSeparator&apos;s</rdfs:comment>
+        <knowrob:todo>add Prolog rule that asserts facings of initial semantic map</knowrob:todo>
+        <knowrob:todo>add SWRL rules that create/destroy facings when separators are moved</knowrob:todo>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ProductHangInF -->
+
+    <owl:Class rdf:about="&shop;ProductHangInF">
+        <rdfs:subClassOf rdf:resource="&shop;ProductMountingAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ProductHangInM -->
+
+    <owl:Class rdf:about="&shop;ProductHangInM">
+        <rdfs:subClassOf rdf:resource="&shop;ProductMountingAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ProductMountingAffordance -->
+
+    <owl:Class rdf:about="&shop;ProductMountingAffordance">
+        <rdfs:subClassOf rdf:resource="&shop;HangInAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#PuttingLabelOnShelf -->
+
+    <owl:Class rdf:about="&shop;PuttingLabelOnShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShopActivity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;goalLocation"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayer"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;objectActedOn"/>
+                <owl:onClass rdf:resource="&shop;ShelfLabel"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#PuttingMountingBarOnShelf -->
+
+    <owl:Class rdf:about="&shop;PuttingMountingBarOnShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShopActivity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;objectActedOn"/>
+                <owl:onClass rdf:resource="&shop;ShelfMountingBar"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;goalLocation"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerMounting"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#PuttingProductOnShelf -->
+
+    <owl:Class rdf:about="&shop;PuttingProductOnShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShopActivity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;goalLocation"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerStanding"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;objectActedOn"/>
+                <owl:onClass rdf:resource="&shop;Product"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#PuttingSeparatorOnShelf -->
+
+    <owl:Class rdf:about="&shop;PuttingSeparatorOnShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShopActivity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;objectActedOn"/>
+                <owl:onClass rdf:resource="&shop;ShelfSeparator"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;goalLocation"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayer"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <knowrob:todo>only possile if there is empty space</knowrob:todo>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#SalesRoomOfShop -->
+
+    <owl:Class rdf:about="&shop;SalesRoomOfShop">
+        <rdfs:subClassOf rdf:resource="&shop;ShopRoom"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Salesman -->
+
+    <owl:Class rdf:about="&shop;Salesman">
+        <rdfs:subClassOf rdf:resource="&shop;ShopPersona"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#SeparatorConnectedToShelf -->
+
+    <owl:Class rdf:about="&shop;SeparatorConnectedToShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfConnection"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#needsAffordance"/>
+                <owl:allValuesFrom rdf:resource="&shop;ShelfSeparatorAffordance"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfSeparatorSlideInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#needsAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfSeparatorSlideInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfBottomLayerAffordance -->
+
+    <owl:Class rdf:about="&shop;ShelfBottomLayerAffordance">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfBottomLayerAffordanceF -->
+
+    <owl:Class rdf:about="&shop;ShelfBottomLayerAffordanceF">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfBottomLayerAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfBottomLayerAffordanceM -->
+
+    <owl:Class rdf:about="&shop;ShelfBottomLayerAffordanceM">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfBottomLayerAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfConnection -->
+
+    <owl:Class rdf:about="&shop;ShelfConnection">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#AssemblyConnection"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfFrame -->
+
+    <owl:Class rdf:about="&shop;ShelfFrame">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfPart"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerSlideInF"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLabel -->
+
+    <owl:Class rdf:about="&shop;ShelfLabel">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfPart"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;articleNumberOfLabel"/>
+                <owl:onClass rdf:resource="&shop;ArticleNumber"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLabelSlideInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLabelAffordance -->
+
+    <owl:Class rdf:about="&shop;ShelfLabelAffordance">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLabelSlideInF -->
+
+    <owl:Class rdf:about="&shop;ShelfLabelSlideInF">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInFType"/>
+        <rdfs:subClassOf rdf:resource="&shop;ShelfLabelAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLabelSlideInM -->
+
+    <owl:Class rdf:about="&shop;ShelfLabelSlideInM">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInMType"/>
+        <rdfs:subClassOf rdf:resource="&shop;ShelfLabelAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLayer -->
+
+    <owl:Class rdf:about="&shop;ShelfLayer">
+        <rdfs:subClassOf rdf:resource="&knowrob;SupportingPlane"/>
+        <rdfs:subClassOf rdf:resource="&shop;ShelfPart"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLabelSlideInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Layers within a shelf system. Being counted from bottom to top.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLayerAffordance -->
+
+    <owl:Class rdf:about="&shop;ShelfLayerAffordance">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLayerBottom -->
+
+    <owl:Class rdf:about="&shop;ShelfLayerBottom">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfLayer"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfBottomLayerAffordanceM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfSeparatorSlideInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLayerMounting -->
+
+    <owl:Class rdf:about="&shop;ShelfLayerMounting">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfLayer"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfMountingBarSlideInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerSlideInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLayerSlideInF -->
+
+    <owl:Class rdf:about="&shop;ShelfLayerSlideInF">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInFType"/>
+        <rdfs:subClassOf rdf:resource="&shop;ShelfLayerAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLayerSlideInM -->
+
+    <owl:Class rdf:about="&shop;ShelfLayerSlideInM">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInMType"/>
+        <rdfs:subClassOf rdf:resource="&shop;ShelfLayerAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLayerStanding -->
+
+    <owl:Class rdf:about="&shop;ShelfLayerStanding">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfLayer"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerSlideInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">4</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfSeparatorSlideInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfMountingBar -->
+
+    <owl:Class rdf:about="&shop;ShelfMountingBar">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfPart"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ProductHangInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfMountingBarSlideInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfMountingBarAffordance -->
+
+    <owl:Class rdf:about="&shop;ShelfMountingBarAffordance">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfMountingBarSlideInF -->
+
+    <owl:Class rdf:about="&shop;ShelfMountingBarSlideInF">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfMountingBarAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfMountingBarSlideInM -->
+
+    <owl:Class rdf:about="&shop;ShelfMountingBarSlideInM">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfMountingBarAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfPart -->
+
+    <owl:Class rdf:about="&shop;ShelfPart">
+        <rdfs:subClassOf rdf:resource="&knowrob;PhysicalPartOfObject"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfSeparator -->
+
+    <owl:Class rdf:about="&shop;ShelfSeparator">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfPart"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfSeparatorSlideInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">Separators can be found in between facings of products</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfSeparatorAffordance -->
+
+    <owl:Class rdf:about="&shop;ShelfSeparatorAffordance">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfSeparatorSlideInF -->
+
+    <owl:Class rdf:about="&shop;ShelfSeparatorSlideInF">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInFType"/>
+        <rdfs:subClassOf rdf:resource="&shop;ShelfSeparatorAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfSeparatorSlideInM -->
+
+    <owl:Class rdf:about="&shop;ShelfSeparatorSlideInM">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInMType"/>
+        <rdfs:subClassOf rdf:resource="&shop;ShelfSeparatorAffordance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfSpace -->
+
+    <owl:Class rdf:about="&shop;ShelfSpace">
+        <rdfs:subClassOf rdf:resource="&knowrob;HomogeneousExtendedSpaceRegion"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfSystem -->
+
+    <owl:Class rdf:about="&shop;ShelfSystem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#Assemblage"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasPart"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayer"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+                <owl:onClass rdf:resource="&shop;LayerConnectedToShelf"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasPart"/>
+                <owl:onClass rdf:resource="&shop;ShelfFrame"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+                <owl:allValuesFrom rdf:resource="&shop;LayerConnectedToShelf"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment rdf:datatype="&xsd;string">A standard shelf system.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfWithLabel -->
+
+    <owl:Class rdf:about="&shop;ShelfWithLabel">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#Assemblage"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+                <owl:allValuesFrom rdf:resource="&shop;LabelConnectedToShelf"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+                <owl:onClass rdf:resource="&shop;LabelConnectedToShelf"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasPart"/>
+                <owl:onClass rdf:resource="&shop;ShelfLabel"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasPart"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayer"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfWithMountingBar -->
+
+    <owl:Class rdf:about="&shop;ShelfWithMountingBar">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#Assemblage"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+                <owl:onClass rdf:resource="&shop;MountingBarConnectedToLayer"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasPart"/>
+                <owl:onClass rdf:resource="&shop;ShelfMountingBar"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasPart"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerMounting"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+                <owl:allValuesFrom rdf:resource="&shop;MountingBarConnectedToLayer"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfWithSeparator -->
+
+    <owl:Class rdf:about="&shop;ShelfWithSeparator">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#Assemblage"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasPart"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerStanding"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+                <owl:allValuesFrom rdf:resource="&shop;SeparatorConnectedToShelf"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#hasPart"/>
+                <owl:onClass rdf:resource="&shop;ShelfSeparator"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+                <owl:onClass rdf:resource="&shop;SeparatorConnectedToShelf"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Shop -->
+
+    <owl:Class rdf:about="&shop;Shop">
+        <rdfs:subClassOf rdf:resource="&knowrob;Building"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;hasRooms"/>
+                <owl:someValuesFrom rdf:resource="&shop;BackRoomOfShop"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;hasRooms"/>
+                <owl:someValuesFrom rdf:resource="&shop;SalesRoomOfShop"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <knowrob:todo>primary function axioms, and expected objects axioms</knowrob:todo>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShopActivity -->
+
+    <owl:Class rdf:about="&shop;ShopActivity">
+        <rdfs:subClassOf rdf:resource="&knowrob;PurposefulAction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShopPersona -->
+
+    <owl:Class rdf:about="&shop;ShopPersona">
+        <rdfs:subClassOf rdf:resource="&knowrob;Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShopRoom -->
+
+    <owl:Class rdf:about="&shop;ShopRoom">
+        <rdfs:subClassOf rdf:resource="&knowrob;RoomInAConstruction"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Shopping -->
+
+    <owl:Class rdf:about="&shop;Shopping">
+        <rdfs:subClassOf rdf:resource="&shop;ShopActivity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#StandardVolumeShelf -->
+
+    <owl:Class rdf:about="&shop;StandardVolumeShelf">
+        <rdfs:subClassOf rdf:resource="&shop;ShelfSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#StandingLayerConnectedToShelf -->
+
+    <owl:Class rdf:about="&shop;StandingLayerConnectedToShelf">
+        <rdfs:subClassOf rdf:resource="&shop;LayerConnectedToShelf"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerSlideInF"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">4</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+                <owl:onClass rdf:resource="&shop;ShelfLayerSlideInM"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">4</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#StockKeepingUnit -->
+
+    <owl:Class rdf:about="&shop;StockKeepingUnit">
+        <rdfs:subClassOf rdf:resource="&knowrob;InformationBearingThing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#StockReceipt -->
+
+    <owl:Class rdf:about="&shop;StockReceipt">
+        <rdfs:subClassOf rdf:resource="&shop;ProductContainer"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;typePrimaryFunction-containerFor"/>
+                <owl:allValuesFrom rdf:resource="&shop;Palette"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#StockRefilling -->
+
+    <owl:Class rdf:about="&shop;StockRefilling">
+        <rdfs:subClassOf rdf:resource="&shop;ShopActivity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#StockTaking -->
+
+    <owl:Class rdf:about="&shop;StockTaking">
+        <rdfs:subClassOf rdf:resource="&shop;ShopActivity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#TeenageCustomer -->
+
+    <owl:Class rdf:about="&shop;TeenageCustomer">
+        <rdfs:subClassOf rdf:resource="&shop;Customer"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#UnplacedProduct -->
+
+    <owl:Class rdf:about="&shop;UnplacedProduct">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:complementOf rdf:resource="&shop;PlacedProduct"/>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#WellPlacedProduct -->
+
+    <owl:Class rdf:about="&shop;WellPlacedProduct">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&shop;PlacedProduct"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="&shop;siblingProductInFacing"/>
+                        <owl:hasSelf rdf:datatype="&xsd;boolean">true</owl:hasSelf>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="&shop;PlacedProduct"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#comp_facingDepth -->
+
+    <owl:NamedIndividual rdf:about="&shop;comp_facingDepth">
+        <rdf:type rdf:resource="&computable;PrologProperty"/>
+        <computable:cache rdf:datatype="&xsd;string">dontCache</computable:cache>
+        <computable:command rdf:datatype="&xsd;string">knowrob_refills:comp_facingDepth</computable:command>
+        <computable:visible rdf:datatype="&xsd;string">unvisible</computable:visible>
+        <computable:target rdf:resource="&shop;depthOfObject"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#comp_facingHeight -->
+
+    <owl:NamedIndividual rdf:about="&shop;comp_facingHeight">
+        <rdf:type rdf:resource="&computable;PrologProperty"/>
+        <computable:cache rdf:datatype="&xsd;string">dontCache</computable:cache>
+        <computable:command rdf:datatype="&xsd;string">knowrob_refills:comp_facingHeight</computable:command>
+        <computable:visible rdf:datatype="&xsd;string">unvisible</computable:visible>
+        <computable:target rdf:resource="&shop;heightOfObject"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#comp_facingPose -->
+
+    <owl:NamedIndividual rdf:about="&shop;comp_facingPose">
+        <rdf:type rdf:resource="&computable;PrologProperty"/>
+        <computable:cache rdf:datatype="&xsd;string">dontCache</computable:cache>
+        <computable:command rdf:datatype="&xsd;string">knowrob_refills:comp_facingPose</computable:command>
+        <computable:visible rdf:datatype="&xsd;string">unvisible</computable:visible>
+        <computable:target rdf:resource="&knowrob;pose"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#comp_facingWidth -->
+
+    <owl:NamedIndividual rdf:about="&shop;comp_facingWidth">
+        <rdf:type rdf:resource="&computable;PrologProperty"/>
+        <computable:cache rdf:datatype="&xsd;string">dontCache</computable:cache>
+        <computable:command rdf:datatype="&xsd;string">knowrob_refills:comp_facingWidth</computable:command>
+        <computable:visible rdf:datatype="&xsd;string">unvisible</computable:visible>
+        <computable:target rdf:resource="&shop;widthOfObject"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#compute_isSpaceRemainingInFacing -->
+
+    <owl:NamedIndividual rdf:about="&shop;compute_isSpaceRemainingInFacing">
+        <rdf:type rdf:resource="&computable;PrologProperty"/>
+        <computable:cache rdf:datatype="&xsd;string">dontCache</computable:cache>
+        <computable:command rdf:datatype="&xsd;string">knowrob_refills:comp_isSpaceRemainingInFacing</computable:command>
+        <computable:visible rdf:datatype="&xsd;string">unvisible</computable:visible>
+        <computable:target rdf:resource="&shop;isSpaceRemainingInFacing"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+
