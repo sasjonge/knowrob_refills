@@ -201,7 +201,12 @@ class ProductTable:
 
   def read_cell_types(self,article,resource,row,column):
     for x in column.parents:
-      resource.has_type(self.read_cell(article,row,self.get_column(x)))
+      clsName = self.read_cell(article,row,self.get_column(x))
+      if clsName==resource.name or clsName==None: continue
+      if self.resourceManager.subclass_of(clsName, resource.name):
+        print("WARN: mutual subclassOf relation between " + str((clsName, resource.name)))
+      else:
+        resource.has_type(clsName)
 
   def read_cell_property(self,article,resource,column):
     if column.role=='type':
@@ -285,6 +290,7 @@ def main(argv):
       for t in tables:
         t.read()
         resourceManager.translator.save()
+      resourceManager.cleanup_subclasses()
       # dump into multiple ontologies
       isClass         = lambda e: isinstance(e, OWLClass)
       isIndividual    = lambda e: isinstance(e, OWLIndividual)

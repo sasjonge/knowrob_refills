@@ -208,6 +208,34 @@ class OWLResourceManager:
   def set_output_mode(self, outMode):
     self.outMode = outMode
   
+  def subclass_of(self, name1, name2):
+    if name1 == name2: return True
+    try:
+      for parent in self.owlClasses[name1].types:
+        if self.subclass_of(parent, name2):
+          return True
+    except: pass
+    return False
+
+  def cleanup_subclasses(self):
+    for name in self.owlClasses:
+      self.cleanup_types(self.owlClasses[name])
+    #for name in self.owlIndividuals:
+    #  self.cleanup_types(self.owlIndividuals[name])
+  
+  def cleanup_types(self, entity):
+    cleaned = []
+    unique = set(entity.types)
+    for a in unique:
+      skip = False
+      for b in unique:
+        if a==b: continue
+        if self.subclass_of(b,a):
+          skip=True
+          break
+      if skip == False: cleaned.append(a)
+    entity.types = cleaned
+  
   def get(self, label, lang='de'):
     clsName = self.get_name(label, lang)
     if clsName=='': return None
