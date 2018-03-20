@@ -80,22 +80,23 @@ class ProductTable:
   COLUMN_META_DATA = [
     ProductTableColumn('assortment',
       labels=['Warensortiment'],
-      cls='Product',
-      role='type'),
+      cls='Product'),
     ProductTableColumn('area',
       labels=['Warenbereich'],
-      cls='Product'),
+      cls='Product',
+      parents=['assortment']),
     ProductTableColumn('subArea',
       labels=['Warenunterbereich'],
       cls='Product',
-      parents=['area'],
+      parents=['assortment', 'area'],
       role='type'),
     ProductTableColumn('generalType',
       labels=['Warenklasse'],
-      cls='Product'),
+      cls='Product',
+      parents=['assortment']),
     ProductTableColumn('specificType',
       labels=['Warengruppe'],
-      parents=['generalType'],
+      parents=['assortment', 'generalType'],
       role='type'),
     #ProductTableColumn('brand',
     #  labels=['Marke Dachmarke'],
@@ -206,7 +207,14 @@ class ProductTable:
       if self.resourceManager.subclass_of(clsName, resource.name):
         print("WARN: mutual subclassOf relation between " + str((clsName, resource.name)))
       else:
-        resource.has_type(clsName)
+        # HACK a is subclass b if a's name contains b's name
+        if resource.name in clsName:
+          print("HACK APPLIED " + str((clsName, resource.name)))
+          cls = self.resourceManager.owlClasses[clsName]
+          cls.has_type(resource.name)
+          cls.has_type('Product')
+        else:
+          resource.has_type(clsName)
 
   def read_cell_property(self,article,resource,column):
     if column.role=='type':
@@ -244,27 +252,30 @@ def main(argv):
   resourceManager.add_import('package://knowrob_refills/owl/shop.owl')
   resourceManager.add_import('package://knowrob_refills/owl/dm-market.owl')
   
-  outDir = os.path.dirname(os.path.realpath(__file__))
+  outDir = os.path.abspath(os.path.dirname(os.path.realpath(__file__)) + "/../owl/")
   # handle commandline parameters
   try:
-    opts, args = getopt.getopt(argv, "gl:t:o:m:",
-      ["gen", "list=", "table=", "output-dir=", "output-mode="])
+    opts, args = getopt.getopt(argv, "tcl:i:o:m:",
+      ["taxonomy", "catalog", "list=", "input=", "output-dir=", "output-mode="])
   except getopt.GetoptError:
     sys.exit(2)
-  opt_gen = False
+  opt_taxonomy = False
+  opt_catalog = False
   opt_list = []
   opt_tables = []
   for opt, arg in opts:
-    if opt in ("-g", "--gen"):
-      opt_gen = True
-    elif opt in ("-t", "--table"):
+    if opt in ("-t", "--taxonomy"):
+      opt_taxonomy = True
+    elif opt in ("-c", "--catalog"):
+      opt_catalog = True
+    elif opt in ("-l", "--list"):
+      opt_list.append(arg)
+    elif opt in ("-i", "--input"):
       opt_tables.append(arg)
     elif opt in ("-o", "--output-dir"):
       outDir = arg
     elif opt in ("-m", "--output-mode"):
       resourceManager.set_output_mode(arg)
-    elif opt in ("-l", "--list"):
-      opt_list.append(arg)
   # instantiate tables
   tables = []
   for table_arg in opt_tables:
@@ -275,34 +286,36 @@ def main(argv):
       print("LABEL_MAPPING_"+l.upper()+"={")
       for t in tables:
         column = t.get_column(l)
+        if column==None: continue
         for x in t.unique_names(l):
           x0=str(x)
           clean=clean_label(x0)
           if clean=="": continue
           label=column.format_label(x0)
-          x1=str(resourceManager.get_name(label, suffix=column.suffix))
+          x1=str(resourceManager.get_name(label))
           print("  '"+clean+"': '"+x1+"',")
       print("}")
       resourceManager.translator.save()
+  # separate product catalog from taxonomy
+  isProductClass  = lambda e: e.name.startswith('ProductWithAN')
+  isIndividual    = lambda e: isinstance(e, OWLIndividual)
+  filter1         = lambda e: isIndividual(e) or isProductClass(e)
+  isClass         = lambda e: isinstance(e, OWLClass)
+  filter2         = lambda e: isClass(e) and not isProductClass(e)
   # print out unique names
-  if opt_gen:
+  if opt_taxonomy or opt_catalog:
       print("Reading tables (this may take a while)...")
       for t in tables:
         t.read()
         resourceManager.translator.save()
       resourceManager.cleanup_subclasses()
-      # dump into multiple ontologies
-      isClass         = lambda e: isinstance(e, OWLClass)
-      isIndividual    = lambda e: isinstance(e, OWLIndividual)
-      isProductClass  = lambda e: e.name.startswith('ProductWithAN')
-      voidFilter      = lambda e: False
-      filter1 = lambda e: isIndividual(e) or isProductClass(e)
-      filter2 = lambda e: isClass(e) and not isProductClass(e)
       print("Dumping ontology to " + outDir)
-      resourceManager.dump(outDir+"/product-taxonomy.owl", filter1)
-      resourceManager.dump(outDir+"/product-catalog.owl",  filter2)
+  if opt_taxonomy: resourceManager.dump(outDir+"/product-taxonomy.owl", filter1)
+  if opt_catalog:  resourceManager.dump(outDir+"/product-catalog.owl",  filter2)
+  if opt_taxonomy or opt_catalog:
+      voidFilter = lambda e: False
       # some debug output at the end
-      print("Printing ontology statistics:")
+      print("Ontology statistics:")
       print("    total classes:     " + str(resourceManager.class_count(voidFilter)))
       print("    total individuals: " + str(resourceManager.individual_count(voidFilter)))
       print("    product classes:   " + str(resourceManager.entity_count(lambda e: not isProductClass(e))))
