@@ -208,8 +208,8 @@ class OWLResourceManager:
   def set_output_mode(self, outMode):
     self.outMode = outMode
   
-  def get(self, label, lang='de', suffix=' item', prefix=''):
-    clsName = self.get_name(label, lang, suffix, prefix)
+  def get(self, label, lang='de'):
+    clsName = self.get_name(label, lang)
     if clsName=='': return None
     try:
       x = self.owlClasses[clsName]
@@ -228,20 +228,11 @@ class OWLResourceManager:
       self.owlIndividuals[x.name] = x
       return x
   
-  def get_name(self, label, lang='de', suffix='', prefix=''):
-    translated = self.translator.translate(label, lang)
-    # avoid that suffix/prefix is repeated
-    if not translated.lower().startswith(prefix.lower()):
-      translated = prefix + " " + translated
-    if not translated.lower().endswith(suffix.lower()):
-      translated = translated + " " + suffix
-    clsName = self.owl_name(translated)
-    return clsName
+  def get_name(self, label, lang='de'):
+    return self.owl_name(self.translator.translate(label, lang))
   
   def owl_name(self, label):
-    clean = label.title()
-    owlName = ''.join(clean.split(' '))
-    return owlName
+    return ''.join(label.title().split(' '))
   
   def dump(self, outFile, filter):
     try:

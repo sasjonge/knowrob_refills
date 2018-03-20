@@ -11,11 +11,8 @@ from label_mapping import LABEL_MAPPING_PREFIX, \
                           LABEL_MAPPING_SUFFIX, \
                           LABEL_MAPPING_WORD, \
                           LABEL_MAPPING_REPLACE
-#from product_areas      import get_area, get_sub_area
-#from product_classes    import get_product_class
 
 def clean_label(label):
-  #words = re.findall(ur"[\w']+", str(label), re.UNICODE)
   words = label.replace('-',' '). \
                 replace('.',' '). \
                 replace('(',' '). \
@@ -55,8 +52,7 @@ class ProductTableColumn:
                parents=[],
                role=None,
                param=None, paramType=None,
-               cls=None,
-               suffix='', prefix=''):
+               cls=None):
     self.name         = name
     self.labels       = labels
     self.coltype   = coltype
@@ -65,8 +61,6 @@ class ProductTableColumn:
     self.cls       = cls
     self.param     = param
     self.paramType = paramType
-    self.suffix    = suffix
-    self.prefix    = prefix
   
   def format_label(self, label):
     return clean_label(label)
@@ -172,10 +166,7 @@ class ProductTable:
     rawLabel = self.read_value(row,column)
     label    = column.format_label(rawLabel)
     if column.coltype=='class':
-      cellClass = self.resourceManager.get(label,
-        lang=self.lang,
-        prefix=column.prefix,
-        suffix=column.suffix)
+      cellClass = self.resourceManager.get(label, lang=self.lang)
       if cellClass==None: return None
       self.read_cell_types(article,cellClass,row,column)
       self.read_cell_property(article,cellClass,column)
