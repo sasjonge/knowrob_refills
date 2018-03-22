@@ -37,3 +37,4 @@
 
 :- owl_parser:owl_parse('package://knowrob_refills/owl/shop.owl').
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
+:- rdf_db:rdf_register_ns(dm_market, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
