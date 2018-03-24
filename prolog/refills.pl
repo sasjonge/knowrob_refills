@@ -29,9 +29,35 @@
   @license BSD
 */
 
-:- module(shop,
+:- module(refills,
     [
-      refills_init_iai_shop/0
+      refills_init_test_shop/0,
+      refills_init_iai_shop/0,
+      refills_spawn_facings/0
     ]).
 
-refills_init_iai_shop :- true.
+:- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
+
+:- use_module(library('shop')).
+
+refills_init_iai_shop :-
+  owl_parser:owl_parse('package://knowrob_refills/owl/dm-market-iai.owl', belief_state).
+
+refills_init_test_shop :-
+  belief_parse('package://knowrob_refills/owl/shop-test.owl'),
+  refills_spawn_facings.
+
+refills_spawn_facings :-
+  forall( rdfs_individual_of(Layer, dmshop:'DMShelfLayerStanding'), (
+    shelf_layer_spawn(Layer, dmshop:'DMShelfSeparator', 0.0, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfSeparator', 0.2, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfSeparator', 0.35, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfSeparator', 0.6, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfSeparator', 0.85, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfSeparator', 1.0, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.1, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.275, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.475, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.725, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.925, _)
+  )).
