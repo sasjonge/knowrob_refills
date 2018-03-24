@@ -310,8 +310,10 @@ def main(argv):
         resourceManager.translator.save()
       resourceManager.cleanup_subclasses()
       print("Dumping ontology to " + outDir)
-  if opt_taxonomy: resourceManager.dump(outDir+"/product-taxonomy.owl", filter1)
-  if opt_catalog:  resourceManager.dump(outDir+"/product-catalog.owl",  filter2)
+  if opt_taxonomy: resourceManager.dump(outDir+"/product-taxonomy.owl", \
+	                                    'http://knowrob.org/kb/product-taxonomy.owl', filter1)
+  if opt_catalog:  resourceManager.dump(outDir+"/product-catalog.owl", \
+	                                    'http://knowrob.org/kb/product-catalog.owl', filter2)
   if opt_taxonomy or opt_catalog:
       voidFilter = lambda e: False
       # some debug output at the end
