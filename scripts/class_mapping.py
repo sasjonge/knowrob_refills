@@ -262,15 +262,15 @@ class OWLResourceManager:
   def owl_name(self, label):
     return ''.join(label.title().split(' '))
   
-  def dump(self, outFile, filter):
+  def dump(self, outFile, iri, filter):
     try:
       copyfile(outFile, outFile+".bak")
     except: pass
     f = open(outFile,'w')  
     if self.outMode=='OWL':
-      self.dump_owl(f, filter)
+      self.dump_owl(f, iri, filter)
     elif self.outMode=='plain':
-      self.dump_plain(f, filter)
+      self.dump_plain(f, iri, filter)
     else:
       print("ERROR: unknown output mode '"+self.outMode+"'.")
     f.close()
@@ -284,23 +284,23 @@ class OWLResourceManager:
       entity = dict[name]
       if not filter(entity): entity.write_owl(f)
   
-  def dump_plain(self, f, filter):
+  def dump_plain(self, f, iri, filter):
     self.dump_plain__(f, filter, self.owlClasses)
     self.dump_plain__(f, filter, self.owlIndividuals)
-  def dump_owl(self, f, filter):
+  def dump_owl(self, f, iri, filter):
     f.write('<?xml version="1.0"?>\n')
     f.write('<!DOCTYPE rdf:RDF [\n')
     for (ns,uri) in self.namespaces:
       f.write('    <!ENTITY '+ns+' "'+uri+'" >\n')
     f.write(']>\n\n')
     # <rdf:RDF>
-    f.write('<rdf:RDF xmlns="'+self.ontologyURI+'#"\n')
-    f.write('      xml:base="'+self.ontologyURI+'"')
+    f.write('<rdf:RDF xmlns="'+iri+'#"\n')
+    f.write('      xml:base="'+iri+'"')
     for (ns,uri) in self.namespaces:
       f.write('\n      xmlns:'+ns+'="'+uri+'"')
     f.write('>\n')
     # <owl:Ontology>
-    f.write('    <owl:Ontology rdf:about="'+self.ontologyURI+'">\n')
+    f.write('    <owl:Ontology rdf:about="'+iri+'">\n')
     f.write('        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob.owl"/>\n')
     for importURI in self.imports:
       f.write('        <owl:imports rdf:resource="'+importURI+'"/>\n')
