@@ -73,6 +73,12 @@
     
 
 
+    <!-- http://knowrob.org/kb/knowrob.owl#mainColorOfObject -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/knowrob.owl#mainColorOfObject"/>
+    
+
+
     <!-- http://knowrob.org/kb/knowrob.owl#pathToCadModel -->
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -173,14 +179,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.04</owl:hasValue>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#mainColorOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0 1.0 1.0 1.0</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#mainColorOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0 1.0 1.0 1.0</owl:hasValue>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -314,7 +320,7 @@
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfLayerMounting">
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer"/>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShelfPart"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShelfLayerMounting"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
@@ -557,6 +563,14 @@
     
 
 
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfSystem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfSystem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShelfSystem"/>
+    </owl:Class>
+    
+
+
     <!-- http://knowrob.org/kb/dm-market.owl#DMShelfTiledPart -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfTiledPart">
@@ -583,6 +597,18 @@
     
 
 
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLayerMounting -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfLayerMounting"/>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfLayerStanding -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfLayerStanding"/>
+    
+
+
     <!-- http://knowrob.org/kb/shop.owl#ShelfMountingBar -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfMountingBar"/>
@@ -598,6 +624,12 @@
     <!-- http://knowrob.org/kb/shop.owl#ShelfSeparator -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfSeparator"/>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfSystem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfSystem"/>
 </rdf:RDF>
 
 
