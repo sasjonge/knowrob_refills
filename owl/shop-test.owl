@@ -1,0 +1,604 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://knowrob.org/kb/shop-test.owl#"
+     xml:base="http://knowrob.org/kb/shop-test.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:dmshop="http://knowrob.org/kb/dm-market.owl#"
+     xmlns:log="http://knowrob.org/kb/shop-test.owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:iai-dm-market="http://knowrob.org/kb/iai-dm-market.owl#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:knowrob_assembly="http://knowrob.org/kb/knowrob_assembly.owl#"
+     xmlns:computable="http://knowrob.org/kb/computable.owl#">
+    <owl:Ontology rdf:about="http://knowrob.org/kb/shop-test.owl">
+        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob.owl"/>
+        <owl:imports rdf:resource="package://knowrob_refills/owl/dm-market.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#describedInMap -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/knowrob.owl#describedInMap"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#pose -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/knowrob.owl#pose"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#properPhysicalParts -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/knowrob.owl#properPhysicalParts"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#relativeTo -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/knowrob.owl#relativeTo"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/knowrob_assembly.owl#consumesAffordance"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/knowrob_assembly.owl#hasAffordance"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob_assembly.owl#usesConnection -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/knowrob_assembly.owl#usesConnection"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#hasVisual -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/knowrob.owl#hasVisual"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#quaternion -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/knowrob.owl#quaternion"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#translation -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/knowrob.owl#translation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfLayerMountingFront -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfLayerMountingFront"/>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfMountingBar -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfMountingBar"/>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfSystem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfSystem"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#CeilingLight -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#CeilingLight"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#LightBulbIAI -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#LightBulbIAI"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#Pose -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#Pose"/>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#SemanticEnvironmentMap -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#SemanticEnvironmentMap"/>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfFramesConnected -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfFramesConnected"/>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfSystemAffordanceLeft -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfSystemAffordanceLeft"/>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShelfSystemAffordanceRight -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfSystemAffordanceRight"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#CeilingLight_ovmsdobgzw -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/knowrob.owl#CeilingLight_ovmsdobgzw">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#CeilingLight"/>
+        <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/shop-test.owl#SemanticEnvironmentMap_wB8V"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/knowrob.owl#Lightbulb_afg46sdfgsdfd"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/knowrob.owl#Lightbulb_dfr0zuejssdfx"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/knowrob.owl#Lightbulb_hfdfh46fadsb"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/knowrob.owl#Lightbulb_safh98ewhgb"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/knowrob.owl#Lightbulb_sdafg58hjco"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/knowrob.owl#Lightbulb_sdgt456sgdsdfyw"/>
+        <knowrob:hasVisual rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</knowrob:hasVisual>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#Lightbulb_afg46sdfgsdfd -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/knowrob.owl#Lightbulb_afg46sdfgsdfd">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#LightBulbIAI"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_afg46sdfgsdfd"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#Lightbulb_dfr0zuejssdfx -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/knowrob.owl#Lightbulb_dfr0zuejssdfx">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#LightBulbIAI"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_dfr0zuejssdfx"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#Lightbulb_hfdfh46fadsb -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/knowrob.owl#Lightbulb_hfdfh46fadsb">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#LightBulbIAI"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_hfdfh46fadsb"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#Lightbulb_safh98ewhgb -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/knowrob.owl#Lightbulb_safh98ewhgb">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#LightBulbIAI"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_safh98ewhgb"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#Lightbulb_sdafg58hjco -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/knowrob.owl#Lightbulb_sdafg58hjco">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#LightBulbIAI"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_sdafg58hjco"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#Lightbulb_sdgt456sgdsdfyw -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/knowrob.owl#Lightbulb_sdgt456sgdsdfyw">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#LightBulbIAI"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_sdgt456sgdsdfyw"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_Swj7FE4S"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_AhQZgR3E"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_cJAy4Fer"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfLayerMountingFront_HWQYgr4E"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfLayerMountingFront_SggBfSw3"/>
+        <knowrob_assembly:hasAffordance rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceLeft_GteDJ94J"/>
+        <knowrob_assembly:hasAffordance rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceRight_GteDJ94J"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8 -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_4qsbFe3S"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_69ttAa2e"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_RNOEaS2W"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_VdecDe4R"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_YxPugR3E"/>
+        <knowrob_assembly:hasAffordance rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceLeft_H5FelHFS"/>
+        <knowrob_assembly:hasAffordance rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceRight_H5FelHFS"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_69ttAa2e -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_69ttAa2e">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_SUWLFIQN"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_AhQZgR3E -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_AhQZgR3E">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_NWRJHKXY"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_RNOEaS2W -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_RNOEaS2W">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_WKOTHJBP"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_VdecDe4R -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_VdecDe4R">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_VSYMJRDN"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_YxPugR3E -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_YxPugR3E">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_ERMDPWYV"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_cJAy4Fer -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfLayer4TilesFront_cJAy4Fer">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_TUHWIQVE"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfLayerMountingFront_HWQYgr4E -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfLayerMountingFront_HWQYgr4E">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerMountingFront"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_JYCDWPRQ"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfLayerMountingFront_SggBfSw3 -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfLayerMountingFront_SggBfSw3">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerMountingFront"/>
+        <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_WNHUTMGX"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#DMShelfSystem_He63Gwp6 -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfSystem_He63Gwp6">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfSystem"/>
+        <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/shop-test.owl#SemanticEnvironmentMap_wB8V"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS"/>
+        <knowrob:properPhysicalParts rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8"/>
+        <knowrob_assembly:usesConnection rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfFramesConnected_FGer67Se"/>
+        <knowrob:hasVisual rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</knowrob:hasVisual>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_4qsbFe3S -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_4qsbFe3S">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.707107 0.707106</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.06032 1.004554 0.855978</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_ERMDPWYV -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_ERMDPWYV">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:relativeTo rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 3.019806626980426e-13 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-0.030598172955160634 0.1209099524838818 -0.31261900663375854</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_JYCDWPRQ -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_JYCDWPRQ">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:relativeTo rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 3.019806626980426e-13 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-0.0006390457345629992 0.03193199915509478 0.26972498893737793</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_NWRJHKXY -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_NWRJHKXY">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:relativeTo rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 3.019806626980426e-13 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.006237821899296492 0.12428701072750153 -0.4778260052204132</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_SUWLFIQN -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_SUWLFIQN">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:relativeTo rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 3.019806626980426e-13 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-0.030598172955160634 0.1209099524838818 0.3113749861717224</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_Swj7FE4S -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_Swj7FE4S">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.707107 0.707106</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.05696 2.047479 0.853282</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_TUHWIQVE -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_TUHWIQVE">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:relativeTo rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 3.019806626980426e-13 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.006237821899296492 0.12428701072750153 -0.2729860007762909</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_VSYMJRDN -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_VSYMJRDN">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:relativeTo rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 3.019806626980426e-13 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-0.030598172955160634 0.1209099524838818 0.02347599864006042</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_WKOTHJBP -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_WKOTHJBP">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:relativeTo rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 3.019806626980426e-13 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-0.030598172955160634 0.1209099524838818 0.5646429896354675</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_WNHUTMGX -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_WNHUTMGX">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:relativeTo rdf:resource="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 3.019806626980426e-13 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-0.0006390457345629992 0.03193199915509478 0.8180489778518677</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_afg46sdfgsdfd -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_afg46sdfgsdfd">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0 0.0 0.0 0.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.5 2.8 3.0</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_dfr0zuejssdfx -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_dfr0zuejssdfx">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0 0.0 0.0 0.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.5 0.6 3.0</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_hfdfh46fadsb -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_hfdfh46fadsb">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0 0.0 0.0 0.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2.5 2.8 3.0</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_safh98ewhgb -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_safh98ewhgb">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0 0.0 0.0 0.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2.5 5.0 3.0</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_sdafg58hjco -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_sdafg58hjco">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0 0.0 0.0 0.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2.5 0.6 3.0</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#Pose_sdgt456sgdsdfyw -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#Pose_sdgt456sgdsdfyw">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#Pose"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0 0.0 0.0 0.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.5 5.0 3.0</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#SemanticEnvironmentMap_wB8V -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#SemanticEnvironmentMap_wB8V">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#SemanticEnvironmentMap"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#ShelfFramesConnected_FGer67Se -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#ShelfFramesConnected_FGer67Se">
+        <rdf:type rdf:resource="http://knowrob.org/kb/shop.owl#ShelfFramesConnected"/>
+        <knowrob_assembly:consumesAffordance rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceLeft_H5FelHFS"/>
+        <knowrob_assembly:consumesAffordance rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceRight_GteDJ94J"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceLeft_GteDJ94J -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceLeft_GteDJ94J">
+        <rdf:type rdf:resource="http://knowrob.org/kb/shop.owl#ShelfSystemAffordanceLeft"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceLeft_H5FelHFS -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceLeft_H5FelHFS">
+        <rdf:type rdf:resource="http://knowrob.org/kb/shop.owl#ShelfSystemAffordanceLeft"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceRight_GteDJ94J -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceRight_GteDJ94J">
+        <rdf:type rdf:resource="http://knowrob.org/kb/shop.owl#ShelfSystemAffordanceRight"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceRight_H5FelHFS -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceRight_H5FelHFS">
+        <rdf:type rdf:resource="http://knowrob.org/kb/shop.owl#ShelfSystemAffordanceRight"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+
