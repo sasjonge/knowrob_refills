@@ -42,28 +42,20 @@
 
 :- module(shop,
     [
-      shelf_layer_above/2,
-      shelf_layer_below/2,
+      shelf_layer_frame/2,
       shelf_layer_mounting/1,
       shelf_layer_standing/1,
+      shelf_layer_above/2,
+      shelf_layer_below/2,
       shelf_layer_position/3,
-      shelf_layer_find_nearest/5,
-      shelf_layer_facings/2,
-      shelf_layer_mounting_bars/2,
+      shelf_layer_separator/2,
+      shelf_layer_mounting_bar/2,
+      shelf_layer_label/2,
       shelf_facing/2,
-      shelf_facing_previous/2,
-      shelf_facing_next/2,
       shelf_facing_product_type/2,
       shelf_facing_total_space/2,
       shelf_facing_free_space/2,
       shelf_facing_occupied_space/2,
-      shelf_mounting_bar/2,
-      shelf_mounting_bar_previous/2,
-      shelf_mounting_bar_next/2,
-      shelf_label/2,
-      shelf_label_previous/2,
-      shelf_label_next/2,
-      shelf_layer_separator/2,
       % computable properties
       comp_isSpaceRemainingInFacing/2,
       comp_facingPose/2,
@@ -72,7 +64,6 @@
       comp_facingDepth/2,
       %%%%%
       shelf_find_parent/2,
-      shelf_make_parent/2,
       shelf_layer_spawn/4
     ]).
 
@@ -83,34 +74,22 @@
 :- use_module(library('knowrob/owl')).
 
 :-  rdf_meta
+    shelf_layer_frame(r,r),
     shelf_layer_above(r,r),
     shelf_layer_below(r,r),
     shelf_layer_mounting(r),
     shelf_layer_standing(r),
     shelf_layer_position(r,r,-),
-    shelf_layer_find_nearest(r,+,t,r,-),
-    shelf_layer_facings(r,-),
-    shelf_layer_mounting_bars(r,-),
+    shelf_layer_mounting_bar(r,r),
+    shelf_layer_label(r,r),
+    shelf_layer_separator(r,r),
+    shelf_layer_spawn(r,r,+,-),
     shelf_facing(r,r),
-    shelf_facing_previous(r,r),
-    shelf_facing_next(r,r),
     shelf_facing_product_type(r,r),
     shelf_facing_total_space(r,?),
     shelf_facing_free_space(r,-),
     shelf_facing_occupied_space(r,-),
-    shelf_mounting_bar(r,r),
-    shelf_mounting_bar_previous(r,r),
-    shelf_mounting_bar_next(r,r),
-    shelf_label(r,r),
-    shelf_label_previous(r,r),
-    shelf_label_next(r,r),
-    shelf_layer_separator(r,r),
-    belief_shelf_separator_at(r,t,-),
-    belief_shelf_mounting_bar_at(r,t,-),
-    belief_shelf_label_at(r,+,t,-),
-    belief_shelf_product_at(r,r,t,-),
-    comp_facingFree(r, ?),
-    shelf_layer_spawn(r,r,+,-).
+    shelf_find_parent(r,r).
 
 :- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
 :- rdf_db:rdf_register_ns(owl, 'http://www.w3.org/2002/07/owl#', [keep(true)]).
@@ -139,9 +118,57 @@ shop_ean_article_number(EAN, ArticleNumber) :-
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Shelves
+
+%% 
+shelf_find_parent(Object, Parent) :-
+  rdfs_individual_of(Object, shop:'ShelfLayer'), !,
+  shelf_find_frame_of_object(Object, Parent).
+shelf_find_parent(Object, Parent) :-
+  shelf_find_frame_of_object(Object, Frame),
+  shelf_find_layer_of_object(Object, Frame, Parent).
+
+shelf_find_frame_of_object(Obj, Frame) :-
+  findall(X, rdfs_individual_of(X, shop:'ShelfFrame'), Xs),
+  closest_object(Obj, Xs, Frame, _).
+shelf_find_layer_of_object(Obj, Frame, Layer) :-
+  rdfs_individual_of(Frame, shop:'ShelfFrame'),
+  findall(X, (
+    rdf_has(Frame, knowrob:properPhysicalParts, X),
+    rdfs_individual_of(X, shop:'ShelfLayer')
+  ), Xs),
+  closest_object(Obj, Xs, Layer, _).
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % shop:'ShelfLayer'
 
+%% 
+shelf_layer_frame(Layer, Frame) :-
+  owl_has(Frame, knowrob:properPhysicalParts, Layer),
+  rdfs_individual_of(Frame, shop:'ShelfFrame'), !.
+
+%% 
+shelf_layer_mounting(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerMounting').
+%% 
+shelf_layer_standing(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerStanding').
+
+%% shelf_layer_position
+%
+% The position of some object on a shelf layer.
+% Position is simply the x-value of the object's pose in the shelf layer's frame.
+%
+shelf_layer_position(Layer, Object, Position) :-
+  belief_at_relative_to(Object, Layer, [_,_,[Position,_,_],_]).
+
+%% 
 shelf_layer_above(ShelfLayer, AboveLayer) :-
+  shelf_layer_sibling(ShelfLayer, max_negative_element, AboveLayer).
+%% 
+shelf_layer_below(ShelfLayer, BelowLayer) :-
+  shelf_layer_sibling(ShelfLayer, min_positive_element, BelowLayer).
+
+shelf_layer_sibling(ShelfLayer, Selector, SiblingLayer) :-
   shelf_layer_frame(ShelfLayer, ShelfFrame),
   belief_at_relative_to(ShelfLayer, ShelfFrame, [_,_,[_,_,Pos],_]),
   findall((X,Diff), (
@@ -149,93 +176,22 @@ shelf_layer_above(ShelfLayer, AboveLayer) :-
     X \= ShelfLayer,
     belief_at_relative_to(X, ShelfFrame, [_,_,[_,_,X_Pos],_]),
     Diff is X_Pos-Pos), Xs),
-  max_list_item(Xs, (AboveLayer,_)).
+  call(Selector, Xs, (SiblingLayer,_)).
 
-%% 
-%shelf_layer_above(ShelfLayer, AboveLayer) :-
-%  % FIXME: uses affordances
-%  shelf_layer_top_affordance(ShelfLayer, Aff),
-%  ( rdfs_individual_of(Aff, shop:'ShelfBottomLayerAffordanceM') -> (
-%    shelf_layer_frame(ShelfLayer, ShelfFrame),
-%    rdf_has(ShelfFrame, knowrob_assembly:hasAffordance, FirstAffordance),
-%    \+ rdf_has(_, shop:nextShelfAffordance, FirstAffordance),
-%    shelf_layer_above_(FirstAffordance, AboveLayer)
-%  );(
-%    shelf_layer_above_(Aff, AboveLayer)
-%  )), !.
-
-%shelf_layer_top_affordance(ShelfLayer, ShelfAffordance) :-
-%  % FIXME: uses affordances
-%  findall(Aff, (
-%    rdf_has(ShelfLayer, knowrob_assembly:hasAffordance, LayerAffordance),
-%    rdf_has(Conn, knowrob_assembly:consumesAffordance, LayerAffordance),
-%    rdf_has(Conn, knowrob_assembly:consumesAffordance, Aff)
-%  ), ConsumedAffordances),
-%  member(ShelfAffordance, ConsumedAffordances),
-%  \+ ( member(X, ConsumedAffordances),
-%       rdf_has(ShelfAffordance, shop:nextShelfAffordance, X)).
-
-%shelf_layer_above_(Aff, AboveLayer) :-
-%  % FIXME: uses affordances
-%  rdf_has(Aff, shop:nextShelfAffordance, NextAff),
-%  ( shelf_affordance_layer(NextAff, NextLayer) ->
-%    AboveLayer = NextLayer ;
-%    shelf_layer_above_(NextAff, AboveLayer) ), !.
-
-%shelf_affordance_layer(Aff1, Layer) :-
-%  % FIXME: uses affordances
-%  rdf_has(Conn, knowrob_assembly:consumesAffordance, Aff1),
-%  rdf_has(Conn, knowrob_assembly:consumesAffordance, Aff2),
-%  rdfs_individual_of(Aff2, shop:'ShelfLayerSlideInM'),
-%  rdf_has(Layer, knowrob_assembly:hasAffordance, Aff2).
-
-%% 
-shelf_layer_below(ShelfLayer, BelowLayer) :-
-  shelf_layer_above(BelowLayer, ShelfLayer), !.
-
-shelf_layer_frame(Layer, Frame) :-
-  owl_has(Frame, knowrob:properPhysicalParts, Layer),
-  rdfs_individual_of(Frame, shop:'ShelfFrame'), !.
-
-%%
-shelf_layer_distance(Layer1, Layer2, Distance) :-
-  belief_at_relative_to(Layer1, Layer2, [_,_,[X,Y,Z],_]),
-  Distance is sqrt(X*X + Y*Y + Z*Y).
-
-%% shelf_layer_position
-%
-% The position of some object on a shelf layer.
-% Position is simply the y-value of the object's pose in the shelf layer's frame.
-%
-shelf_layer_position(Layer, Object, Position) :-
-  belief_at_relative_to(Object, Layer, [_,_,[Position,_,_],_]).
-
-%%
-shelf_layer_find_nearest(ShelfLayer, _, [X], X, Pos_X) :-
-  shelf_layer_position(ShelfLayer, X, Pos_X), !.
-
-shelf_layer_find_nearest(ShelfLayer, Position, [X|Xs], Nearest, NearestPos) :-
-  % TODO: use binary search, [X|Xs] is sorted!
-  shelf_layer_position(ShelfLayer, X, Pos_X),
-  shelf_layer_find_nearest(ShelfLayer, Position, Xs, Y, Pos_Y),
-  Diff_X is abs(Pos_X-Position),
-  Diff_Y is abs(Pos_Y-Position),
-  ( Diff_Y < Diff_X -> (
-    Nearest=Y, NearestPos=Pos_Y );(
-    Nearest=X, NearestPos=Pos_X )).
-
-%% shelf_layer_mounting
-shelf_layer_mounting(ShelfLayer) :-
-  rdfs_individual_of(ShelfLayer, shop:'ShelfLayerMounting').
-%% shelf_layer_standing
-shelf_layer_standing(ShelfLayer) :-
-  rdfs_individual_of(ShelfLayer, shop:'ShelfLayerStanding').
+shelf_layer_neighbours(ShelfLayer, Needle, Selector, Positions) :-
+  shelf_layer_position(ShelfLayer, Needle, NeedlePos),
+  findall((X,D), (
+    call(Selector, ShelfLayer, X),
+    X \= Needle,
+    shelf_layer_position(ShelfLayer, X, Pos_X),
+    D is Pos_X - NeedlePos
+  ), Positions).
 
 shelf_layer_update_labels(ShelfLayer) :-
   % step through all labels, find surrounding faces corresponding
   % to this label and associate them to the article number
   findall(FacingGroup, (
-    shelf_label(ShelfLayer,Label),
+    shelf_layer_label(ShelfLayer,Label),
     rdf_has(Facing, shop:labelOfFacing, Label),
     shelf_labeled_facings(LabeledFacing, [LeftFacings,RightFacings]),
     shelf_facings_update_label(LeftFacings, Label),
@@ -264,18 +220,11 @@ shelf_layer_separator(ShelfLayer, Separator) :-
 %%
 shelf_separator_insert(ShelfLayer,Separator) :-
   shelf_layer_standing(ShelfLayer),
-  shelf_layer_position(ShelfLayer, Separator, SeparatorPos),
-  % try to find neighbor separators
-  findall((X,D), (
-    shelf_layer_separator(ShelfLayer, X),
-    X \= Separator,
-    shelf_layer_position(ShelfLayer, X, Pos_X),
-    D is Pos_X - SeparatorPos
-  ), Xs),
-  ( min_list_item(Xs, (X,_)) -> 
+  shelf_layer_neighbours(ShelfLayer, Separator, shelf_layer_separator, Xs),
+  ( min_positive_element(Xs, (X,_)) -> 
     shelf_facing_assert(ShelfLayer,[Separator,X],_) ;
     true ),
-  ( max_list_item(Xs, (Y,_)) -> 
+  ( max_negative_element(Xs, (Y,_)) -> 
     shelf_facing_assert(ShelfLayer,[Y,Separator],_) ;
     true ),
   ( ground([X,Y]) -> (
@@ -283,31 +232,6 @@ shelf_separator_insert(ShelfLayer,Separator) :-
     rdf_has(Facing, shop:rightSeparator, Y),
     shelf_facing_retract(Facing)) ; true ),
   shelf_layer_update_labels(ShelfLayer).
-
-min_list_item([(_,D_A)|Xs], (Needle,D_Needle)) :-
-  D_A > 0.0, !, min_list_item(Xs, (Needle,D_Needle)).
-min_list_item([(A,D_A)|Rest], (Needle,D_Needle)) :-
-  min_list_item(Rest, (B,D_B)),
-  ( D_A > D_B -> (
-    Needle=A, D_Needle=D_A );(
-    Needle=B, D_Needle=D_B )).
-min_list_item([(A,D_A)|_], (A,D_A)).
-
-max_list_item([(_,D_A)|Xs], (Needle,D_Needle)) :-
-  D_A < 0.0, !, max_list_item(Xs, (Needle,D_Needle)).
-max_list_item([(A,D_A)|Rest], (Needle,D_Needle)) :-
-  max_list_item(Rest, (B,D_B)),
-  ( D_A < D_B -> (
-    Needle=A, D_Needle=D_A );(
-    Needle=B, D_Needle=D_B )).
-max_list_item([(A,D_A)|_], (A,D_A)).
-
-shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
-  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
-  rdf_has(Facing, shop:leftSeparator, Left),
-  rdf_has(Facing, shop:rightSeparator, Right),
-  shelf_layer_position(ShelfLayer, Left, Left_Pos),   Left_Pos  =< Pos,
-  shelf_layer_position(ShelfLayer, Right, Right_Pos), Right_Pos >= Pos, !.
   
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -315,65 +239,28 @@ shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
 % knowrob:'ShelfMountingBar'
 
 %%
-shelf_mounting_bar(ShelfLayer, MountingBar) :-
+shelf_layer_mounting_bar(ShelfLayer, MountingBar) :-
   owl_has(ShelfLayer, knowrob:properPhysicalParts, MountingBar),
   rdfs_individual_of(MountingBar, shop:'ShelfMountingBar').
 
 shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
   shelf_layer_mounting(ShelfLayer),
-  shelf_layer_position(ShelfLayer, MountingBar, MountingBarPos),
-  shelf_mounting_bars_at(ShelfLayer, MountingBarPos, [Left,Right]),
-  shelf_facing_assert(ShelfLayer,MountingBar,_),
-  % create list structure between mounting MountingBars
-  ( Left=none -> true ; (
-    rdf_retractall(Left, shop:nextMountingBar, _),
-    rdf_assert(Left, shop:nextMountingBar, MountingBar),
-    rdf_assert(MountingBar, shop:previousMountingBar, Left) )),
-  ( Right=none -> true ; (
-    rdf_retractall(Right, shop:previousMountingBar, _),
-    rdf_assert(Right, shop:previousMountingBar, MountingBar),
-    rdf_assert(MountingBar, shop:nextMountingBar, Right) )),
-  % create connection between shelf layer and mounting bar
-  assemblage_connection_create(shop:'MountingBarConnectedToShelf', [ShelfLayer,MountingBar], _),
+  shelf_facing_assert(ShelfLayer,MountingBar,Facing),
+  shelf_layer_neighbours(ShelfLayer, MountingBar, shelf_layer_mounting_bar, Xs),
+  ( min_positive_element(Xs, (Left,_)) -> (
+    rdf_assert(Facing, shop:leftMountingBar, Left, belief_state),
+    rdf_has(LeftFacing, shop:mountingBarOfFacing, Left),
+    rdf_retractall(LeftFacing, shop:rightMountingBar, _),
+    rdf_assert(LeftFacing, shop:rightMountingBar, MountingBar, belief_state) ) ;
+    true ),
+  ( max_negative_element(Xs, (Right,_)) -> (
+    rdf_assert(Facing, shop:rightMountingBar, Right, belief_state),
+    rdf_has(RightFacing, shop:mountingBarOfFacing, Right),
+    rdf_retractall(RightFacing, shop:leftMountingBar, _),
+    rdf_assert(RightFacing, shop:leftMountingBar, MountingBar, belief_state) ) ;
+    true ),
   % update the mounting_bar-label association
   shelf_layer_update_labels(ShelfLayer).
-
-shelf_mounting_bars_at(ShelfLayer,Pos,[Left,Right]) :-
-  shelf_layer_mounting_bars(ShelfLayer, MountingBars),
-  shelf_layer_find_nearest(ShelfLayer, Pos, MountingBars, Nearest, NearestPos),
-  ( NearestPos < Pos -> (
-    % nearest is left of
-    Left = Nearest, once((shelf_mounting_bar_next(Left,Right);Right=none))
-  );(
-    % nearest is right of
-    Right = Nearest, once((shelf_mounting_bar_previous(Right,Left);Left=none))
-  )).
-
-%%
-shelf_layer_mounting_bars(ShelfLayer, MountingBars) :-
-  shelf_layer_leftmost_mounting_bar(ShelfLayer, LeftMost),
-  shelf_layer_mounting_bars_(LeftMost,MountingBars).
-shelf_layer_mounting_bars_(MountingBar, [Next|Rest]) :-
-  shelf_mounting_bar_next(MountingBar,Next), !,
-  shelf_layer_mounting_bars_(Next,Rest).
-shelf_layer_mounting_bars_(_, []).
-
-%%
-shelf_layer_leftmost_mounting_bar(ShelfLayer, LeftMost) :-
-  shelf_mounting_bar(ShelfLayer, MountingBar),!,
-  shelf_layer_leftmost_mounting_bar_(MountingBar, LeftMost).
-shelf_layer_leftmost_mounting_bar_(MountingBar, LeftMost) :-
-  shelf_mounting_bar_previous(MountingBar,Previous), !,
-  shelf_layer_leftmost_mounting_bar_(Previous,LeftMost).
-shelf_layer_leftmost_mounting_bar_(MountingBar, MountingBar).
-
-%%
-shelf_mounting_bar_previous(MountingBar,Previous) :-
-  rdf_has(MountingBar, shop:previousMountingBar, Previous).
-
-%%
-shelf_mounting_bar_next(MountingBar,Next) :-
-  rdf_has(MountingBar, shop:nextMountingBar, Next).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -387,17 +274,16 @@ shelf_facing_assert(ShelfLayer,[Left,Right],Facing) :-
   shelf_layer_standing(ShelfLayer), !,
   rdfs_individual_of(Left, shop:'ShelfSeparator'),
   rdfs_individual_of(Right, shop:'ShelfSeparator'),
-  rdf_instance_from_class(shop:'ProductFacing', belief_state, Facing),
+  rdf_instance_from_class(shop:'ProductFacingStanding', belief_state, Facing),
   rdf_assert(Facing, shop:leftSeparator, Left, belief_state),
   rdf_assert(Facing, shop:rightSeparator, Right, belief_state),
   rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state),
-  rdf_assert(Facing, knowrob:mainColorOfObject, literal(type(xsd:string, '1.0 0.0 0.0 0.5')), belief_state),
   belief_republish_objects([Facing]).
 
 shelf_facing_assert(ShelfLayer,MountingBar,Facing) :-
   shelf_layer_mounting(ShelfLayer), !,
   rdfs_individual_of(MountingBar, shop:'ShelfMountingBar'),
-  rdf_instance_from_class(shop:'ProductFacing', belief_state, Facing),
+  rdf_instance_from_class(shop:'ProductFacingMounting', belief_state, Facing),
   rdf_assert(Facing, shop:mountingBarOfFacing, MountingBar, belief_state),
   rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state),
   belief_republish_objects([Facing]).
@@ -426,49 +312,21 @@ shelf_facings_after(Facing, [Right|Rest]) :-
   shelf_facings_after(Right, Rest), !.
 shelf_facings_after(_, []).
 
-%%
+%% TODO: OWL declaration
 shelf_facing_previous(Facing, Prev) :-
   rdf_has(Facing, shop:leftSeparator, X),
   rdf_has(Prev, shop:rightSeparator, X), !.
 shelf_facing_previous(Facing, Prev) :-
-  rdf_has(Facing, shop:mountingBarOfFacing, MountingBar),
-  rdf_has(MountingBar, shop:previousMountingBar, X),
+  rdf_has(Facing, shop:leftMountingBar, X),
   rdf_has(Prev, shop:mountingBarOfFacing, X).
 
-%%
+%% TODO: OWL declaration
 shelf_facing_next(Facing, Next) :-
   rdf_has(Facing, shop:rightSeparator, X),
   rdf_has(Next, shop:leftSeparator, X), !.
-shelf_facing_next(Facing, Prev) :-
-  rdf_has(Facing, shop:mountingBarOfFacing, MountingBar),
-  rdf_has(MountingBar, shop:nextMountingBar, X),
-  rdf_has(Prev, shop:mountingBarOfFacing, X).
-  
-
-%% shelf_layer_facings
-%
-% Sorted list of facings visible on ShelfLayer.
-% Ordered from left-to-right.
-%
-shelf_layer_facings(ShelfLayer, FacingsSorted) :-
-  shelf_layer_standing(ShelfLayer), !,
-  shelf_layer_leftmost_facing(ShelfLayer, Leftmost),
-  shelf_layer_facings(ShelfLayer, Leftmost, FacingsSorted).
-
-shelf_layer_facings(ShelfLayer, LeftFacing, [LeftFacing|Rest]) :-
-  shelf_facing_next(LeftFacing, RightFacing),
-  shelf_layer_facings(ShelfLayer, RightFacing, Rest), !.
-shelf_layer_facings(_, Facing, [Facing]).
-
-shelf_layer_leftmost_facing(ShelfLayer, Leftmost) :-
-  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
-  shelf_layer_leftmost_facing_(Facing, Leftmost).
-shelf_layer_leftmost_facing_(Facing, Leftmost) :-
-  rdf_has(Facing, shop:leftSeparator, Left),
-  ( rdf_has(LeftFacing, shop:rightSeparator, Left) ->
-    shelf_layer_leftmost_facing_(LeftFacing, Leftmost) ;
-    Leftmost = Facing
-  ).
+shelf_facing_next(Facing, Next) :-
+  rdf_has(Facing, shop:rightMountingBar, X),
+  rdf_has(Next, shop:mountingBarOfFacing, X).
 
 %% shelf_facing_total_space
 %
@@ -507,7 +365,7 @@ shelf_facing_product_type(Facing, ProductType) :-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % shop:'ShelfLabel'
 
-shelf_label(ShelfLayer, Label) :-
+shelf_layer_label(ShelfLayer, Label) :-
   rdfs_individual_of(ShelfLayer, shop:'ShelfLayer'),
   owl_has(ShelfLayer, knowrob:properPhysicalParts, Label),
   rdfs_individual_of(Label, shop:'ShelfLabel').
@@ -521,13 +379,20 @@ shelf_label_insert(ShelfLayer,EAN,Label) :-
   % first find the facing under which the label was perceived, 
   % then assert labelOfFacing and articleNumberOfFacing
   ( shelf_layer_find_facing_at(ShelfLayer,LabelPos,LabeledFacing) -> (
-    rdf_retractall(LabeledFacing, shop:labelOfFacing, _),
+    rdf_retractall(LabeledFacing, shop:labelOfFacing, _), % FIXME: retract safe?
     rdf_retractall(LabeledFacing, shop:articleNumberOfFacing, _),
     rdf_assert(LabeledFacing, shop:labelOfFacing, Label),
     rdf_assert(LabeledFacing, shop:articleNumberOfFacing, ArticleNumber)
   ) ; true),
   % update the facing-label relation
   shelf_layer_update_labels(ShelfLayer).
+
+shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
+  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
+  rdf_has(Facing, shop:leftSeparator, Left),
+  rdf_has(Facing, shop:rightSeparator, Right),
+  shelf_layer_position(ShelfLayer, Left, Left_Pos),   Left_Pos  =< Pos,
+  shelf_layer_position(ShelfLayer, Right, Right_Pos), Right_Pos >= Pos, !.
 
 shelf_labeled_facings(LabeledFacing, [LeftScope,RightScope]) :-
   % the scope of labels is influenced by how far away the next label 
@@ -571,7 +436,6 @@ shelf_label_previous(Facing, LeftLabel) :-
   shelf_facing_previous(Facing, LeftFacing),
   ( rdf_has(LeftFacing, shop:labelOfFacing, LeftLabel) ;
     shelf_label_previous(LeftFacing, LeftLabel) ), !.
-
 %%
 shelf_label_next(Facing, RightLabel) :-
   shelf_facing_next(Facing, RightFacing),
@@ -599,8 +463,15 @@ comp_isSpaceRemainingInFacing(_,
 %
 comp_facingPose(Facing, Pose) :-
   rdf_has(Facing, shop:mountingBarOfFacing, MountingBar), !,
-  % FIXME: pose needs to have an offset according to facing width
-  current_object_pose(MountingBar, Pose).
+  rdf_has(Facing, shop:layerOfFacing, Layer),
+  comp_facingHeight(Facing, literal(type(_,Facing_H_Atom))),
+  atom_number(Facing_H_Atom, Facing_H),
+  belief_at_relative_to(MountingBar,  Layer, [_,_,[Pos_MountingBar,_,_],_]),
+  Pos_X is -Pos_MountingBar,
+  Pos_Y is -0.03,           
+  Pos_Z is -0.5*Facing_H, 
+  owl_instance_from_class('http://knowrob.org/kb/knowrob.owl#Pose',
+    [pose=(Layer,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0])], Pose).
 comp_facingPose(Facing, Pose) :-
   rdf_has(Facing, shop:leftSeparator, Left), !,
   rdf_has(Facing, shop:rightSeparator, Right),
@@ -626,30 +497,23 @@ comp_facingWidth(Facing, XSD_Val) :-
   shelf_layer_position(ShelfLayer, Right, Pos_Right),
   Value is abs(Pos_Right - Pos_Left)-0.04,
   xsd_float(Value, XSD_Val).
-% TODO: leftMountingBar/rightMountingBar never asserted
-%comp_facingWidth(Facing, Width) :-
-%  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
-%  shelf_layer_mounting(ShelfLayer), !,
-%  rdf_has(Facing, shop:mountingBarOfFacing, MountingBar),
-%  rdf_has(MountingBar, shop:leftMountingBar, Left),
-%  rdf_has(MountingBar, shop:rightMountingBar, Right),
-%  % just assume facings evenly share the space.
-%  % might not be entirely accureate but good enough, I guess
-%  shelf_layer_position(ShelfLayer, Left, Pos0),
-%  shelf_layer_position(ShelfLayer, MountingBar, Pos1),
-%  shelf_layer_position(ShelfLayer, Right, Pos2),
-%  Width_value is min(Pos1 - Pos0, Pos2 - Pos1),
-%  xsd_float(Width_value, Width).
-
-%% comp_facingDepth
-%
-comp_facingDepth(Facing, XSD_Val) :-
-  atom(Facing),
+comp_facingWidth(Facing, XSD_Val) :-
   rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
-  shelf_layer_standing(ShelfLayer), !,
-  object_dimensions(ShelfLayer, Value, _, _),
-  Value_ is Value - 0.06,
-  xsd_float(Value_, XSD_Val).
+  shelf_layer_mounting(ShelfLayer), !,
+  rdf_has(Facing, shop:mountingBarOfFacing, MountingBar),
+  shelf_layer_position(ShelfLayer, MountingBar, MountingBarPos),
+  object_dimensions(ShelfLayer, _, LayerWidth, _),
+  ( rdf_has(Facing, shop:leftMountingBar, Left) ->
+    shelf_layer_position(ShelfLayer, Left, LeftPos) ;
+    LeftPos is -0.5*LayerWidth
+  ),
+  ( rdf_has(Facing, shop:rightMountingBar, Right) ->
+    shelf_layer_position(ShelfLayer, Right, RightPos) ;
+    RightPos is 0.5*LayerWidth
+  ),
+  Value is min(MountingBarPos - LeftPos,
+               RightPos - MountingBarPos)-0.02,
+  xsd_float(Value, XSD_Val).
 
 %% comp_facingHeight
 %
@@ -659,7 +523,7 @@ comp_facingHeight(Facing, XSD_Val) :-
   shelf_layer_standing(ShelfLayer), !,
   shelf_layer_frame(ShelfLayer, ShelfFrame),
   belief_at_relative_to(ShelfLayer, ShelfFrame, [_,_,[_,_,X_Pos],_]),
-  
+  % compute distance to layer above
   ( shelf_layer_above(ShelfLayer, LayerAbove) -> (
     belief_at_relative_to(LayerAbove, ShelfFrame, [_,_,[_,_,Y_Pos],_]),
     Distance is abs(X_Pos-Y_Pos)) ; (
@@ -667,84 +531,55 @@ comp_facingHeight(Facing, XSD_Val) :-
     object_dimensions(ShelfFrame, _, _, Frame_H),
     Distance is 0.5*Frame_H - X_Pos
   )),
-%  shelf_layer_distance(ShelfLayer, LayerBelow, Distance),
-  
-  ( shelf_layer_standing(LayerAbove) -> (
-    % above is also standing layer, whole space can be taken
-    % TODO minus layer height
-    Height_value is Distance - 0.1,
-    xsd_float(Height_value, XSD_Val)
-  );(
+  % compute available space for this facing
+  ( shelf_layer_standing(LayerAbove) -> % FIXME could be unbound
+    % above is also standing layer, whole space can be taken TODO minus layer height
+    Value is Distance - 0.1;
     % above is mounting layer, space must be shared. HACK For now assume equal space sharing
-    Height_value is 0.5*Distance - 0.1,
-    xsd_float(Height_value, XSD_Val)
-  )).
-%comp_facingHeight(Facing, Height) :-
-%  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
-%  shelf_layer_mounting(ShelfLayer), !,
-%  shelf_layer_below(ShelfLayer, LayerBelow),
-%  shelf_layer_distance(ShelfLayer, LayerBelow, Distance),
-%  ( shelf_layer_mounting(ShelfLayer) ->
-%    % above is also mounting layer, whole space can be taken
-%    xsd_float(Distance, Height) ; (
-%    Height_value is Distance * 0.5,
-%    xsd_float(Height_value, Height)
-%  )).
+    Value is 0.5*Distance - 0.1
+  ),
+  xsd_float(Value, XSD_Val).
+comp_facingHeight(Facing, XSD_Val) :-
+  atom(Facing),
+  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
+  shelf_layer_mounting(ShelfLayer), !,
+  shelf_layer_frame(ShelfLayer, ShelfFrame),
+  belief_at_relative_to(ShelfLayer, ShelfFrame, [_,_,[_,_,X_Pos],_]),
+  % compute distance to layer above
+  ( shelf_layer_below(ShelfLayer, LayerBelow) -> (
+    belief_at_relative_to(LayerBelow, ShelfFrame, [_,_,[_,_,Y_Pos],_]),
+    Distance is abs(X_Pos-Y_Pos)) ; (
+    % no layer below
+    object_dimensions(ShelfFrame, _, _, Frame_H),
+    Distance is 0.5*Frame_H + X_Pos
+  )),
+  % compute available space for this facing
+  ( shelf_layer_mounting(LayerBelow) ->  % FIXME could be unbound
+    % below is also mounting layer, whole space can be taken TODO minus layer height
+    Value is Distance - 0.1;
+    % below is standing layer, space must be shared. HACK For now assume equal space sharing
+    Value is 0.5*Distance - 0.1
+  ),
+  xsd_float(Value, XSD_Val).
 
+%% comp_facingDepth
+%
+comp_facingDepth(Facing, XSD_Val) :-
+  comp_facingDepth(Facing, shelf_layer_standing, -0.06, XSD_Val).
+comp_facingDepth(Facing, XSD_Val) :-
+  comp_facingDepth(Facing, shelf_layer_mounting, 0.0, XSD_Val).
+comp_facingDepth(Facing, Selector, Offset, XSD_Val) :-
+  atom(Facing),
+  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
+  call(Selector, ShelfLayer), !,
+  object_dimensions(ShelfLayer, Value, _, _),
+  Value_ is Value + Offset,
+  xsd_float(Value_, XSD_Val).
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-  
-shelf_find_parent(Object, Parent) :-
-  rdfs_individual_of(Object, shop:'ShelfLayer'), !,
-  shelf_find_frame_of_object(Object, Parent).
-shelf_find_parent(Object, Parent) :-
-  rdfs_individual_of(Object, shop:'ShelfSeparator'), !,
-  shelf_find_frame_of_object(Object, Frame),
-  shelf_find_layer_of_object(Object, Parent).
-shelf_find_parent(Object, Parent) :-
-  rdfs_individual_of(Object, shop:'ShelfMountingBar'), !,
-  shelf_find_frame_of_object(Object, Frame),
-  shelf_find_layer_of_object(Object, Parent).
-shelf_find_parent(Object, Parent) :-
-  rdfs_individual_of(Object, shop:'ShelfLabel'), !,
-  shelf_find_frame_of_object(Object, Frame),
-  shelf_find_layer_of_object(Object, Parent).
-
-shelf_find_frame_of_object(Obj, Frame) :-
-  findall(X, rdfs_individual_of(X, shop:'ShelfFrame'), Xs),
-  find_nearest(Obj, Xs, Frame).
-shelf_find_layer_of_object(Obj, Layer) :-
-  findall(X, rdfs_individual_of(X, shop:'ShelfLayer'), Xs),
-  find_nearest(Obj, Xs, Layer).
-  
-shelf_make_parent(Object, Parent) :-
-  belief_at_relative_to(Object, Parent, [_,_,Translation,Rotation]),
-  rdf_assert(Parent, knowrob:properPhysicalParts, Object),
-  rdf_retractall(Object, knowrob:pose, _),
-  rdf_retractall(Object, knowrob:describedInMap, _),
-  owl_instance_from_class(knowrob:'Pose', [pose=(Parent,Translation,Rotation)], TransformId),
-  rdf_assert(Object, knowrob:pose, TransformId).
-
-% TODO: move somewhere else
-find_nearest(Obj, [X|Xs], Nearest) :-
-  belief_at(Obj, [map,_,Pos0,_]),
-  belief_at(X,   [map,_,Pos1,_]),
-  distance(Pos0,Pos1,D),
-  find_nearest(Pos0, X, D, Xs, Nearest).
-find_nearest(_, Y, _, [], Y) :- !.
-find_nearest(Pos0, Y, D0, [X|Xs], Nearest) :-
-  belief_at(X, [map,_,Pos1,_]),
-  distance(Pos0,Pos1,D1),
-  ( D1<D0 ->
-    find_nearest(Pos0, X, D1, Xs, Nearest) ;
-    find_nearest(Pos0, Y, D0, Xs, Nearest)).
-
-distance([X0,Y0,Z0],[X1,Y1,Z1],D) :-
-  DX is X1-X0,
-  DY is Y1-Y0,
-  DZ is Z1-Z0,
-  D is sqrt(DX*DX + DY*DY + DZ*DZ).
+comp_mainColorOfFacing(Facing, Color_XSD) :-
+  rdf_has(Facing, shop:layerOfFacing, _), !,
+  % TODO: use facing classification
+  Color_XSD=literal(type(xsd:string, '1.0 0.0 0.0 0.5')).
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -752,27 +587,40 @@ distance([X0,Y0,Z0],[X1,Y1,Z1],D) :-
 % Spawning new objects
 
 belief_part_type_at(Parent, PartType, Part, Pos, Rot) :-
-  belief_new_object(PartType, Part),
+  belief_new_object(PartType, Part), % TODO is it a new object?
   object_frame_name(Parent, Parent_frame),
   belief_at_update(Part, [Parent_frame,_, Pos, Rot]),
   rdf_assert(Parent, knowrob:properPhysicalParts, Part, belief_state).
 
 shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos) :-
   object_dimensions(Layer, _, Width, _),
-  SpawnPos is Width*NormalizedPosition - 0.5*Width.
+  ( shelf_layer_standing(Layer) ->
+    Width_reduced is Width - 0.02 ;
+    Width_reduced is Width - 0.08 ),
+  SpawnPos is Width_reduced*NormalizedPosition - 0.5*Width_reduced.
 
 shelf_layer_spawn(Layer, Type, NormalizedPosition, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfSeparator'), !,
-  %rdfs_individual_of(Layer, shop:'DMShelfLayerStanding'),
+  shelf_layer_standing(Layer),
   shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos),
+  % TODO: seems separator mesh orientation wrong, discuss with andrei
   belief_part_type_at(Layer, Type, Obj,
       [SpawnPos, -0.05, 0.07 ],
       [0.0, 0.0, 0.707107, -0.707106]),
   shelf_separator_insert(Layer,Obj).
 
 shelf_layer_spawn(Layer, Type, NormalizedPosition, Obj) :-
+  rdfs_subclass_of(Type, shop:'ShelfMountingBar'), !,
+  shelf_layer_mounting(Layer),
+  shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos),
+  belief_part_type_at(Layer, Type, Obj,
+      [SpawnPos, -0.02, -0.02 ],
+      [0.0, 0.0, 0.0, 1.0]),
+  shelf_mounting_bar_insert(Layer,Obj).
+
+shelf_layer_spawn(Layer, Type, NormalizedPosition, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfLabel'), !,
-  %rdfs_individual_of(Layer, shop:'DMShelfLayerStanding'),
+  shelf_layer_standing(Layer),
   shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos),
   belief_part_type_at(Layer, Type, Obj,
       [SpawnPos, -0.265, 0.04 ],
@@ -780,5 +628,34 @@ shelf_layer_spawn(Layer, Type, NormalizedPosition, Obj) :-
   % TODO EAN missing
   %shelf_label_insert(Layer,Obj)
   true.
-  
-  
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Helper predicates
+
+closest_object(Obj, [X], X, D) :-
+  object_distance(Obj, X, D), !.
+closest_object(Obj, [X|Xs], Nearest, D) :-
+  object_distance(Obj, X, D_X),
+  closest_object(Obj, Xs, Nearest_Xs, D_Xs),
+  ( D_Xs<D_X ->
+  ( D=D_Xs, Nearest=Nearest_Xs);
+  ( D=D_X,  Nearest=X)).
+
+min_positive_element([(_,D_A)|Xs], (Needle,D_Needle)) :-
+  D_A > 0.0, !, min_positive_element(Xs, (Needle,D_Needle)).
+min_positive_element([(A,D_A)|Rest], (Needle,D_Needle)) :-
+  min_positive_element(Rest, (B,D_B)),
+  ( D_A > D_B -> (
+    Needle=A, D_Needle=D_A );(
+    Needle=B, D_Needle=D_B )).
+min_positive_element([(A,D_A)|_], (A,D_A)).
+
+max_negative_element([(_,D_A)|Xs], (Needle,D_Needle)) :-
+  D_A < 0.0, !, max_negative_element(Xs, (Needle,D_Needle)).
+max_negative_element([(A,D_A)|Rest], (Needle,D_Needle)) :-
+  max_negative_element(Rest, (B,D_B)),
+  ( D_A < D_B -> (
+    Needle=A, D_Needle=D_A );(
+    Needle=B, D_Needle=D_B )).
+max_negative_element([(A,D_A)|_], (A,D_A)).
