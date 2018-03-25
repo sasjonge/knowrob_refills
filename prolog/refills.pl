@@ -60,4 +60,14 @@ refills_spawn_facings :-
     shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.475, _),
     shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.725, _),
     shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.925, _)
+  )), 
+  forall( rdfs_individual_of(Layer, dmshop:'DMShelfLayerMounting'), (
+    shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 0.0, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 0.1, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 0.2, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 0.3, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 0.5, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 0.7, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 0.9, _),
+    shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 1.0, _)
   )).
