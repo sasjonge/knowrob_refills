@@ -90,7 +90,10 @@ refills_spawn_facings :-
   ),
   forall((
     rdf_has(Prev, shop:labelOfFacing, _),
-    rdf_has(Prev, shop:rightSeparator, X),
-    rdf_has(Facing, shop:leftSeparator, X)),
+    % TODO: this is odd, it should work the other way. Seems left/right mixed up?!?
+    %rdf_has(Prev, shop:rightSeparator, X),
+    %rdf_has(Facing, shop:leftSeparator, X)),
+    rdf_has(Prev, shop:leftSeparator, X),
+    rdf_has(Facing, shop:rightSeparator, X)),
     shelf_facing_spawn_front(Facing,_)
   ).
