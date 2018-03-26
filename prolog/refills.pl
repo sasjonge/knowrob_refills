@@ -36,7 +36,20 @@
       refills_spawn_facings/0
     ]).
 
+:- use_module(library('semweb/rdf_db')).
+:- use_module(library('semweb/rdfs')).
+:- use_module(library('semweb/owl_parser')).
+:- use_module(library('semweb/owl')).
+:- use_module(library('knowrob/computable')).
+:- use_module(library('knowrob/owl')).
+
 :- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
+:- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
+:- rdf_db:rdf_register_ns(owl, 'http://www.w3.org/2002/07/owl#', [keep(true)]).
+:- rdf_db:rdf_register_ns(knowrob, 'http://knowrob.org/kb/knowrob.owl#', [keep(true)]).
+:- rdf_db:rdf_register_ns(xsd, 'http://www.w3.org/2001/XMLSchema#', [keep(true)]).
+:- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
+:- rdf_db:rdf_register_ns(knowrob_assembly, 'http://knowrob.org/kb/knowrob_assembly.owl#', [keep(true)]).
 
 :- use_module(library('shop')).
 
@@ -55,11 +68,11 @@ refills_spawn_facings :-
     shelf_layer_spawn(Layer, dmshop:'DMShelfSeparator', 0.6, _),
     shelf_layer_spawn(Layer, dmshop:'DMShelfSeparator', 0.85, _),
     shelf_layer_spawn(Layer, dmshop:'DMShelfSeparator', 1.0, _),
-    shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.1, _),
-    shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.275, _),
-    shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.475, _),
-    shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.725, _),
-    shelf_layer_spawn(Layer, dmshop:'DMShelfLabel', 0.925, _)
+    %shelf_layer_spawn_label(Layer, dmshop:'DMShelfLabel', dan('569070'), 0.1, _),
+    %shelf_layer_spawn_label(Layer, dmshop:'DMShelfLabel', dan('538288'), 0.275, _),
+    shelf_layer_spawn_label(Layer, dmshop:'DMShelfLabel', dan('438505'), 0.475, _),
+    %shelf_layer_spawn_label(Layer, dmshop:'DMShelfLabel', dan('523915'), 0.725, _),
+    shelf_layer_spawn_label(Layer, dmshop:'DMShelfLabel', dan('300941'), 0.925, _)
   )), 
   forall( rdfs_individual_of(Layer, dmshop:'DMShelfLayerMounting'), (
     shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 0.0, _),
@@ -70,4 +83,14 @@ refills_spawn_facings :-
     shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 0.7, _),
     shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 0.9, _),
     shelf_layer_spawn(Layer, dmshop:'DMShelfMountingBar', 1.0, _)
-  )).
+  )),
+  forall(
+    rdf_has(Facing, shop:labelOfFacing, _),
+    shelf_facing_spawn_front(Facing,_)
+  ),
+  forall((
+    rdf_has(Prev, shop:labelOfFacing, _),
+    rdf_has(Prev, shop:rightSeparator, X),
+    rdf_has(Facing, shop:leftSeparator, X)),
+    shelf_facing_spawn_front(Facing,_)
+  ).
