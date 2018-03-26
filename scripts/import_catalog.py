@@ -152,10 +152,10 @@ class ProductTable:
       return article
   
   def article_number(self, articleNumber):
-    x = self.resourceManager.get_instance('EuropeanArticleNumber',
-                                          'EuropeanArticleNumber_'+articleNumber)
-    x.has_data_value('ean',
-                     'http://www.w3.org/2001/XMLSchema#string',
+    x = self.resourceManager.get_instance('ArticleNumber',
+                                          'ArticleNumber_'+articleNumber)
+    x.has_data_value('articleNumberString',
+                     'http://knowrob.org/kb/shop.owl#dan',
                      articleNumber)
     return x
 
@@ -197,6 +197,10 @@ class ProductTable:
       self.read_cell_types(article,cellInstance,row,column)
       self.read_cell_property(article,cellInstance,column)
     elif column.coltype=='parameter':
+      # HACK cm -> m
+      if column.paramType=="&xsd;float":
+        num = float(rawLabel)/100.0
+        rawLabel = str(num)
       self.read_cell_property(article,rawLabel,column)
     return label
 

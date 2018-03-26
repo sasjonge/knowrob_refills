@@ -105,10 +105,10 @@ class OWLIndividual(OWLResource):
       # TODO: avoid redundant type statements: check if any other type is subclass of y
       f.write('        <rdf:type rdf:resource="&'+self.namespace+';'+y+'"/>\n')
     for (rel,t,val) in self.dataValues:
-      f.write('        <shop:'+rel+' rdf:datatype="'+t+'>'+val+'</shop:'+rel+'>\n')
+      f.write('        <shop:'+rel+' rdf:datatype="'+t+'">'+val+'</shop:'+rel+'>\n')
     for (rel,val) in self.objectValues:
       f.write('        <shop:'+rel+' rdf:resource="'+val+'"/>\n')
-    f.write('    </owl:Class>\n')
+    f.write('    </owl:NamedIndividual>\n')
   
   def __repr__(self):
     return self.name
