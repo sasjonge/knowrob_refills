@@ -678,7 +678,7 @@ shelf_facing_spawn_back(Facing, Obj, ProductType) :-
   
   belief_at_update(Obj, [ShelfLayer_frame,_, 
       [SpawnPos, 0.0, 0.1],
-      [0.0, 0.0, 0.0, 1.0]]),
+      [0.707107, 0.0, 0.0, 0.707106]]),
   rdf_assert(Facing, shop:productInFacing, Obj, belief_state).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
