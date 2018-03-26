@@ -211,19 +211,17 @@ shelf_layer_update_labels(ShelfLayer) :-
     shelf_labeled_facings(LabeledFacing, [LeftFacings,RightFacings]),
     shelf_facings_update_label(LeftFacings, Label),
     shelf_facings_update_label(RightFacings, Label),
-    append(LeftFacings, [LabeledFacing|RightFacings], FacingGroup)
+    append(LeftFacings, [RightFacings], FacingGroup)
   ))), FacingGroups),
-  flatten(FacingGroups, LabeledFacings). %,
+  flatten(FacingGroups, LabeledFacings),
   % TODO retract article number for all remaining (orphan) facings
-  %forall(
-  %  shelf_facing(ShelfLayer,Facing), (
-  %  once((
-  %    member(Facing,LabeledFacings) ; (
-  %    writeln(['ORPHAN',Facing]),
-  %    rdf_retractall(Facing, shop:labelOfFacing, _)
-  %  )))
-  %))
-  %.
+  forall((
+    shelf_facing(ShelfLayer,Facing),
+    \+ member(Facing,LabeledFacings)), (
+      rdf_retractall(Facing, shop:articleNumberOfFacing, _)
+      %rdf_retractall(Facing, shop:labelOfFacing, _)
+    )
+  ).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -422,16 +420,16 @@ shelf_labeled_facings(LabeledFacing, [LeftScope,RightScope]) :-
     rdf_has(PrevFacing, shop:labelOfFacing, LeftLabel),
     shelf_facings_between(PrevFacing,LabeledFacing,Facings),
     length(Facings, NumFacings), Count is round(NumFacings / 2),
-    take_tail(Facings,NumFacings,LeftFacings ) ;
+    take_tail(Facings,NumFacings,LeftFacings )) ; (
     shelf_facings_before(LabeledFacing, LeftFacings)
   )),
   ( shelf_label_next(LabeledFacing, RightLabel) -> (
     rdf_has(NextFacing, shop:labelOfFacing, RightLabel),
     shelf_facings_between(LabeledFacing,NextFacing,Facings),
     length(Facings, NumFacings), Count is round(NumFacings / 2),
-    take_head(Facings,NumFacings,RightFacings ) ; (
+    take_head(Facings,NumFacings,RightFacings )) ; (
     shelf_facings_after(LabeledFacing, RightFacings)
-  ))),
+  )),
   % number of facings to the left and right which are understood to be labeled 
   % by Label must be evenly distributed, and identical in number to the left and
   % right of the label.
@@ -468,16 +466,16 @@ shelf_label_next(Facing, RightLabel) :-
 
 %% comp_isSpaceRemainingInFacing
 %
-comp_isSpaceRemainingInFacing(Facing,
-  literal(type('http://www.w3.org/2001/XMLSchema#boolean', true))) :-
-  shelf_facing_free_space(Facing, Remaining),
-  ( shelf_facing_product_type(Facing, ProductType) -> (
-    object_class_dimensions(ProductType, _, _, ProductSize),
-    Remaining > ProductSize );
-    true % assume space is remaining if the facing does not have an associated product type
-  ), !.
+%comp_isSpaceRemainingInFacing(Facing,
+%  literal(type('http://www.w3.org/2001/XMLSchema#boolean', true))) :-
+%  shelf_facing_free_space(Facing, Remaining),
+%  ( shelf_facing_product_type(Facing, ProductType) -> (
+%    object_class_dimensions(ProductType, _, _, ProductSize),
+%    Remaining > ProductSize );
+%    true % assume space is remaining if the facing does not have an associated product type
+%  ), !.
 comp_isSpaceRemainingInFacing(_,
-  literal(type('http://www.w3.org/2001/XMLSchema#boolean', false))).
+  literal(type('http://www.w3.org/2001/XMLSchema#boolean', true))).
 
 %% comp_facingPose
 %
@@ -598,9 +596,18 @@ comp_facingDepth(Facing, Selector, Offset, XSD_Val) :-
 
 comp_mainColorOfFacing(Facing, Color_XSD) :-
   rdf_has(Facing, shop:layerOfFacing, _), !,
-  ((owl_individual_of(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.5');
+  % TODO is there really no classification for #articleNumberOfFacing = 0 ??
+  (
+   % (RED)    productInFacing some MisplacedProduct
+   (owl_individual_of(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.5');
+   % (YELLOW) #articleNumberOfFacing = 1 & #productInFacing=0
    (owl_individual_of(Facing, shop:'EmptyProductFacing'),Col='1.0 1.0 0.0 0.5');
+   % (ORANGE) #articleNumberOfFacing = 0
+   % TODO Facing class
+   (\+ rdf_has(Facing, shop:articleNumberOfFacing, _),Col='1.0 0.35 0.0 0.5');
+   % #articleNumberOfFacing = 1 & isSpaceRemainingInFacing=false
    (owl_individual_of(Facing, shop:'FullProductFacing'),Col='1.0 1.0 1.0 0.5');
+   % #articleNumberOfFacing = 1 & isSpaceRemainingInFacing=true
    (owl_individual_of(Facing, shop:'FreeProductFacing'),Col='0.0 0.0 1.0 0.5');
    Col='0.0 1.0 0.0 0.5'),
   Color_XSD=literal(type(xsd:string, Col)), !.
