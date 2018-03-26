@@ -185,6 +185,56 @@
     
 
 
+    <!-- http://knowrob.org/kb/knowrob.owl#LightBulbIAI -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#LightBulbIAI">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#Lightbulb"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#lightType"/>
+                <owl:hasValue rdf:resource="http://knowrob.org/kb/knowrob.owl#LightTypeSpot"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#lightConeAngle"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.570796327</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#lightDirection"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 1.0</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#lightDistance"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">5.0</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#lightExponent"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">2.0</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#lightIntensity"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#double">1.0</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#mainColorOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0 0.9450980392156862 0.8784313725490196 1.0</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
