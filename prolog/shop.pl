@@ -634,10 +634,9 @@ shelf_layer_spawn(Layer, Type, NormalizedPosition, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfSeparator'), !,
   shelf_layer_standing(Layer),
   shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos),
-  % TODO: seems separator mesh orientation wrong, discuss with andrei
   belief_part_type_at(Layer, Type, Obj,
       [SpawnPos, -0.05, 0.07 ],
-      [0.0, 0.0, 0.707107, -0.707106]),
+      [0.0, 0.0, 0.0, 1.0]),
   shelf_separator_insert(Layer,Obj).
 
 shelf_layer_spawn(Layer, Type, NormalizedPosition, Obj) :-
