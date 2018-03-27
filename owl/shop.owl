@@ -709,6 +709,7 @@
     <!-- http://knowrob.org/kb/shop.owl#ArrangingShelfLabel -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ArrangingShelfLabel">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#PuttingSomethingSomewhere"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ArrangingShelf"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -753,6 +754,7 @@
     <!-- http://knowrob.org/kb/shop.owl#ArrangingShelfSeparator -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ArrangingShelfSeparator">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#PuttingSomethingSomewhere"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ArrangingShelf"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1297,6 +1299,7 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#PuttingSomethingSomewhere"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#PuttingProductSomewhere"/>
     </owl:Class>
     
