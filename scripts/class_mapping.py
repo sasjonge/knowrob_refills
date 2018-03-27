@@ -301,7 +301,7 @@ class OWLResourceManager:
     f.write('>\n')
     # <owl:Ontology>
     f.write('    <owl:Ontology rdf:about="'+iri+'">\n')
-    f.write('        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob.owl"/>\n')
+    f.write('        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob_common.owl"/>\n')
     for importURI in self.imports:
       f.write('        <owl:imports rdf:resource="'+importURI+'"/>\n')
     f.write('    </owl:Ontology>\n')
