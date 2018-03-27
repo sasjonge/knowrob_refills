@@ -214,13 +214,11 @@ shelf_layer_update_labels(ShelfLayer) :-
     append(LeftFacings, [RightFacings], FacingGroup)
   ))), FacingGroups),
   flatten(FacingGroups, LabeledFacings),
-  % TODO retract article number for all remaining (orphan) facings
+  % retract article number for all remaining (orphan) facings
   forall((
     shelf_facing(ShelfLayer,Facing),
-    \+ member(Facing,LabeledFacings)), (
-      rdf_retractall(Facing, shop:articleNumberOfFacing, _)
-      %rdf_retractall(Facing, shop:labelOfFacing, _)
-    )
+    \+ member(Facing,LabeledFacings)),
+    rdf_retractall(Facing, shop:articleNumberOfFacing, _)
   ).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
