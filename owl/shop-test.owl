@@ -14,7 +14,6 @@
      xmlns:knowrob_assembly="http://knowrob.org/kb/knowrob_assembly.owl#"
      xmlns:computable="http://knowrob.org/kb/computable.owl#">
     <owl:Ontology rdf:about="http://knowrob.org/kb/shop-test.owl">
-        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob.owl"/>
         <owl:imports rdf:resource="package://knowrob_refills/owl/dm-market.owl"/>
     </owl:Ontology>
     
@@ -603,6 +602,7 @@
 
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#SemanticEnvironmentMap_wB8V">
         <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#SemanticEnvironmentMap"/>
+        <rdf:type rdf:resource="http://knowrob.org/kb/shop.owl#SalesRoomOfAShop"/>
     </owl:NamedIndividual>
     
 
