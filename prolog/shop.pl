@@ -67,6 +67,7 @@
       comp_facingDepth/2,
       %%%%%
       shelf_find_parent/2,
+      shelf_frame_spawn_layer/4,
       shelf_layer_spawn/4,
       shelf_layer_spawn_label/5,
       shelf_facing_spawn_front/2,
@@ -92,6 +93,7 @@
     shelf_layer_mounting_bar(r,r),
     shelf_layer_label(r,r),
     shelf_layer_separator(r,r),
+    shelf_frame_spawn_layer(r,r,+,-),
     shelf_layer_spawn(r,r,+,-),
     shelf_layer_spawn_label(r,r,+,+,-),
     shelf_facing(r,r),
@@ -615,12 +617,6 @@ comp_mainColorOfFacing(Facing, Color_XSD) :-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % Spawning new objects
 
-belief_part_type_at(Parent, PartType, Part, Pos, Rot) :-
-  belief_new_object(PartType, Part), % TODO is it a new object?
-  object_frame_name(Parent, Parent_frame),
-  belief_at_update(Part, [Parent_frame,_, Pos, Rot]),
-  rdf_assert(Parent, knowrob:properPhysicalParts, Part, belief_state).
-
 shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos) :-
   object_dimensions(Layer, _, Width, _),
   ( shelf_layer_standing(Layer) ->
@@ -628,33 +624,55 @@ shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos) :-
     Width_reduced is Width - 0.08 ),
   SpawnPos is Width_reduced*NormalizedPosition - 0.5*Width_reduced.
 
+shelf_frame_spawn_pos(Frame, NormalizedPosition, SpawnPos) :-
+  object_dimensions(Frame, _, _, Height),
+  SpawnPos is Height*NormalizedPosition - 0.5*Height.
+
 shelf_layer_spawn(Layer, Type, NormalizedPosition, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfSeparator'), !,
   shelf_layer_standing(Layer),
   shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos),
-  belief_part_type_at(Layer, Type, Obj,
+  object_frame_name(Layer,LayerFrame),
+  belief_perceived_part_at(Type, [LayerFrame,_,
       [SpawnPos, -0.05, 0.07 ],
-      [0.0, 0.0, 0.0, 1.0]),
+      [0.0, 0.0, 0.0, 1.0]],
+      0.02, Obj, Layer),
   shelf_separator_insert(Layer,Obj).
 
 shelf_layer_spawn(Layer, Type, NormalizedPosition, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfMountingBar'), !,
   shelf_layer_mounting(Layer),
   shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos),
-  belief_part_type_at(Layer, Type, Obj,
+  object_frame_name(Layer,LayerFrame),
+  belief_perceived_part_at(Type, [LayerFrame,_,
       [SpawnPos, -0.02, -0.02 ],
-      [0.0, 0.0, 0.0, 1.0]),
+      [0.0, 0.0, 0.0, 1.0]],
+      0.02, Obj, Layer),
   shelf_mounting_bar_insert(Layer,Obj).
 
 shelf_layer_spawn_label(Layer, Type, ArticleNumber_value, NormalizedPosition, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfLabel'), !,
   shelf_layer_standing(Layer),
   shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos),
-  belief_part_type_at(Layer, Type, Obj,
+  object_frame_name(Layer,LayerFrame),
+  belief_perceived_part_at(Type, [LayerFrame,_,
       [SpawnPos, -0.265, 0.04 ],
-      [0.0, 0.0, 0.0, 1.0]),
+      [0.0, 0.0, 0.0, 1.0]],
+      0.02, Obj, Layer),
   create_article_number(ArticleNumber_value, ArticleNumber),
   shelf_label_insert(Layer,ArticleNumber,Obj).
+
+shelf_frame_spawn_layer(Frame, Type, NormalizedPosition, Obj) :-
+  rdfs_subclass_of(Type, shop:'ShelfLayer'), !,
+  shelf_frame_spawn_pos(Frame, NormalizedPosition, SpawnPos),
+  object_frame_name(Frame,FrameName),
+  ( rdfs_subclass_of(Type, shop:'ShelfLayerMounting') ->
+    Offset_Y = 0.07 ;
+    Offset_Y = 0.04 ),
+  belief_perceived_part_at(Type, [FrameName,_,
+      [0.0, Offset_Y, SpawnPos ],
+      [0.0, 0.0, 0.0, 1.0]],
+      0.02, Obj, Frame).
 
 shelf_facing_spawn_front(Facing, Obj) :-
   rdfs_individual_of(Facing, shop:'ProductFacing'),
