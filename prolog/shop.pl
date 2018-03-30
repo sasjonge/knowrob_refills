@@ -101,7 +101,8 @@
     shelf_facing_total_space(r,?),
     shelf_facing_free_space(r,-),
     shelf_facing_occupied_space(r,-),
-    shelf_find_parent(r,r).
+    shelf_find_parent(r,r),
+    shelf_layer_part(r,r,r).
 
 :- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
 :- rdf_db:rdf_register_ns(owl, 'http://www.w3.org/2002/07/owl#', [keep(true)]).
@@ -164,6 +165,11 @@ shelf_layer_frame(Layer, Frame) :-
   owl_has(Frame, knowrob:properPhysicalParts, Layer),
   rdfs_individual_of(Frame, shop:'ShelfFrame'), !.
 
+shelf_layer_part(Layer, Type, Part) :-
+  rdfs_individual_of(Layer, shop:'ShelfLayer'),
+  owl_has(Layer, knowrob:properPhysicalParts, Part),
+  rdfs_individual_of(Part, Type).
+
 %% 
 shelf_layer_mounting(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerMounting').
 %% 
@@ -220,7 +226,7 @@ shelf_layer_update_labels(ShelfLayer) :-
   forall((
     shelf_facing(ShelfLayer,Facing),
     \+ member(Facing,LabeledFacings)),
-    rdf_retractall(Facing, shop:articleNumberOfFacing, _)
+    rdf_retractall(Facing, shop:associatedLabelOfFacing, _)
   ).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -228,11 +234,10 @@ shelf_layer_update_labels(ShelfLayer) :-
 % knowrob:'ShelfSeparator'
 
 %%
-shelf_layer_separator(ShelfLayer, Separator) :-
-  owl_has(ShelfLayer, knowrob:properPhysicalParts, Separator),
-  rdfs_individual_of(Separator, shop:'ShelfSeparator').
+shelf_layer_separator(Layer,Separator) :- shelf_layer_part(Layer,shop:'ShelfSeparator',Separator).
 
 %%
+% FIXME must be "insert or move"
 shelf_separator_insert(ShelfLayer,Separator) :-
   shelf_layer_standing(ShelfLayer),
   shelf_layer_neighbours(ShelfLayer, Separator, shelf_layer_separator, Xs),
@@ -245,6 +250,7 @@ shelf_separator_insert(ShelfLayer,Separator) :-
   ( ground([X,Y]) -> (
     rdf_has(Facing, shop:leftSeparator, X),
     rdf_has(Facing, shop:rightSeparator, Y),
+    % TODO: don't forget about the productInFacing relation here
     shelf_facing_retract(Facing)) ; true ),
   shelf_layer_update_labels(ShelfLayer).
   
@@ -254,10 +260,9 @@ shelf_separator_insert(ShelfLayer,Separator) :-
 % knowrob:'ShelfMountingBar'
 
 %%
-shelf_layer_mounting_bar(ShelfLayer, MountingBar) :-
-  owl_has(ShelfLayer, knowrob:properPhysicalParts, MountingBar),
-  rdfs_individual_of(MountingBar, shop:'ShelfMountingBar').
+shelf_layer_mounting_bar(Layer,MountingBar) :- shelf_layer_part(Layer,shop:'ShelfMountingBar',MountingBar).
 
+% FIXME must be "insert or move"
 shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
   shelf_layer_mounting(ShelfLayer),
   shelf_facing_assert(ShelfLayer,MountingBar,Facing),
@@ -276,6 +281,81 @@ shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
     true ),
   % update the mounting_bar-label association
   shelf_layer_update_labels(ShelfLayer).
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% shop:'ShelfLabel'
+
+shelf_layer_label(Layer,Label) :- shelf_layer_part(Layer,shop:'ShelfLabel',Label).
+
+% FIXME must be "insert or move"
+shelf_label_insert(ShelfLayer,Label) :-
+  % find the position of Label on the shelf
+  shelf_layer_position(ShelfLayer, Label, LabelPos),
+  % first find the facing under which the label was perceived, 
+  % then assert labelOfFacing and associatedLabelOfFacing
+  ( shelf_layer_find_facing_at(ShelfLayer,LabelPos,LabeledFacing) -> (
+    rdf_retractall(LabeledFacing, shop:labelOfFacing, _), % FIXME: retract safe?
+    rdf_retractall(LabeledFacing, shop:associatedLabelOfFacing, _),
+    rdf_assert(LabeledFacing, shop:labelOfFacing, Label, belief_state)
+  ) ; true),
+  % update the facing-label relation
+  shelf_layer_update_labels(ShelfLayer).
+
+shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
+  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
+  rdf_has(Facing, shop:leftSeparator, Left),
+  rdf_has(Facing, shop:rightSeparator, Right),
+  shelf_layer_position(ShelfLayer, Left, Left_Pos),
+  shelf_layer_position(ShelfLayer, Right, Right_Pos),
+  Left_Pos =< Pos, Right_Pos >= Pos, !.
+
+shelf_labeled_facings(LabeledFacing, [LeftScope,RightScope]) :-
+  % the scope of labels is influenced by how far away the next label 
+  % is to the left and right. The facings in between are evenly distributed between
+  % the adjacent labels.
+  ( shelf_label_previous(LabeledFacing, LeftLabel) -> (
+    rdf_has(PrevFacing, shop:labelOfFacing, LeftLabel),
+    shelf_facings_between(PrevFacing,LabeledFacing,Facings),
+    length(Facings, NumFacings), Count is round(NumFacings / 2),
+    take_tail(Facings,NumFacings,LeftFacings )) ; (
+    shelf_facings_before(LabeledFacing, LeftFacings)
+  )),
+  ( shelf_label_next(LabeledFacing, RightLabel) -> (
+    rdf_has(NextFacing, shop:labelOfFacing, RightLabel),
+    shelf_facings_between(LabeledFacing,NextFacing,Facings),
+    length(Facings, NumFacings), Count is round(NumFacings / 2),
+    take_head(Facings,NumFacings,RightFacings )) ; (
+    shelf_facings_after(LabeledFacing, RightFacings)
+  )),
+  % number of facings to the left and right which are understood to be labeled 
+  % by Label must be evenly distributed, and identical in number to the left and
+  % right of the label.
+  length(LeftFacings, Left_count),
+  length(RightFacings, Right_count),
+  Count is min(Left_count,Right_count),
+  take_tail(LeftFacings,Count,LeftScope),
+  take_head(RightFacings,Count,RightScope).
+
+shelf_facing_update_label(Facing, Label) :-
+  rdf_retractall(Facing, shop:associatedLabelOfFacing, _),
+  rdf_assert(Facing, shop:associatedLabelOfFacing, Label).
+
+shelf_facings_update_label([], _) :- !.
+shelf_facings_update_label([F|Rest], Label) :-
+  shelf_facing_update_label(F, Label),
+  shelf_facings_update_label(Rest, Label).
+
+%%
+shelf_label_previous(Facing, LeftLabel) :-
+  shelf_facing_previous(Facing, LeftFacing),
+  ( rdf_has(LeftFacing, shop:labelOfFacing, LeftLabel) ;
+    shelf_label_previous(LeftFacing, LeftLabel) ), !.
+%%
+shelf_label_next(Facing, RightLabel) :-
+  shelf_facing_next(Facing, RightFacing),
+  ( rdf_has(RightFacing, shop:labelOfFacing, RightLabel) ;
+    shelf_label_next(RightFacing, RightLabel) ), !.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -378,87 +458,6 @@ shelf_facing_product_type(Facing, ProductType) :-
   rdf_has(R, owl:onProperty, shop:articleNumberOfProduct),
   rdf_has(ProductType, rdfs:subClassOf, R),
   rdf_has(ProductType, rdf:type, owl:'Class'), !.
-
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% shop:'ShelfLabel'
-
-shelf_layer_label(ShelfLayer, Label) :-
-  rdfs_individual_of(ShelfLayer, shop:'ShelfLayer'),
-  owl_has(ShelfLayer, knowrob:properPhysicalParts, Label),
-  rdfs_individual_of(Label, shop:'ShelfLabel').
-
-shelf_label_insert(ShelfLayer,ArticleNumber,Label) :-
-  % assert the corresponding article number
-  rdf_assert(Label, shop:articleNumberOfLabel, ArticleNumber),
-  % find the position of Label on the shelf
-  shelf_layer_position(ShelfLayer, Label, LabelPos),
-  % first find the facing under which the label was perceived, 
-  % then assert labelOfFacing and articleNumberOfFacing
-  ( shelf_layer_find_facing_at(ShelfLayer,LabelPos,LabeledFacing) -> (
-    rdf_retractall(LabeledFacing, shop:labelOfFacing, _), % FIXME: retract safe?
-    rdf_retractall(LabeledFacing, shop:articleNumberOfFacing, _),
-    rdf_assert(LabeledFacing, shop:labelOfFacing, Label, belief_state),
-    rdf_assert(LabeledFacing, shop:articleNumberOfFacing, ArticleNumber, belief_state)
-  ) ; true),
-  % update the facing-label relation
-  shelf_layer_update_labels(ShelfLayer).
-
-shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
-  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
-  rdf_has(Facing, shop:leftSeparator, Left),
-  rdf_has(Facing, shop:rightSeparator, Right),
-  shelf_layer_position(ShelfLayer, Left, Left_Pos),
-  shelf_layer_position(ShelfLayer, Right, Right_Pos),
-  Left_Pos =< Pos, Right_Pos >= Pos, !.
-
-shelf_labeled_facings(LabeledFacing, [LeftScope,RightScope]) :-
-  % the scope of labels is influenced by how far away the next label 
-  % is to the left and right. The facings in between are evenly distributed between
-  % the adjacent labels.
-  ( shelf_label_previous(LabeledFacing, LeftLabel) -> (
-    rdf_has(PrevFacing, shop:labelOfFacing, LeftLabel),
-    shelf_facings_between(PrevFacing,LabeledFacing,Facings),
-    length(Facings, NumFacings), Count is round(NumFacings / 2),
-    take_tail(Facings,NumFacings,LeftFacings )) ; (
-    shelf_facings_before(LabeledFacing, LeftFacings)
-  )),
-  ( shelf_label_next(LabeledFacing, RightLabel) -> (
-    rdf_has(NextFacing, shop:labelOfFacing, RightLabel),
-    shelf_facings_between(LabeledFacing,NextFacing,Facings),
-    length(Facings, NumFacings), Count is round(NumFacings / 2),
-    take_head(Facings,NumFacings,RightFacings )) ; (
-    shelf_facings_after(LabeledFacing, RightFacings)
-  )),
-  % number of facings to the left and right which are understood to be labeled 
-  % by Label must be evenly distributed, and identical in number to the left and
-  % right of the label.
-  length(LeftFacings, Left_count),
-  length(RightFacings, Right_count),
-  Count is min(Left_count,Right_count),
-  take_tail(LeftFacings,Count,LeftScope),
-  take_head(RightFacings,Count,RightScope).
-
-shelf_facing_update_label(Facing, Label) :-
-  rdf_has(Label, shop:articleNumberOfLabel, ArticleNumber),
-  rdf_retractall(Facing, shop:articleNumberOfFacing, _),
-  rdf_assert(Facing, shop:articleNumberOfFacing, ArticleNumber).
-
-shelf_facings_update_label([], _) :- !.
-shelf_facings_update_label([F|Rest], Label) :-
-  shelf_facing_update_label(F, Label),
-  shelf_facings_update_label(Rest, Label).
-
-%%
-shelf_label_previous(Facing, LeftLabel) :-
-  shelf_facing_previous(Facing, LeftFacing),
-  ( rdf_has(LeftFacing, shop:labelOfFacing, LeftLabel) ;
-    shelf_label_previous(LeftFacing, LeftLabel) ), !.
-%%
-shelf_label_next(Facing, RightLabel) :-
-  shelf_facing_next(Facing, RightFacing),
-  ( rdf_has(RightFacing, shop:labelOfFacing, RightLabel) ;
-    shelf_label_next(RightFacing, RightLabel) ), !.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -604,7 +603,7 @@ comp_mainColorOfFacing(Facing, Color_XSD) :-
    (owl_individual_of(Facing, shop:'EmptyProductFacing'),Col='1.0 1.0 0.0 0.5');
    % (ORANGE) #articleNumberOfFacing = 0
    % TODO Facing class
-   (\+ rdf_has(Facing, shop:articleNumberOfFacing, _),Col='1.0 0.35 0.0 0.5');
+   (\+ owl_has(Facing, shop:articleNumberOfFacing, _),Col='1.0 0.35 0.0 0.5');
    % #articleNumberOfFacing = 1 & isSpaceRemainingInFacing=false
    (owl_individual_of(Facing, shop:'FullProductFacing'),Col='1.0 1.0 1.0 0.5');
    % #articleNumberOfFacing = 1 & isSpaceRemainingInFacing=true
@@ -617,62 +616,72 @@ comp_mainColorOfFacing(Facing, Color_XSD) :-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % Spawning new objects
 
-shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos) :-
-  object_dimensions(Layer, _, Width, _),
-  ( shelf_layer_standing(Layer) ->
-    Width_reduced is Width - 0.02 ;
-    Width_reduced is Width - 0.08 ),
-  SpawnPos is Width_reduced*NormalizedPosition - 0.5*Width_reduced.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+belief_perceived_pos([DX,DY,DZ], pos(x,P), [X,DY,DZ]) :- X is DX+P, !.
+belief_perceived_pos([DX,DY,DZ], pos(z,P), [DX,Y,DZ]) :- Y is DY+P, !.
+belief_perceived_pos([DX,DY,DZ], pos(y,P), [DX,DY,Z]) :- Z is DZ+P, !.
 
-shelf_frame_spawn_pos(Frame, NormalizedPosition, SpawnPos) :-
-  object_dimensions(Frame, _, _, Height),
-  SpawnPos is Height*NormalizedPosition - 0.5*Height.
+denormalize_part_pos(Obj, x, In, Out) :-
+  object_dimensions(Obj,_,V,_),
+  Out is V*In - 0.5*V.
+denormalize_part_pos(Obj, y, In, Out) :-
+  object_dimensions(Obj,_,_,V),
+  Out is V*In - 0.5*V.
+denormalize_part_pos(Obj, z, In, Out) :-
+  object_dimensions(Obj,V,_,_),
+  Out is V*In - 0.5*V.
 
-shelf_layer_spawn(Layer, Type, NormalizedPosition, Obj) :-
+belief_part_offset(Parent, PartType, [DX,DY,DZ]) :-
+  object_affordance(Parent,Affordance),
+  rdfs_individual_of(Affordance, knowrob:'PartOffsetAffordance'),
+  once(owl_property_range_on_subject(Affordance, knowrob:userOfAffordance, AllowedType)),
+  rdfs_subclass_of(PartType, AllowedType),
+  belief_at_id(Affordance, [_,_,[DX,DY,DZ],_]).
+
+belief_perceived_part_at_axis(Parent, PartType, norm(Axis,Pos), Part) :- !,
+  denormalize_part_pos(Parent, Axis, Pos, Denormalized),
+  belief_perceived_part_at_axis(Parent, PartType, pos(Axis,Denormalized), Part).
+
+belief_perceived_part_at_axis(Parent, PartType, pos(Axis,Pos), Part) :-
+  object_frame_name(Parent,ParentFrame),
+  belief_part_offset(Parent, PartType, Offset),
+  belief_perceived_pos(Offset, pos(Axis,Pos), PerceivedPos),
+  !, % TODO why???
+  belief_perceived_part_at(PartType, [ParentFrame,_,
+      PerceivedPos,
+      [0.0, 0.0, 0.0, 1.0]],
+      0.02, Part, Parent).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+shelf_frame_spawn_layer(Frame, Type, PosNorm, Obj) :-
+  rdfs_subclass_of(Type, shop:'ShelfLayer'), !,
+  belief_perceived_part_at_axis(Frame, Type, norm(y,PosNorm), Obj).
+
+shelf_layer_spawn(Layer, Type, PosNorm, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfSeparator'), !,
   shelf_layer_standing(Layer),
-  shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos),
-  object_frame_name(Layer,LayerFrame),
-  belief_perceived_part_at(Type, [LayerFrame,_,
-      [SpawnPos, -0.05, 0.07 ],
-      [0.0, 0.0, 0.0, 1.0]],
-      0.02, Obj, Layer),
+  belief_perceived_part_at_axis(Layer, Type, norm(x,PosNorm), Obj),
+  %%
   shelf_separator_insert(Layer,Obj).
 
-shelf_layer_spawn(Layer, Type, NormalizedPosition, Obj) :-
+shelf_layer_spawn(Layer, Type, PosNorm, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfMountingBar'), !,
   shelf_layer_mounting(Layer),
-  shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos),
-  object_frame_name(Layer,LayerFrame),
-  belief_perceived_part_at(Type, [LayerFrame,_,
-      [SpawnPos, -0.02, -0.02 ],
-      [0.0, 0.0, 0.0, 1.0]],
-      0.02, Obj, Layer),
+  belief_perceived_part_at_axis(Layer, Type, norm(x,PosNorm), Obj),
+  %%
   shelf_mounting_bar_insert(Layer,Obj).
 
-shelf_layer_spawn_label(Layer, Type, ArticleNumber_value, NormalizedPosition, Obj) :-
+shelf_layer_spawn_label(Layer, Type, ArticleNumber_value, PosNorm, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfLabel'), !,
   shelf_layer_standing(Layer),
-  shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos),
-  object_frame_name(Layer,LayerFrame),
-  belief_perceived_part_at(Type, [LayerFrame,_,
-      [SpawnPos, -0.265, 0.04 ],
-      [0.0, 0.0, 0.0, 1.0]],
-      0.02, Obj, Layer),
+  belief_perceived_part_at_axis(Layer, Type, norm(x,PosNorm), Obj),
+  %%%%
   create_article_number(ArticleNumber_value, ArticleNumber),
-  shelf_label_insert(Layer,ArticleNumber,Obj).
+  rdf_assert(Obj, shop:articleNumberOfLabel, ArticleNumber),
+  %%
+  shelf_label_insert(Layer,Obj).
 
-shelf_frame_spawn_layer(Frame, Type, NormalizedPosition, Obj) :-
-  rdfs_subclass_of(Type, shop:'ShelfLayer'), !,
-  shelf_frame_spawn_pos(Frame, NormalizedPosition, SpawnPos),
-  object_frame_name(Frame,FrameName),
-  ( rdfs_subclass_of(Type, shop:'ShelfLayerMounting') ->
-    Offset_Y = 0.07 ;
-    Offset_Y = 0.04 ),
-  belief_perceived_part_at(Type, [FrameName,_,
-      [0.0, Offset_Y, SpawnPos ],
-      [0.0, 0.0, 0.0, 1.0]],
-      0.02, Obj, Frame).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 shelf_facing_spawn_front(Facing, Obj) :-
   rdfs_individual_of(Facing, shop:'ProductFacing'),
@@ -702,6 +711,17 @@ shelf_facing_spawn_back(Facing, Obj, ProductType) :-
       [SpawnPos, 0.0, 0.1],
       [0.707107, 0.0, 0.0, 0.707106]]),
   rdf_assert(Facing, shop:productInFacing, Obj, belief_state).
+
+%shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos) :-
+%  object_dimensions(Layer, _, Width, _),
+%  ( shelf_layer_standing(Layer) ->
+%    Width_reduced is Width - 0.02 ;
+%    Width_reduced is Width - 0.08 ),
+%  SpawnPos is Width_reduced*NormalizedPosition - 0.5*Width_reduced.
+
+%shelf_frame_spawn_pos(Frame, NormalizedPosition, SpawnPos) :-
+%  object_dimensions(Frame, _, _, Height),
+%  SpawnPos is Height*NormalizedPosition - 0.5*Height.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
