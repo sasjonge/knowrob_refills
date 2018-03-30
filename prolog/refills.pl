@@ -95,8 +95,9 @@ refills_spawn_facings :-
     belief_shelf_part_at(Layer, dmshop:'DMShelfMountingBar', 1.0, _)
   )),
   forall(
-    rdf_has(Facing, shop:labelOfFacing, _),
-    shelf_facing_spawn_front(Facing,_)
+    rdf_has(Facing, shop:labelOfFacing, _),(
+    product_spawn_front_to_back(Facing,_),
+    product_spawn_front_to_back(Facing,_))
   ),
   forall((
     rdf_has(Prev, shop:labelOfFacing, _),
@@ -104,6 +105,7 @@ refills_spawn_facings :-
     %rdf_has(Prev, shop:rightSeparator, X),
     %rdf_has(Facing, shop:leftSeparator, X)),
     rdf_has(Prev, shop:leftSeparator, X),
-    rdf_has(Facing, shop:rightSeparator, X)),
-    shelf_facing_spawn_front(Facing,_)
+    rdf_has(Facing, shop:rightSeparator, X)),(
+    product_spawn_front_to_back(Facing,_),
+    product_spawn_front_to_back(Facing,_))
   ).

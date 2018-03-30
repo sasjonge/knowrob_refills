@@ -69,10 +69,8 @@
       shelf_find_parent/2,
       belief_shelf_part_at/4,
       belief_shelf_barcode_at/5,
-      shelf_facing_spawn_front/2,
-      shelf_facing_spawn_front/3,
-      shelf_facing_spawn_back/2,
-      shelf_facing_spawn_back/3
+      product_spawn_front/2,
+      product_spawn_front/3
     ]).
 
 :- use_module(library('semweb/rdf_db')).
@@ -265,13 +263,13 @@ shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
   shelf_layer_mounting(ShelfLayer),
   shelf_facing_assert(ShelfLayer,MountingBar,Facing),
   shelf_layer_neighbours(ShelfLayer, MountingBar, shelf_layer_mounting_bar, Xs),
-  ( min_positive_element(Xs, (Left,_)) -> (
+  ( max_negative_element(Xs, (Left,_)) -> (
     rdf_assert(Facing, shop:leftMountingBar, Left, belief_state),
     rdf_has(LeftFacing, shop:mountingBarOfFacing, Left),
     rdf_retractall(LeftFacing, shop:rightMountingBar, _),
     rdf_assert(LeftFacing, shop:rightMountingBar, MountingBar, belief_state) ) ;
     true ),
-  ( max_negative_element(Xs, (Right,_)) -> (
+  ( min_positive_element(Xs, (Right,_)) -> (
     rdf_assert(Facing, shop:rightMountingBar, Right, belief_state),
     rdf_has(RightFacing, shop:mountingBarOfFacing, Right),
     rdf_retractall(RightFacing, shop:leftMountingBar, _),
@@ -299,14 +297,6 @@ shelf_label_insert(ShelfLayer,Label) :-
   ) ; true),
   % update the facing-label relation
   shelf_layer_update_labels(ShelfLayer).
-
-shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
-  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
-  rdf_has(Facing, shop:leftSeparator, Left),
-  rdf_has(Facing, shop:rightSeparator, Right),
-  shelf_layer_position(ShelfLayer, Left, Left_Pos),
-  shelf_layer_position(ShelfLayer, Right, Right_Pos),
-  Left_Pos =< Pos, Right_Pos >= Pos, !.
 
 shelf_labeled_facings(LabeledFacing, [LeftScope,RightScope]) :-
   % the scope of labels is influenced by how far away the next label 
@@ -384,6 +374,14 @@ shelf_facing_assert(ShelfLayer,MountingBar,Facing) :-
 shelf_facing_retract(Facing) :-
   rdf_retractall(Facing, _, _).
 
+shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
+  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
+  rdf_has(Facing, shop:leftSeparator, Left),
+  rdf_has(Facing, shop:rightSeparator, Right),
+  shelf_layer_position(ShelfLayer, Left, Left_Pos),
+  shelf_layer_position(ShelfLayer, Right, Right_Pos),
+  Left_Pos =< Pos, Right_Pos >= Pos, !.
+
 shelf_facings_between(F, F, []) :- !.
 shelf_facings_between(Left, Right, Between) :-
   shelf_facing_next(Left, Next),
@@ -405,7 +403,6 @@ shelf_facings_after(Facing, [Right|Rest]) :-
   shelf_facings_after(Right, Rest), !.
 shelf_facings_after(_, []).
 
-%% TODO: use shop:leftProductFacing instead
 shelf_facing_previous(Facing, Prev) :-
   rdf_has(Facing, shop:leftSeparator, X),
   rdf_has(Prev, shop:rightSeparator, X), !.
@@ -413,7 +410,6 @@ shelf_facing_previous(Facing, Prev) :-
   rdf_has(Facing, shop:leftMountingBar, X),
   rdf_has(Prev, shop:mountingBarOfFacing, X).
 
-%% TODO: use shop:rightProductFacing instead
 shelf_facing_next(Facing, Next) :-
   rdf_has(Facing, shop:rightSeparator, X),
   rdf_has(Next, shop:leftSeparator, X), !.
@@ -477,17 +473,6 @@ comp_isSpaceRemainingInFacing(_,
 %% comp_facingPose
 %
 comp_facingPose(Facing, Pose) :-
-  rdf_has(Facing, shop:mountingBarOfFacing, MountingBar), !,
-  rdf_has(Facing, shop:layerOfFacing, Layer),
-  comp_facingHeight(Facing, literal(type(_,Facing_H_Atom))),
-  atom_number(Facing_H_Atom, Facing_H),
-  belief_at_relative_to(MountingBar,  Layer, [_,_,[Pos_MountingBar,_,_],_]),
-  Pos_X is -Pos_MountingBar,
-  Pos_Y is -0.03,           
-  Pos_Z is -0.5*Facing_H, 
-  owl_instance_from_class('http://knowrob.org/kb/knowrob.owl#Pose',
-    [pose=(Layer,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0])], Pose).
-comp_facingPose(Facing, Pose) :-
   rdf_has(Facing, shop:leftSeparator, Left), !,
   rdf_has(Facing, shop:rightSeparator, Right),
   rdf_has(Facing, shop:layerOfFacing, Layer),
@@ -497,6 +482,17 @@ comp_facingPose(Facing, Pose) :-
   Pos_X is -0.5*(Pos_Left+Pos_Right),
   Pos_Y is -0.06,               % 0.06 to leave some room at the front and back of the facing
   Pos_Z is 0.5*Facing_H + 0.05, % 0.05 pushes ontop of supporting plane
+  owl_instance_from_class('http://knowrob.org/kb/knowrob.owl#Pose',
+    [pose=(Layer,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0])], Pose).
+comp_facingPose(Facing, Pose) :-
+  rdf_has(Facing, shop:mountingBarOfFacing, MountingBar), !,
+  rdf_has(Facing, shop:layerOfFacing, Layer),
+  comp_facingHeight(Facing, literal(type(_,Facing_H_Atom))),
+  atom_number(Facing_H_Atom, Facing_H),
+  belief_at_relative_to(MountingBar,  Layer, [_,_,[Pos_MountingBar,_,_],_]),
+  Pos_X is -Pos_MountingBar,
+  Pos_Y is -0.03,           
+  Pos_Z is -0.5*Facing_H, 
   owl_instance_from_class('http://knowrob.org/kb/knowrob.owl#Pose',
     [pose=(Layer,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0])], Pose).
 
@@ -510,7 +506,7 @@ comp_facingWidth(Facing, XSD_Val) :-
   rdf_has(Facing, shop:rightSeparator, Right),
   shelf_layer_position(ShelfLayer, Left, Pos_Left),
   shelf_layer_position(ShelfLayer, Right, Pos_Right),
-  Value is abs(Pos_Right - Pos_Left)-0.04,
+  Value is abs(Pos_Right - Pos_Left)-0.04, % leave 2cm to each side
   xsd_float(Value, XSD_Val).
 comp_facingWidth(Facing, XSD_Val) :-
   rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
@@ -527,7 +523,7 @@ comp_facingWidth(Facing, XSD_Val) :-
     RightPos is 0.5*LayerWidth
   ),
   Value is min(MountingBarPos - LeftPos,
-               RightPos - MountingBarPos)-0.02,
+               RightPos - MountingBarPos)-0.02, % leave 1cm to each side
   xsd_float(Value, XSD_Val).
 
 %% comp_facingHeight
@@ -593,18 +589,10 @@ comp_facingDepth(Facing, Selector, Offset, XSD_Val) :-
 
 comp_mainColorOfFacing(Facing, Color_XSD) :-
   rdf_has(Facing, shop:layerOfFacing, _), !,
-  % TODO is there really no classification for #articleNumberOfFacing = 0 ??
-  (
-   % (RED)    productInFacing some MisplacedProduct
+  ((owl_individual_of(Facing, shop:'OrphanProductFacing'),Col='1.0 0.35 0.0 0.5');
    (owl_individual_of(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.5');
-   % (YELLOW) #articleNumberOfFacing = 1 & #productInFacing=0
    (owl_individual_of(Facing, shop:'EmptyProductFacing'),Col='1.0 1.0 0.0 0.5');
-   % (ORANGE) #articleNumberOfFacing = 0
-   % TODO Facing class
-   (\+ owl_has(Facing, shop:articleNumberOfFacing, _),Col='1.0 0.35 0.0 0.5');
-   % #articleNumberOfFacing = 1 & isSpaceRemainingInFacing=false
    (owl_individual_of(Facing, shop:'FullProductFacing'),Col='1.0 1.0 1.0 0.5');
-   % #articleNumberOfFacing = 1 & isSpaceRemainingInFacing=true
    (owl_individual_of(Facing, shop:'FreeProductFacing'),Col='0.0 0.0 1.0 0.5');
    Col='0.0 1.0 0.0 0.5'),
   Color_XSD=literal(type(xsd:string, Col)), !.
@@ -644,47 +632,45 @@ belief_shelf_barcode_at(Layer, Type, ArticleNumber_value, PosNorm, Obj) :-
   create_article_number(ArticleNumber_value, ArticleNumber),
   rdf_assert(Obj, shop:articleNumberOfLabel, ArticleNumber).
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-shelf_facing_spawn_front(Facing, Obj) :-
-  rdfs_individual_of(Facing, shop:'ProductFacing'),
-  shelf_facing_product_type(Facing, ProductType),
-  shelf_facing_spawn_front(Facing, Obj, ProductType).
-
-shelf_facing_spawn_front(Facing, Obj, ProductType) :-
-  shelf_facing_spawn_back(Facing, Obj, ProductType). % TODO
-
-shelf_facing_spawn_back(Facing, Obj) :-
-  rdfs_individual_of(Facing, shop:'ProductFacing'),
-  shelf_facing_product_type(Facing, ProductType),
-  shelf_facing_spawn_back(Facing, Obj, ProductType).
-
-shelf_facing_spawn_back(Facing, Obj, ProductType) :-
-  belief_new_object(ProductType, Obj),
-  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
-  object_frame_name(ShelfLayer, ShelfLayer_frame),
-  
-  rdf_has(Facing, shop:leftSeparator, Left),
-  rdf_has(Facing, shop:rightSeparator, Right),
-  shelf_layer_position(ShelfLayer, Left, Pos_Left),
-  shelf_layer_position(ShelfLayer, Right, Pos_Right),
-  SpawnPos is -0.5*(Pos_Left+Pos_Right),
-  
-  belief_at_update(Obj, [ShelfLayer_frame,_, 
-      [SpawnPos, 0.0, 0.1],
-      [0.707107, 0.0, 0.0, 0.707106]]),
+product_spawn_at(Facing, Type, Offset_D, Obj) :-
+  rdf_has(Facing, shop:layerOfFacing, Layer),
+  belief_new_object(Type, Obj),
+  % compute offset
+  object_dimensions(Obj,_,_,Obj_H),
+  belief_at_id(Facing, [_,_,[Facing_X,_,_],_]),
+  Offset_H is Obj_H*0.5 + 0.05, % FIXME won't work for mounting layer
+  % declare transform
+  object_frame_name(Layer, Layer_frame),
+  belief_at_update(Obj, [Layer_frame,_, 
+      [Facing_X, Offset_D, Offset_H],
+      [0.0, 0.0, 0.0, 1.0]]),
   rdf_assert(Facing, shop:productInFacing, Obj, belief_state).
 
-%shelf_layer_spawn_pos(Layer, NormalizedPosition, SpawnPos) :-
-%  object_dimensions(Layer, _, Width, _),
-%  ( shelf_layer_standing(Layer) ->
-%    Width_reduced is Width - 0.02 ;
-%    Width_reduced is Width - 0.08 ),
-%  SpawnPos is Width_reduced*NormalizedPosition - 0.5*Width_reduced.
-
-%shelf_frame_spawn_pos(Frame, NormalizedPosition, SpawnPos) :-
-%  object_dimensions(Frame, _, _, Height),
-%  SpawnPos is Height*NormalizedPosition - 0.5*Height.
+product_spawn_front_to_back(Facing, Obj) :-
+  shelf_facing_product_type(Facing, ProductType),
+  product_spawn_front_to_back(Facing, Obj, ProductType).
+  
+product_spawn_front_to_back(Facing, Obj, Type) :-
+  rdf_has(Facing, shop:layerOfFacing, Layer),
+  owl_class_properties(Type, knowrob:depthOfObject, Obj_D_XSD),
+  xsd_float(Obj_D, Obj_D_XSD),
+  shelf_facing_products(Facing, ProductsFrontToBack),
+  reverse(ProductsFrontToBack, ProductsBackToFront),
+  ( ProductsBackToFront=[] -> (
+    object_dimensions(Layer,Layer_D,_,_),
+    Obj_Pos is -Layer_D*0.5 + Obj_D*0.5,
+    product_spawn_at(Facing, Type, Obj_Pos, Obj));(
+    ProductsBackToFront=[(Last_Pos,Last)|_],
+    object_dimensions(Last,Last_D,_,_),
+    Obj_Pos is Last_Pos + 0.5*Last_D + 0.5*Obj_D + 0.02,
+    product_spawn_at(Facing, Type, Obj_Pos, Obj)
+  )).
+  
+shelf_facing_products(Facing, Products) :-
+  findall((Pos,Product), (
+    rdf_has(Facing, shop:productInFacing, Product),
+    belief_at_id(Product, [_,_,[_,Pos,_],_])), Products_unsorted),
+  sort(Products_unsorted, Products).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
