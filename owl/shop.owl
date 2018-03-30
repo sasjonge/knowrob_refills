@@ -327,22 +327,24 @@
     
 
 
-    <!-- http://knowrob.org/kb/shop.owl#leftProductFacing -->
+    <!-- http://knowrob.org/kb/shop.owl#leftMountingFacing -->
 
-    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#leftProductFacing">
-        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#adjacentProductFacing"/>
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#leftMountingFacing">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#leftProductFacing"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://knowrob.org/kb/shop.owl#leftMountingBar"/>
             <rdf:Description>
                 <owl:inverseOf rdf:resource="http://knowrob.org/kb/shop.owl#mountingBarOfFacing"/>
             </rdf:Description>
         </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://knowrob.org/kb/shop.owl#leftSeparator"/>
-            <rdf:Description>
-                <owl:inverseOf rdf:resource="http://knowrob.org/kb/shop.owl#rightSeparator"/>
-            </rdf:Description>
-        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#leftProductFacing -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#leftProductFacing">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#adjacentProductFacing"/>
     </owl:ObjectProperty>
     
 
@@ -351,6 +353,20 @@
 
     <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#leftSeparator">
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#separatorOfFacing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#leftStandingFacing -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#leftStandingFacing">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#leftProductFacing"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://knowrob.org/kb/shop.owl#leftSeparator"/>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://knowrob.org/kb/shop.owl#rightSeparator"/>
+            </rdf:Description>
+        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -398,22 +414,24 @@
     
 
 
-    <!-- http://knowrob.org/kb/shop.owl#rightProductFacing -->
+    <!-- http://knowrob.org/kb/shop.owl#rightMountingFacing -->
 
-    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#rightProductFacing">
-        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#adjacentProductFacing"/>
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#rightMountingFacing">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#rightProductFacing"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://knowrob.org/kb/shop.owl#rightMountingBar"/>
             <rdf:Description>
                 <owl:inverseOf rdf:resource="http://knowrob.org/kb/shop.owl#mountingBarOfFacing"/>
             </rdf:Description>
         </owl:propertyChainAxiom>
-        <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://knowrob.org/kb/shop.owl#rightSeparator"/>
-            <rdf:Description>
-                <owl:inverseOf rdf:resource="http://knowrob.org/kb/shop.owl#leftSeparator"/>
-            </rdf:Description>
-        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#rightProductFacing -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#rightProductFacing">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#adjacentProductFacing"/>
     </owl:ObjectProperty>
     
 
@@ -422,6 +440,20 @@
 
     <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#rightSeparator">
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#separatorOfFacing"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#rightStandingFacing -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/shop.owl#rightStandingFacing">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#rightProductFacing"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://knowrob.org/kb/shop.owl#rightSeparator"/>
+            <rdf:Description>
+                <owl:inverseOf rdf:resource="http://knowrob.org/kb/shop.owl#leftSeparator"/>
+            </rdf:Description>
+        </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
 
@@ -1072,6 +1104,21 @@
                 <owl:onClass rdf:resource="http://knowrob.org/kb/shop.owl#ProductHangInM"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#OrphanProductFacing -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#OrphanProductFacing">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/shop.owl#articleNumberOfFacing"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">0</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/shop.owl#ArticleNumber"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ProductFacing"/>
     </owl:Class>
     
 
