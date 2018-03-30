@@ -67,9 +67,8 @@
       comp_facingDepth/2,
       %%%%%
       shelf_find_parent/2,
-      shelf_frame_spawn_layer/4,
-      shelf_layer_spawn/4,
-      shelf_layer_spawn_label/5,
+      belief_shelf_part_at/4,
+      belief_shelf_barcode_at/5,
       shelf_facing_spawn_front/2,
       shelf_facing_spawn_front/3,
       shelf_facing_spawn_back/2,
@@ -93,16 +92,15 @@
     shelf_layer_mounting_bar(r,r),
     shelf_layer_label(r,r),
     shelf_layer_separator(r,r),
-    shelf_frame_spawn_layer(r,r,+,-),
-    shelf_layer_spawn(r,r,+,-),
-    shelf_layer_spawn_label(r,r,+,+,-),
     shelf_facing(r,r),
     shelf_facing_product_type(r,r),
     shelf_facing_total_space(r,?),
     shelf_facing_free_space(r,-),
     shelf_facing_occupied_space(r,-),
     shelf_find_parent(r,r),
-    shelf_layer_part(r,r,r).
+    shelf_layer_part(r,r,r),
+    belief_shelf_part_at(r,r,+,-),
+    belief_shelf_barcode_at(r,r,+,+,-).
 
 :- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
 :- rdf_db:rdf_register_ns(owl, 'http://www.w3.org/2002/07/owl#', [keep(true)]).
@@ -614,72 +612,37 @@ comp_mainColorOfFacing(Facing, Color_XSD) :-
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% Spawning new objects
+% belief_state part of shelves
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-belief_perceived_pos([DX,DY,DZ], pos(x,P), [X,DY,DZ]) :- X is DX+P, !.
-belief_perceived_pos([DX,DY,DZ], pos(z,P), [DX,Y,DZ]) :- Y is DY+P, !.
-belief_perceived_pos([DX,DY,DZ], pos(y,P), [DX,DY,Z]) :- Z is DZ+P, !.
-
-denormalize_part_pos(Obj, x, In, Out) :-
-  object_dimensions(Obj,_,V,_),
-  Out is V*In - 0.5*V.
-denormalize_part_pos(Obj, y, In, Out) :-
-  object_dimensions(Obj,_,_,V),
-  Out is V*In - 0.5*V.
-denormalize_part_pos(Obj, z, In, Out) :-
-  object_dimensions(Obj,V,_,_),
-  Out is V*In - 0.5*V.
-
-belief_part_offset(Parent, PartType, [DX,DY,DZ]) :-
-  object_affordance(Parent,Affordance),
-  rdfs_individual_of(Affordance, knowrob:'PartOffsetAffordance'),
-  once(owl_property_range_on_subject(Affordance, knowrob:userOfAffordance, AllowedType)),
-  rdfs_subclass_of(PartType, AllowedType),
-  belief_at_id(Affordance, [_,_,[DX,DY,DZ],_]).
-
-belief_perceived_part_at_axis(Parent, PartType, norm(Axis,Pos), Part) :- !,
-  denormalize_part_pos(Parent, Axis, Pos, Denormalized),
-  belief_perceived_part_at_axis(Parent, PartType, pos(Axis,Denormalized), Part).
-
-belief_perceived_part_at_axis(Parent, PartType, pos(Axis,Pos), Part) :-
-  object_frame_name(Parent,ParentFrame),
-  belief_part_offset(Parent, PartType, Offset),
-  belief_perceived_pos(Offset, pos(Axis,Pos), PerceivedPos),
-  !, % TODO why???
-  belief_perceived_part_at(PartType, [ParentFrame,_,
-      PerceivedPos,
-      [0.0, 0.0, 0.0, 1.0]],
-      0.02, Part, Parent).
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-shelf_frame_spawn_layer(Frame, Type, PosNorm, Obj) :-
+%%
+%
+% This predicate exists to establish some relations
+% between labels and facings, and to create facings
+% between separators.
+%
+belief_shelf_part_at(Frame, Type, PosNorm, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfLayer'), !,
   belief_perceived_part_at_axis(Frame, Type, norm(y,PosNorm), Obj).
 
-shelf_layer_spawn(Layer, Type, PosNorm, Obj) :-
+belief_shelf_part_at(Layer, Type, PosNorm, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfSeparator'), !,
-  shelf_layer_standing(Layer),
   belief_perceived_part_at_axis(Layer, Type, norm(x,PosNorm), Obj),
-  %%
   shelf_separator_insert(Layer,Obj).
 
-shelf_layer_spawn(Layer, Type, PosNorm, Obj) :-
+belief_shelf_part_at(Layer, Type, PosNorm, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfMountingBar'), !,
-  shelf_layer_mounting(Layer),
   belief_perceived_part_at_axis(Layer, Type, norm(x,PosNorm), Obj),
-  %%
   shelf_mounting_bar_insert(Layer,Obj).
 
-shelf_layer_spawn_label(Layer, Type, ArticleNumber_value, PosNorm, Obj) :-
+belief_shelf_part_at(Layer, Type, PosNorm, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfLabel'), !,
-  shelf_layer_standing(Layer),
   belief_perceived_part_at_axis(Layer, Type, norm(x,PosNorm), Obj),
-  %%%%
-  create_article_number(ArticleNumber_value, ArticleNumber),
-  rdf_assert(Obj, shop:articleNumberOfLabel, ArticleNumber),
-  %%
   shelf_label_insert(Layer,Obj).
+
+belief_shelf_barcode_at(Layer, Type, ArticleNumber_value, PosNorm, Obj) :-
+  belief_shelf_part_at(Layer, Type, PosNorm, Obj),
+  create_article_number(ArticleNumber_value, ArticleNumber),
+  rdf_assert(Obj, shop:articleNumberOfLabel, ArticleNumber).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
