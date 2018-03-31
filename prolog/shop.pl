@@ -56,21 +56,22 @@
       shelf_layer_label/2,
       shelf_facing/2,
       shelf_facing_product_type/2,
-      shelf_facing_total_space/2,
-      shelf_facing_free_space/2,
-      shelf_facing_occupied_space/2,
+      article_number_product/2,
       % computable properties
       comp_isSpaceRemainingInFacing/2,
       comp_facingPose/2,
       comp_facingWidth/2,
       comp_facingHeight/2,
       comp_facingDepth/2,
+      comp_productHeight/2,
+      comp_productWidth/2,
+      comp_productDepth/2,
       %%%%%
       shelf_find_parent/2,
       belief_shelf_part_at/4,
       belief_shelf_barcode_at/5,
-      product_spawn_front/2,
-      product_spawn_front/3
+      product_spawn_front_to_back/2,
+      product_spawn_front_to_back/3
     ]).
 
 :- use_module(library('semweb/rdf_db')).
@@ -92,9 +93,6 @@
     shelf_layer_separator(r,r),
     shelf_facing(r,r),
     shelf_facing_product_type(r,r),
-    shelf_facing_total_space(r,?),
-    shelf_facing_free_space(r,-),
-    shelf_facing_occupied_space(r,-),
     shelf_find_parent(r,r),
     shelf_layer_part(r,r,r),
     belief_shelf_part_at(r,r,+,-),
@@ -121,13 +119,16 @@ create_article_number(ean(EAN), ArticleNumber) :-
   owl_has(ArticleNumber, shop:articleNumberString, literal(type(shop:ean,EAN))), !.
 create_article_number(ean(EAN), ArticleNumber) :-
   owl_instance_from_class(shop:'ArticleNumber',ArticleNumber),
-  rdf_assert(ArticleNumber, shop:ean, literal(type(shop:ean, EAN))).
+  rdf_assert(ArticleNumber, shop:ean, literal(type(shop:ean, EAN))),
+  write('[WARN] Creating new article number '), write(EAN), nl.
 
 create_article_number(dan(DAN), ArticleNumber) :-
   owl_has(ArticleNumber, shop:articleNumberString, literal(type(shop:dan,DAN))), !.
 create_article_number(dan(DAN), ArticleNumber) :-
   owl_instance_from_class(shop:'ArticleNumber',ArticleNumber),
-  rdf_assert(ArticleNumber, shop:ean, literal(type(shop:dan, DAN))).
+  rdf_assert(ArticleNumber, shop:ean, literal(type(shop:dan, DAN))),
+  write('[WARN] Creating new article number '), write(DAN), nl.
+  
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -417,37 +418,29 @@ shelf_facing_next(Facing, Next) :-
   rdf_has(Facing, shop:rightMountingBar, X),
   rdf_has(Next, shop:mountingBarOfFacing, X).
 
-%% shelf_facing_total_space
-%
-shelf_facing_total_space(Facing, Size) :-
-  rdfs_individual_of(Facing, shop:'ProductFacing'),
-  % TODO: not accurate! there is some space that can not be used by products!
-  %       extend the owl model with this information
-  owl_has(Facing, knowrob:depthOfObject, Depth), !,
-  strip_literal_type(Depth, SizeAtom),
-  atom_number(SizeAtom, Size).
+facing_space_remaining_in_front(Facing,Obj) :-
+  belief_at_id(Obj, [_,_,[_,Obj_pos,_],_]),
+  product_dimensions(Obj, [Obj_depth,_,_]),
+  object_dimensions(Facing,Facing_depth,_,_),
+  Obj_pos > Obj_depth*0.5 - Facing_depth*0.5.
 
-%% shelf_facing_occupied_space
-%
-shelf_facing_occupied_space(Facing, OccupiedSpace) :-
-  rdfs_individual_of(Facing, shop:'ProductFacing'),
-  findall(Size, (
-    rdf_has(Facing, shop:productInFacing, Product),
-    object_dimensions(Product, _, _, Size)
-  ), Sizes),
-  sumlist(Sizes, OccupiedSpace).
-
-%% shelf_facing_free_space
-%
-shelf_facing_free_space(Facing, Remaining) :-
-  shelf_facing_total_space(Facing, Total),
-  shelf_facing_occupied_space(Facing, Occupied),
-  Remaining is Total - Occupied.
+facing_space_remaining_behind(Facing,Obj) :-
+  belief_at_id(Obj, [_,_,[_,Obj_pos,_],_]),
+  product_dimensions(Obj, [Obj_depth,_,_]),
+  object_dimensions(Facing,Facing_depth,_,_),
+  Obj_pos < Facing_depth*0.5 - Obj_depth*0.5.
 
 %% shelf_facing_product_type
 %
 shelf_facing_product_type(Facing, ProductType) :-
-  once(owl_has(Facing, shop:articleNumberOfFacing, ArticleNumber)),
+  owl_has(Facing, shop:articleNumberOfFacing, ArticleNumber),
+  article_number_product(ArticleNumber, ProductType), !.
+shelf_facing_product_type(Facing, _) :-
+  rdf_has(Facing, shop:associatedLabelOfFacing, Label),
+  write('[WARN] No product type associated to label '), owl_write_readable(Label), nl,
+  fail.
+
+article_number_product(ArticleNumber, ProductType) :-
   rdf_has(R, owl:hasValue, ArticleNumber),
   rdf_has(R, owl:onProperty, shop:articleNumberOfProduct),
   rdf_has(ProductType, rdfs:subClassOf, R),
@@ -459,16 +452,18 @@ shelf_facing_product_type(Facing, ProductType) :-
 
 %% comp_isSpaceRemainingInFacing
 %
-%comp_isSpaceRemainingInFacing(Facing,
-%  literal(type('http://www.w3.org/2001/XMLSchema#boolean', true))) :-
-%  shelf_facing_free_space(Facing, Remaining),
-%  ( shelf_facing_product_type(Facing, ProductType) -> (
-%    object_class_dimensions(ProductType, _, _, ProductSize),
-%    Remaining > ProductSize );
-%    true % assume space is remaining if the facing does not have an associated product type
-%  ), !.
+comp_isSpaceRemainingInFacing(Facing,
+  literal(type('http://www.w3.org/2001/XMLSchema#boolean','true'))) :-
+  shelf_facing_products(Facing, ProductsFrontToBack),
+  ( ProductsFrontToBack=[] ; (
+    reverse(ProductsFrontToBack, ProductsBackToFront),
+    ProductsFrontToBack=[(_,First)|_],
+    ProductsBackToFront=[(_,Last)|_], (
+    facing_space_remaining_in_front(Facing,First);
+    facing_space_remaining_behind(Facing,Last))
+  )), !.
 comp_isSpaceRemainingInFacing(_,
-  literal(type('http://www.w3.org/2001/XMLSchema#boolean', true))).
+  literal(type('http://www.w3.org/2001/XMLSchema#boolean','false'))).
 
 %% comp_facingPose
 %
@@ -592,11 +587,50 @@ comp_mainColorOfFacing(Facing, Color_XSD) :-
   ((owl_individual_of(Facing, shop:'OrphanProductFacing'),Col='1.0 0.35 0.0 0.5');
    (owl_individual_of(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.5');
    (owl_individual_of(Facing, shop:'EmptyProductFacing'),Col='1.0 1.0 0.0 0.5');
-   (owl_individual_of(Facing, shop:'FullProductFacing'),Col='1.0 1.0 1.0 0.5');
-   (owl_individual_of(Facing, shop:'FreeProductFacing'),Col='0.0 0.0 1.0 0.5');
+   (owl_individual_of_during(Facing, shop:'FullProductFacing'),Col='0.0 0.25 0.0 0.5');
    Col='0.0 1.0 0.0 0.5'),
   Color_XSD=literal(type(xsd:string, Col)), !.
 
+comp_productHeight(Product,XSD_Val) :-
+  product_dimensions(Product,[_,_,Value]),
+  xsd_float(Value, XSD_Val).
+comp_productWidth(Product, XSD_Val) :-
+  product_dimensions(Product,[_,Value,_]),
+  xsd_float(Value, XSD_Val).
+comp_productDepth(Product, XSD_Val) :-
+  product_dimensions(Product,[Value,_,_]),
+  xsd_float(Value, XSD_Val).
+
+product_dimensions(Product, Dim) :-
+  rdfs_individual_of(Product,shop:'Product'),
+  product_dimensions_(Product, Dim).
+
+product_dimensions_(Product, [D,W,H]) :-
+  owl_has_prolog(Product, shop:widthOfProduct,  P_width),
+  owl_has_prolog(Product, shop:heightOfProduct, P_height),
+  owl_has_prolog(Product, shop:depthOfProduct,  P_depth),
+  product_dimensions_internal([P_depth,P_width,P_height],[D,W,H]), !.
+product_dimensions_(Product, _) :-
+  write('[WARN] No bounding box information available for '), owl_write_readable(Product), nl,
+  fail.
+
+product_type_dimensions(Type, [D,W,H]) :-
+  owl_class_properties(Type, shop:widthOfProduct,  W_XSD), xsd_float(P_width, W_XSD),
+  owl_class_properties(Type, shop:heightOfProduct, H_XSD), xsd_float(P_height, H_XSD),
+  owl_class_properties(Type, shop:depthOfProduct,  D_XSD), xsd_float(P_depth, D_XSD),
+  product_dimensions_internal([P_depth,P_width,P_height],[D,W,H]), !.
+product_type_dimensions(Type, _) :-
+  write('[WARN]  No bounding box information available for '), owl_write_readable(Type), nl,
+  fail.
+
+product_dimensions_internal([PD,PW,PH],[D,W,H]) :-
+  % HACK seems in the DB depth/height/width are mixed up wrt. how products are placed in shelves
+  (PD =< 0.0 -> fail ; true),
+  (PW =< 0.0 -> fail ; true),
+  (PH =< 0.0 -> fail ; true),
+  H is max(PD,max(PW,PH)),
+  D is min(PD,min(PW,PH)),
+  W is PD + PW + PH - H - D.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -634,9 +668,19 @@ belief_shelf_barcode_at(Layer, Type, ArticleNumber_value, PosNorm, Obj) :-
 
 product_spawn_at(Facing, Type, Offset_D, Obj) :-
   rdf_has(Facing, shop:layerOfFacing, Layer),
+  
+  product_type_dimensions(Type, [Obj_D,_,_]),
+  object_dimensions(Layer,Layer_D,_,_),
+  Layer_D*0.5 > abs(Offset_D) + Obj_D*0.5,
+  
   belief_new_object(Type, Obj),
+  % enforce we have a product here
+  ( rdfs_individual_of(Obj,shop:'Product') -> true ;(
+    write('[WARN] '), owl_write_readable(Type), write(' is not subclass of shop:Product'), nl,
+    rdf_assert(Obj,rdf:type,shop:'Product') )),
+  
   % compute offset
-  object_dimensions(Obj,_,_,Obj_H),
+  product_dimensions(Obj,[_,_,Obj_H]),
   belief_at_id(Facing, [_,_,[Facing_X,_,_],_]),
   Offset_H is Obj_H*0.5 + 0.05, % FIXME won't work for mounting layer
   % declare transform
@@ -652,13 +696,12 @@ product_spawn_front_to_back(Facing, Obj) :-
   
 product_spawn_front_to_back(Facing, Obj, Type) :-
   rdf_has(Facing, shop:layerOfFacing, Layer),
-  owl_class_properties(Type, knowrob:depthOfObject, Obj_D_XSD),
-  xsd_float(Obj_D, Obj_D_XSD),
+  product_type_dimensions(Type, [Obj_D,_,_]),
   shelf_facing_products(Facing, ProductsFrontToBack),
   reverse(ProductsFrontToBack, ProductsBackToFront),
   ( ProductsBackToFront=[] -> (
     object_dimensions(Layer,Layer_D,_,_),
-    Obj_Pos is -Layer_D*0.5 + Obj_D*0.5,
+    Obj_Pos is -Layer_D*0.5 + Obj_D*0.5 + 0.01,
     product_spawn_at(Facing, Type, Obj_Pos, Obj));(
     ProductsBackToFront=[(Last_Pos,Last)|_],
     object_dimensions(Last,Last_D,_,_),
