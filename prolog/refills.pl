@@ -41,6 +41,7 @@
 :- use_module(library('semweb/owl_parser')).
 :- use_module(library('semweb/owl')).
 :- use_module(library('knowrob/computable')).
+:- use_module(library('knowrob/temporal')).
 :- use_module(library('knowrob/owl')).
 
 :- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
@@ -60,52 +61,67 @@ refills_init_test_shop :-
   belief_parse('package://knowrob_refills/owl/shop-test.owl'),
   refills_spawn_facings.
 
-refills_spawn_facings :-
-  Frame1='http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS',
-  Frame2='http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8',
-  belief_shelf_part_at(Frame1, dmshop:'DMShelfLayer4TilesFront', 0.9, _),
-  belief_shelf_part_at(Frame1, dmshop:'DMShelfLayer4TilesFront', 0.7, _),
-  belief_shelf_part_at(Frame1, dmshop:'DMShelfLayer4TilesFront', 0.5, _),
-  belief_shelf_part_at(Frame1, dmshop:'DMShelfLayer4TilesFront', 0.2, _),
-  belief_shelf_part_at(Frame2, dmshop:'DMShelfLayer4TilesFront', 0.1, _),
-  belief_shelf_part_at(Frame2, dmshop:'DMShelfLayer4TilesFront', 0.3, _),
-  belief_shelf_part_at(Frame2, dmshop:'DMShelfLayerMountingFront', 0.6, _),
-  belief_shelf_part_at(Frame2, dmshop:'DMShelfLayerMountingFront', 1.0, _),
-  forall( rdfs_individual_of(Layer, dmshop:'DMShelfLayerStanding'), (
-    belief_shelf_part_at(Layer, dmshop:'DMShelfSeparator4Tiles', 0.0, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfSeparator4Tiles', 0.2, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfSeparator4Tiles', 0.35, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfSeparator4Tiles', 0.6, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfSeparator4Tiles', 0.85, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfSeparator4Tiles', 1.0, _),
-    %belief_shelf_barcode_at(Layer, dmshop:'DMShelfLabel', dan('569070'), 0.1, _),
-    %belief_shelf_barcode_at(Layer, dmshop:'DMShelfLabel', dan('538288'), 0.275, _),
-    belief_shelf_barcode_at(Layer, dmshop:'DMShelfLabel', dan('438505'), 0.475, _),
-    %belief_shelf_barcode_at(Layer, dmshop:'DMShelfLabel', dan('523915'), 0.725, _),
-    belief_shelf_barcode_at(Layer, dmshop:'DMShelfLabel', dan('300941'), 0.925, _)
-  )), 
-  forall( rdfs_individual_of(Layer, dmshop:'DMShelfLayerMounting'), (
-    belief_shelf_part_at(Layer, dmshop:'DMShelfMountingBar', 0.0, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfMountingBar', 0.1, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfMountingBar', 0.2, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfMountingBar', 0.3, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfMountingBar', 0.5, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfMountingBar', 0.7, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfMountingBar', 0.9, _),
-    belief_shelf_part_at(Layer, dmshop:'DMShelfMountingBar', 1.0, _)
+refills_make_shelf(Frame, [(Pos,separators(Separators),labels(Labels))|Rest]) :-
+  belief_shelf_part_at(Frame, dmshop:'DMShelfLayer4TilesFront', Pos, Layer),
+  forall(member(SepPos,Separators),
+         belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', SepPos, _)),
+  forall(member((LabelPos,AN),Labels),
+         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),LabelPos,_)),
+  refills_make_shelf(Frame, Rest).
+
+refills_make_shelf(Frame, [(Pos,bars(Bars),labels(Labels))|Rest]) :-
+  belief_shelf_part_at(Frame, dmshop:'DMShelfLayerMountingFront', Pos, Layer),
+  forall(member(BarPos,Bars),
+         belief_shelf_part_at(Layer,dmshop:'DMShelfMountingBar',BarPos,_)),
+  forall(member((LabelPos,AN),Labels),
+         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),LabelPos,_)),
+  refills_make_shelf(Frame, Rest).
+
+refills_make_shelf(_, []) :- !.
+
+refills_random_standing_facing(Facing) :-
+  random(0,2,Full),
+  random(0,5,Misplaced),
+  
+  shelf_facing_product_type(Facing, ProductType),
+  once(( Misplaced>0 ; (
+    rdfs_individual_of(OtherFacing, shop:'ProductFacingStanding'),
+    shelf_facing_product_type(OtherFacing, OtherProductType),
+    OtherProductType \= ProductType,
+    product_spawn_front_to_back(Facing,_,OtherProductType))
   )),
-  forall(
-    rdf_has(Facing, shop:labelOfFacing, _),(
+  
+  ( Full>0 -> (
     product_spawn_front_to_back(Facing,_),
-    product_spawn_front_to_back(Facing,_))
-  ),
-  forall((
-    rdf_has(Prev, shop:labelOfFacing, _),
-    % TODO: this is odd, it should work the other way. Seems left/right mixed up?!?
-    %rdf_has(Prev, shop:rightSeparator, X),
-    %rdf_has(Facing, shop:leftSeparator, X)),
-    rdf_has(Prev, shop:leftSeparator, X),
-    rdf_has(Facing, shop:rightSeparator, X)),(
+    standing_facing_full(Facing) ); (
     product_spawn_front_to_back(Facing,_),
-    product_spawn_front_to_back(Facing,_))
-  ).
+    product_spawn_front_to_back(Facing,_),
+    product_spawn_front_to_back(Facing,_),
+    product_spawn_front_to_back(Facing,_)
+  )).
+
+standing_facing_full(Facing) :-
+  product_spawn_front_to_back(Facing,_),
+  ignore(standing_facing_full(Facing)).
+
+refills_spawn_facings :-
+  refills_make_shelf('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS', [
+    (0.2, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'378940'),(0.925,'346864')])),
+    (0.4, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'378981'),(0.925,'553736')])),
+    (0.6, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'553735'),(0.925,'251188')])),
+    (0.8, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'250899'),(0.925,'544382')]))
+  ]),
+  refills_make_shelf('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8', [
+    (0.1, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'553733'),(0.925,'404491')])),
+    (0.3, separators([0.0,0.2,0.4,0.6,0.75,1.0]), labels([(0.475,'544382'),(0.925,'331372')])),
+    (0.8, bars([0.1,0.2,0.3,0.5,0.7,0.9]), labels([])),
+    (1.0, bars([0.1,0.2,0.3,0.5,0.7,0.9]), labels([]))
+  ]),
+  forall(rdfs_individual_of(Facing, shop:'ProductFacingStanding'),(
+    random(0,6,HasProduct),
+    (( HasProduct>0, rdf_has(Facing, shop:associatedLabelOfFacing, Label ) )-> (
+       rdf_has(Label, shop:articleNumberOfLabel, ArticleNumber),
+       ( refills_random_standing_facing(Facing) -> true ; (
+          write('[WARN] Failed to spawn products into '), owl_write_readable([Facing,ArticleNumber]), nl ))
+    ) ; true)
+  )).
