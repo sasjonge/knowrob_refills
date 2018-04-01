@@ -26,574 +26,113 @@
         <owl:imports rdf:resource="package://knowrob_refills/owl/dm-market.owl"/>
     </owl:Ontology>
 
-    <owl:Class rdf:about="&shop;Zahnbleaching">
-        <rdfs:subClassOf rdf:resource="&shop;ZahnweissSysteme"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ForGirl">
-        <rdfs:subClassOf rdf:resource="&shop;HairAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Gesundheits">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
-        <rdfs:subClassOf rdf:resource="&shop;StomachHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Bakeware">
-        <rdfs:subClassOf rdf:resource="&shop;BakingAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RasurvorberHerren">
-        <rdfs:subClassOf rdf:resource="&shop;ShavingGel"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Lecithin">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatCan">
-        <rdfs:subClassOf rdf:resource="&shop;WetCatFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FoodEaster">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HouseholdFoilAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ToothbrushBattery">
-        <rdfs:subClassOf rdf:resource="&shop;ElektrischeZahnbüRste"/>
+    <owl:Class rdf:about="&shop;PerfumePen">
+        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;FleeceDiaper">
         <rdfs:subClassOf rdf:resource="&shop;Diaper"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Cheroot">
-        <rdfs:subClassOf rdf:resource="&shop;Candle"/>
-        <rdfs:subClassOf rdf:resource="&shop;PillarCandle"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WetDogFood">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SmallSpace">
-        <rdfs:subClassOf rdf:resource="&shop;AirFreshener"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PreparationOfGlass">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DogItem">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildWinterAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Tag">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Organizer">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KidBathingSupplement">
-        <rdfs:subClassOf rdf:resource="&shop;ChildProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BeeswaxCandle">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Vein">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MothBait">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;NailAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LaundryDetergent">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MamaCare">
-        <rdfs:subClassOf rdf:resource="&shop;BabyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BüGelhilfe">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CleaningBabyAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;PrepaidCard">
-        <rdfs:subClassOf rdf:resource="&shop;PhotoAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MGesichtTag">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Variou">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Food">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;FoodOrDrink"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Grain">
         <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;CoffeeOrCocoa">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Consumption">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyBlanketClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Card">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;YogurtCup">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyPlayerClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LadyShowerGel">
-        <rdfs:subClassOf rdf:resource="&shop;LadyPerfume"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectHouseflyCandle">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabySchorle">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VogelBelohnung">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GiftWrap">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;Produkt"/>
+        <rdfs:subClassOf rdf:resource="&shop;ConvinienceFood"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;AccessoryItem">
         <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Sole">
-        <rdfs:subClassOf rdf:resource="&shop;FootCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Calcium">
-        <rdfs:subClassOf rdf:resource="&shop;Mineral"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildPermaClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Bag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ManicurePermaClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Manicure"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FruitOrGetGlas">
-        <rdfs:subClassOf rdf:resource="&shop;FruitOrCereal"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CornealControlAgent">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Cereal">
-        <rdfs:subClassOf rdf:resource="&shop;Grain"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;TeatSilicone">
-        <rdfs:subClassOf rdf:resource="&shop;BabyBottle"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PlüSch">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WeinOderSekt">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FurnitureCare">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FruitBar">
-        <rdfs:subClassOf rdf:resource="&shop;Snack"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Lipstick">
+    <owl:Class rdf:about="&shop;BodyCareProduct">
+        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Sneaker">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <owl:Class rdf:about="&shop;Cream">
+        <rdfs:subClassOf rdf:resource="&shop;BodyLotion"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;FitnesProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
+    <owl:Class rdf:about="&shop;MedicalCareProduct">
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Tampon">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Vase">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Fertiggericht">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;StainRemover">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Conditioner">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PermProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Woman">
-        <rdfs:subClassOf rdf:resource="&shop;Vitamin"/>
+    <owl:Class rdf:about="&shop;MouthCleaningProduct">
+        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;MouthCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;SqueezeBag">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ShavingGel">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ElectricAir">
-        <rdfs:subClassOf rdf:resource="&shop;AirFreshener"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectWarCard">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
+        <rdfs:subClassOf rdf:resource="&shop;Food"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;FootCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ChildPullovOrJacketPush">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BrillenputztüCher">
+    <owl:Class rdf:about="&shop;HouseholdCleaningItem">
+        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Tonica">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Window">
-        <rdfs:subClassOf rdf:resource="&shop;Wipe"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;OtherBeauty">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Fensterdekoration">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;BeautyProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;FaceNight">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatDry">
-        <rdfs:subClassOf rdf:resource="&shop;DryCatFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Maske">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectHouseflyLockstfalle">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RheumatismInner">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildLeggOrJoggClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatLitter">
-        <rdfs:subClassOf rdf:resource="&shop;CatAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AllPurpose">
-        <rdfs:subClassOf rdf:resource="&shop;Wipe"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FlakeOrPuffed">
-        <rdfs:subClassOf rdf:resource="&shop;Grain"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AccessoryGarbage">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdFoilAccessory"/>
+    <owl:Class rdf:about="&shop;ToothWhiteningSystem">
+        <rdfs:subClassOf rdf:resource="&shop;BathroomCleaningItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;MouthCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Anther">
         <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Softener">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WomenProduct">
-        <rdfs:subClassOf rdf:resource="&shop;ShaveItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GeträNkeOderSaf">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ToiletFreshnes">
-        <rdfs:subClassOf rdf:resource="&shop;ToiletCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyBibClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EyeCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;ReadingGlassAndModuleContactLens"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HautCaroti">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedicinalPlant">
-        <rdfs:subClassOf rdf:resource="&shop;ColdMedicine"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenSetOfClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Feinwm">
-        <rdfs:subClassOf rdf:resource="&shop;LaundryDetergent"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;GiftWrapping">
-        <rdfs:subClassOf rdf:resource="&shop;Produkt"/>
+        <rdfs:subClassOf rdf:resource="&shop;Paper"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;BabyWater">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MoldRemover">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomDetergent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InitialMilkHaPre">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyPantLongClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;NormalTatu">
-        <rdfs:subClassOf rdf:resource="&shop;Tissue"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BathroomDetergent">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Badeschaum">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <owl:Class rdf:about="&shop;GreenTea">
+        <rdfs:subClassOf rdf:resource="&shop;Tea"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;BakeryProduct">
         <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;SeasonalProduct">
-        <rdfs:subClassOf rdf:resource="&shop;GreetingCard"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MomDiet">
-        <rdfs:subClassOf rdf:resource="&shop;BabyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Pfandstofftaschen">
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AluminumFoil">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;StayupStocking">
-        <rdfs:subClassOf rdf:resource="&shop;HoldupStocking"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;NailCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildSleepingClothe">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;TinkerItem">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;PhotoAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Tonic">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ManEdt">
-        <rdfs:subClassOf rdf:resource="&shop;HerrenParfüM"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ProstateOrBla">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GreaseproofPaper">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Tight">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;FootCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenPantLongClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MistletoeOrWhite">
-        <rdfs:subClassOf rdf:resource="&shop;CirculatoryHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;TüTe">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <owl:Class rdf:about="&shop;Shoesole">
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;FruitCup">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildHemdClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Plastic">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DrinkingMeal">
-        <rdfs:subClassOf rdf:resource="&shop;Mash"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatPouchMp">
-        <rdfs:subClassOf rdf:resource="&shop;WetCatFood"/>
+        <rdfs:subClassOf rdf:resource="&shop;ConvinienceFood"/>
+        <rdfs:subClassOf rdf:resource="&shop;Fruit"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;HandSanitizer">
-        <rdfs:subClassOf rdf:resource="&shop;HandpflegeProdukt"/>
+        <rdfs:subClassOf rdf:resource="&shop;HandCleaningProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;DogAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;AnimalAccessory"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;DishSoap">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FruitBrand">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FashionJewelry">
-        <rdfs:subClassOf rdf:resource="&shop;HairAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;OilOrVinegar">
-        <rdfs:subClassOf rdf:resource="&shop;Seasoning"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KöRperpuder">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WindLight">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RasierZubehöR">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+    <owl:Class rdf:about="&shop;HandCareProduct">
+        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ChewingGum">
-        <rdfs:subClassOf rdf:resource="&shop;Sweet"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenTightClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
+        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Filter">
@@ -601,408 +140,81 @@
     </owl:Class>
 
     <owl:Class rdf:about="&shop;BodyLotion">
-        <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
+        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;LadyEdt">
-        <rdfs:subClassOf rdf:resource="&shop;LadyPerfume"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ApparatusGentleman">
-        <rdfs:subClassOf rdf:resource="&shop;Nassrasierer"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Drink">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KneeSockUpToDen">
-        <rdfs:subClassOf rdf:resource="&shop;KneeSock"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Spitzkerzen">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;JungClean">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FashionJewelerySeason">
-        <rdfs:subClassOf rdf:resource="&shop;HairAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FloorClothOrCover">
-        <rdfs:subClassOf rdf:resource="&shop;WiperSystem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Baumdekoration">
-        <rdfs:subClassOf rdf:resource="&shop;Produkt"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Wreath">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LashColor">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatCare">
-        <rdfs:subClassOf rdf:resource="&shop;CatAccessory"/>
+    <owl:Class rdf:about="&shop;ProblemSolver">
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;NutOrFruit">
         <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;IgnitionAid">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Rouge">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GiftSet">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ParfüMStifte">
-        <rdfs:subClassOf rdf:resource="&shop;ParfüM"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AntiageNight">
-        <rdfs:subClassOf rdf:resource="&shop;AntiAgePflegeprodukt"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;Sweetener">
         <rdfs:subClassOf rdf:resource="&shop;Food"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ContactLenCare">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Nassrasierer">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Textile">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;Clothing">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;Sock"/>
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Franzbranntw">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ManAntiAge">
-        <rdfs:subClassOf rdf:resource="&shop;MenCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SaunaAufgüSse">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ParfüM">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Exam">
-        <rdfs:subClassOf rdf:resource="&shop;SeasonalProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatHealth">
-        <rdfs:subClassOf rdf:resource="&shop;CatAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Bandage">
-        <rdfs:subClassOf rdf:resource="&shop;WoundHealingProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;YoungTowel">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Geschenkset">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Digestion">
-        <rdfs:subClassOf rdf:resource="&shop;StomachHealthProduct"/>
+    <owl:Class rdf:about="&shop;RooibosTea">
+        <rdfs:subClassOf rdf:resource="&shop;Tea"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Battery">
-        <rdfs:subClassOf rdf:resource="&shop;PhotoAccessory"/>
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Scourer">
-        <rdfs:subClassOf rdf:resource="&shop;Wipe"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;JungPflegen">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LmottGlueTrap">
-        <rdfs:subClassOf rdf:resource="&shop;MothBait"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HairMousse">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KosmetikPapier">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedicalHand">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectHouseflyFeedBait">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KidShowerOrHairPlunger">
-        <rdfs:subClassOf rdf:resource="&shop;ChildProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;TüTen">
-        <rdfs:subClassOf rdf:resource="&shop;Produkt"/>
-        <rdfs:subClassOf rdf:resource="&shop;TüTe"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyBathingSuitClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabySummerAccessory"/>
+    <owl:Class rdf:about="&shop;Gloves">
+        <rdfs:subClassOf rdf:resource="&shop;ClothingAccessory"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Mash">
         <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-        <rdfs:subClassOf rdf:resource="&shop;Grain"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Sparpack">
-        <rdfs:subClassOf rdf:resource="&shop;Diaper"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LadyBodyMist">
-        <rdfs:subClassOf rdf:resource="&shop;LadyPerfume"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildrenToothbrush">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Eierfarben">
-        <rdfs:subClassOf rdf:resource="&shop;TinkerItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PocketMirror">
-        <rdfs:subClassOf rdf:resource="&shop;Mirror"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SeasonalGood">
-        <rdfs:subClassOf rdf:resource="&shop;Sweet"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyStockingClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;BodyOil">
-        <rdfs:subClassOf rdf:resource="&shop;Bodylotion"/>
+        <rdfs:subClassOf rdf:resource="&shop;BodyLotion"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;InsectHouseflyPlug">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Chocolate">
-        <rdfs:subClassOf rdf:resource="&shop;Sweet"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HairConditioner">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SpecialMilkFormula">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
+    <owl:Class rdf:about="&shop;ServiceProduct">
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;KitchenTowel">
-        <rdfs:subClassOf rdf:resource="&shop;Paper"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SpongeOrBrushOrMeasure">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CareAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KinderMundspüLungen">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Textilerfri">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
+        <rdfs:subClassOf rdf:resource="&shop;CleaningPaper"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;BabyClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HealthJuice">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Chemical">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MouthCup">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;BabyItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;Clothing"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;CareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ZerstäUber">
-        <rdfs:subClassOf rdf:resource="&shop;ParfüM"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FoodChristma">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatItem">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Bodylotion">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BathFoam">
-        <rdfs:subClassOf rdf:resource="&shop;Badeschaum"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HomeFragrance">
-        <rdfs:subClassOf rdf:resource="&shop;AirFreshener"/>
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Umbrella">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VitaminD">
-        <rdfs:subClassOf rdf:resource="&shop;Vitamin"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VitaminE">
-        <rdfs:subClassOf rdf:resource="&shop;Vitamin"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ScreenAutom">
-        <rdfs:subClassOf rdf:resource="&shop;Umbrella"/>
+        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Dummy">
         <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ToothbrushQuiver">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ZahncremeProphylaxe">
-        <rdfs:subClassOf rdf:resource="&shop;Zahncreme"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EyeDropModule">
-        <rdfs:subClassOf rdf:resource="&shop;EyeCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SanitaryCleaning">
-        <rdfs:subClassOf rdf:resource="&shop;ToiletCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KatzeNäPfe">
-        <rdfs:subClassOf rdf:resource="&shop;CatAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ParfüMCreme">
-        <rdfs:subClassOf rdf:resource="&shop;ParfüM"/>
+    <owl:Class rdf:about="&shop;LiquidSoap">
+        <rdfs:subClassOf rdf:resource="&shop;HandCleaningProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;Soap"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ReadingGlass">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Elektroappar">
-        <rdfs:subClassOf rdf:resource="&shop;ElektrischeRasierapparat"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SensitiveToothpaste">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;VisualAidProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;HouseholdFoil">
-        <rdfs:subClassOf rdf:resource="&shop;Foil"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildBathingClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildSummerAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HeartySpread">
-        <rdfs:subClassOf rdf:resource="&shop;Spread"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabySummerAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Garlic">
-        <rdfs:subClassOf rdf:resource="&shop;CirculatoryHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;OrganicTk">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InitialMilkHa">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SeedOrLegume">
-        <rdfs:subClassOf rdf:resource="&shop;Grain"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AthleteFootControlAgent">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Handcreme">
-        <rdfs:subClassOf rdf:resource="&shop;HandpflegeProdukt"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FleckenbSpecial">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
+        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Coloration">
@@ -1010,1966 +222,419 @@
     </owl:Class>
 
     <owl:Class rdf:about="&shop;BabyAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-        <rdfs:subClassOf rdf:resource="&shop;Diaper"/>
+        <rdfs:subClassOf rdf:resource="&shop;BabyItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;MothFlowerPouch">
-        <rdfs:subClassOf rdf:resource="&shop;MothControlAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;TeaFilter">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Iron">
-        <rdfs:subClassOf rdf:resource="&shop;Mineral"/>
+    <owl:Class rdf:about="&shop;CirculatoryHealthCareProduct">
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;VitaminOrMineral">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ShoeCare">
-        <rdfs:subClassOf rdf:resource="&shop;Clothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenDresOrSkirtClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SauceHeart">
-        <rdfs:subClassOf rdf:resource="&shop;Seasoning"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FüSslingeStandar">
-        <rdfs:subClassOf rdf:resource="&shop;Boot"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RazorBlade">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectGetSilverfish">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildTightClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildAccessory"/>
+    <owl:Class rdf:about="&shop;MakeUpRemover">
+        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;Remover"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Tissue">
-        <rdfs:subClassOf rdf:resource="&shop;Paper"/>
+        <rdfs:subClassOf rdf:resource="&shop;CleaningPaper"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;DogReward">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ValerianOrHop">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Hearty">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Zungenreiniger">
-        <rdfs:subClassOf rdf:resource="&shop;MouthOrTooth"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HundNäPfe">
-        <rdfs:subClassOf rdf:resource="&shop;DogAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FigureCandle">
-        <rdfs:subClassOf rdf:resource="&shop;Candle"/>
+    <owl:Class rdf:about="&shop;TreeDecoration">
+        <rdfs:subClassOf rdf:resource="&shop;ChristmasAccessory"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ChildClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BeikostöL">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DetergentLiquid">
-        <rdfs:subClassOf rdf:resource="&shop;LaundryDetergent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MakeupBagClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Bag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FoilGarland">
-        <rdfs:subClassOf rdf:resource="&shop;Garland"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LaundryFragrance">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EasterBasket">
-        <rdfs:subClassOf rdf:resource="&shop;TinkerItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CarpetCleaner">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyOverallClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MGesichtnacht">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;ChildItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;Clothing"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;FrozenFood">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MothLeimfallelockst">
-        <rdfs:subClassOf rdf:resource="&shop;MothControlAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DomesticEquipment">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LeggingUpToDen">
-        <rdfs:subClassOf rdf:resource="&shop;Legging"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Geschenkband">
-        <rdfs:subClassOf rdf:resource="&shop;GiftWrap"/>
+        <rdfs:subClassOf rdf:resource="&shop;ConvinienceFood"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;EyeMakeUpRemover">
         <rdfs:subClassOf rdf:resource="&shop;FacialCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DamenBodylotion">
-        <rdfs:subClassOf rdf:resource="&shop;LadyPerfume"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FakeNailAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SevereIncontinence">
-        <rdfs:subClassOf rdf:resource="&shop;IncontinenceHealthProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;MakeUpRemover"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ColdMedicine">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;NailArt">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CerealRef">
-        <rdfs:subClassOf rdf:resource="&shop;Grain"/>
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;SparePart">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PerfumeVase">
-        <rdfs:subClassOf rdf:resource="&shop;RoomFragrance"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ConsumeEnergy">
-        <rdfs:subClassOf rdf:resource="&shop;FitnesProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Lippenpflege">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyTea">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyPullovOrJacketClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;TableCloth">
-        <rdfs:subClassOf rdf:resource="&shop;Produkt"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;YoungChildFeeding">
-        <rdfs:subClassOf rdf:resource="&shop;Snack"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EasterGras">
-        <rdfs:subClassOf rdf:resource="&shop;TinkerItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LadyElsePerfume">
-        <rdfs:subClassOf rdf:resource="&shop;LadyPerfume"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;QuetschyEinzelp">
-        <rdfs:subClassOf rdf:resource="&shop;SqueezeBag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenPantShortClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenHeadwearClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildBathingTopClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildSummerAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WaterSoftener">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DüFtöLe">
-        <rdfs:subClassOf rdf:resource="&shop;ScentedCandle"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildMilk">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Mineral">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Geschenkfolie">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Beverage">
-        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MultivitCom">
-        <rdfs:subClassOf rdf:resource="&shop;Vitamin"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WattestäBche">
-        <rdfs:subClassOf rdf:resource="&shop;CottonWool"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KatzeBeutelEp">
-        <rdfs:subClassOf rdf:resource="&shop;WetCatFood"/>
+        <rdfs:subClassOf rdf:resource="&shop;FoodOrDrink"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;SeasonalItem">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MildIncontinence">
-        <rdfs:subClassOf rdf:resource="&shop;IncontinenceHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PipeCleaner">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MiteControlAgent">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;PhotoAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;GreetingCard"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CleaningAgent">
-        <rdfs:subClassOf rdf:resource="&shop;FacialCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyOrKidCareLotion">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MGesichtReinigung">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Jacket">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ToothpasteChild">
-        <rdfs:subClassOf rdf:resource="&shop;KinderZahncreme"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DryDogFood">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ZincOrHistidi">
-        <rdfs:subClassOf rdf:resource="&shop;Mineral"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SonneLotion">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EroticProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DestWater">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FrozenOrIceCream">
-        <rdfs:subClassOf rdf:resource="&shop;Eis"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Mascara">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Blumen">
         <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AnimalRepellent">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenLeggOrJoggClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MachineCareDishwashingLiquid">
-        <rdfs:subClassOf rdf:resource="&shop;DishSoap"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SockDen">
-        <rdfs:subClassOf rdf:resource="&shop;Anklet"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DishSoapSalt">
-        <rdfs:subClassOf rdf:resource="&shop;DishSoap"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;MedicinalTea">
         <rdfs:subClassOf rdf:resource="&shop;Tea"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;EyeMakeUpAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyPantShortClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FingerOrBiot">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SoapDispenser">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;Vegetable">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BottleBag">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ShoeCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;CandleAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+    <owl:Class rdf:about="&shop;CoughDrops">
+        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Mouthwash">
-        <rdfs:subClassOf rdf:resource="&shop;MouthOrTooth"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ConvenienceOrPreserve">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
+        <rdfs:subClassOf rdf:resource="&shop;BathroomCleaningItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;MouthCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Wipe">
-        <rdfs:subClassOf rdf:resource="&shop;BabyCareProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;KosmetikPapier"/>
+        <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;SunglassAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;Sunglass"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Entkalker">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ScheuerCenter">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdDetergent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Antiagespezial">
-        <rdfs:subClassOf rdf:resource="&shop;AntiAgePflegeprodukt"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectHouseflySpray">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CottonWool">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Remover">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ApparateDamen">
-        <rdfs:subClassOf rdf:resource="&shop;LadyRazor"/>
+    <owl:Class rdf:about="&shop;SaunaInfusion">
+        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;RoomDecoration">
-        <rdfs:subClassOf rdf:resource="&shop;Produkt"/>
+        <rdfs:subClassOf rdf:resource="&shop;Decoration"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Kindervitami">
-        <rdfs:subClassOf rdf:resource="&shop;Vitamin"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Cocktailservietten">
-        <rdfs:subClassOf rdf:resource="&shop;Cocktailserviette"/>
+    <owl:Class rdf:about="&shop;RodentControlAgent">
+        <rdfs:subClassOf rdf:resource="&shop;ControlAgent"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ChildLaundry">
         <rdfs:subClassOf rdf:resource="&shop;ChildItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;KidShower">
-        <rdfs:subClassOf rdf:resource="&shop;ChildProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MundspüLungKinder">
-        <rdfs:subClassOf rdf:resource="&shop;KinderMundspüLungen"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RodentAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MHaar">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BreadOrRoll">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildScarfOrClothClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildAccessory"/>
+    <owl:Class rdf:about="&shop;SunProtectionItem">
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;CarnivalArticle">
+        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
         <rdfs:subClassOf rdf:resource="&shop;SeasonalItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Schokolad">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Nacht">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Bronzer">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;Glucose">
-        <rdfs:subClassOf rdf:resource="&shop;Sweet"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CoffeeFilter">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DetergentAddit">
-        <rdfs:subClassOf rdf:resource="&shop;DishSoap"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BirthdayGreetingCard">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SoyOrWheyP">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SonnenCreme">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FruitGlas">
-        <rdfs:subClassOf rdf:resource="&shop;Fruit"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FlakeOrClover">
-        <rdfs:subClassOf rdf:resource="&shop;Grain"/>
+        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;HairCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ManDeposit">
-        <rdfs:subClassOf rdf:resource="&shop;IncontinenceHealthProduct"/>
+    <owl:Class rdf:about="&shop;BirdAccessory">
+        <rdfs:subClassOf rdf:resource="&shop;AnimalAccessory"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Dish">
-        <rdfs:subClassOf rdf:resource="&shop;Wipe"/>
+    <owl:Class rdf:about="&shop;Toothbrush">
+        <rdfs:subClassOf rdf:resource="&shop;BathroomCleaningItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;MouthCareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Anklet">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <owl:Class rdf:about="&shop;ShowerGel">
+        <rdfs:subClassOf rdf:resource="&shop;BathroomCleaningItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Mundspray">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectGetVermin">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatCupEp">
-        <rdfs:subClassOf rdf:resource="&shop;WetCatFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildOverallClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SchaumbäDer">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Sonnenschutz">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Milchbrei">
-        <rdfs:subClassOf rdf:resource="&shop;Mash"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Bleaching">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;NailStripe">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildOtherClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ZahncremeZahnschmelz">
-        <rdfs:subClassOf rdf:resource="&shop;SensitiveToothpaste"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Defense">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalRepellent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PantyLiner">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ClingFilm">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Biscuit">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HouseholdDetergent">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SunglassAdultUni">
-        <rdfs:subClassOf rdf:resource="&shop;Sunglass"/>
+    <owl:Class rdf:about="&shop;PhotoFrame">
+        <rdfs:subClassOf rdf:resource="&shop;PhotoAccessory"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;GarbageBag">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;ServiceProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;DiagnosticProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Duschgel">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SkinOrYeast">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Handwm">
-        <rdfs:subClassOf rdf:resource="&shop;LaundryDetergent"/>
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;BabyFood">
+        <rdfs:subClassOf rdf:resource="&shop;BabyItem"/>
         <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AbwehrstäRku">
-        <rdfs:subClassOf rdf:resource="&shop;ColdMedicine"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Can">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KitchenCleaning">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ContactLens">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RoomFragrance">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ParfüMSprays">
-        <rdfs:subClassOf rdf:resource="&shop;ParfüM"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChemischeHaarentfernerWachs">
-        <rdfs:subClassOf rdf:resource="&shop;ChemischeHaarentferner"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MetalOrStove">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Mopro">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GiftOrnament">
-        <rdfs:subClassOf rdf:resource="&shop;GiftWrap"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;NailFoil">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HerrenParfüM">
-        <rdfs:subClassOf rdf:resource="&shop;ParfüM"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Omega">
-        <rdfs:subClassOf rdf:resource="&shop;CirculatoryHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HalfReadyMeal">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PressurePointControlAgent">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ZahnbüRsteErwachsen">
-        <rdfs:subClassOf rdf:resource="&shop;AdultToothbrush"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildHealthClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LebriAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;ReadingGlass"/>
+        <rdfs:subClassOf rdf:resource="&shop;VisualAidProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ChildFood">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
+        <rdfs:subClassOf rdf:resource="&shop;Food"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;WoundHealingProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;LadyFineKnitPantRecycl">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <owl:Class rdf:about="&shop;ManPerfume">
+        <rdfs:subClassOf rdf:resource="&shop;ManItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ParfüMRoller">
-        <rdfs:subClassOf rdf:resource="&shop;ParfüM"/>
+    <owl:Class rdf:about="&shop;MediaProduct">
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ChemischeHaarentferner">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BakingAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AudioBook">
-        <rdfs:subClassOf rdf:resource="&shop;Book"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Footbath">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MothPaper">
-        <rdfs:subClassOf rdf:resource="&shop;MothControlAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Glove">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CornControlAgent">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HoldupStocking">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FaceDay">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CottonPad">
-        <rdfs:subClassOf rdf:resource="&shop;CottonWool"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Strengthen">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ConvenienceFood">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VitaminAOrD">
-        <rdfs:subClassOf rdf:resource="&shop;Vitamin"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatShellMp">
-        <rdfs:subClassOf rdf:resource="&shop;WetCatFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Ginkgo">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VegetableJar">
-        <rdfs:subClassOf rdf:resource="&shop;Vegetable"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Stomach">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedizinischeSeife">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ToiletCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FruitBarOrCut">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SnowGlobe">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RasierpflegeDamen">
-        <rdfs:subClassOf rdf:resource="&shop;RasierZubehöR"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenPermaClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Bag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyBathingTopClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabySummerAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Concealer">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MouthOrTooth">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Honey">
-        <rdfs:subClassOf rdf:resource="&shop;Spread"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Tea">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SportOrMuskOrGinnerl">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildSafety">
+    <owl:Class rdf:about="&shop;DiaperAccessory">
         <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;DüNgerStäB">
-        <rdfs:subClassOf rdf:resource="&shop;Fertilizer"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HairSpray">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
+    <owl:Class rdf:about="&shop;Tea">
+        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;HouseholdItem">
         <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Lovemaking">
-        <rdfs:subClassOf rdf:resource="&shop;EroticProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyBlouseOrShirtClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GlasCleaner">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EyeDrop">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LadyLeggingRecycled">
-        <rdfs:subClassOf rdf:resource="&shop;Legging"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Kugelkerzen">
-        <rdfs:subClassOf rdf:resource="&shop;Kugelkerze"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SmoothyOrBenefit">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FertilizerLiquid">
-        <rdfs:subClassOf rdf:resource="&shop;Fertilizer"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EyePencil">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BlisteringControlAgent">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SoreThroat">
-        <rdfs:subClassOf rdf:resource="&shop;ColdMedicine"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;Confectionery">
         <rdfs:subClassOf rdf:resource="&shop;Food"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;CandleContainer">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;WeddingAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;GreetingCard"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenShirtClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
+        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;HairstylingProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;OintmentOrOilOrWun">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+    <owl:Class rdf:about="&shop;PerfumeScooter">
+        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Kerzenhalter">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AirFreshener">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SprayAir">
-        <rdfs:subClassOf rdf:resource="&shop;AirFreshener"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Decke">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FollowonMilk">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Album">
-        <rdfs:subClassOf rdf:resource="&shop;PhotoAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;OvenOrGri">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
+    <owl:Class rdf:about="&shop;BathroomCleaningItem">
+        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ChildItem">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ToiletCase">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HandSoap">
         <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Einwegrasierer">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BakingIngredient">
-        <rdfs:subClassOf rdf:resource="&shop;BakeryProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SonnenÖL">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Alcohol">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
+    <owl:Class rdf:about="&shop;PerfumeSpray">
+        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Movie">
-        <rdfs:subClassOf rdf:resource="&shop;PhotoAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SpecialBag">
-        <rdfs:subClassOf rdf:resource="&shop;Bag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Spice">
-        <rdfs:subClassOf rdf:resource="&shop;Seasoning"/>
+        <rdfs:subClassOf rdf:resource="&shop;MediaProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;HerbalTea">
         <rdfs:subClassOf rdf:resource="&shop;Tea"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;TrashBag">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FollowonMilkHa">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedicalBody">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Legging">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HairStyling">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Klammern">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Ribbon">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HundDose">
-        <rdfs:subClassOf rdf:resource="&shop;WetDogFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HundGesundheit">
-        <rdfs:subClassOf rdf:resource="&shop;DogAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Vogelnahrung">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PacifierLatex">
-        <rdfs:subClassOf rdf:resource="&shop;Dummy"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Geschenkverpac">
-        <rdfs:subClassOf rdf:resource="&shop;GiftWrapping"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LaundryWhite">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedikamAndAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MeanIncontinence">
-        <rdfs:subClassOf rdf:resource="&shop;IncontinenceHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ToothWhiteningToothpaste">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MakeUpPermaClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Bag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenProduct">
-        <rdfs:subClassOf rdf:resource="&shop;ShaveItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EinwegrasiererDamen">
-        <rdfs:subClassOf rdf:resource="&shop;Einwegrasierer"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Strumpfh">
-        <rdfs:subClassOf rdf:resource="&shop;Tight"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;WiperSystem">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DgpShower">
-        <rdfs:subClassOf rdf:resource="&shop;Mineral"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CosmeticSuitcaseClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Suitcase"/>
+        <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;BabyBottle">
         <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Aufkleber">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyShampoo">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+    <owl:Class rdf:about="&shop;StorageMedia">
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;SelfTanningCream">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;SunProtectionItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;GumToothpaste">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SpecialDiaper">
-        <rdfs:subClassOf rdf:resource="&shop;FleeceDiaper"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildGloveClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildWinterAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;NailColor">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KatzeHygiene">
-        <rdfs:subClassOf rdf:resource="&shop;CatAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildHeadgearpush">
-        <rdfs:subClassOf rdf:resource="&shop;ChildAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ComplexionProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedicalPerfume">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyPowder">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyShoeClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
+    <owl:Class rdf:about="&shop;DentureAdhesive">
+        <rdfs:subClassOf rdf:resource="&shop;MouthCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;OrganicFood">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GiftBag">
-        <rdfs:subClassOf rdf:resource="&shop;GiftWrap"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyOtherK">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DetergentPowder">
-        <rdfs:subClassOf rdf:resource="&shop;LaundryDetergent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GesichtSpezial">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Washable">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Garland">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ManCleaningAgent">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GrainOrCandleOrRei">
-        <rdfs:subClassOf rdf:resource="&shop;Grain"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AlbumOrAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;Album"/>
+        <rdfs:subClassOf rdf:resource="&shop;HealthyFood"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Insecticide">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Melissengei">
-        <rdfs:subClassOf rdf:resource="&shop;Balm"/>
+        <rdfs:subClassOf rdf:resource="&shop;ProblemSolver"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;FoodOrDrink">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyTightClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FreezeBag">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BodySpecial">
-        <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildBodyClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ToiletPaper">
+        <rdfs:subClassOf rdf:resource="&shop;BathroomCleaningItem"/>
         <rdfs:subClassOf rdf:resource="&shop;Paper"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;AdultToothbrush">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KneeSock">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BodyAllzwe">
-        <rdfs:subClassOf rdf:resource="&shop;Pflegecremes"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SonneSpray">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GebißHaftmittel">
-        <rdfs:subClassOf rdf:resource="&shop;MouthOrTooth"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BreadOrAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;BakeryProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FaceEye">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VialMonth">
-        <rdfs:subClassOf rdf:resource="&shop;Phial"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KidBathSinglePack">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+    <owl:Class rdf:about="&shop;HealthyFood">
+        <rdfs:subClassOf rdf:resource="&shop;Food"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Napkin">
-        <rdfs:subClassOf rdf:resource="&shop;CandleAccessory"/>
-        <rdfs:subClassOf rdf:resource="&shop;Produkt"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Lipliner">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SwanGersch">
-        <rdfs:subClassOf rdf:resource="&shop;DiagnosticProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyDresOrSkirtClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectHouseflySwatter">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildBlanketClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyBathingTextileClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VinegarCleanse">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdDetergent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Zahncremes">
-        <rdfs:subClassOf rdf:resource="&shop;MouthOrTooth"/>
+        <rdfs:subClassOf rdf:resource="&shop;CleaningPaper"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;CosmeticTowel">
-        <rdfs:subClassOf rdf:resource="&shop;KosmetikPapier"/>
+        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Zimbo">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
+    <owl:Class rdf:about="&shop;VisualAidProduct">
+        <rdfs:subClassOf rdf:resource="&shop;ProblemSolver"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;AllPurposeCleaner">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdDetergent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Coctailservietten">
-        <rdfs:subClassOf rdf:resource="&shop;Cocktailservietten"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MDusche">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Fructosearm">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Fleckbehandl">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Shampoo">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FruitOrJog">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AfterShaves">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Plate">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Vitamin">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Gallseife">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ToothpasteToothWhitening">
-        <rdfs:subClassOf rdf:resource="&shop;ToothWhiteningToothpaste"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RodentItem">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ParfüMRollOn">
-        <rdfs:subClassOf rdf:resource="&shop;ParfüMRoller"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MitePlug">
-        <rdfs:subClassOf rdf:resource="&shop;MiteControlAgent"/>
+    <owl:Class rdf:about="&shop;Spices">
+        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;FacialCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LadyRazor">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Curtain">
-        <rdfs:subClassOf rdf:resource="&shop;LaundryDetergent"/>
-        <rdfs:subClassOf rdf:resource="&shop;Produkt"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Plaster">
-        <rdfs:subClassOf rdf:resource="&shop;WoundHealingProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GebißReiniger">
-        <rdfs:subClassOf rdf:resource="&shop;MouthOrTooth"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DurableColor">
-        <rdfs:subClassOf rdf:resource="&shop;Durable"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Powder">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ConsumptionFit">
-        <rdfs:subClassOf rdf:resource="&shop;FitnesProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FacialToner">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DyeOrSalt">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ElectricalAppliance">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ZahnbüRsteWechselköPfe">
-        <rdfs:subClassOf rdf:resource="&shop;WechselköPfe"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LadyPerfume">
-        <rdfs:subClassOf rdf:resource="&shop;ParfüM"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MagnesiumOrCal">
-        <rdfs:subClassOf rdf:resource="&shop;Mineral"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InfantFormula">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FineKnitPantBk">
-        <rdfs:subClassOf rdf:resource="&shop;Tight"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GesichtReinigen">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RoastingBag">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdFoil"/>
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Paper">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenBagClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Bag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatPlayingOrEducating">
-        <rdfs:subClassOf rdf:resource="&shop;CatAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GoldAndSilver">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;CottonProduct">
-        <rdfs:subClassOf rdf:resource="&shop;KosmetikPapier"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LipGlos">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LCarnitine">
-        <rdfs:subClassOf rdf:resource="&shop;Mineral"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KitchenOrHouseholdHelp">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyShower">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BladeGentleman">
-        <rdfs:subClassOf rdf:resource="&shop;RazorBlade"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FlourOrGrit">
-        <rdfs:subClassOf rdf:resource="&shop;Grain"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyJacketOrFunctClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyShirtClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
+        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Fertilizer">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
+        <rdfs:subClassOf rdf:resource="&shop;ProblemSolver"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;LadyPermaClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Bag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedizinischeFuss">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChocolateBar">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AnniversaryOrBetrothal">
-        <rdfs:subClassOf rdf:resource="&shop;AnniversaryOrEngagement"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Frame">
-        <rdfs:subClassOf rdf:resource="&shop;PhotoAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WashingHouseholdItem">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Sonnenblocker">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LaundryDesign">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MothControlAgent">
-        <rdfs:subClassOf rdf:resource="&shop;Moth"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SlimFood">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectGetAnt">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ManCleanse">
-        <rdfs:subClassOf rdf:resource="&shop;ManCleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FloorCleanerWipe">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenPullovOrJacketClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FesteSeifen">
-        <rdfs:subClassOf rdf:resource="&shop;HandpflegeProdukt"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GraveCandle">
-        <rdfs:subClassOf rdf:resource="&shop;Candle"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AfterShaveHerren">
-        <rdfs:subClassOf rdf:resource="&shop;AfterShaves"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RheumaäUsse">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ImpräGnierer">
+    <owl:Class rdf:about="&shop;ClothingAccessory">
+        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
         <rdfs:subClassOf rdf:resource="&shop;Clothing"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Boot">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <owl:Class rdf:about="&shop;HandCleaningProduct">
+        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;HandCareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ToothpasteSensitiv">
-        <rdfs:subClassOf rdf:resource="&shop;SensitiveToothpaste"/>
+    <owl:Class rdf:about="&shop;IceCream">
+        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
+        <rdfs:subClassOf rdf:resource="&shop;FrozenFood"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&shop;TongueCleaner">
+        <rdfs:subClassOf rdf:resource="&shop;MouthCleaningProduct"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&shop;MouthCareProduct">
+        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Book">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
+        <rdfs:subClassOf rdf:resource="&shop;MediaProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ChevalGlas">
-        <rdfs:subClassOf rdf:resource="&shop;Mirror"/>
+    <owl:Class rdf:about="&shop;CleaningProduct">
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;MAuge">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+    <owl:Class rdf:about="&shop;ControlAgent">
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Lube">
-        <rdfs:subClassOf rdf:resource="&shop;Contraceptive"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;IncontinenceHealthProduct">
-        <rdfs:subClassOf rdf:resource="&shop;DamenPflegeprodukt"/>
+    <owl:Class rdf:about="&shop;NailCosmetic">
+        <rdfs:subClassOf rdf:resource="&shop;MakeUp"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;SnackOrFruitBar">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
+        <rdfs:subClassOf rdf:resource="&shop;ConvinienceFood"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;FaceCloth">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
+    <owl:Class rdf:about="&shop;Atomizer">
+        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Snack">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;TeatLatex">
-        <rdfs:subClassOf rdf:resource="&shop;BabyBottle"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedizinischeHaar">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AnniversaryOrEngagement">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FlüSsigeSeife">
-        <rdfs:subClassOf rdf:resource="&shop;HandpflegeProdukt"/>
+    <owl:Class rdf:about="&shop;BathAdditive">
+        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Contraceptive">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HairOrZinc">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MBody">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabySetClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FakeNail">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CatReward">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FootScrub">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;MedicalCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;ChildAccessory">
         <rdfs:subClassOf rdf:resource="&shop;ChildItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;DogBag">
-        <rdfs:subClassOf rdf:resource="&shop;WetDogFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FitnesDrink">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Circle">
-        <rdfs:subClassOf rdf:resource="&shop;CirculatoryHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VogelItem">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LoseWeight">
-        <rdfs:subClassOf rdf:resource="&shop;StomachHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyToyClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyHeadgearClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CurtainBall">
+    <owl:Class rdf:about="&shop;TinkerAccessory">
         <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;DogCare">
-        <rdfs:subClassOf rdf:resource="&shop;DogAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Mitteldecke">
-        <rdfs:subClassOf rdf:resource="&shop;Decke"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AdventPyramidCandle">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Aid">
-        <rdfs:subClassOf rdf:resource="&shop;FootCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MothWoodenRing">
-        <rdfs:subClassOf rdf:resource="&shop;MothControlAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AnniversaryOrMove">
-        <rdfs:subClassOf rdf:resource="&shop;SeasonalProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyBathAdditive">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MeatAlternative">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BehangEgg">
-        <rdfs:subClassOf rdf:resource="&shop;Curtain"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Party">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdFoilAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ReadingGlassAndModuleContactLens">
-        <rdfs:subClassOf rdf:resource="&shop;ContactLens"/>
-        <rdfs:subClassOf rdf:resource="&shop;ReadingGlass"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ZahncremeZahnfleisch">
-        <rdfs:subClassOf rdf:resource="&shop;GumToothpaste"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MagnesiumOrPotassium">
-        <rdfs:subClassOf rdf:resource="&shop;Mineral"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Figurine">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;JungAbdecken">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AntiAgePflegeprodukt">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Eis">
-        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HotDrink">
-        <rdfs:subClassOf rdf:resource="&shop;ColdMedicine"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DamenPflegeprodukt">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedicalDeposit">
-        <rdfs:subClassOf rdf:resource="&shop;Sole"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WeddingGreetingCard">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GiftTape">
-        <rdfs:subClassOf rdf:resource="&shop;GiftWrap"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SoapDishOrCan">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FineKnitPantShape">
-        <rdfs:subClassOf rdf:resource="&shop;Tight"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenShowerGel">
-        <rdfs:subClassOf rdf:resource="&shop;HerrenParfüM"/>
+    <owl:Class rdf:about="&shop;EyeCareProduct">
+        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Sunglass">
         <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;EyebrowPencil">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;BathroomItem">
-        <rdfs:subClassOf rdf:resource="&shop;Wipe"/>
+        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ChildStockingClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MakeUpAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+    <owl:Class rdf:about="&shop;Soap">
+        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;BirthdayAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;GreetingCard"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CleanSoil">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedizinischeDusche">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AcidOrBase">
-        <rdfs:subClassOf rdf:resource="&shop;StomachHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Candlering">
         <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ZahnweissSysteme">
-        <rdfs:subClassOf rdf:resource="&shop;MouthOrTooth"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SportOrMuskOrGExtern">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ManEye">
-        <rdfs:subClassOf rdf:resource="&shop;MenCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;MourningAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;GreetingCard"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DryerSheet">
-        <rdfs:subClassOf rdf:resource="&shop;Softener"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildBathingSuitClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildSummerAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Silica">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenJacketOrFunctClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VialFromMonth">
-        <rdfs:subClassOf rdf:resource="&shop;Phial"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;StomachHealthProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;Stomach"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenAfterShave">
-        <rdfs:subClassOf rdf:resource="&shop;HerrenParfüM"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GreenTea">
-        <rdfs:subClassOf rdf:resource="&shop;Tea"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HealthFood">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Cocktailserviette">
         <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;AllpurposeCleanerWipe">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdDetergent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SweetSpread">
-        <rdfs:subClassOf rdf:resource="&shop;Spread"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MiniSprayLu">
-        <rdfs:subClassOf rdf:resource="&shop;AirFreshener"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HandpflegeProdukt">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FlaschentüTen">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HandMirror">
-        <rdfs:subClassOf rdf:resource="&shop;Mirror"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Drainage">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;StJohnWort">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CoughDrop">
-        <rdfs:subClassOf rdf:resource="&shop;Sweet"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AntiageSpecial">
-        <rdfs:subClassOf rdf:resource="&shop;AntiAgePflegeprodukt"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Suitcase">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CareProductCombi">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;GeschenkverpackungSchleifen">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BakingPaper">
-        <rdfs:subClassOf rdf:resource="&shop;BakingAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyOrKidHealth">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildHeadgearClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SanitaryNapkin">
+    <owl:Class rdf:about="&shop;Perfume">
         <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ZahnbüRsten">
-        <rdfs:subClassOf rdf:resource="&shop;MouthOrTooth"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ToothbrushChild">
-        <rdfs:subClassOf rdf:resource="&shop;ChildrenToothbrush"/>
+    <owl:Class rdf:about="&shop;Toothpaste">
+        <rdfs:subClassOf rdf:resource="&shop;MouthCleaningProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;CatAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyOil">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;AnimalAccessory"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;NailPolishRemover">
+        <rdfs:subClassOf rdf:resource="&shop;HandCleaningProduct"/>
         <rdfs:subClassOf rdf:resource="&shop;Remover"/>
     </owl:Class>
 
@@ -2977,691 +642,155 @@
         <rdfs:subClassOf rdf:resource="&shop;Tea"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;InterdentZahnseide">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;GreetingCard">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyOrKidCream">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SaunaAndPeClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Bag"/>
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Candle">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;Produkt"/>
-        <rdfs:subClassOf rdf:resource="&shop;SeasonalItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;InterdentBüRsten">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
+    <owl:Class rdf:about="&shop;WomanPerfume">
+        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
+        <rdfs:subClassOf rdf:resource="&shop;WomanItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ChildSwimsuitOrBikiniPush">
-        <rdfs:subClassOf rdf:resource="&shop;ChildSummerAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DisposableRazorMister">
-        <rdfs:subClassOf rdf:resource="&shop;Einwegrasierer"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;NagerBelohnung">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FineKnitPantUpToDen">
-        <rdfs:subClassOf rdf:resource="&shop;Tight"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Foil">
-        <rdfs:subClassOf rdf:resource="&shop;Geschenkfolie"/>
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SonneLippenpflege">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ColdOrMu">
-        <rdfs:subClassOf rdf:resource="&shop;ColdMedicine"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BabyCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ManicureClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Manicure"/>
+    <owl:Class rdf:about="&shop;AnimalAccessory">
+        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Lightbulb">
         <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;BabyProduct">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;StorageMedium">
-        <rdfs:subClassOf rdf:resource="&shop;PhotoAccessory"/>
-    </owl:Class>
-
     <owl:Class rdf:about="&shop;EyeMakeUp">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;NibblerOrGeb">
-        <rdfs:subClassOf rdf:resource="&shop;Sweet"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ElektrischeZahnbüRste">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MothGel">
-        <rdfs:subClassOf rdf:resource="&shop;MothControlAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SunglassKid">
-        <rdfs:subClassOf rdf:resource="&shop;Sunglass"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SunglassAdultFemale">
-        <rdfs:subClassOf rdf:resource="&shop;Sunglass"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InitialMilkPre">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AntiageDay">
-        <rdfs:subClassOf rdf:resource="&shop;AntiAgePflegeprodukt"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Phial">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyHealthClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
+        <rdfs:subClassOf rdf:resource="&shop;MakeUp"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;BabyDrink">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;TeaTreeOil">
-        <rdfs:subClassOf rdf:resource="&shop;WoundHealingProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;StillAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;BabyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FaceCapsule">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RubOrIn">
-        <rdfs:subClassOf rdf:resource="&shop;ColdMedicine"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Pflegecremes">
-        <rdfs:subClassOf rdf:resource="&shop;Bodylotion"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ScentedCandle">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FineKnitPant">
-        <rdfs:subClassOf rdf:resource="&shop;Tight"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyOrKidSoap">
-        <rdfs:subClassOf rdf:resource="&shop;ChildProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Manicure">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EyelashProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Sweet">
-        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BleachingOrStreaking">
-        <rdfs:subClassOf rdf:resource="&shop;Durable"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildSummerAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyBodyClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EveningBubble">
-        <rdfs:subClassOf rdf:resource="&shop;Mash"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Diaper">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Durable">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Kartenhalter">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BoxTatü">
-        <rdfs:subClassOf rdf:resource="&shop;Tissue"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Tealight">
-        <rdfs:subClassOf rdf:resource="&shop;Candle"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyScarfOrClothClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyRomperClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LeadAway">
-        <rdfs:subClassOf rdf:resource="&shop;StomachHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PetFood">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CareLotion">
-        <rdfs:subClassOf rdf:resource="&shop;Bodylotion"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CirculatoryHealthProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Equipment">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WechselköPfe">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BioWeinOderSek">
+        <rdfs:subClassOf rdf:resource="&shop;BabyItem"/>
         <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Osterteller">
-        <rdfs:subClassOf rdf:resource="&shop;TinkerItem"/>
+    <owl:Class rdf:about="&shop;Manicure">
+        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Disinfectant">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+    <owl:Class rdf:about="&shop;Diaper">
+        <rdfs:subClassOf rdf:resource="&shop;BabyItem"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Pant">
-        <rdfs:subClassOf rdf:resource="&shop;IncontinenceHealthProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LipCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Sock">
+    <owl:Class rdf:about="&shop;ChristmasAccessory">
         <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;SeasonalItem"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&shop;ConvinienceFood">
+        <rdfs:subClassOf rdf:resource="&shop;Food"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&shop;WomanCareProduct">
+        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="&shop;CareLotion">
+        <rdfs:subClassOf rdf:resource="&shop;BodyLotion"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;BlackTea">
         <rdfs:subClassOf rdf:resource="&shop;Tea"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Sniff">
-        <rdfs:subClassOf rdf:resource="&shop;ColdMedicine"/>
+    <owl:Class rdf:about="&shop;HealthCareProduct">
+        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ColorDirtCatcher">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Decolourant">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MachineCareWashing">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Seasoning">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PacifierSilicone">
-        <rdfs:subClassOf rdf:resource="&shop;Dummy"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Porridge">
-        <rdfs:subClassOf rdf:resource="&shop;Mash"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VitaminB">
-        <rdfs:subClassOf rdf:resource="&shop;Vitamin"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VitaminC">
-        <rdfs:subClassOf rdf:resource="&shop;Vitamin"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectHouseflyGrid">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Spitzkerz">
-        <rdfs:subClassOf rdf:resource="&shop;Candle"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildShoeClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SuitcasePermaClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Suitcase"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Mirror">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DryCatFood">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;PillarCandle">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildToyClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;InsectHouseFlyGlueTrap">
-        <rdfs:subClassOf rdf:resource="&shop;Insecticide"/>
+    <owl:Class rdf:about="&shop;IncontinenceHealthCareProduct">
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Voucher">
-        <rdfs:subClassOf rdf:resource="&shop;GreetingCard"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ToCough">
-        <rdfs:subClassOf rdf:resource="&shop;ColdMedicine"/>
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;HairAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LatchMultipleP">
-        <rdfs:subClassOf rdf:resource="&shop;Snack"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Bath">
         <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Kugelkerze">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;OnceProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CosmeticTowel"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenOverallClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyGloveClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyWinterAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;IntimateCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ElektrischeRasierapparat">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Produkt">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AdventCalendar">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FaceMask">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;LipCosmetic">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;AnimalItem">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;CrackleControlAgent">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FineKnitTrousersToDen">
-        <rdfs:subClassOf rdf:resource="&shop;Tight"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Bartpflege">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabySwimsuitOrBikiniClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabySummerAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DogBedOrFurniture">
-        <rdfs:subClassOf rdf:resource="&shop;DogAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedicalFaceCare">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SinglePackTowel">
-        <rdfs:subClassOf rdf:resource="&shop;Wipe"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyLeggOrJoggClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Wool">
-        <rdfs:subClassOf rdf:resource="&shop;LaundryDetergent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Bar">
-        <rdfs:subClassOf rdf:resource="&shop;Sweet"/>
+        <rdfs:subClassOf rdf:resource="&shop;MakeUp"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Bag">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;CleanHouseholdItem">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+    <owl:Class rdf:about="&shop;DentureCleaner">
+        <rdfs:subClassOf rdf:resource="&shop;MouthCleaningProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;KinderZahncreme">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BodyCremes">
-        <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;NursingBra">
-        <rdfs:subClassOf rdf:resource="&shop;BabyProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WomenBagClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Bag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Magnesium">
-        <rdfs:subClassOf rdf:resource="&shop;Mineral"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Condom">
-        <rdfs:subClassOf rdf:resource="&shop;Contraceptive"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BioMopro">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Pendant">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <owl:Class rdf:about="&shop;OtherProduct">
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;FruitOrCereal">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
+        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;HundHygiene">
-        <rdfs:subClassOf rdf:resource="&shop;DogAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Gp">
-        <rdfs:subClassOf rdf:resource="&shop;DamenPflegeprodukt"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;EyebrowGel">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;SqueezeBagMulti">
-        <rdfs:subClassOf rdf:resource="&shop;SqueezeBag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;RinseAid">
-        <rdfs:subClassOf rdf:resource="&shop;DishSoap"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DogBowl">
-        <rdfs:subClassOf rdf:resource="&shop;WetDogFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;VogelZubehöR">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Badezusatz">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Sweeten">
-        <rdfs:subClassOf rdf:resource="&shop;Seasoning"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyWinterAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;ChildClothing"/>
+    <owl:Class rdf:about="&shop;ManItem">
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Duster">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+        <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;WrappingPaper">
-        <rdfs:subClassOf rdf:resource="&shop;GiftWrap"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ChildrenBagClothing">
-        <rdfs:subClassOf rdf:resource="&shop;Bag"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;YoungTonic">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
+        <rdfs:subClassOf rdf:resource="&shop;Paper"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Fruit">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BartpflegeProdukt">
-        <rdfs:subClassOf rdf:resource="&shop;Bartpflege"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;KlingenDamen">
-        <rdfs:subClassOf rdf:resource="&shop;RazorBlade"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabySleepingClothe">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
+        <rdfs:subClassOf rdf:resource="&shop;FruitOrCereal"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Spread">
         <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;DamenEdp">
-        <rdfs:subClassOf rdf:resource="&shop;LadyPerfume"/>
+    <owl:Class rdf:about="&shop;Tights">
+        <rdfs:subClassOf rdf:resource="&shop;Clothing"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;DogPlayingOrEducation">
-        <rdfs:subClassOf rdf:resource="&shop;DogAccessory"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;BabyShowerin">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Baumkerzen">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;DryShampoo">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ErfrischungstüCher">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Special">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MedicalFaceCleansing">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Juice">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WindOrWeatherCream">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MobilityAid">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HealthProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FragrantGlass">
-        <rdfs:subClassOf rdf:resource="&shop;ScentedCandle"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Moth">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MenBlouseOrShirtClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyClothing"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ShaveItem">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;WetCatFood">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;FootSpray">
-        <rdfs:subClassOf rdf:resource="&shop;HealthItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;HealthItem">
+    <owl:Class rdf:about="&shop;BabyItem">
         <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;LightString">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Zahncreme">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Ginseng">
-        <rdfs:subClassOf rdf:resource="&shop;HealthProduct"/>
+    <owl:Class rdf:about="&shop;CleaningPaper">
+        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;Paper"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Decoration">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ApproachProduct">
-        <rdfs:subClassOf rdf:resource="&shop;Coloration"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;MäNnerPflegen">
-        <rdfs:subClassOf rdf:resource="&shop;MenCareProduct"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;Limescale">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomDetergent"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;ScreenManually">
-        <rdfs:subClassOf rdf:resource="&shop;Umbrella"/>
-    </owl:Class>
-
-    <owl:Class rdf:about="&shop;LaundryAdditive">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningAgent"/>
+        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;MakeUp">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ToiletPaperAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+    <owl:Class rdf:about="&shop;WomanItem">
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
     </owl:Class>
 
     <owl:Class rdf:about="&shop;Pasta">
         <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;Balm">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+    <owl:Class rdf:about="&shop;StomachHealthCareProduct">
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;MMasken">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+    <owl:Class rdf:about="&shop;Balm">
+        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
     </owl:Class>
 </rdf:RDF>
