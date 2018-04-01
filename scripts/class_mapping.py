@@ -181,15 +181,18 @@ class OWLResourceManager:
   """
   bla bla bla
   """
-  def __init__(self, ontologyPrefix, ontologyURI):
+  def __init__(self, ontologyPrefix, ontologyURI, baseClass='Thing'):
     self.ontologyPrefix = ontologyPrefix
     self.ontologyURI = ontologyURI
+    self.baseClass = baseClass
     self.translator = LabelTranslator()
     self.owlClasses = {}
     self.owlIndividuals = {}
     self.outMode = 'OWL'
     self.imports = []
     self.namespaces = []
+    self.subclassOf = {}
+    self.nameMapping = {}
     self.register_namespace('rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#')
     self.register_namespace('rdfs','http://www.w3.org/2000/01/rdf-schema#')
     self.register_namespace('owl','http://www.w3.org/2002/07/owl#')
@@ -198,6 +201,12 @@ class OWLResourceManager:
     self.register_namespace('knowrob','http://knowrob.org/kb/knowrob.owl#')
     self.register_namespace('computable','http://knowrob.org/kb/computable.owl#')
     self.register_namespace(ontologyPrefix,ontologyURI+'#')
+  
+  def add_class_mapping(self, nameMapping):
+    self.nameMapping.update(nameMapping)
+  
+  def add_subclass_mapping(self, subclassOf):
+    self.subclassOf.update(subclassOf)
   
   def register_namespace(self, prefix, URI):
     self.namespaces.append((prefix,URI))
@@ -236,16 +245,26 @@ class OWLResourceManager:
       if skip == False: cleaned.append(a)
     entity.types = cleaned
   
-  def get(self, label, lang='de'):
+  def get_translated(self, label, lang='de'):
     clsName = self.get_name(label, lang)
-    if clsName=='': return None
-    try:
-      x = self.owlClasses[clsName]
-    except:
-      x = OWLClass(clsName, self.ontologyPrefix)
-      self.owlClasses[clsName] = x
+    if      clsName=='': return None
+    try:    clsName = self.nameMapping[clsName]
+    except: pass
+    x = self.get(clsName)
     x.add_label(label)
     return x
+  
+  def get(self, clsName):
+    try:
+      return self.owlClasses[clsName]
+    except:
+      x = OWLClass(clsName, self.ontologyPrefix)
+      x.has_type(self.baseClass)
+      if clsName in self.subclassOf:
+        for parent in self.subclassOf[clsName]:
+          x.has_type(self.get(parent).name)
+      self.owlClasses[clsName] = x
+      return x
   
   def get_instance(self, clsName, instanceName=''):
     try:

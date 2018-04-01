@@ -11,6 +11,8 @@ from label_mapping import LABEL_MAPPING_PREFIX, \
                           LABEL_MAPPING_SUFFIX, \
                           LABEL_MAPPING_WORD, \
                           LABEL_MAPPING_REPLACE
+from subclass_mapping import SHOP_CLASS_REPLACEMENT, \
+                             SHOP_SUBCLASS_MAPPING
 
 def clean_label(label):
   words = label.replace('-',' '). \
@@ -40,8 +42,15 @@ def clean_label(label):
     last=x
     withoutRepetition.append(x)
   clean = ' '.join(withoutRepetition).strip()
-  try:    return LABEL_MAPPING_REPLACE[clean]
-  except: return clean
+  return clean
+  #try:    return LABEL_MAPPING_REPLACE[clean]
+  #except: return clean
+
+def label_replace(column,label):
+  try:
+    return LABEL_MAPPING_REPLACE[label]
+  except:
+    return label
 
 class ProductTableColumn:
   """
@@ -53,8 +62,8 @@ class ProductTableColumn:
                role=None,
                param=None, paramType=None,
                cls=None):
-    self.name         = name
-    self.labels       = labels
+    self.name      = name
+    self.labels    = labels
     self.coltype   = coltype
     self.parents   = parents
     self.role      = role
@@ -83,21 +92,22 @@ class ProductTable:
       cls='Product'),
     ProductTableColumn('area',
       labels=['Warenbereich'],
-      cls='Product',
-      parents=['assortment']),
+      cls='Product'
+    ),
     ProductTableColumn('subArea',
       labels=['Warenunterbereich'],
       cls='Product',
-      parents=['assortment', 'area'],
+      parents=['area'],
       role='type'),
     ProductTableColumn('generalType',
       labels=['Warenklasse'],
-      cls='Product',
-      parents=['assortment']),
-    ProductTableColumn('specificType',
-      labels=['Warengruppe'],
-      parents=['assortment', 'generalType'],
-      role='type'),
+      cls='Product'
+    ),
+    # TODO: also include information from specificType column
+    #ProductTableColumn('specificType',
+    #  labels=['Warengruppe'],
+    #  parents=['generalType'],
+    #  role='type'),
     #ProductTableColumn('brand',
     #  labels=['Marke Dachmarke'],
     #  coltype='instance',
@@ -136,6 +146,7 @@ class ProductTable:
     self.table = load_workbook(xlsxFile)[xlsxTable]
     self.lang  = lang
     self.rawLabels = set()
+    self.class_articles = {}
     # create ordered list of columns we have some meta information about
     self.header = []
     for row in self.table.iter_rows(min_row=1, max_row=1):
@@ -181,11 +192,14 @@ class ProductTable:
 
   def read_cell(self,article,row,column):
     rawLabel = self.read_value(row,column)
-    label    = column.format_label(rawLabel)
+    label = column.format_label(rawLabel)
     if column.coltype=='class':
-      cellClass = self.resourceManager.get(label, lang=self.lang)
+      label = label_replace(column,label)
+      cellClass = self.resourceManager.get_translated(label, lang=self.lang)
       if cellClass==None: return None
-      self.read_cell_types(article,cellClass,row,column)
+      cellClass.has_type('Product')
+      self.add_class_article(article,cellClass,row,column)
+      #self.read_cell_types(article,cellClass,row,column)
       self.read_cell_property(article,cellClass,column)
       self.rawLabels.add(rawLabel)
       # columns may have parent classes in the upper shopping ontology
@@ -204,6 +218,14 @@ class ProductTable:
       self.read_cell_property(article,rawLabel,column)
     return label
 
+  def add_class_article(self,article,cellClass,row,column):
+    try:
+      l = self.class_articles[cellClass.name]
+    except:
+      l = list()
+      self.class_articles[cellClass.name] = l
+    l.append((article,cellClass,row,column))
+
   def read_cell_types(self,article,resource,row,column):
     for x in column.parents:
       clsName = self.read_cell(article,row,self.get_column(x))
@@ -213,10 +235,8 @@ class ProductTable:
       else:
         # HACK a is subclass b if a's name contains b's name
         if resource.name in clsName:
-          print("HACK APPLIED " + str((clsName, resource.name)))
           cls = self.resourceManager.owlClasses[clsName]
           cls.has_type(resource.name)
-          cls.has_type('Product')
         else:
           resource.has_type(clsName)
 
@@ -252,24 +272,30 @@ class ProductTable:
 
 def main(argv):
   resourceManager = OWLResourceManager(ontologyPrefix='shop', \
-                                       ontologyURI='http://knowrob.org/kb/shop.owl')
+                                       ontologyURI='http://knowrob.org/kb/shop.owl',\
+                                       baseClass='Product')
   resourceManager.add_import('package://knowrob_refills/owl/shop.owl')
   resourceManager.add_import('package://knowrob_refills/owl/dm-market.owl')
+  resourceManager.add_class_mapping(SHOP_CLASS_REPLACEMENT)
+  resourceManager.add_subclass_mapping(SHOP_SUBCLASS_MAPPING)
   
   outDir = os.path.abspath(os.path.dirname(os.path.realpath(__file__)) + "/../owl/")
   # handle commandline parameters
   try:
-    opts, args = getopt.getopt(argv, "tcl:i:o:m:",
-      ["taxonomy", "catalog", "list=", "input=", "output-dir=", "output-mode="])
+    opts, args = getopt.getopt(argv, "tcsl:i:o:m:",
+      ["taxonomy", "catalog", "subclasses", "list=", "input=", "output-dir=", "output-mode="])
   except getopt.GetoptError:
     sys.exit(2)
   opt_taxonomy = False
   opt_catalog = False
+  opt_subclasses = False
   opt_list = []
   opt_tables = []
   for opt, arg in opts:
     if opt in ("-t", "--taxonomy"):
       opt_taxonomy = True
+    elif opt in ("-s", "--subclasses"):
+      opt_subclasses = True
     elif opt in ("-c", "--catalog"):
       opt_catalog = True
     elif opt in ("-l", "--list"):
@@ -295,11 +321,31 @@ def main(argv):
           x0=str(x)
           clean=clean_label(x0)
           if clean=="": continue
-          label=column.format_label(x0)
-          x1=str(resourceManager.get_name(label))
-          print("  '"+clean+"': '"+x1+"',")
+          label = column.format_label(x0)
+          if not label in LABEL_MAPPING_REPLACE:
+            x1=str(resourceManager.get_name(label))
+            print("    '"+clean+"': ('"+x1+"',[]),")
       print("}")
       resourceManager.translator.save()
+  if opt_subclasses:
+      print("Finding classes without defined sublcass...")
+      clsSet=set()
+      for t in tables:
+        t.read()
+        for articleList in t.class_articles.values():
+          for (article,cls,row,col) in articleList:
+            if cls.name.startswith('ProductWithAN'): continue
+            if cls.name in SHOP_SUBCLASS_MAPPING: continue
+            t.read_cell_types(article,cls,row,col)
+            clsSet.add(cls.name)
+        resourceManager.translator.save()
+      resourceManager.cleanup_subclasses()
+      clsSet = list(clsSet)
+      clsSet.sort()
+      for clsName in clsSet:
+        cls = resourceManager.owlClasses[clsName]
+        print("    '"+cls.name+"': "+str(list(cls.types))+",")
+      print("Found " + str(len(clsSet)) + " classes with unspecified parent classes.")
   # separate product catalog from taxonomy
   isProductClass  = lambda e: e.name.startswith('ProductWithAN')
   isIndividual    = lambda e: isinstance(e, OWLIndividual)
@@ -315,9 +361,9 @@ def main(argv):
       resourceManager.cleanup_subclasses()
       print("Dumping ontology to " + outDir)
   if opt_taxonomy: resourceManager.dump(outDir+"/product-taxonomy.owl", \
-	                                    'http://knowrob.org/kb/product-taxonomy.owl', filter1)
+                                        'http://knowrob.org/kb/product-taxonomy.owl', filter1)
   if opt_catalog:  resourceManager.dump(outDir+"/product-catalog.owl", \
-	                                    'http://knowrob.org/kb/product-catalog.owl', filter2)
+                                        'http://knowrob.org/kb/product-catalog.owl', filter2)
   if opt_taxonomy or opt_catalog:
       voidFilter = lambda e: False
       # some debug output at the end
