@@ -313,7 +313,6 @@ def main(argv):
     tables.append(ProductTable(resourceManager, x[0], x[1]))
   # print out unique names
   for l in opt_list:
-      print("LABEL_MAPPING_"+l.upper()+"={")
       for t in tables:
         column = t.get_column(l)
         if column==None: continue
@@ -325,7 +324,6 @@ def main(argv):
           if not label in LABEL_MAPPING_REPLACE:
             x1=str(resourceManager.get_name(label))
             print("    '"+clean+"': ('"+x1+"',[]),")
-      print("}")
       resourceManager.translator.save()
   if opt_subclasses:
       print("Finding classes without defined sublcass...")
