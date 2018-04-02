@@ -4,6 +4,7 @@
 import sys, os
 import re
 import getopt
+import json
 from openpyxl import load_workbook
 
 from class_mapping import OWLResourceManager, OWLClass, OWLIndividual
@@ -141,12 +142,14 @@ class ProductTable:
   ]
   
   
-  def __init__(self, resourceManager, xlsxFile, xlsxTable, lang='de'):
+  def __init__(self, resourceManager, whitelist, meshPrefix, xlsxFile, xlsxTable, lang='de'):
     self.resourceManager = resourceManager
     self.table = load_workbook(xlsxFile)[xlsxTable]
     self.lang  = lang
     self.rawLabels = set()
     self.class_articles = {}
+    self.whitelist = whitelist
+    self.meshPrefix = meshPrefix
     # create ordered list of columns we have some meta information about
     self.header = []
     for row in self.table.iter_rows(min_row=1, max_row=1):
@@ -183,8 +186,14 @@ class ProductTable:
     """ read in the complete table, create ProductClass instances on the way """
     for row in self.table.iter_rows(min_row=2):
       # first get article class
-      articleNumber = self.read_value(row, 'articleNumber')
+      articleNumber = str(self.read_value(row, 'articleNumber')).zfill(6)
+      # skip non whitelisted
+      if self.whitelist != None and not articleNumber in self.whitelist: continue
       articleClass  = self.article(articleNumber)
+      # check if we have a mesh value in the whitelist
+      if self.whitelist != None:
+        meshPath = self.whitelist[articleNumber]
+        if len(meshPath)>4: articleClass.meshPath = self.meshPrefix + meshPath
       for i in range(len(self.header)):
         column = self.header[i]
         if column!=None and (column.role!=None or column.param!=None):
@@ -282,13 +291,15 @@ def main(argv):
   outDir = os.path.abspath(os.path.dirname(os.path.realpath(__file__)) + "/../owl/")
   # handle commandline parameters
   try:
-    opts, args = getopt.getopt(argv, "tcsl:i:o:m:",
-      ["taxonomy", "catalog", "subclasses", "list=", "input=", "output-dir=", "output-mode="])
+    opts, args = getopt.getopt(argv, "tcsw:p:l:i:o:m:",
+      ["taxonomy", "catalog", "subclasses", "whitelist=", "mesh-prefix=", "list=", "input=", "output-dir=", "output-mode="])
   except getopt.GetoptError:
     sys.exit(2)
   opt_taxonomy = False
   opt_catalog = False
   opt_subclasses = False
+  opt_mesh_prefix = "package://refills_models/"
+  opt_whitelist = {}
   opt_list = []
   opt_tables = []
   for opt, arg in opts:
@@ -298,6 +309,8 @@ def main(argv):
       opt_subclasses = True
     elif opt in ("-c", "--catalog"):
       opt_catalog = True
+    elif opt in ("-w", "--whitelist"):
+      opt_whitelist = json.load(open(arg))
     elif opt in ("-l", "--list"):
       opt_list.append(arg)
     elif opt in ("-i", "--input"):
@@ -310,7 +323,7 @@ def main(argv):
   tables = []
   for table_arg in opt_tables:
     x = table_arg.split(":")
-    tables.append(ProductTable(resourceManager, x[0], x[1]))
+    tables.append(ProductTable(resourceManager, opt_whitelist, opt_mesh_prefix, x[0], x[1]))
   # print out unique names
   for l in opt_list:
       for t in tables:

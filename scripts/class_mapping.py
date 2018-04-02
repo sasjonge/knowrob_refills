@@ -53,6 +53,7 @@ class OWLClass(OWLResource):
   """
   def __init__(self, className, namespace):
     OWLResource.__init__(self,className,namespace)
+    self.meshPath = ''
   
   def write_owl(self, f):
     types = list(self.types)
@@ -64,7 +65,16 @@ class OWLClass(OWLResource):
     for y in types:
       # TODO: avoid redundant type statements: check if any other type is subclass of y
       f.write('        <rdfs:subClassOf rdf:resource="&'+self.namespace+';'+y+'"/>\n')
-    for (role,t,value) in self.dataValues:
+    dataValues=self.dataValues[0:]
+    # export mesh path if available
+    if len(self.meshPath)>4:
+      f.write('        <rdfs:subClassOf>\n')
+      f.write('            <owl:Restriction>\n')
+      f.write('                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>\n')
+      f.write('                <owl:hasValue rdf:datatype="&xsd;string">'+self.meshPath+'</owl:hasValue>\n')
+      f.write('            </owl:Restriction>\n')
+      f.write('        </rdfs:subClassOf>\n')
+    for (role,t,value) in dataValues:
       f.write('        <rdfs:subClassOf>\n')
       f.write('            <owl:Restriction>\n')
       f.write('                <owl:onProperty rdf:resource="&'+self.namespace+';'+role+'"/>\n')
