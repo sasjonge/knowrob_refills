@@ -697,7 +697,11 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
   % compute offset
   product_dimensions(Obj,[_,_,Obj_H]),
   belief_at_id(Facing, [_,_,[Facing_X,_,_],_]),
-  Offset_H is Obj_H*0.5 + 0.05, % FIXME won't work for mounting layer
+  
+  ( shelf_layer_standing(Layer) ->
+    Offset_H is Obj_H*0.5 + 0.05 ;
+    Offset_H is -Obj_H*0.5 - 0.05 ),
+  
   % declare transform
   object_frame_name(Layer, Layer_frame),
   belief_at_update(Obj, [Layer_frame,_, 
