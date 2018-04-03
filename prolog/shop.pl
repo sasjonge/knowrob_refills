@@ -642,29 +642,36 @@ product_dimensions_internal([PD,PW,PH],[D,W,H]) :-
 % between labels and facings, and to create facings
 % between separators.
 %
-belief_shelf_part_at(Frame, Type, PosNorm, Obj) :-
+belief_shelf_part_at(Frame, Type, Pos, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfLayer'), !,
-  belief_perceived_part_at_axis(Frame, Type, norm(y,PosNorm), Obj).
+  pos_term(y,Pos,PosTerm),
+  belief_perceived_part_at_axis(Frame, Type, PosTerm, Obj).
 
-belief_shelf_part_at(Layer, Type, PosNorm, Obj) :-
+belief_shelf_part_at(Layer, Type, Pos, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfSeparator'), !,
-  belief_perceived_part_at_axis(Layer, Type, norm(x,PosNorm), Obj),
+  pos_term(x,Pos,PosTerm),
+  belief_perceived_part_at_axis(Layer, Type, PosTerm, Obj),
   shelf_separator_insert(Layer,Obj).
 
-belief_shelf_part_at(Layer, Type, PosNorm, Obj) :-
+belief_shelf_part_at(Layer, Type, Pos, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfMountingBar'), !,
-  belief_perceived_part_at_axis(Layer, Type, norm(x,PosNorm), Obj),
+  pos_term(x,Pos,PosTerm),
+  belief_perceived_part_at_axis(Layer, Type, PosTerm, Obj),
   shelf_mounting_bar_insert(Layer,Obj).
 
-belief_shelf_part_at(Layer, Type, PosNorm, Obj) :-
+belief_shelf_part_at(Layer, Type, Pos, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfLabel'), !,
-  belief_perceived_part_at_axis(Layer, Type, norm(x,PosNorm), Obj),
+  pos_term(x,Pos,PosTerm),
+  belief_perceived_part_at_axis(Layer, Type, PosTerm, Obj),
   shelf_label_insert(Layer,Obj).
 
 belief_shelf_barcode_at(Layer, Type, ArticleNumber_value, PosNorm, Obj) :-
   belief_shelf_part_at(Layer, Type, PosNorm, Obj),
   create_article_number(ArticleNumber_value, ArticleNumber),
   rdf_assert(Obj, shop:articleNumberOfLabel, ArticleNumber).
+
+pos_term(Axis, norm(Pos), norm(Axis,Pos)) :- !.
+pos_term(Axis, Pos, pos(Axis,Pos)).
 
 product_spawn_at(Facing, Type, Offset_D, Obj) :-
   rdf_has(Facing, shop:layerOfFacing, Layer),

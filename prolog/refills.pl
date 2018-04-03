@@ -62,19 +62,19 @@ refills_init_test_shop :-
   refills_spawn_facings.
 
 refills_make_shelf(Frame, [(Pos,separators(Separators),labels(Labels))|Rest]) :-
-  belief_shelf_part_at(Frame, dmshop:'DMShelfLayer4TilesFront', Pos, Layer),
+  belief_shelf_part_at(Frame, dmshop:'DMShelfLayer4TilesFront', norm(Pos), Layer),
   forall(member(SepPos,Separators),
-         belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', SepPos, _)),
+         belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _)),
   forall(member((LabelPos,AN),Labels),
-         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),LabelPos,_)),
+         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
   refills_make_shelf(Frame, Rest).
 
 refills_make_shelf(Frame, [(Pos,bars(Bars),labels(Labels))|Rest]) :-
-  belief_shelf_part_at(Frame, dmshop:'DMShelfLayerMountingFront', Pos, Layer),
+  belief_shelf_part_at(Frame, dmshop:'DMShelfLayerMountingFront', norm(Pos), Layer),
   forall(member(BarPos,Bars),
-         belief_shelf_part_at(Layer,dmshop:'DMShelfMountingBar',BarPos,_)),
+         belief_shelf_part_at(Layer,dmshop:'DMShelfMountingBar',norm(BarPos),_)),
   forall(member((LabelPos,AN),Labels),
-         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),LabelPos,_)),
+         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
   refills_make_shelf(Frame, Rest).
 
 refills_make_shelf(_, []) :- !.
