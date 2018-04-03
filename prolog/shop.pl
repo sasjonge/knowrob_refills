@@ -224,7 +224,10 @@ shelf_layer_update_labels(ShelfLayer) :-
     shelf_facing(ShelfLayer,Facing),
     \+ member(Facing,LabeledFacings)),
     rdf_retractall(Facing, shop:associatedLabelOfFacing, _)
-  ).
+  ),
+  % republish facings
+  findall(X, shelf_facing(ShelfLayer,X), AllFacings),
+  belief_republish_objects(AllFacings).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -268,13 +271,13 @@ shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
     rdf_assert(Facing, shop:leftMountingBar, Left, belief_state),
     rdf_has(LeftFacing, shop:mountingBarOfFacing, Left),
     rdf_retractall(LeftFacing, shop:rightMountingBar, _),
-    rdf_assert(LeftFacing, shop:rightMountingBar, MountingBar, belief_state) ) ;
+    rdf_assert(LeftFacing, shop:rightMountingBar, MountingBar, belief_state)) ;
     true ),
   ( min_positive_element(Xs, (Right,_)) -> (
     rdf_assert(Facing, shop:rightMountingBar, Right, belief_state),
     rdf_has(RightFacing, shop:mountingBarOfFacing, Right),
     rdf_retractall(RightFacing, shop:leftMountingBar, _),
-    rdf_assert(RightFacing, shop:leftMountingBar, MountingBar, belief_state) ) ;
+    rdf_assert(RightFacing, shop:leftMountingBar, MountingBar, belief_state)) ;
     true ),
   % update the mounting_bar-label association
   shelf_layer_update_labels(ShelfLayer).
@@ -361,16 +364,14 @@ shelf_facing_assert(ShelfLayer,[Left,Right],Facing) :-
   rdf_instance_from_class(shop:'ProductFacingStanding', belief_state, Facing),
   rdf_assert(Facing, shop:leftSeparator, Left, belief_state),
   rdf_assert(Facing, shop:rightSeparator, Right, belief_state),
-  rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state),
-  belief_republish_objects([Facing]).
+  rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state).
 
 shelf_facing_assert(ShelfLayer,MountingBar,Facing) :-
   shelf_layer_mounting(ShelfLayer), !,
   rdfs_individual_of(MountingBar, shop:'ShelfMountingBar'),
   rdf_instance_from_class(shop:'ProductFacingMounting', belief_state, Facing),
   rdf_assert(Facing, shop:mountingBarOfFacing, MountingBar, belief_state),
-  rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state),
-  belief_republish_objects([Facing]).
+  rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state).
 
 shelf_facing_retract(Facing) :-
   rdf_retractall(Facing, _, _).
