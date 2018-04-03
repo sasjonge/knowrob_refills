@@ -32,6 +32,7 @@
 :- register_ros_package(knowrob_objects).
 :- register_ros_package(knowrob_assembly).
 :- register_ros_package(knowrob_refills).
+:- register_ros_package(knowrob_cram).
 
 :- use_module(library('shop')).
 :- use_module(library('refills')).
