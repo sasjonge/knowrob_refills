@@ -211,13 +211,13 @@ shelf_layer_update_labels(ShelfLayer) :-
   % to this label and associate them to the article number
   findall(FacingGroup, (
     shelf_layer_label(ShelfLayer,Label),
-    rdf_has(LabeledFacing, shop:labelOfFacing, Label), (
-    FacingGroup = [LabeledFacing] ; (
+    rdf_has(LabeledFacing, shop:labelOfFacing, Label),
+    ( FacingGroup = [LabeledFacing] ; (
     shelf_labeled_facings(LabeledFacing, [LeftFacings,RightFacings]),
     shelf_facings_update_label(LeftFacings, Label),
     shelf_facings_update_label(RightFacings, Label),
-    append(LeftFacings, [RightFacings], FacingGroup)
-  ))), FacingGroups),
+    append(LeftFacings, [RightFacings], FacingGroup) ))
+  ), FacingGroups),
   flatten(FacingGroups, LabeledFacings),
   % retract article number for all remaining (orphan) facings
   forall((
@@ -307,14 +307,14 @@ shelf_labeled_facings(LabeledFacing, [LeftScope,RightScope]) :-
     rdf_has(PrevFacing, shop:labelOfFacing, LeftLabel),
     shelf_facings_between(PrevFacing,LabeledFacing,Facings),
     length(Facings, NumFacings), Count is round(NumFacings / 2),
-    take_tail(Facings,NumFacings,LeftFacings )) ; (
+    take_tail(Facings,Count,LeftFacings )) ; (
     shelf_facings_before(LabeledFacing, LeftFacings)
   )),
   ( shelf_label_next(LabeledFacing, RightLabel) -> (
     rdf_has(NextFacing, shop:labelOfFacing, RightLabel),
     shelf_facings_between(LabeledFacing,NextFacing,Facings),
     length(Facings, NumFacings), Count is round(NumFacings / 2),
-    take_head(Facings,NumFacings,RightFacings )) ; (
+    take_head(Facings,Count,RightFacings )) ; (
     shelf_facings_after(LabeledFacing, RightFacings)
   )),
   % number of facings to the left and right which are understood to be labeled 
@@ -322,9 +322,9 @@ shelf_labeled_facings(LabeledFacing, [LeftScope,RightScope]) :-
   % right of the label.
   length(LeftFacings, Left_count),
   length(RightFacings, Right_count),
-  Count is min(Left_count,Right_count),
-  take_tail(LeftFacings,Count,LeftScope),
-  take_head(RightFacings,Count,RightScope).
+  Scope_Count is min(Left_count,Right_count),
+  take_tail(LeftFacings,Scope_Count,LeftScope),
+  take_head(RightFacings,Scope_Count,RightScope).
 
 shelf_facing_update_label(Facing, Label) :-
   rdf_retractall(Facing, shop:associatedLabelOfFacing, _),
@@ -382,6 +382,14 @@ shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
   shelf_layer_position(ShelfLayer, Left, Left_Pos),
   shelf_layer_position(ShelfLayer, Right, Right_Pos),
   Left_Pos =< Pos, Right_Pos >= Pos, !.
+
+shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
+  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
+  rdf_has(Facing, shop:mountingBarOfFacing, MountingBar),
+  shelf_layer_position(ShelfLayer, MountingBar, Bar_Pos),
+  comp_facingWidth(Facing, literal(type(_,FacingWidth_atom))),
+  atom_number(FacingWidth_atom, FacingWidth),
+  Bar_Pos-0.5*FacingWidth =< Pos, Pos =< Bar_Pos+0.5*FacingWidth, !.
 
 shelf_facings_between(F, F, []) :- !.
 shelf_facings_between(Left, Right, Between) :-
@@ -689,7 +697,11 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
   % compute offset
   product_dimensions(Obj,[_,_,Obj_H]),
   belief_at_id(Facing, [_,_,[Facing_X,_,_],_]),
-  Offset_H is Obj_H*0.5 + 0.05, % FIXME won't work for mounting layer
+  
+  ( shelf_layer_standing(Layer) ->
+    Offset_H is Obj_H*0.5 + 0.05 ;
+    Offset_H is -Obj_H*0.5 - 0.05 ),
+  
   % declare transform
   object_frame_name(Layer, Layer_frame),
   belief_at_update(Obj, [Layer_frame,_, 
