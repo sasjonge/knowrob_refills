@@ -41,11 +41,12 @@ class UnrealObject(object):
         self.scale = Vector3(width, depth, height)
 
     def get_message(self):
+        name_without_prefix = self.object_name.split("#")[-1]
         msg = ModelDescription()
         # generate InstanceId
         msg.instance_id = InstanceId()
         msg.instance_id.class_name = self.object_type
-        msg.instance_id.id = self.object_name
+        msg.instance_id.id = name_without_prefix
         msg.instance_id.ns = ''
         # generate MeshDescription
         # NOTE: default is to use the class name
@@ -54,7 +55,7 @@ class UnrealObject(object):
         msg.mesh_description.path_to_material = self.mesh_path
         # generate Tag's
         msg.tags.append(self.get_tag('SemLog','Runtime','Static'))
-        msg.tags.append(self.get_tag('SemLog','Id', self.object_name))
+        msg.tags.append(self.get_tag('SemLog','Id', name_without_prefix))
         msg.tags.append(self.get_tag('SemLog','Class', self.object_type))
         # set the pose
         msg.pose = Pose()
@@ -67,7 +68,6 @@ class UnrealObject(object):
         msg.pose.orientation.y = self.transform[3][1]
         msg.pose.orientation.z = self.transform[3][2]
         msg.pose.orientation.w = self.transform[3][3]
-        print(str(msg))
         return msg
 
     def get_tag(self,tag_type,key,value):
@@ -137,7 +137,7 @@ class UnrealShop(object):
             obj.update_dimensions(depth=x['D'],width=x['W'],height=x['H'])
             obj.initialized = True
             obj.object_name = object_id
-            rospy.loginfo('Updated object: {}'.format(str(obj)))
+            rospy.logdebug('Updated object: {}'.format(str(obj)))
 
     def spawn(self):
         self.load_objects()
