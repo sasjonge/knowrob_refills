@@ -41,12 +41,12 @@ class UnrealObject(object):
         self.scale = Vector3(width, depth, height)
 
     def get_message(self):
-        name_without_prefix = self.object_name.split("#")[-1]
+        object_id = self.object_name.split("_")[-1]
         msg = ModelDescription()
         # generate InstanceId
         msg.instance_id = InstanceId()
         msg.instance_id.class_name = self.object_type
-        msg.instance_id.id = name_without_prefix
+        msg.instance_id.id = object_id
         msg.instance_id.ns = ''
         # generate MeshDescription
         # NOTE: default is to use the class name
@@ -55,7 +55,7 @@ class UnrealObject(object):
         msg.mesh_description.path_to_material = self.mesh_path
         # generate Tag's
         msg.tags.append(self.get_tag('SemLog','Runtime','Static'))
-        msg.tags.append(self.get_tag('SemLog','Id', name_without_prefix))
+        msg.tags.append(self.get_tag('SemLog','Id', object_id))
         msg.tags.append(self.get_tag('SemLog','Class', self.object_type))
         # set the pose
         msg.pose = Pose()
