@@ -224,7 +224,10 @@ shelf_layer_update_labels(ShelfLayer) :-
     shelf_facing(ShelfLayer,Facing),
     \+ member(Facing,LabeledFacings)),
     rdf_retractall(Facing, shop:associatedLabelOfFacing, _)
-  ).
+  ),
+  % republish facings
+  findall(X, shelf_facing(ShelfLayer,X), AllFacings),
+  belief_republish_objects(AllFacings).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -248,6 +251,8 @@ shelf_separator_insert(ShelfLayer,Separator) :-
     rdf_has(Facing, shop:leftSeparator, X),
     rdf_has(Facing, shop:rightSeparator, Y),
     % TODO: don't forget about the productInFacing relation here
+    %forall(rdf_has(Facing, shop:productInFacing, Obj),
+    %       shelf_product_in_facing(Obj, [LeftFacing,RightFacing])),
     shelf_facing_retract(Facing)) ; true ),
   shelf_layer_update_labels(ShelfLayer).
   
@@ -268,13 +273,13 @@ shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
     rdf_assert(Facing, shop:leftMountingBar, Left, belief_state),
     rdf_has(LeftFacing, shop:mountingBarOfFacing, Left),
     rdf_retractall(LeftFacing, shop:rightMountingBar, _),
-    rdf_assert(LeftFacing, shop:rightMountingBar, MountingBar, belief_state) ) ;
+    rdf_assert(LeftFacing, shop:rightMountingBar, MountingBar, belief_state)) ;
     true ),
   ( min_positive_element(Xs, (Right,_)) -> (
     rdf_assert(Facing, shop:rightMountingBar, Right, belief_state),
     rdf_has(RightFacing, shop:mountingBarOfFacing, Right),
     rdf_retractall(RightFacing, shop:leftMountingBar, _),
-    rdf_assert(RightFacing, shop:leftMountingBar, MountingBar, belief_state) ) ;
+    rdf_assert(RightFacing, shop:leftMountingBar, MountingBar, belief_state)) ;
     true ),
   % update the mounting_bar-label association
   shelf_layer_update_labels(ShelfLayer).
@@ -292,7 +297,7 @@ shelf_label_insert(ShelfLayer,Label) :-
   % first find the facing under which the label was perceived, 
   % then assert labelOfFacing and associatedLabelOfFacing
   ( shelf_layer_find_facing_at(ShelfLayer,LabelPos,LabeledFacing) -> (
-    rdf_retractall(LabeledFacing, shop:labelOfFacing, _), % FIXME: retract safe?
+    rdf_retractall(LabeledFacing, shop:labelOfFacing, _),
     rdf_retractall(LabeledFacing, shop:associatedLabelOfFacing, _),
     rdf_assert(LabeledFacing, shop:labelOfFacing, Label, belief_state)
   ) ; true),
@@ -361,16 +366,14 @@ shelf_facing_assert(ShelfLayer,[Left,Right],Facing) :-
   rdf_instance_from_class(shop:'ProductFacingStanding', belief_state, Facing),
   rdf_assert(Facing, shop:leftSeparator, Left, belief_state),
   rdf_assert(Facing, shop:rightSeparator, Right, belief_state),
-  rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state),
-  belief_republish_objects([Facing]).
+  rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state).
 
 shelf_facing_assert(ShelfLayer,MountingBar,Facing) :-
   shelf_layer_mounting(ShelfLayer), !,
   rdfs_individual_of(MountingBar, shop:'ShelfMountingBar'),
   rdf_instance_from_class(shop:'ProductFacingMounting', belief_state, Facing),
   rdf_assert(Facing, shop:mountingBarOfFacing, MountingBar, belief_state),
-  rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state),
-  belief_republish_objects([Facing]).
+  rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state).
 
 shelf_facing_retract(Facing) :-
   rdf_retractall(Facing, _, _).
@@ -648,7 +651,7 @@ product_dimensions_internal([PD,PW,PH],[D,W,H]) :-
 %
 % This predicate exists to establish some relations
 % between labels and facings, and to create facings
-% between separators.
+% between separators and mounting bars.
 %
 belief_shelf_part_at(Frame, Type, Pos, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfLayer'), !,
@@ -707,7 +710,9 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
   belief_at_update(Obj, [Layer_frame,_, 
       [Facing_X, Offset_D, Offset_H],
       [0.0, 0.0, 0.0, 1.0]]),
-  rdf_assert(Facing, shop:productInFacing, Obj, belief_state).
+  rdf_assert(Facing, shop:productInFacing, Obj, belief_state),
+  
+  belief_republish_objects([Facing]).
 
 product_spawn_front_to_back(Facing, Obj) :-
   shelf_facing_product_type(Facing, ProductType),

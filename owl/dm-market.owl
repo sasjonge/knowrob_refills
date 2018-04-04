@@ -340,8 +340,8 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPart5Tiles"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills/shelves/DMShelfLayer5TilesBack.dae</owl:hasValue>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasVisual"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
