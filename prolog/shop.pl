@@ -251,6 +251,8 @@ shelf_separator_insert(ShelfLayer,Separator) :-
     rdf_has(Facing, shop:leftSeparator, X),
     rdf_has(Facing, shop:rightSeparator, Y),
     % TODO: don't forget about the productInFacing relation here
+    %forall(rdf_has(Facing, shop:productInFacing, Obj),
+    %       shelf_product_in_facing(Obj, [LeftFacing,RightFacing])),
     shelf_facing_retract(Facing)) ; true ),
   shelf_layer_update_labels(ShelfLayer).
   
@@ -295,7 +297,7 @@ shelf_label_insert(ShelfLayer,Label) :-
   % first find the facing under which the label was perceived, 
   % then assert labelOfFacing and associatedLabelOfFacing
   ( shelf_layer_find_facing_at(ShelfLayer,LabelPos,LabeledFacing) -> (
-    rdf_retractall(LabeledFacing, shop:labelOfFacing, _), % FIXME: retract safe?
+    rdf_retractall(LabeledFacing, shop:labelOfFacing, _),
     rdf_retractall(LabeledFacing, shop:associatedLabelOfFacing, _),
     rdf_assert(LabeledFacing, shop:labelOfFacing, Label, belief_state)
   ) ; true),
@@ -649,7 +651,7 @@ product_dimensions_internal([PD,PW,PH],[D,W,H]) :-
 %
 % This predicate exists to establish some relations
 % between labels and facings, and to create facings
-% between separators.
+% between separators and mounting bars.
 %
 belief_shelf_part_at(Frame, Type, Pos, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfLayer'), !,
@@ -708,7 +710,9 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
   belief_at_update(Obj, [Layer_frame,_, 
       [Facing_X, Offset_D, Offset_H],
       [0.0, 0.0, 0.0, 1.0]]),
-  rdf_assert(Facing, shop:productInFacing, Obj, belief_state).
+  rdf_assert(Facing, shop:productInFacing, Obj, belief_state),
+  
+  belief_republish_objects([Facing]).
 
 product_spawn_front_to_back(Facing, Obj) :-
   shelf_facing_product_type(Facing, ProductType),
