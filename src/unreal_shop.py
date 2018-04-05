@@ -51,8 +51,8 @@ class UnrealObject(object):
         # generate MeshDescription
         # NOTE: default is to use the class name
         msg.mesh_description = MeshDescription()
-        msg.mesh_description.path_to_mesh     = self.mesh_path
-        msg.mesh_description.path_to_material = self.mesh_path
+        msg.mesh_description.path_to_mesh     = ''
+        msg.mesh_description.path_to_material = ''
         # generate Tag's
         msg.tags.append(self.get_tag('SemLog','Runtime','Static'))
         msg.tags.append(self.get_tag('SemLog','Id', object_id))
