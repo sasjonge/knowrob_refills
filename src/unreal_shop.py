@@ -47,14 +47,20 @@ class UnrealObject(object):
         msg.instance_id = InstanceId()
         msg.instance_id.class_name = self.object_type
         msg.instance_id.id = object_id
-        msg.instance_id.ns = ''
+        # HACK this information should be in some ontology
+        if self.object_type.startswith('ProductWithAN'):
+          msg.instance_id.ns = 'IAISupermarket/Catalog/'
+        elif self.object_type.startswith('ShelfLabel'):
+          msg.instance_id.ns = 'IAISupermarket/ShelfLabes/'
+        else:
+          msg.instance_id.ns = 'IAISupermarket/Shelves/'
         # generate MeshDescription
         # NOTE: default is to use the class name
         msg.mesh_description = MeshDescription()
         msg.mesh_description.path_to_mesh     = ''
         msg.mesh_description.path_to_material = ''
         # generate Tag's
-        msg.tags.append(self.get_tag('SemLog','Runtime','Static'))
+        msg.tags.append(self.get_tag('SemLog','LogType','Static'))
         msg.tags.append(self.get_tag('SemLog','Id', object_id))
         msg.tags.append(self.get_tag('SemLog','Class', self.object_type))
         # set the pose
