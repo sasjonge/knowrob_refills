@@ -106,7 +106,7 @@ standing_facing_full(Facing) :-
 
 refills_spawn_facings :-
   refills_make_shelf('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS', [
-    (0.2, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'378940'),(0.925,'346864')])),
+    (0.2, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.21,'378940'),(0.5,'402186'),(0.925,'346864')])),
     (0.4, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'378981'),(0.925,'553736')])),
     (0.6, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'553735'),(0.925,'251188')])),
     (0.8, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'250899'),(0.925,'544382')]))
