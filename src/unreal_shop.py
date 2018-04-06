@@ -12,6 +12,7 @@ from json_prolog import json_prolog
 from random import random
 
 from unreal_msgs.msg import ModelDescription, InstanceId, MeshDescription, Tag
+from unreal_msgs.srv import SpawnMultipleModels
 
 class UnrealObject(object):
     def __init__(self):
@@ -96,6 +97,7 @@ class UnrealShop(object):
         self.prolog = json_prolog.Prolog()
         self.objects = defaultdict(lambda: UnrealObject())
         self.unreal_publisher = rospy.Publisher("/unreal", ModelDescription, queue_size=100)
+        self.unreal_service = rospy.ServiceProxy('unreal/spawn_multiple_models', SpawnMultipleModels)
         rospy.loginfo('unreal publisher is running')
 
     def prolog_query(self, q, verbose=False):
@@ -147,8 +149,9 @@ class UnrealShop(object):
 
     def spawn(self):
         self.load_objects()
-        for obj in self.objects.values():
-            self.unreal_publisher.publish(obj.get_message())
+        msgs = map(lambda o: o.get_message(), self.objects.values())
+        print(msgs)
+        self.unreal_service(msgs)
 
 if __name__ == '__main__':
     rospy.init_node('unreal_shop')
