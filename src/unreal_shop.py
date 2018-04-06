@@ -48,9 +48,9 @@ class UnrealObject(object):
         msg.instance_id.class_name = self.object_type
         msg.instance_id.id = object_id
         # HACK this information should be in some ontology
-        if self.object_type.startswith('ProductWithAN'):
+        if 'ProductWithAN' in self.object_type:
           msg.instance_id.ns = 'IAISupermarket/Catalog/'
-        elif self.object_type.startswith('ShelfLabel'):
+        elif 'ShelfLabel' in self.object_type:
           msg.instance_id.ns = 'IAISupermarket/ShelfLabes/'
         else:
           msg.instance_id.ns = 'IAISupermarket/Shelves/'
