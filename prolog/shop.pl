@@ -182,10 +182,10 @@ shelf_layer_position(Layer, Object, Position) :-
 
 %% 
 shelf_layer_above(ShelfLayer, AboveLayer) :-
-  shelf_layer_sibling(ShelfLayer, max_negative_element, AboveLayer).
+  shelf_layer_sibling(ShelfLayer, min_positive_element, AboveLayer).
 %% 
 shelf_layer_below(ShelfLayer, BelowLayer) :-
-  shelf_layer_sibling(ShelfLayer, min_positive_element, BelowLayer).
+  shelf_layer_sibling(ShelfLayer, max_negative_element, BelowLayer).
 
 shelf_layer_sibling(ShelfLayer, Selector, SiblingLayer) :-
   shelf_layer_frame(ShelfLayer, ShelfFrame),
@@ -203,7 +203,7 @@ shelf_layer_neighbours(ShelfLayer, Needle, Selector, Positions) :-
     call(Selector, ShelfLayer, X),
     X \= Needle,
     shelf_layer_position(ShelfLayer, X, Pos_X),
-    D is NeedlePos - Pos_X
+    D is Pos_X - NeedlePos
   ), Positions).
 
 shelf_layer_update_labels(ShelfLayer) :-
@@ -240,16 +240,19 @@ shelf_layer_separator(Layer,Separator) :- shelf_layer_part(Layer,shop:'ShelfSepa
 % FIXME must be "insert or move"
 shelf_separator_insert(ShelfLayer,Separator) :-
   shelf_layer_standing(ShelfLayer),
+  % [X.pos - Separator.pos]
   shelf_layer_neighbours(ShelfLayer, Separator, shelf_layer_separator, Xs),
   ( min_positive_element(Xs, (X,_)) -> 
+    % positive means that X is right of Separator
     shelf_facing_assert(ShelfLayer,[Separator,X],_) ;
     true ),
   ( max_negative_element(Xs, (Y,_)) -> 
+    % negative means that Y is left of Separator
     shelf_facing_assert(ShelfLayer,[Y,Separator],_) ;
     true ),
   ( ground([X,Y]) -> (
-    rdf_has(Facing, shop:leftSeparator, X),
-    rdf_has(Facing, shop:rightSeparator, Y),
+    rdf_has(Facing, shop:rightSeparator, X),
+    rdf_has(Facing, shop:leftSeparator, Y),
     % TODO: don't forget about the productInFacing relation here
     %forall(rdf_has(Facing, shop:productInFacing, Obj),
     %       shelf_product_in_facing(Obj, [LeftFacing,RightFacing])),
@@ -268,18 +271,21 @@ shelf_layer_mounting_bar(Layer,MountingBar) :- shelf_layer_part(Layer,shop:'Shel
 shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
   shelf_layer_mounting(ShelfLayer),
   shelf_facing_assert(ShelfLayer,MountingBar,Facing),
+  % [X.pos - MountingBar.pos]
   shelf_layer_neighbours(ShelfLayer, MountingBar, shelf_layer_mounting_bar, Xs),
-  ( max_negative_element(Xs, (Left,_)) -> (
-    rdf_assert(Facing, shop:leftMountingBar, Left, belief_state),
-    rdf_has(LeftFacing, shop:mountingBarOfFacing, Left),
-    rdf_retractall(LeftFacing, shop:rightMountingBar, _),
-    rdf_assert(LeftFacing, shop:rightMountingBar, MountingBar, belief_state)) ;
-    true ),
-  ( min_positive_element(Xs, (Right,_)) -> (
-    rdf_assert(Facing, shop:rightMountingBar, Right, belief_state),
-    rdf_has(RightFacing, shop:mountingBarOfFacing, Right),
+  ( min_positive_element(Xs, (X,_)) -> (
+    % positive means that X is right of Separator
+    rdf_assert(Facing, shop:rightMountingBar, X, belief_state),
+    rdf_has(RightFacing, shop:mountingBarOfFacing, X),
     rdf_retractall(RightFacing, shop:leftMountingBar, _),
     rdf_assert(RightFacing, shop:leftMountingBar, MountingBar, belief_state)) ;
+    true ),
+  ( max_negative_element(Xs, (Y,_)) -> (
+    % negative means that Y is left of Separator
+    rdf_assert(Facing, shop:leftMountingBar, Y, belief_state),
+    rdf_has(LeftFacing, shop:mountingBarOfFacing, Y),
+    rdf_retractall(LeftFacing, shop:rightMountingBar, _),
+    rdf_assert(LeftFacing, shop:rightMountingBar, MountingBar, belief_state)) ;
     true ),
   % update the mounting_bar-label association
   shelf_layer_update_labels(ShelfLayer).
@@ -384,7 +390,7 @@ shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
   rdf_has(Facing, shop:rightSeparator, Right),
   shelf_layer_position(ShelfLayer, Left, Left_Pos),
   shelf_layer_position(ShelfLayer, Right, Right_Pos),
-  Left_Pos =< Pos, Right_Pos >= Pos, !.
+  Left_Pos =< Pos, Pos =< Right_Pos,!.
 
 shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
   rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
@@ -483,9 +489,9 @@ comp_facingPose(Facing, Pose) :-
   rdf_has(Facing, shop:rightSeparator, Right),
   rdf_has(Facing, shop:layerOfFacing, Layer),
   object_dimensions(Facing, _, _, Facing_H),
-  belief_at_relative_to(Left,  Layer, [_,_,[Pos_Left,_,_],_]),
-  belief_at_relative_to(Right, Layer, [_,_,[Pos_Right,_,_],_]),
-  Pos_X is -0.5*(Pos_Left+Pos_Right),
+  shelf_layer_position(Layer, Left, Pos_Left),
+  shelf_layer_position(Layer, Right, Pos_Right),
+  Pos_X is 0.5*(Pos_Left+Pos_Right),
   Pos_Y is -0.06,               % 0.06 to leave some room at the front and back of the facing
   Pos_Z is 0.5*Facing_H + 0.05, % 0.05 pushes ontop of supporting plane
   owl_instance_from_class('http://knowrob.org/kb/knowrob.owl#Pose',
@@ -495,8 +501,8 @@ comp_facingPose(Facing, Pose) :-
   rdf_has(Facing, shop:layerOfFacing, Layer),
   comp_facingHeight(Facing, literal(type(_,Facing_H_Atom))),
   atom_number(Facing_H_Atom, Facing_H),
-  belief_at_relative_to(MountingBar,  Layer, [_,_,[Pos_MountingBar,_,_],_]),
-  Pos_X is -Pos_MountingBar,
+  shelf_layer_position(Layer, MountingBar, Pos_MountingBar),
+  Pos_X is Pos_MountingBar,
   Pos_Y is -0.03,           
   Pos_Z is -0.5*Facing_H, 
   owl_instance_from_class('http://knowrob.org/kb/knowrob.owl#Pose',
@@ -758,20 +764,20 @@ closest_object(Obj, [X|Xs], Nearest, D) :-
   ( D=D_Xs, Nearest=Nearest_Xs);
   ( D=D_X,  Nearest=X)).
 
-min_positive_element([(_,D_A)|Xs], (Needle,D_Needle)) :-
-  D_A > 0.0, !, min_positive_element(Xs, (Needle,D_Needle)).
-min_positive_element([(A,D_A)|Rest], (Needle,D_Needle)) :-
-  min_positive_element(Rest, (B,D_B)),
+max_negative_element([(_,D_A)|Xs], (Needle,D_Needle)) :-
+  D_A > 0.0, !, max_negative_element(Xs, (Needle,D_Needle)).
+max_negative_element([(A,D_A)|Rest], (Needle,D_Needle)) :-
+  max_negative_element(Rest, (B,D_B)),
   ( D_A > D_B -> (
     Needle=A, D_Needle=D_A );(
     Needle=B, D_Needle=D_B )).
-min_positive_element([(A,D_A)|_], (A,D_A)).
-
-max_negative_element([(_,D_A)|Xs], (Needle,D_Needle)) :-
-  D_A < 0.0, !, max_negative_element(Xs, (Needle,D_Needle)).
-max_negative_element([(A,D_A)|Rest], (Needle,D_Needle)) :-
-  max_negative_element(Rest, (B,D_B)),
-  ( D_A < D_B -> (
-    Needle=A, D_Needle=D_A );(
-    Needle=B, D_Needle=D_B )).
 max_negative_element([(A,D_A)|_], (A,D_A)).
+
+min_positive_element([(_,D_A)|Xs], (Needle,D_Needle)) :-
+  D_A < 0.0, !, min_positive_element(Xs, (Needle,D_Needle)).
+min_positive_element([(A,D_A)|Rest], (Needle,D_Needle)) :-
+  min_positive_element(Rest, (B,D_B)),
+  ( D_A < D_B ->
+    Needle=A, D_Needle=D_A;
+    Needle=B, D_Needle=D_B ).
+min_positive_element([(A,D_A)|_], (A,D_A)).
