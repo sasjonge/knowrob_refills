@@ -33,6 +33,7 @@
 :- register_ros_package(knowrob_assembly).
 :- register_ros_package(knowrob_refills).
 :- register_ros_package(knowrob_cram).
+:- register_ros_package(knowrob_robosherlock).
 
 :- use_module(library('shop')).
 :- use_module(library('refills')).
@@ -40,6 +41,7 @@
 :- owl_parser:owl_parse('package://knowrob_refills/owl/shop.owl').
 :- owl_parser:owl_parse('package://knowrob_refills/owl/dm-market.owl').
 :- owl_parser:owl_parse('package://knowrob_refills/owl/product-taxonomy.owl').
+:- owl_parser:owl_parse('package://knowrob_refills/owl/product-catalog.owl').
 
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
