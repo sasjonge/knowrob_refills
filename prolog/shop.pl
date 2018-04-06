@@ -63,9 +63,6 @@
       comp_facingWidth/2,
       comp_facingHeight/2,
       comp_facingDepth/2,
-      comp_productHeight/2,
-      comp_productWidth/2,
-      comp_productDepth/2,
       %%%%%
       shelf_find_parent/2,
       belief_shelf_part_at/4,
@@ -96,7 +93,8 @@
     shelf_find_parent(r,r),
     shelf_layer_part(r,r,r),
     belief_shelf_part_at(r,r,+,-),
-    belief_shelf_barcode_at(r,r,+,+,-).
+    belief_shelf_barcode_at(r,r,+,+,-),
+    has_float_value(r,r,r).
 
 :- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
 :- rdf_db:rdf_register_ns(owl, 'http://www.w3.org/2002/07/owl#', [keep(true)]).
@@ -437,13 +435,13 @@ shelf_facing_next(Facing, Next) :-
 
 facing_space_remaining_in_front(Facing,Obj) :-
   belief_at_id(Obj, [_,_,[_,Obj_pos,_],_]),
-  product_dimensions(Obj, [Obj_depth,_,_]),
+  object_dimensions(Obj,Obj_depth,_,_),
   object_dimensions(Facing,Facing_depth,_,_),
   Obj_pos > Obj_depth*0.5 - Facing_depth*0.5.
 
 facing_space_remaining_behind(Facing,Obj) :-
   belief_at_id(Obj, [_,_,[_,Obj_pos,_],_]),
-  product_dimensions(Obj, [Obj_depth,_,_]),
+  object_dimensions(Obj,Obj_depth,_,_),
   object_dimensions(Facing,Facing_depth,_,_),
   Obj_pos < Facing_depth*0.5 - Obj_depth*0.5.
 
@@ -601,53 +599,26 @@ comp_facingDepth(Facing, Selector, Offset, XSD_Val) :-
 
 comp_mainColorOfFacing(Facing, Color_XSD) :-
   rdf_has(Facing, shop:layerOfFacing, _), !,
-  ((owl_individual_of(Facing, shop:'OrphanProductFacing'),Col='1.0 0.35 0.0 0.5');
-   (owl_individual_of(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.5');
-   (owl_individual_of(Facing, shop:'EmptyProductFacing'),Col='1.0 1.0 0.0 0.5');
-   (owl_individual_of_during(Facing, shop:'FullProductFacing'),Col='0.0 0.25 0.0 0.5');
-   Col='0.0 1.0 0.0 0.5'),
+  ((owl_individual_of(Facing, shop:'OrphanProductFacing'),Col='1.0 0.35 0.0 0.4');
+   (owl_individual_of(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.4');
+   (owl_individual_of(Facing, shop:'EmptyProductFacing'),Col='1.0 1.0 0.0 0.4');
+   (owl_individual_of_during(Facing, shop:'FullProductFacing'),Col='0.0 0.25 0.0 0.4');
+   Col='0.0 1.0 0.0 0.4'),
   Color_XSD=literal(type(xsd:string, Col)), !.
 
-comp_productHeight(Product,XSD_Val) :-
-  product_dimensions(Product,[_,_,Value]),
-  xsd_float(Value, XSD_Val).
-comp_productWidth(Product, XSD_Val) :-
-  product_dimensions(Product,[_,Value,_]),
-  xsd_float(Value, XSD_Val).
-comp_productDepth(Product, XSD_Val) :-
-  product_dimensions(Product,[Value,_,_]),
-  xsd_float(Value, XSD_Val).
-
-product_dimensions(Product, Dim) :-
-  rdfs_individual_of(Product,shop:'Product'),
-  product_dimensions_(Product, Dim).
-
-product_dimensions_(Product, [D,W,H]) :-
-  owl_has_prolog(Product, shop:widthOfProduct,  P_width),
-  owl_has_prolog(Product, shop:heightOfProduct, P_height),
-  owl_has_prolog(Product, shop:depthOfProduct,  P_depth),
-  product_dimensions_internal([P_depth,P_width,P_height],[D,W,H]), !.
-product_dimensions_(Product, _) :-
-  write('[WARN] No bounding box information available for '), owl_write_readable(Product), nl,
-  fail.
+has_float_value(Cls,P,Val) :-
+  rdfs_subclass_of(Cls,R),
+  rdf_has(R, owl:hasValue, Val_XSD),
+  rdf_has(R, owl:onProperty, P),
+  xsd_float(Val, Val_XSD), !.
 
 product_type_dimensions(Type, [D,W,H]) :-
-  owl_class_properties(Type, shop:widthOfProduct,  W_XSD), xsd_float(P_width, W_XSD),
-  owl_class_properties(Type, shop:heightOfProduct, H_XSD), xsd_float(P_height, H_XSD),
-  owl_class_properties(Type, shop:depthOfProduct,  D_XSD), xsd_float(P_depth, D_XSD),
-  product_dimensions_internal([P_depth,P_width,P_height],[D,W,H]), !.
+  has_float_value(Type, shop:depthOfProduct, D),
+  has_float_value(Type, shop:widthOfProduct, W),
+  has_float_value(Type, shop:heightOfProduct, H), !.
 product_type_dimensions(Type, _) :-
   write('[WARN]  No bounding box information available for '), owl_write_readable(Type), nl,
   fail.
-
-product_dimensions_internal([PD,PW,PH],[D,W,H]) :-
-  % HACK seems in the DB depth/height/width are mixed up wrt. how products are placed in shelves
-  (PD =< 0.0 -> fail ; true),
-  (PW =< 0.0 -> fail ; true),
-  (PH =< 0.0 -> fail ; true),
-  H is max(PD,max(PW,PH)),
-  D is min(PD,min(PW,PH)),
-  W is PD + PW + PH - H - D.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -704,7 +675,7 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
     rdf_assert(Obj,rdf:type,shop:'Product') )),
   
   % compute offset
-  product_dimensions(Obj,[_,_,Obj_H]),
+  object_dimensions(Obj,_,_,Obj_H),
   belief_at_id(Facing, [_,_,[Facing_X,_,_],_]),
   
   ( shelf_layer_standing(Layer) ->
