@@ -50,11 +50,11 @@ class UnrealObject(object):
         msg.instance_id.id = object_id
         # HACK this information should be in some ontology
         if 'ProductWithAN' in self.object_type:
-          msg.instance_id.ns = 'IAISupermarket/Catalog/'
+          msg.instance_id.ns = '/IAISupermarket/Catalog'
         elif 'ShelfLabel' in self.object_type:
-          msg.instance_id.ns = 'IAISupermarket/ShelfLabes/'
+          msg.instance_id.ns = '/IAISupermarket/ShelfLabes'
         else:
-          msg.instance_id.ns = 'IAISupermarket/Shelves/'
+          msg.instance_id.ns = '/IAISupermarket/Shelves'
         # generate MeshDescription
         # NOTE: default is to use the class name
         msg.mesh_description = MeshDescription()
@@ -123,6 +123,13 @@ class UnrealShop(object):
         q = 'belief_existing_objects(A)'
         solutions = self.prolog_query(q)
         for object_id in solutions[0]['A']:
+            
+            name = object_id.split("#")[-1]
+            # HACK
+            if name.startswith("Lightbulb"):       continue
+            elif name.startswith("DMShelfSystem"): continue
+            elif name.startswith("CeilingLight"):  continue
+            
             if object_id not in self.objects.keys():
                 self.objects[object_id] = UnrealObject()
         for object_id in self.objects.keys():
@@ -132,7 +139,7 @@ class UnrealShop(object):
         rospy.logdebug('Loaded object ids: {}'.format([str(x) for x in self.objects.keys()]))
 
     def load_object_information(self, object_ids):
-        q = "member(Obj,['"+"','".join(object_ids)+"']),object_information(Obj,Type,_,Color,Mesh,[D,W,H],Pose,_)"
+        q = "member(Obj,['"+"','".join(object_ids)+"']),object_information(Obj,Type,_,Color,Mesh,[D,W,H],_,_),belief_at(Obj,Pose)"
         solutions = self.prolog_query(q, verbose=False)
         # TODO: would be nice to use the INCREMENTAL mode of json_prolog here
         for x in solutions:
