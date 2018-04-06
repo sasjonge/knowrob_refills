@@ -578,6 +578,7 @@
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#depthOfProduct">
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#productParameter"/>
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
     </owl:DatatypeProperty>
     
 
@@ -586,6 +587,7 @@
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#heightOfProduct">
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#productParameter"/>
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
     </owl:DatatypeProperty>
     
 
@@ -616,6 +618,7 @@
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#widthOfProduct">
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#productParameter"/>
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
     </owl:DatatypeProperty>
     
 
@@ -2423,43 +2426,6 @@
         <computable:target rdf:resource="http://knowrob.org/kb/knowrob.owl#mainColorOfObject"/>
     </owl:NamedIndividual>
     
-
-
-    <!-- http://knowrob.org/kb/shop.owl#comp_productDepth -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop.owl#comp_productDepth">
-        <rdf:type rdf:resource="http://knowrob.org/kb/computable.owl#PrologProperty"/>
-        <computable:visible rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unvisible</computable:visible>
-        <computable:cache rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dontCache</computable:cache>
-        <computable:command rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shop:comp_productDepth</computable:command>
-        <computable:target rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://knowrob.org/kb/shop.owl#comp_productHeight -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop.owl#comp_productHeight">
-        <rdf:type rdf:resource="http://knowrob.org/kb/computable.owl#PrologProperty"/>
-        <computable:visible rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unvisible</computable:visible>
-        <computable:cache rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dontCache</computable:cache>
-        <computable:command rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shop:comp_productHeight</computable:command>
-        <computable:target rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://knowrob.org/kb/shop.owl#comp_productWidth -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop.owl#comp_productWidth">
-        <rdf:type rdf:resource="http://knowrob.org/kb/computable.owl#PrologProperty"/>
-        <computable:visible rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unvisible</computable:visible>
-        <computable:cache rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dontCache</computable:cache>
-        <computable:command rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shop:comp_productWidth</computable:command>
-        <computable:target rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
-    </owl:NamedIndividual>
-    
-
 
     <!-- http://knowrob.org/kb/shop.owl#compute_isSpaceRemainingInFacing -->
 
