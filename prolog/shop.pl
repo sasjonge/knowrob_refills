@@ -64,7 +64,6 @@
       comp_facingHeight/2,
       comp_facingDepth/2,
       %%%%%
-      shelf_find_parent/2,
       belief_shelf_part_at/4,
       belief_shelf_barcode_at/5,
       product_spawn_front_to_back/2,
@@ -90,7 +89,6 @@
     shelf_layer_separator(r,r),
     shelf_facing(r,r),
     shelf_facing_product_type(r,r),
-    shelf_find_parent(r,r),
     shelf_layer_part(r,r,r),
     belief_shelf_part_at(r,r,+,-),
     belief_shelf_barcode_at(r,r,+,+,-).
@@ -125,30 +123,6 @@ create_article_number(dan(DAN), ArticleNumber) :-
   owl_instance_from_class(shop:'ArticleNumber',ArticleNumber),
   rdf_assert(ArticleNumber, shop:ean, literal(type(shop:dan, DAN))),
   write('[WARN] Creating new article number '), write(DAN), nl.
-  
-
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% Shelves
-
-%% 
-shelf_find_parent(Object, Parent) :-
-  rdfs_individual_of(Object, shop:'ShelfLayer'), !,
-  shelf_find_frame_of_object(Object, Parent).
-shelf_find_parent(Object, Parent) :-
-  shelf_find_frame_of_object(Object, Frame),
-  shelf_find_layer_of_object(Object, Frame, Parent).
-
-shelf_find_frame_of_object(Obj, Frame) :-
-  findall(X, rdfs_individual_of(X, shop:'ShelfFrame'), Xs),
-  closest_object(Obj, Xs, Frame, _).
-shelf_find_layer_of_object(Obj, Frame, Layer) :-
-  rdfs_individual_of(Frame, shop:'ShelfFrame'),
-  findall(X, (
-    rdf_has(Frame, knowrob:properPhysicalParts, X),
-    rdfs_individual_of(X, shop:'ShelfLayer')
-  ), Xs),
-  closest_object(Obj, Xs, Layer, _).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -748,15 +722,6 @@ take_head([X|Xs], N, [X|Ys]) :-
   M is N-1, take_head(Xs, M, Ys). 
 take_tail(L, N, Tail) :-
   reverse(L,X), take_head(X,N,Y), reverse(Y,Tail).
-
-closest_object(Obj, [X], X, D) :-
-  object_distance(Obj, X, D), !.
-closest_object(Obj, [X|Xs], Nearest, D) :-
-  object_distance(Obj, X, D_X),
-  closest_object(Obj, Xs, Nearest_Xs, D_Xs),
-  ( D_Xs<D_X ->
-  ( D=D_Xs, Nearest=Nearest_Xs);
-  ( D=D_X,  Nearest=X)).
 
 max_negative_element([(_,D_A)|Xs], (Needle,D_Needle)) :-
   D_A > 0.0, !, max_negative_element(Xs, (Needle,D_Needle)).
