@@ -54,9 +54,8 @@
       shelf_layer_separator/2,
       shelf_layer_mounting_bar/2,
       shelf_layer_label/2,
-      shelf_facing/2,
+      shelf_layer_facing/2,
       shelf_facing_product_type/2,
-      article_number_product/2,
       % computable properties
       comp_isSpaceRemainingInFacing/2,
       comp_facingPose/2,
@@ -87,7 +86,6 @@
     shelf_layer_mounting_bar(r,r),
     shelf_layer_label(r,r),
     shelf_layer_separator(r,r),
-    shelf_facing(r,r),
     shelf_facing_product_type(r,r),
     shelf_layer_part(r,r,r),
     belief_shelf_part_at(r,r,+,-),
@@ -108,40 +106,84 @@ xsd_float(Value, literal(
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% 
+% shop:'ArticleNumber'
 
-create_article_number(ean(EAN), ArticleNumber) :-
-  owl_has(ArticleNumber, shop:articleNumberString, literal(type(shop:ean,EAN))), !.
-create_article_number(ean(EAN), ArticleNumber) :-
-  owl_instance_from_class(shop:'ArticleNumber',ArticleNumber),
-  rdf_assert(ArticleNumber, shop:ean, literal(type(shop:ean, EAN))),
-  write('[WARN] Creating new article number '), write(EAN), nl.
+create_article_number(ean(AN), ArticleNumber) :-
+  create_article_number_(literal(type('http://knowrob.org/kb/shop.owl#ean',AN)), ArticleNumber).
+create_article_number(dan(AN), ArticleNumber) :-
+  create_article_number_(literal(type('http://knowrob.org/kb/shop.owl#dan',AN)), ArticleNumber).
+create_article_number_(AN_XSD,ArticleNumber) :-
+  owl_has(ArticleNumber, shop:articleNumberString, AN_XSD), !.
+create_article_number_(AN_XSD, ArticleNumber) :-
+  strip_literal_type(AN_XSD, AN_atom),
+  atomic_list_concat([
+    'http://knowrob.org/kb/shop.owl#ArticleNumber_',
+    AN_atom], ArticleNumber),
+  rdf_assert(ArticleNumber, rdf:type, shop:'ArticleNumber'),
+  rdf_assert(ArticleNumber, rdf:type, owl:'NamedIndividual'),
+  %owl_instance_from_class(shop:'ArticleNumber',ArticleNumber),
+  rdf_assert(ArticleNumber, shop:articleNumberString, AN_XSD),
+  create_product_type(ArticleNumber, ProductType),
+  write('[WARN] Unknown article type '),
+  owl_write_readable(ProductType),
+  write('. Incomplete data tables?'), nl.
 
-create_article_number(dan(DAN), ArticleNumber) :-
-  owl_has(ArticleNumber, shop:articleNumberString, literal(type(shop:dan,DAN))), !.
-create_article_number(dan(DAN), ArticleNumber) :-
-  owl_instance_from_class(shop:'ArticleNumber',ArticleNumber),
-  rdf_assert(ArticleNumber, shop:ean, literal(type(shop:dan, DAN))),
-  write('[WARN] Creating new article number '), write(DAN), nl.
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% shop:'Product'
+
+create_product_type(ArticleNumber,ProductType) :-
+  rdf_has(ArticleNumber, shop:articleNumberString, literal(type(_,AN_atom))),
+  atomic_list_concat([
+    'http://knowrob.org/kb/shop.owl#ArticleWithAN',
+    AN_atom], ProductType),
+  rdf_assert(ProductType, rdfs:subClassOf, shop:'Product'),
+  rdf_assert(ProductType, rdf:type, owl:'Class'),
+  owl_restriction_assert(restriction(
+    shop:articleNumberOfProduct,
+    has_value(ArticleNumber)), AN_R),
+  rdf_assert(ProductType, rdfs:subClassOf, AN_R).
+
+product_type_dimensions(Type, [D,W,H]) :-
+  owl_property_range_on_class(Type, shop:depthOfProduct,  literal(type(_,D_atom))),
+  owl_property_range_on_class(Type, shop:widthOfProduct,  literal(type(_,W_atom))),
+  owl_property_range_on_class(Type, shop:heightOfProduct, literal(type(_,H_atom))),
+  atom_number(D_atom, D),
+  atom_number(W_atom, W),
+  atom_number(H_atom, H), !.
+product_type_dimensions(Type, _) :-
+  write('[WARN] No bounding box information available for product type '), owl_write_readable(Type), nl,
+  fail.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % shop:'ShelfLayer'
 
 %% 
+shelf_layer_mounting(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerMounting').
+%% 
+shelf_layer_standing(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerStanding').
+
+%% 
 shelf_layer_frame(Layer, Frame) :-
   owl_has(Frame, knowrob:properPhysicalParts, Layer),
   rdfs_individual_of(Frame, shop:'ShelfFrame'), !.
+%%
+shelf_layer_facing(ShelfLayer, Facing) :-
+  rdf_has(Facing, shop:layerOfFacing, ShelfLayer).
 
+%%
+shelf_layer_separator(Layer,Part)    :- shelf_layer_part(Layer,shop:'ShelfSeparator',Part).
+%%
+shelf_layer_mounting_bar(Layer,Part) :- shelf_layer_part(Layer,shop:'ShelfMountingBar',Part).
+%%
+shelf_layer_label(Layer,Part)        :- shelf_layer_part(Layer,shop:'ShelfLabel',Part).
+%%
 shelf_layer_part(Layer, Type, Part) :-
   rdfs_individual_of(Layer, shop:'ShelfLayer'),
   owl_has(Layer, knowrob:properPhysicalParts, Part),
   rdfs_individual_of(Part, Type).
-
-%% 
-shelf_layer_mounting(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerMounting').
-%% 
-shelf_layer_standing(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerStanding').
 
 %% shelf_layer_position
 %
@@ -151,6 +193,7 @@ shelf_layer_standing(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLa
 shelf_layer_position(Layer, Object, Position) :-
   belief_at_relative_to(Object, Layer, [_,_,[Position,_,_],_]).
 
+%%
 shelf_facing_position(Facing,Pos) :-
   rdf_has(Facing, shop:leftSeparator, Left), !,
   rdf_has(Facing, shop:rightSeparator, Right),
@@ -189,39 +232,9 @@ shelf_layer_neighbours(ShelfLayer, Needle, Selector, Positions) :-
     D is Pos_X - NeedlePos
   ), Positions).
 
-shelf_layer_update_labels(ShelfLayer) :-
-  % step through all labels, find surrounding faces corresponding
-  % to this label and associate them to the article number
-  findall(FacingGroup, (
-    shelf_layer_label(ShelfLayer,Label),
-    findall((FacingPos,LabeledFacing), (
-      rdf_has(LabeledFacing, shop:labelOfFacing, Label),
-      shelf_facing_position(LabeledFacing,FacingPos)
-    ),  LabeledFacingsUnsorted),
-    sort(LabeledFacingsUnsorted, LabeledFacingsSorted),
-    ( findall(X,member((_,X),LabeledFacingsSorted),FacingGroup) ; (
-    shelf_labeled_facings(LabeledFacingsSorted, [LeftFacings,RightFacings]),
-    shelf_facings_update_label(LeftFacings, Label),
-    shelf_facings_update_label(RightFacings, Label),
-    append(LeftFacings, [RightFacings], FacingGroup) ))
-  ), FacingGroups),
-  flatten(FacingGroups, LabeledFacings),
-  % retract article number for all remaining (orphan) facings
-  forall((
-    shelf_facing(ShelfLayer,Facing),
-    \+ member(Facing,LabeledFacings)),
-    rdf_retractall(Facing, shop:associatedLabelOfFacing, _)
-  ),
-  % republish facings
-  findall(X, shelf_facing(ShelfLayer,X), AllFacings),
-  belief_republish_objects(AllFacings).
-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % knowrob:'ShelfSeparator'
-
-%%
-shelf_layer_separator(Layer,Separator) :- shelf_layer_part(Layer,shop:'ShelfSeparator',Separator).
 
 %%
 % FIXME must be "insert or move"
@@ -246,14 +259,10 @@ shelf_separator_insert(ShelfLayer,Separator) :-
     %       shelf_product_in_facing(Obj, [LeftFacing,RightFacing])),
     shelf_facing_retract(Facing)) ; true ),
   shelf_layer_update_labels(ShelfLayer).
-  
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % knowrob:'ShelfMountingBar'
-
-%%
-shelf_layer_mounting_bar(Layer,MountingBar) :- shelf_layer_part(Layer,shop:'ShelfMountingBar',MountingBar).
 
 % FIXME must be "insert or move"
 shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
@@ -283,8 +292,6 @@ shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % shop:'ShelfLabel'
 
-shelf_layer_label(Layer,Label) :- shelf_layer_part(Layer,shop:'ShelfLabel',Label).
-
 % FIXME must be "insert or move"
 shelf_label_insert(ShelfLayer,Label) :-
   % find the position of Label on the shelf
@@ -309,45 +316,6 @@ shelf_label_of_facing_assert(LabeledFacing, Label) :-
   rdf_retractall(LabeledFacing, shop:associatedLabelOfFacing, _),
   rdf_assert(LabeledFacing, shop:labelOfFacing, Label, belief_state).
 
-shelf_labeled_facings(LabeledFacings, [LeftScope,RightScope]) :-
-  LabeledFacings=[(_,LabeledFacingLeft)|_],
-  reverse(LabeledFacings, LabeledFacingsReverse),
-  LabeledFacingsReverse=[(_,LabeledFacingRight)|_],
-  % the scope of labels is influenced by how far away the next label 
-  % is to the left and right. The facings in between are evenly distributed between
-  % the adjacent labels.
-  ( shelf_label_previous(LabeledFacingLeft, LeftLabel) -> (
-    rdf_has(PrevFacing, shop:labelOfFacing, LeftLabel),
-    shelf_facings_between(PrevFacing,LabeledFacingLeft,Facings),
-    length(Facings, NumFacings), Count is round(NumFacings / 2),
-    take_tail(Facings,Count,LeftFacings )) ; (
-    shelf_facings_before(LabeledFacingLeft, LeftFacings)
-  )),
-  ( shelf_label_next(LabeledFacingRight, RightLabel) -> (
-    rdf_has(NextFacing, shop:labelOfFacing, RightLabel),
-    shelf_facings_between(LabeledFacingRight,NextFacing,Facings),
-    length(Facings, NumFacings), Count is round(NumFacings / 2),
-    take_head(Facings,Count,RightFacings )) ; (
-    shelf_facings_after(LabeledFacingRight, RightFacings)
-  )),
-  % number of facings to the left and right which are understood to be labeled 
-  % by Label must be evenly distributed, and identical in number to the left and
-  % right of the label.
-  length(LeftFacings, Left_count),
-  length(RightFacings, Right_count),
-  Scope_Count is min(Left_count,Right_count),
-  take_tail(LeftFacings,Scope_Count,LeftScope),
-  take_head(RightFacings,Scope_Count,RightScope).
-
-shelf_facing_update_label(Facing, Label) :-
-  rdf_retractall(Facing, shop:associatedLabelOfFacing, _),
-  rdf_assert(Facing, shop:associatedLabelOfFacing, Label).
-
-shelf_facings_update_label([], _) :- !.
-shelf_facings_update_label([F|Rest], Label) :-
-  shelf_facing_update_label(F, Label),
-  shelf_facings_update_label(Rest, Label).
-
 %%
 shelf_label_previous(Facing, LeftLabel) :-
   shelf_facing_previous(Facing, LeftFacing),
@@ -362,10 +330,6 @@ shelf_label_next(Facing, RightLabel) :-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % knowrob:'ProductFacing'
-
-%%
-shelf_facing(ShelfLayer, Facing) :-
-  rdf_has(Facing, shop:layerOfFacing, ShelfLayer).
 
 shelf_facing_assert(ShelfLayer,[Left,Right],Facing) :-
   shelf_layer_standing(ShelfLayer), !,
@@ -388,40 +352,9 @@ shelf_facing_retract(Facing) :-
 
 shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
   rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
-  rdf_has(Facing, shop:leftSeparator, Left),
-  rdf_has(Facing, shop:rightSeparator, Right),
-  shelf_layer_position(ShelfLayer, Left, Left_Pos),
-  shelf_layer_position(ShelfLayer, Right, Right_Pos),
-  Left_Pos =< Pos, Pos =< Right_Pos,!.
-
-shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
-  rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
-  rdf_has(Facing, shop:mountingBarOfFacing, MountingBar),
-  shelf_layer_position(ShelfLayer, MountingBar, Bar_Pos),
-  comp_facingWidth(Facing, literal(type(_,FacingWidth_atom))),
-  atom_number(FacingWidth_atom, FacingWidth),
-  Bar_Pos-0.5*FacingWidth =< Pos, Pos =< Bar_Pos+0.5*FacingWidth, !.
-
-shelf_facings_between(F, F, []) :- !.
-shelf_facings_between(Left, Right, Between) :-
-  shelf_facing_next(Left, Next),
-  ( Next = Right -> Between = [] ; (
-    shelf_facings_between(Next, Right,Rest),
-    Between = [Next|Rest]
-  )).
-
-shelf_facings_before(Facing, LeftToRight) :-
-  shelf_facings_before_(Facing, RightToLeft),
-  reverse(RightToLeft, LeftToRight).
-shelf_facings_before_(Facing, [Left|Rest]) :-
-  shelf_facing_previous(Facing, Left),
-  shelf_facings_before_(Left, Rest), !.
-shelf_facings_before_(_, []).
-  
-shelf_facings_after(Facing, [Right|Rest]) :-
-  shelf_facing_next(Facing, Right),
-  shelf_facings_after(Right, Rest), !.
-shelf_facings_after(_, []).
+  shelf_facing_position(Facing,FacingPos),
+  shelf_facing_width(Facing, FacingWidth),
+  FacingPos-0.5*FacingWidth =< Pos, Pos =< FacingPos+0.5*FacingWidth, !.
 
 shelf_facing_previous(Facing, Prev) :-
   rdf_has(Facing, shop:leftSeparator, X),
@@ -453,17 +386,105 @@ facing_space_remaining_behind(Facing,Obj) :-
 %
 shelf_facing_product_type(Facing, ProductType) :-
   owl_has(Facing, shop:articleNumberOfFacing, ArticleNumber),
-  article_number_product(ArticleNumber, ProductType), !.
+  rdf_has(R, owl:hasValue, ArticleNumber),
+  rdf_has(R, owl:onProperty, shop:articleNumberOfProduct),
+  rdf_has(ProductType, rdfs:subClassOf, R),
+  rdf_has(ProductType, rdf:type, owl:'Class'), !.
 shelf_facing_product_type(Facing, _) :-
   rdf_has(Facing, shop:associatedLabelOfFacing, Label),
   write('[WARN] No product type associated to label '), owl_write_readable(Label), nl,
   fail.
 
-article_number_product(ArticleNumber, ProductType) :-
-  rdf_has(R, owl:hasValue, ArticleNumber),
-  rdf_has(R, owl:onProperty, shop:articleNumberOfProduct),
-  rdf_has(ProductType, rdfs:subClassOf, R),
-  rdf_has(ProductType, rdf:type, owl:'Class'), !.
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% associatedLabelOfFacing
+
+shelf_facing_update_label(Facing, Label) :-
+  rdf_retractall(Facing, shop:associatedLabelOfFacing, _),
+  rdf_assert(Facing, shop:associatedLabelOfFacing, Label).
+
+shelf_facings_update_label([], _) :- !.
+shelf_facings_update_label([F|Rest], Label) :-
+  shelf_facing_update_label(F, Label),
+  shelf_facings_update_label(Rest, Label).
+
+shelf_layer_update_labels(ShelfLayer) :-
+  % step through all labels, find surrounding faces corresponding
+  % to this label and associate them to the article number
+  findall(FacingGroup, (
+    shelf_layer_label(ShelfLayer,Label),
+    findall((FacingPos,LabeledFacing), (
+      rdf_has(LabeledFacing, shop:labelOfFacing, Label),
+      shelf_facing_position(LabeledFacing,FacingPos)
+    ),  LabeledFacingsUnsorted),
+    sort(LabeledFacingsUnsorted, LabeledFacingsSorted),
+    ( findall(X,member((_,X),LabeledFacingsSorted),FacingGroup) ; (
+    shelf_labeled_facings(LabeledFacingsSorted, [LeftFacings,RightFacings]),
+    shelf_facings_update_label(LeftFacings, Label),
+    shelf_facings_update_label(RightFacings, Label),
+    append(LeftFacings, [RightFacings], FacingGroup) ))
+  ), FacingGroups),
+  flatten(FacingGroups, LabeledFacings),
+  % retract article number for all remaining (orphan) facings
+  forall((
+    shelf_layer_facing(ShelfLayer,Facing),
+    \+ member(Facing,LabeledFacings)),
+    rdf_retractall(Facing, shop:associatedLabelOfFacing, _)
+  ),
+  % republish facings
+  findall(X, shelf_layer_facing(ShelfLayer,X), AllFacings),
+  belief_republish_objects(AllFacings).
+
+shelf_labeled_facings(LabeledFacings, [LeftScope,RightScope]) :-
+  LabeledFacings=[(_,LabeledFacingLeft)|_],
+  reverse(LabeledFacings, LabeledFacingsReverse),
+  LabeledFacingsReverse=[(_,LabeledFacingRight)|_],
+  % the scope of labels is influenced by how far away the next label 
+  % is to the left and right. The facings in between are evenly distributed between
+  % the adjacent labels.
+  ( shelf_label_previous(LabeledFacingLeft, LeftLabel) -> (
+    rdf_has(PrevFacing, shop:labelOfFacing, LeftLabel),
+    shelf_facings_between(PrevFacing,LabeledFacingLeft,Facings),
+    length(Facings, NumFacings), Count is round(NumFacings / 2),
+    take_tail(Facings,Count,LeftFacings )) ; (
+    shelf_facings_before(LabeledFacingLeft, LeftFacings)
+  )),
+  ( shelf_label_next(LabeledFacingRight, RightLabel) -> (
+    rdf_has(NextFacing, shop:labelOfFacing, RightLabel),
+    shelf_facings_between(LabeledFacingRight,NextFacing,Facings),
+    length(Facings, NumFacings), Count is round(NumFacings / 2),
+    take_head(Facings,Count,RightFacings )) ; (
+    shelf_facings_after(LabeledFacingRight, RightFacings)
+  )),
+  % number of facings to the left and right which are understood to be labeled 
+  % by Label must be evenly distributed, and identical in number to the left and
+  % right of the label.
+  length(LeftFacings, Left_count),
+  length(RightFacings, Right_count),
+  Scope_Count is min(Left_count,Right_count),
+  take_tail(LeftFacings,Scope_Count,LeftScope),
+  take_head(RightFacings,Scope_Count,RightScope).
+
+shelf_facings_between(F, F, []) :- !.
+shelf_facings_between(Left, Right, Between) :-
+  shelf_facing_next(Left, Next),
+  ( Next = Right -> Between = [] ; (
+    shelf_facings_between(Next, Right,Rest),
+    Between = [Next|Rest]
+  )).
+
+shelf_facings_before(Facing, LeftToRight) :-
+  shelf_facings_before_(Facing, RightToLeft),
+  reverse(RightToLeft, LeftToRight).
+shelf_facings_before_(Facing, [Left|Rest]) :-
+  shelf_facing_previous(Facing, Left),
+  shelf_facings_before_(Left, Rest), !.
+shelf_facings_before_(_, []).
+  
+shelf_facings_after(Facing, [Right|Rest]) :-
+  shelf_facing_next(Facing, Right),
+  shelf_facings_after(Right, Rest), !.
+shelf_facings_after(_, []).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -506,9 +527,8 @@ comp_facingPose(Facing, Pose) :-
   owl_instance_from_class('http://knowrob.org/kb/knowrob.owl#Pose',
     [pose=(Layer,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0])], Pose).
 
-%% comp_facingWidth
-%
-comp_facingWidth(Facing, XSD_Val) :-
+
+shelf_facing_width(Facing, Value) :-
   atom(Facing),
   rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
   shelf_layer_standing(ShelfLayer), !,
@@ -516,9 +536,8 @@ comp_facingWidth(Facing, XSD_Val) :-
   rdf_has(Facing, shop:rightSeparator, Right),
   shelf_layer_position(ShelfLayer, Left, Pos_Left),
   shelf_layer_position(ShelfLayer, Right, Pos_Right),
-  Value is abs(Pos_Right - Pos_Left)-0.04, % leave 2cm to each side
-  xsd_float(Value, XSD_Val).
-comp_facingWidth(Facing, XSD_Val) :-
+  Value is abs(Pos_Right - Pos_Left)-0.04. % leave 2cm to each side
+shelf_facing_width(Facing, Value) :-
   rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
   shelf_layer_mounting(ShelfLayer), !,
   rdf_has(Facing, shop:mountingBarOfFacing, MountingBar),
@@ -533,7 +552,12 @@ comp_facingWidth(Facing, XSD_Val) :-
     RightPos is 0.5*LayerWidth
   ),
   Value is min(MountingBarPos - LeftPos,
-               RightPos - MountingBarPos)-0.02, % leave 1cm to each side
+               RightPos - MountingBarPos)-0.02. % leave 1cm to each side
+  
+%% comp_facingWidth
+%
+comp_facingWidth(Facing, XSD_Val) :-
+  shelf_facing_width(Facing,Value),
   xsd_float(Value, XSD_Val).
 
 %% comp_facingHeight
@@ -605,17 +629,6 @@ comp_mainColorOfFacing(Facing, Color_XSD) :-
    (owl_individual_of_during(Facing, shop:'FullProductFacing'),Col='0.0 0.25 0.0 0.4');
    Col='0.0 1.0 0.0 0.4'),
   Color_XSD=literal(type(xsd:string, Col)), !.
-
-product_type_dimensions(Type, [D,W,H]) :-
-  owl_property_range_on_class(Type, shop:depthOfProduct,  literal(type(_,D_atom))),
-  owl_property_range_on_class(Type, shop:widthOfProduct,  literal(type(_,W_atom))),
-  owl_property_range_on_class(Type, shop:heightOfProduct, literal(type(_,H_atom))),
-  atom_number(D_atom, D),
-  atom_number(W_atom, W),
-  atom_number(H_atom, H), !.
-product_type_dimensions(Type, _) :-
-  write('[WARN] No bounding box information available for '), owl_write_readable(Type), nl,
-  fail.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
