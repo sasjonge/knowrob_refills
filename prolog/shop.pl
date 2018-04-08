@@ -45,7 +45,7 @@
       shelf_layer_separator/2,
       shelf_layer_mounting_bar/2,
       shelf_layer_label/2,
-      shelf_layer_facing/2,
+      shelf_facing/2,
       shelf_facing_product_type/2,
       % computable properties
       comp_isSpaceRemainingInFacing/2,
@@ -175,7 +175,7 @@ shelf_layer_frame(Layer, Frame) :-
   owl_has(Frame, knowrob:properPhysicalParts, Layer),
   rdfs_individual_of(Frame, shop:'ShelfFrame'), !.
 %%
-shelf_layer_facing(ShelfLayer, Facing) :-
+shelf_facing(ShelfLayer, Facing) :-
   rdf_has(Facing, shop:layerOfFacing, ShelfLayer).
 
 %%
@@ -245,7 +245,7 @@ shelf_facing_labels_update(ShelfLayer,Facing) :-
   )).
 
 shelf_facings_mark_dirty(ShelfLayer) :-
-  findall(X, shelf_layer_facing(ShelfLayer,X), AllFacings),
+  findall(X, shelf_facing(ShelfLayer,X), AllFacings),
   belief_republish_objects(AllFacings).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -444,11 +444,18 @@ shelf_facing_product_type(Facing, _) :-
 %% comp_preferredLabelOfFacing
 %
 comp_preferredLabelOfFacing(Facing,Label) :-
+  ground(Facing),
   % preferred if label is one of the labelOfFacing
+  findall(L,rdf_has(Facing,shop:labelOfFacing,L),[X|Xs]), !,
+  member(Label,[X|Xs]).
+comp_preferredLabelOfFacing(Facing,Label) :-
+  ground(Facing), !,
+  owl_has(Facing,shop:adjacentLabelOfFacing,Label).
+comp_preferredLabelOfFacing(Facing,Label) :-
   rdf_has(Facing,shop:labelOfFacing,Label).
 comp_preferredLabelOfFacing(Facing,Label) :-
   % preferred if label is adjacent to facing without labelOfFacing
-  holds(Facing,shop:adjacentLabelOfFacing,Label),
+  owl_has(Facing,shop:adjacentLabelOfFacing,Label),
   \+ rdf_has(Facing,shop:labelOfFacing,_).
 
 %% comp_isSpaceRemainingInFacing
@@ -581,11 +588,19 @@ comp_facingDepth(Facing, Selector, Offset, XSD_Val) :-
 comp_mainColorOfFacing(Facing, Color_XSD) :-
   rdf_has(Facing, shop:layerOfFacing, _), !,
   ((owl_individual_of_during(Facing, shop:'UnlabeledProductFacing'),Col='1.0 0.35 0.0 0.4');
-   (owl_individual_of_during(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.4');
+   % FIXME: MisplacedProductFacing seems slow, comp_MisplacedProductFacing is a bit faster
+   (comp_MisplacedProductFacing(Facing),Col='1.0 0.0 0.0 0.4');
+   %(owl_individual_of_during(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.4');
    (owl_individual_of_during(Facing, shop:'EmptyProductFacing'),Col='1.0 1.0 0.0 0.4');
    (owl_individual_of_during(Facing, shop:'FullProductFacing'),Col='0.0 0.25 0.0 0.4');
    Col='0.0 1.0 0.0 0.4'),
   Color_XSD=literal(type(xsd:string, Col)), !.
+
+comp_MisplacedProductFacing(Facing) :-
+  rdf_has(Facing,shop:productInFacing,Product),
+  owl_has(Product,shop:articleNumberOfProduct,AN),
+  forall( rdf_has(Label,shop:articleNumberOfLabel,AN),
+          \+ comp_preferredLabelOfFacing(Facing,Label) ).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
