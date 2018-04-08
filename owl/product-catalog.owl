@@ -30,7 +30,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.155</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -42,7 +42,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.03</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -58,7 +58,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.15</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -70,7 +70,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -86,13 +86,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaAquaFeuchtigkeitsSerum/SM_BaleaAquaFeuchtigkeitsSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.12</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -104,7 +104,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -120,7 +120,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.086</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -132,7 +132,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.063</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -148,13 +148,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaSoftOelBalsam/SM_BaleaSoftOelBalsam.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.19</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -166,7 +166,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.036</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -182,13 +182,13 @@
         <rdfs:subClassOf rdf:resource="&shop;Food"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaMenSensitiveBodylotion/SM_BaleaMenSensitiveBodylotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.119</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -200,7 +200,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.071</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -216,7 +216,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.09</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -228,7 +228,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.05</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -244,13 +244,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaAnitFaltenAugenPads/SM_BaleaAnitFaltenAugenPads.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.13</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -262,7 +262,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.02</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -278,7 +278,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.086</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -290,7 +290,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.063</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -306,13 +306,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalIntensivSerum2/SM_BaleaVitalIntensivSerum2.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.117</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -324,7 +324,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -340,7 +340,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.162</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -352,7 +352,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.016</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -368,7 +368,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.254</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -380,7 +380,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.08</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -396,7 +396,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -408,7 +408,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.045</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -424,7 +424,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.14</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -436,7 +436,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.035</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -452,7 +452,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.09</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -464,7 +464,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.065</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -480,7 +480,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.226</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -492,7 +492,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.07</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -508,7 +508,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.059</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -520,7 +520,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.071</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -536,13 +536,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectHyaluronBooster/SM_BaleaBeautyEffectHyaluronBooster.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.13</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -554,7 +554,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.03</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -570,13 +570,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitMaschinenpfleger/SM_DenkMitMaschinenpfleger.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.15</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -588,7 +588,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.043</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -604,13 +604,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaTeintPerfektionMagicTeintCreme/SM_BaleaTeintPerfektionMagicTeintCreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.145</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -622,7 +622,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.038</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -638,7 +638,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.16</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -650,7 +650,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.036</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -666,7 +666,7 @@
         <rdfs:subClassOf rdf:resource="&shop;BodyOil"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.155</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -678,7 +678,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -694,13 +694,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/CalgonitFinishVorratspack/SM_CalgonitFinishVorratspack.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.268</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -712,7 +712,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.095</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -728,7 +728,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.14</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -740,7 +740,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.024</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -756,13 +756,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveDermaSpaKaschmirGefuehl/SM_DoveDermaSpaKaschmirGefuehl.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.092</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -774,7 +774,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.07</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -790,13 +790,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectNachtSerum/SM_BaleaBeautyEffectNachtSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.098</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -808,7 +808,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.039</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -824,7 +824,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.161</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -836,7 +836,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.035</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -852,13 +852,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaTeintPerfektionWimpernSerum/SM_BaleaTeintPerfektionWimpernSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.13</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -870,7 +870,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.03</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -886,7 +886,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodylotionGlueckshauch/SM_BaleaBodylotionGlueckshauch.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -902,13 +902,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectFaltenFiller/SM_BaleaBeautyEffectFaltenFiller.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.121</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -920,7 +920,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.03</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -936,7 +936,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.086</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -948,7 +948,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.064</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -964,13 +964,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitSpezialsalz/SM_DenkMitSpezialsalz.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.214</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -982,7 +982,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.058</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -998,13 +998,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodylotionCocosSheanuss/SM_BaleaBodylotionCocosSheanuss.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1016,7 +1016,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.045</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1032,13 +1032,13 @@
         <rdfs:subClassOf rdf:resource="&shop;EyeMakeUpRemover"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaAugenMakeUpEntfernerPads2/SM_BaleaAugenMakeUpEntfernerPads2.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.052</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1050,7 +1050,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.07</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1066,7 +1066,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Product"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.2</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1078,7 +1078,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.025</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1094,7 +1094,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.215</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1106,7 +1106,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.01</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1122,7 +1122,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.174</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1134,7 +1134,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.048</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1150,7 +1150,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.173</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1162,7 +1162,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.05</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1178,7 +1178,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.147</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1190,7 +1190,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.047</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1206,13 +1206,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectAugenGelPads/SM_BaleaBeautyEffectAugenGelPads.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.109</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1224,7 +1224,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.012</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1240,13 +1240,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitHygieneAllzweckreiniger/SM_DenkMitHygieneAllzweckreiniger.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.28</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1258,7 +1258,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.085</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1274,13 +1274,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaOelfreiesPflegeSerum/SM_BaleaOelfreiesPflegeSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.117</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1292,7 +1292,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1308,7 +1308,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaOelfreiesCremeGel/SM_BaleaOelfreiesCremeGel.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1324,13 +1324,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodyFitHautstraffendesBodytonic/SM_BaleaBodyFitHautsraffendesBodytonic.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1342,7 +1342,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.045</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1358,13 +1358,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DomestosKraftUniversalreiniger/SM_DomestosKraftUniversalreiniger.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.308</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1376,7 +1376,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.09</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1392,7 +1392,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.28</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1404,7 +1404,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.045</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1420,13 +1420,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalIntensivSerum/SM_BaleaVitalIntensivSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.108</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1438,7 +1438,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1454,13 +1454,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaNachtcremeUrea/SM_BaleaNachtcremeUrea.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.115</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1472,7 +1472,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1488,7 +1488,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.09</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1500,7 +1500,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.07</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1516,13 +1516,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaLeichteBodylotionSanfteFeuchtigkeitspflege/SM_BaleaLeichteBodylotionSanfteFeuchtigkeitspflege.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.226</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1534,7 +1534,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.07</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1550,7 +1550,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.171</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1562,7 +1562,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.035</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1578,7 +1578,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.173</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1590,7 +1590,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.05</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1606,7 +1606,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothbrush"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.24</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1618,7 +1618,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.016</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1634,7 +1634,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.265</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1646,7 +1646,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.063</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1662,7 +1662,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaDuschSoftOelBalsam/SM_BaleaDuschSoftOelBalsam.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1678,13 +1678,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaDunkleFleckenAufheller/SM_BaleaDunkleFleckenAufheller.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.167</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1696,7 +1696,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1712,13 +1712,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalStraffendeAugencreme/SM_BaleaVitalStraffendeAugencreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.085</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1730,7 +1730,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.035</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1746,13 +1746,13 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf2/WeledaRatanhiaZahmcreme/SM_WeledaRatanhiaZahncreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.139</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1764,7 +1764,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.038</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1780,7 +1780,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.145</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1792,7 +1792,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.005</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1808,13 +1808,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectEyeLipSerum/SM_BaleaBeautyEffectEyeLipSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.085</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1826,7 +1826,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.035</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1842,13 +1842,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodylotionUrea/SM_BaleaBodylotionUrea.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1860,7 +1860,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.045</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1876,7 +1876,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Mouthwash"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf2/WeledaRaranhiaMundwasser/SM_WeledaRatanhiaMundwasser.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1892,7 +1892,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.115</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1904,7 +1904,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1920,13 +1920,13 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf2/BlendAMedExtraFrisch/SM_BlendAMedExtraFrisch.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.043</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1938,7 +1938,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.028</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1954,13 +1954,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodybalsamSensitive/SM_BaleaBodybalsamSensitive.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1972,7 +1972,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.045</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1988,13 +1988,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitGeschirrReiniger/SM_DenkMitGeschirrReiniger.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.188</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2006,7 +2006,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.073</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2022,7 +2022,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.19</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2034,7 +2034,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.035</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2050,13 +2050,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitGeschirrReinigerNature/SM_DenkMitGeschirrReinigerNature.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.144</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2068,7 +2068,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.036</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2084,13 +2084,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaGetoenteFeuchtigkeitsCreme/SM_BaleaGetoenteFeuchtigkeitsCreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.115</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2102,7 +2102,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2118,7 +2118,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Product"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.185</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2130,7 +2130,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.047</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2146,7 +2146,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.24</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2158,7 +2158,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.073</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2174,13 +2174,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaVitalHautstraffendeBodylotion/SM_BaleaVitalHautraffendeBodtlotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2192,7 +2192,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.045</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2208,13 +2208,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaReichhaltigeTagescreme/SM_BaleaReichhaltigeTagescreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.115</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2226,7 +2226,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2242,7 +2242,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaGetoenteFeuchtigkeitsCreme2/SM_BaleaGetoenteFeuchtigkeitsCreme2.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2258,7 +2258,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.141</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2270,7 +2270,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.024</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2286,13 +2286,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaTattoo/SM_BaleaTattoo.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.121</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2304,7 +2304,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.047</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2320,7 +2320,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.128</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2332,7 +2332,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.048</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2348,13 +2348,13 @@
         <rdfs:subClassOf rdf:resource="&shop;EyeMakeUpRemover"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaAugenMakeUpEntfernerPads/SM_BaleaAugenMakeUpEntfernerPads.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.053</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2366,7 +2366,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.068</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2382,7 +2382,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.142</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2394,7 +2394,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.025</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2410,7 +2410,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.175</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2422,7 +2422,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.028</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2438,13 +2438,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaTeintPerfektionOptischerSofortZauber/SM_BaleaTeintPerfektionOptischerSofortZauber.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.125</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2456,7 +2456,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2472,7 +2472,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.055</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2484,7 +2484,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.032</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2500,7 +2500,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.252</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2512,7 +2512,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.054</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2528,7 +2528,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.145</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2540,7 +2540,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.046</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2556,7 +2556,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.043</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2568,7 +2568,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.028</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2584,13 +2584,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/SomatClassic/SM_SomatClassic.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.15</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2602,7 +2602,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.063</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2618,7 +2618,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.131</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2630,7 +2630,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.064</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2646,7 +2646,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.23</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2658,7 +2658,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.075</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2674,7 +2674,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/CalgonitFinish/SM_CalgonitFinish.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2690,7 +2690,7 @@
         <rdfs:subClassOf rdf:resource="&shop;EyeMakeUpRemover"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.123</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2702,7 +2702,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.03</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2718,13 +2718,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitGeschirrReinigerEvo/SM_DenkMitGeschirrReinigerEvo.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.143</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2736,7 +2736,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.072</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2752,7 +2752,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.278</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2764,7 +2764,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.054</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2780,7 +2780,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.049</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2792,7 +2792,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.039</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2808,7 +2808,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.109</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2820,7 +2820,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2836,7 +2836,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Mouthwash"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.2</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2848,7 +2848,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.051</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2864,7 +2864,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodylotionButtermilkLemon/SM_BaleaBodylotionButtermilkLemon.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2880,7 +2880,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.187</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2892,7 +2892,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.039</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2908,13 +2908,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveVerwoehnendeBodyLotion2/SM_DoveVerwoehnendeBodyLotion2.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2926,7 +2926,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.049</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2942,7 +2942,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.09</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2954,7 +2954,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.07</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2970,13 +2970,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectPowerMaske/SM_BaleaBeautyEffectPowerMaske.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.115</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2988,7 +2988,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3004,13 +3004,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/CalgonitFinishSpezialSalz/SM_CalgonitFinishSpezialSalz.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.215</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3022,7 +3022,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.05</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3038,13 +3038,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/SomatExtraAllIn1/SM_SomatExtraAllIn1.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.15</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3056,7 +3056,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.063</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3072,7 +3072,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.145</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3084,7 +3084,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.005</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3100,13 +3100,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaTagescremeUrea/SM_BaleaTagescremeUrea.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.115</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3118,7 +3118,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3134,13 +3134,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalPflegendeReinigungsmilch/SM_BaleaVitalPflegendeReinigungsmilch.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.175</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3152,7 +3152,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.038</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3168,7 +3168,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.052</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3180,7 +3180,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.063</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3196,7 +3196,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.298</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3208,7 +3208,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.076</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3224,7 +3224,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.15</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3236,7 +3236,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.05</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3252,13 +3252,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveRevitalisierendesBodyLotion/SM_DoveRevitalisierendesBodyLotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3270,7 +3270,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.049</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3286,13 +3286,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaAntiFaltenSerum/SM_BaleaAntiFaltenSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.12</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3304,7 +3304,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3320,7 +3320,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.14</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3332,7 +3332,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.024</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3348,7 +3348,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.19</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3360,7 +3360,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.085</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3376,7 +3376,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.18</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3388,7 +3388,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.016</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3404,13 +3404,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaWasserSpray/SM_BaleaWasserSpray.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.187</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3422,7 +3422,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.05</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3438,7 +3438,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalSanftesGesichtswasser/SM_BaleaVitalSanftesGesichtswasser.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3454,13 +3454,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaFeuchtigkeitsSpendendeNachtcreme/SM_BaleaFeuchtigkeitsSpendendeNachtcreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.115</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3472,7 +3472,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3488,13 +3488,13 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf2/BlendAMedNatuerlicheKraeuter/SM_BlendAMedNatuerlicheKraeuter.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.049</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3506,7 +3506,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.039</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3522,7 +3522,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.184</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3534,7 +3534,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3550,7 +3550,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.098</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3562,7 +3562,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.058</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3578,13 +3578,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaSanfteReinigungsmilch/SM_BaleaSanfteReinigungsmilch.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.174</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3596,7 +3596,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.037</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3612,13 +3612,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveVerwoehnendeBodyLotion/SM_DoveVerwoehnendeBodyLotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3630,7 +3630,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.049</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3646,13 +3646,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaReichhaltigeNachtcreme/SM_BaleaReichhaltigeNachtcreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.115</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3664,7 +3664,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3680,13 +3680,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalKonzentratGegenPigmentFlecken/SM_BaleaVitalKonzentratGegenPigmentFlecken.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.146</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3698,7 +3698,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3714,7 +3714,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.14</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3726,7 +3726,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.024</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3752,7 +3752,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaMattierende24HPflege/SM_BaleaMattierende24HPflege.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3768,7 +3768,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.163</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3780,7 +3780,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.016</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3796,13 +3796,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaGesichtspflegeMagicSummer/SM_BaleaGesichtspflegeMagicSummer.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.116</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3814,7 +3814,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.041</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3840,7 +3840,7 @@
         <rdfs:subClassOf rdf:resource="&shop;EyeMakeUpRemover"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.123</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3852,7 +3852,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.03</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3868,7 +3868,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.087</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3880,7 +3880,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.063</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3896,7 +3896,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.184</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3908,7 +3908,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3924,13 +3924,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveRegenerierendesBodyLotion/SM_DoveRegenerierendesBodyLotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3942,7 +3942,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.049</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3958,13 +3958,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/CalgonitFinishKlarspueler/SM_CalgonitFinishKlarspueler.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.288</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3976,7 +3976,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.054</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3992,7 +3992,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.2</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4004,7 +4004,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.031</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4020,13 +4020,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodylotionMagicSummer/SM_BaleaBodylotionMagicSummer.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4038,7 +4038,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.045</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4054,13 +4054,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveReichhaltigeBodyMilk/SM_DoveReichhaltigeBodyMilk.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4072,7 +4072,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.049</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4088,7 +4088,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.28</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4100,7 +4100,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.055</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4116,13 +4116,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveHydroBodyLotion/SM_DoveHydroBodyLotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4134,7 +4134,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.049</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4160,13 +4160,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveIntensiveBodyLotion/SM_DoveIntensiveBodyLotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.21</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4178,7 +4178,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.049</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4194,13 +4194,13 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf2/WeledaCalendulaZahncreme/SM_WeledaCalendulaZahncreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.139</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4212,7 +4212,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.038</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4228,13 +4228,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitGeschirrReinigerClassic/SM_DenkMitGeschirrReinigerClassic.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.141</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4246,7 +4246,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.076</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4262,13 +4262,13 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/CalgonitFinishMaschinenpfleger/SM_CalgonitFinishMaschinenpfleger.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.14</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4280,7 +4280,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.044</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4296,7 +4296,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothbrush"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.24</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4308,7 +4308,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.017</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4324,7 +4324,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.162</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4336,7 +4336,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.067</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4352,7 +4352,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.14</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4364,7 +4364,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.045</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4380,7 +4380,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.09</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4392,7 +4392,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.07</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4408,7 +4408,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.141</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4420,7 +4420,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.024</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4436,7 +4436,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.086</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4448,7 +4448,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.063</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4464,13 +4464,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveDermaSpaIntensiv/SM_DoveDermaSpaIntensiv.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.092</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4482,7 +4482,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.07</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4498,13 +4498,13 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaFeuchtigkeitsSpendendeTagescreme/SM_BaleaFeuchtigkeitsSpendendeTagescreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.115</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4516,7 +4516,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4532,7 +4532,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.187</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4544,7 +4544,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
                 <owl:hasValue rdf:datatype="&xsd;float">0.039</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
