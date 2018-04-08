@@ -80,10 +80,13 @@ refills_make_shelf(Frame, [(Pos,bars(Bars),labels(Labels))|Rest]) :-
 refills_make_shelf(_, []).
 
 refills_random_facing(Facing) :-
-  random(0,2,Full),
+  comp_isSpaceRemainingInFacing(Facing, literal(type(_,false))), !.
+
+refills_random_facing(Facing) :-
+  random(0,6,Full),
   random(0,5,Misplaced),
   
-  shelf_facing_product_type(Facing, ProductType),
+  once(shelf_facing_product_type(Facing, ProductType)),
   once(( Misplaced>0 ; (
     rdfs_individual_of(OtherFacing, shop:'ProductFacing'),
     shelf_facing_product_type(OtherFacing, OtherProductType),
@@ -91,14 +94,10 @@ refills_random_facing(Facing) :-
     product_spawn_front_to_back(Facing,_,OtherProductType))
   )),
   
-  ( Full>0 -> (
-    product_spawn_front_to_back(Facing,_),
-    standing_facing_full(Facing) ); (
-    product_spawn_front_to_back(Facing,_),
-    product_spawn_front_to_back(Facing,_),
-    product_spawn_front_to_back(Facing,_),
-    product_spawn_front_to_back(Facing,_)
-  )).
+  ( Full>0 ->
+    standing_facing_full(Facing); 
+    ignore(product_spawn_front_to_back(Facing,_))
+  ).
 
 standing_facing_full(Facing) :-
   product_spawn_front_to_back(Facing,_),
@@ -119,7 +118,7 @@ refills_spawn_facings :-
   ]),
   forall(rdfs_individual_of(Facing, shop:'ProductFacing'),(
     random(0,6,HasProduct),
-    (( HasProduct>0, rdf_has(Facing, shop:associatedLabelOfFacing, Label ) )-> (
+    (( HasProduct>0, holds(Facing, shop:preferredLabelOfFacing, Label ) )-> (
        rdf_has(Label, shop:articleNumberOfLabel, ArticleNumber),
        ( refills_random_facing(Facing) -> true ; (
           write('[WARN] Failed to spawn products into '), owl_write_readable([Facing,ArticleNumber]), nl ))
