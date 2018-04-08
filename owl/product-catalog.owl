@@ -86,7 +86,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaAquaFeuchtigkeitsSerum/SM_BaleaAquaFeuchtigkeitsSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -148,7 +148,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaSoftOelBalsam/SM_BaleaSoftOelBalsam.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -182,7 +182,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Food"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaMenSensitiveBodylotion/SM_BaleaMenSensitiveBodylotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -244,7 +244,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaAnitFaltenAugenPads/SM_BaleaAnitFaltenAugenPads.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -306,7 +306,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalIntensivSerum2/SM_BaleaVitalIntensivSerum2.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -536,7 +536,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectHyaluronBooster/SM_BaleaBeautyEffectHyaluronBooster.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -570,7 +570,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitMaschinenpfleger/SM_DenkMitMaschinenpfleger.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -604,7 +604,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaTeintPerfektionMagicTeintCreme/SM_BaleaTeintPerfektionMagicTeintCreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -694,7 +694,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/CalgonitFinishVorratspack/SM_CalgonitFinishVorratspack.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -756,7 +756,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveDermaSpaKaschmirGefuehl/SM_DoveDermaSpaKaschmirGefuehl.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -790,7 +790,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectNachtSerum/SM_BaleaBeautyEffectNachtSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -852,7 +852,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaTeintPerfektionWimpernSerum/SM_BaleaTeintPerfektionWimpernSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -886,7 +886,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodylotionGlueckshauch/SM_BaleaBodylotionGlueckshauch.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -902,7 +902,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectFaltenFiller/SM_BaleaBeautyEffectFaltenFiller.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -964,7 +964,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitSpezialsalz/SM_DenkMitSpezialsalz.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -998,7 +998,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodylotionCocosSheanuss/SM_BaleaBodylotionCocosSheanuss.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1032,7 +1032,7 @@
         <rdfs:subClassOf rdf:resource="&shop;EyeMakeUpRemover"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaAugenMakeUpEntfernerPads2/SM_BaleaAugenMakeUpEntfernerPads2.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1206,7 +1206,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectAugenGelPads/SM_BaleaBeautyEffectAugenGelPads.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1240,7 +1240,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitHygieneAllzweckreiniger/SM_DenkMitHygieneAllzweckreiniger.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1274,7 +1274,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaOelfreiesPflegeSerum/SM_BaleaOelfreiesPflegeSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1308,7 +1308,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaOelfreiesCremeGel/SM_BaleaOelfreiesCremeGel.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1324,7 +1324,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodyFitHautstraffendesBodytonic/SM_BaleaBodyFitHautsraffendesBodytonic.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1358,7 +1358,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DomestosKraftUniversalreiniger/SM_DomestosKraftUniversalreiniger.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1420,7 +1420,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalIntensivSerum/SM_BaleaVitalIntensivSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1454,7 +1454,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaNachtcremeUrea/SM_BaleaNachtcremeUrea.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1516,7 +1516,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaLeichteBodylotionSanfteFeuchtigkeitspflege/SM_BaleaLeichteBodylotionSanfteFeuchtigkeitspflege.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1662,7 +1662,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaDuschSoftOelBalsam/SM_BaleaDuschSoftOelBalsam.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1678,7 +1678,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaDunkleFleckenAufheller/SM_BaleaDunkleFleckenAufheller.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1712,7 +1712,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalStraffendeAugencreme/SM_BaleaVitalStraffendeAugencreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1746,7 +1746,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf2/WeledaRatanhiaZahmcreme/SM_WeledaRatanhiaZahncreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1808,7 +1808,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectEyeLipSerum/SM_BaleaBeautyEffectEyeLipSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1842,7 +1842,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodylotionUrea/SM_BaleaBodylotionUrea.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1876,7 +1876,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Mouthwash"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf2/WeledaRaranhiaMundwasser/SM_WeledaRatanhiaMundwasser.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1920,7 +1920,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf2/BlendAMedExtraFrisch/SM_BlendAMedExtraFrisch.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1954,7 +1954,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodybalsamSensitive/SM_BaleaBodybalsamSensitive.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1988,7 +1988,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitGeschirrReiniger/SM_DenkMitGeschirrReiniger.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2050,7 +2050,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitGeschirrReinigerNature/SM_DenkMitGeschirrReinigerNature.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2084,7 +2084,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaGetoenteFeuchtigkeitsCreme/SM_BaleaGetoenteFeuchtigkeitsCreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2174,7 +2174,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaVitalHautstraffendeBodylotion/SM_BaleaVitalHautraffendeBodtlotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2208,7 +2208,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaReichhaltigeTagescreme/SM_BaleaReichhaltigeTagescreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2242,7 +2242,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaGetoenteFeuchtigkeitsCreme2/SM_BaleaGetoenteFeuchtigkeitsCreme2.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2286,7 +2286,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaTattoo/SM_BaleaTattoo.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2348,7 +2348,7 @@
         <rdfs:subClassOf rdf:resource="&shop;EyeMakeUpRemover"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaAugenMakeUpEntfernerPads/SM_BaleaAugenMakeUpEntfernerPads.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2438,7 +2438,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaTeintPerfektionOptischerSofortZauber/SM_BaleaTeintPerfektionOptischerSofortZauber.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2584,7 +2584,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/SomatClassic/SM_SomatClassic.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2674,7 +2674,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/CalgonitFinish/SM_CalgonitFinish.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2718,7 +2718,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitGeschirrReinigerEvo/SM_DenkMitGeschirrReinigerEvo.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2864,7 +2864,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodylotionButtermilkLemon/SM_BaleaBodylotionButtermilkLemon.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2908,7 +2908,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveVerwoehnendeBodyLotion2/SM_DoveVerwoehnendeBodyLotion2.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2970,7 +2970,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaBeautyEffectPowerMaske/SM_BaleaBeautyEffectPowerMaske.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3004,7 +3004,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/CalgonitFinishSpezialSalz/SM_CalgonitFinishSpezialSalz.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3038,7 +3038,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/SomatExtraAllIn1/SM_SomatExtraAllIn1.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3100,7 +3100,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaTagescremeUrea/SM_BaleaTagescremeUrea.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3134,7 +3134,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalPflegendeReinigungsmilch/SM_BaleaVitalPflegendeReinigungsmilch.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3252,7 +3252,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveRevitalisierendesBodyLotion/SM_DoveRevitalisierendesBodyLotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3286,7 +3286,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaAntiFaltenSerum/SM_BaleaAntiFaltenSerum.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3404,7 +3404,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaWasserSpray/SM_BaleaWasserSpray.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3438,7 +3438,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalSanftesGesichtswasser/SM_BaleaVitalSanftesGesichtswasser.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3454,7 +3454,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaFeuchtigkeitsSpendendeNachtcreme/SM_BaleaFeuchtigkeitsSpendendeNachtcreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3488,7 +3488,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf2/BlendAMedNatuerlicheKraeuter/SM_BlendAMedNatuerlicheKraeuter.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3578,7 +3578,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaSanfteReinigungsmilch/SM_BaleaSanfteReinigungsmilch.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3612,7 +3612,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveVerwoehnendeBodyLotion/SM_DoveVerwoehnendeBodyLotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3646,7 +3646,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaReichhaltigeNachtcreme/SM_BaleaReichhaltigeNachtcreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3680,7 +3680,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaVitalKonzentratGegenPigmentFlecken/SM_BaleaVitalKonzentratGegenPigmentFlecken.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3752,7 +3752,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaMattierende24HPflege/SM_BaleaMattierende24HPflege.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3796,7 +3796,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaGesichtspflegeMagicSummer/SM_BaleaGesichtspflegeMagicSummer.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3924,7 +3924,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveRegenerierendesBodyLotion/SM_DoveRegenerierendesBodyLotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3958,7 +3958,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/CalgonitFinishKlarspueler/SM_CalgonitFinishKlarspueler.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4020,7 +4020,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/BaleaBodylotionMagicSummer/SM_BaleaBodylotionMagicSummer.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4054,7 +4054,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveReichhaltigeBodyMilk/SM_DoveReichhaltigeBodyMilk.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4116,7 +4116,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveHydroBodyLotion/SM_DoveHydroBodyLotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4160,7 +4160,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveIntensiveBodyLotion/SM_DoveIntensiveBodyLotion.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4194,7 +4194,7 @@
         <rdfs:subClassOf rdf:resource="&shop;Toothpaste"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf2/WeledaCalendulaZahncreme/SM_WeledaCalendulaZahncreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4228,7 +4228,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/DenkMitGeschirrReinigerClassic/SM_DenkMitGeschirrReinigerClassic.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4262,7 +4262,7 @@
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf1/CalgonitFinishMaschinenpfleger/SM_CalgonitFinishMaschinenpfleger.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4464,7 +4464,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareLotion"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf3/DoveDermaSpaIntensiv/SM_DoveDermaSpaIntensiv.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -4498,7 +4498,7 @@
         <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&knowrob;pathToCadModelXXX"/>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
                 <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/low_resolution/Shelf4/BaleaFeuchtigkeitsSpendendeTagescreme/SM_BaleaFeuchtigkeitsSpendendeTagescreme.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
