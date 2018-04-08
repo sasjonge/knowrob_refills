@@ -100,6 +100,10 @@ xsd_boolean(Atom, literal(
     type('http://www.w3.org/2001/XMLSchema#boolean', Atom))) :-
   atom(Atom).
 
+prolog:message(shop(Entities,Msg)) -->
+  { owl_readable(Entities,Entities_readable) },
+  ['[shop.pl] ~w ~w'-[Msg,Entities_readable]].
+  
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % shop:'ArticleNumber'
@@ -119,7 +123,7 @@ create_article_number_(AN_XSD, ArticleNumber) :-
   rdf_assert(ArticleNumber, rdf:type, owl:'NamedIndividual'),
   rdf_assert(ArticleNumber, shop:articleNumberString, AN_XSD),
   create_product_type(ArticleNumber, ProductType),
-  print_message(warning, missing_article_type(ProductType)).
+  print_message(warning, shop([ProductType], 'Missing product type. Incomplete data?')).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -145,7 +149,7 @@ product_type_dimensions(Type, [D,W,H]) :-
   atom_number(W_atom, W),
   atom_number(H_atom, H), !.
 product_type_dimensions(Type, [0.04,0.04,0.04]) :-
-  print_message(warning, missing_bounding_box(Type)),
+  print_message(warning, shop(Type,'No bounding box is defined')),
   product_type_dimension_assert(Type, shop:depthOfProduct, 0.04),
   product_type_dimension_assert(Type, shop:widthOfProduct, 0.04),
   product_type_dimension_assert(Type, shop:heightOfProduct, 0.04), !.
@@ -430,7 +434,7 @@ shelf_facing_product_type(Facing, ProductType) :-
   rdf_has(ProductType, rdfs:subClassOf, R),
   rdf_has(ProductType, rdf:type, owl:'Class'), !.
 shelf_facing_product_type(Facing, _) :-
-  write('[WARN] No product type associated to facing '), owl_write_readable(Facing), nl,
+  print_message(warning, shop([Facing], 'Facing has no associated product type.')),
   fail.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -439,18 +443,13 @@ shelf_facing_product_type(Facing, _) :-
 
 %% comp_preferredLabelOfFacing
 %
-% TODO: this is not yet right
 comp_preferredLabelOfFacing(Facing,Label) :-
-  % prefer labelOfFacing relation
-  findall(L,rdf_has(Facing,shop:labelOfFacing,L),[X|Xs]), !,
-  member(Label,[X|Xs]).
+  % preferred if label is one of the labelOfFacing
+  rdf_has(Facing,shop:labelOfFacing,Label).
 comp_preferredLabelOfFacing(Facing,Label) :-
-  % prefer labels which are adjacentLabelOfFacing and productLabelOfFacing
-  findall(L0,holds(Facing,shop:adjacentLabelOfFacing,L0),[X|Xs]), !,
-  (( member(L1,[X|Xs]),
-     once(holds(Facing,shop:productLabelOfFacing,L1)) ) *->
-     Label=L1 ;
-     member(Label,[X|Xs]) ).
+  % preferred if label is adjacent to facing without labelOfFacing
+  holds(Facing,shop:adjacentLabelOfFacing,Label),
+  \+ rdf_has(Facing,shop:labelOfFacing,_).
 
 %% comp_isSpaceRemainingInFacing
 %
@@ -582,46 +581,11 @@ comp_facingDepth(Facing, Selector, Offset, XSD_Val) :-
 comp_mainColorOfFacing(Facing, Color_XSD) :-
   rdf_has(Facing, shop:layerOfFacing, _), !,
   ((owl_individual_of_during(Facing, shop:'UnlabeledProductFacing'),Col='1.0 0.35 0.0 0.4');
-   (facing_misplaced(Facing),Col='1.0 0.0 0.0 0.4');
-   % FIXME
-   %(owl_individual_of_during(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.4');
+   (owl_individual_of_during(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.4');
    (owl_individual_of_during(Facing, shop:'EmptyProductFacing'),Col='1.0 1.0 0.0 0.4');
    (owl_individual_of_during(Facing, shop:'FullProductFacing'),Col='0.0 0.25 0.0 0.4');
    Col='0.0 1.0 0.0 0.4'),
   Color_XSD=literal(type(xsd:string, Col)), !.
-
-facing_misplaced(Facing) :-
-  rdf_has(Facing,shop:productInFacing,Product),
-  
-%  owl_individual_of_during(Product,shop:'MisplacedProduct'),
-  
-%  \+ owl_individual_of_during(Product,shop:'WellPlacedProduct'),
-
-%  \+ holds(Product,shop:siblingInFacing,Product),
-
-%  \+ holds(Product,shop:validFacingForProduct,Facing),
-
-%  \+ (
-%    holds(Product,shop:validFacingForProduct,Facing0),
-%    rdf_has(Facing0,shop:productInFacing,Product)),
-
-  %\+ (
-  %  rdf_has(Product,shop:articleNumberOfProduct,AN),
-  %  holds(Facing0,shop:articleNumberOfFacing,AN),
-  %  rdf_has(Facing0,shop:productInFacing,Product)),
-
-  rdf_has(Product,shop:articleNumberOfProduct,AN),
-  rdf_has(Label,shop:articleNumberOfLabel,AN),
-  \+ comp_preferredLabelOfFacing(Facing,Label),
-  
-  writeln(facing_misplaced(Facing))
-  
-  .
-%facing_misplaced(Facing) :-
-%  rdf_has(Facing,shop:productInFacing,Product),
-%  writeln(owl_individual_of_during(Product,shop:'MisplacedProduct')).
-  
-
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -677,7 +641,7 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
   belief_new_object(Type, Obj),
   % enforce we have a product here
   ( rdfs_individual_of(Obj,shop:'Product') -> true ;(
-    write('[WARN] '), owl_write_readable(Type), write(' is not subclass of shop:Product'), nl,
+    print_message(warning, shop([Obj], 'Is not subclass of shop:Product.')),
     rdf_assert(Obj,rdf:type,shop:'Product') )),
   
   % compute offset
