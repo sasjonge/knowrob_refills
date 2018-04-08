@@ -12,7 +12,7 @@ from json_prolog import json_prolog
 from random import random
 
 from unreal_msgs.msg import ModelDescription, InstanceId, MeshDescription, Tag
-from unreal_msgs.srv import SpawnMultipleModels
+from unreal_msgs.srv import SpawnMultipleModels, SpawnModel
 
 class UnrealObject(object):
     def __init__(self):
@@ -98,6 +98,7 @@ class UnrealShop(object):
         self.objects = defaultdict(lambda: UnrealObject())
         self.unreal_publisher = rospy.Publisher("/unreal", ModelDescription, queue_size=100)
         self.unreal_service = rospy.ServiceProxy('unreal/spawn_multiple_models', SpawnMultipleModels)
+        self.unreal_service_single = rospy.ServiceProxy('unreal/spawn_model', SpawnModel)
         rospy.loginfo('unreal publisher is running')
 
     def prolog_query(self, q, verbose=False):
@@ -118,8 +119,6 @@ class UnrealShop(object):
         self.load_object_information(object_ids)
 
     def load_object_ids(self):
-        # TODO: replace with service calls telling the publisher that objects were created/destroyed.
-        #       then this lookup has only to be done once initially
         q = 'belief_existing_objects(A)'
         solutions = self.prolog_query(q)
         for object_id in solutions[0]['A']:
@@ -156,9 +155,14 @@ class UnrealShop(object):
 
     def spawn(self):
         self.load_objects()
+        self.unreal_service(map(lambda o: o.get_message(), self.objects.values()))
+
+    def spawn_single(self):
+        self.load_objects()
         msgs = map(lambda o: o.get_message(), self.objects.values())
-        print(msgs)
-        self.unreal_service(msgs)
+        for msg in msgs:
+            self.unreal_service_single(msg)
+        
 
 if __name__ == '__main__':
     rospy.init_node('unreal_shop')
