@@ -1,4 +1,7 @@
 <launch>
+  <arg name="mongodb_log" default="false" />
+  <arg name="mongodb_whipe" default="false" />
+  
   <param name="initial_package" type="string" value="knowrob_refills" />
   <param name="initial_goal" type="string" value="register_ros_package(knowrob_robosherlock),belief_parse('package://knowrob_refills/owl/dm-market.owl'),owl_parser:owl_parse('package://knowrob_refills/owl/product-catalog.owl')" />
   <node name="json_prolog" pkg="json_prolog" type="json_prolog_node" output="screen"/>
@@ -7,9 +10,17 @@
   <include file="$(find knowrob_paramserver)/launch/upload_owl_to_paramserver.launch" />
 -->
 
+  <group if="$(arg mongodb_whipe)">
+    <node name="mongodb_whipe" pkg="knowrob_refills" type="delete_mongo_roslog.sh" />
+  </group>
+
   <node name="object_state_publisher" pkg="knowrob_objects" type="object_state_publisher.py" output="screen">
     <param name="hz" value="1" />
     <param name="object_types" value="knowrob:'EnduringThing-Localized',shop:'ProductFacing'" />
   </node>
 
+  <group if="$(arg mongodb_log)">
+    <node name="mongodb_log" pkg="mongodb_log" type="mongodb_log"
+      args="--mongodb-name REFILLS_0 /tf" />
+  </group>
 </launch>
