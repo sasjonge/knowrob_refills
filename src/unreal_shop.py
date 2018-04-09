@@ -161,6 +161,7 @@ class UnrealShop(object):
         self.load_objects()
         msgs = map(lambda o: o.get_message(), self.objects.values())
         for msg in msgs:
+            print(msg)
             self.unreal_service_single(msg)
         
 
