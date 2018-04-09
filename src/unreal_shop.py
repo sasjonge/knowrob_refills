@@ -52,7 +52,7 @@ class UnrealObject(object):
         if 'ProductWithAN' in self.object_type:
           msg.instance_id.ns = '/IAISupermarket/Catalog'
         elif 'ShelfLabel' in self.object_type:
-          msg.instance_id.ns = '/IAISupermarket/ShelfLabes'
+          msg.instance_id.ns = '/IAISupermarket/ShelfLabels'
         else:
           msg.instance_id.ns = '/IAISupermarket/Shelves'
         # generate MeshDescription
@@ -167,4 +167,4 @@ class UnrealShop(object):
 if __name__ == '__main__':
     rospy.init_node('unreal_shop')
     unreal_shop = UnrealShop()
-    unreal_shop.spawn()
+    unreal_shop.spawn_single()
