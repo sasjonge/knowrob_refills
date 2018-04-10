@@ -508,9 +508,8 @@ shelf_facing_width(Facing, Value) :-
   rdf_has(Facing, shop:rightSeparator, Right),
   shelf_layer_position(ShelfLayer, Left, Pos_Left),
   shelf_layer_position(ShelfLayer, Right, Pos_Right),
-  Value is abs(Pos_Right - Pos_Left), % leave 2cm to each side
-  xsd_float(Value, XSD_Val).
-comp_facingWidth(Facing, XSD_Val) :-
+  Value is abs(Pos_Right - Pos_Left). % leave 2cm to each side
+shelf_facing_width(Facing, Value) :-
   rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
   shelf_layer_mounting(ShelfLayer), !,
   rdf_has(Facing, shop:mountingBarOfFacing, MountingBar),
@@ -525,8 +524,7 @@ comp_facingWidth(Facing, XSD_Val) :-
     RightPos is 0.5*LayerWidth
   ),
   Value is min(MountingBarPos - LeftPos,
-               RightPos - MountingBarPos), % leave 1cm to each side
-  xsd_float(Value, XSD_Val).
+               RightPos - MountingBarPos). % leave 1cm to each side
 
 %% comp_facingHeight
 %
