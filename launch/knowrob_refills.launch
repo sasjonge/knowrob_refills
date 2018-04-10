@@ -3,7 +3,7 @@
   <arg name="mongodb_whipe" default="false" />
   
   <param name="initial_package" type="string" value="knowrob_refills" />
-  <param name="initial_goal" type="string" value="register_ros_package(knowrob_robosherlock),belief_parse('package://knowrob_refills/owl/dm-market.owl'),owl_parser:owl_parse('package://knowrob_refills/owl/product-catalog.owl')" />
+  <param name="initial_goal" type="string" value="register_ros_package(knowrob_robosherlock),owl_parser:owl_parse('package://knowrob_refills/owl/dm-market.owl'),owl_parser:owl_parse('package://knowrob_refills/owl/product-catalog.owl')" />
   <node name="json_prolog" pkg="json_prolog" type="json_prolog_node" output="screen"/>
 
 <!--
@@ -21,6 +21,6 @@
 
   <group if="$(arg mongodb_log)">
     <node name="mongodb_log" pkg="mongodb_log" type="mongodb_log"
-      args="--mongodb-name REFILLS_0 /tf" />
+      args="/tf --mongodb-name REFILLS_0" />
   </group>
 </launch>
