@@ -1124,7 +1124,7 @@
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_Separator">
         <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
         <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.217 -0.02</knowrob:translation>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.217 -0.03</knowrob:translation>
     </owl:NamedIndividual>
     
 
@@ -1190,7 +1190,7 @@
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#TransformOffset_Separator">
         <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
         <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.05 0.07</knowrob:translation>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.05 0.0979</knowrob:translation>
     </owl:NamedIndividual>
 
     <!-- http://knowrob.org/kb/dm-market.owl#TransformOffset_Separator5 -->
@@ -1198,7 +1198,7 @@
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#TransformOffset_Separator5">
         <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
         <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.18 0.07</knowrob:translation>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.18 0.0979</knowrob:translation>
     </owl:NamedIndividual>
 </rdf:RDF>
 
