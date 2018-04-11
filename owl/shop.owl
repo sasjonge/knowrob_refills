@@ -766,12 +766,6 @@
     
 
 
-    <!-- http://knowrob.org/kb/knowrob.owl#LookingAtLocation -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#LookingAtLocation"/>
-    
-
-
     <!-- http://knowrob.org/kb/knowrob.owl#MovingToLocation -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#MovingToLocation"/>
@@ -865,6 +859,12 @@
     <!-- http://knowrob.org/kb/motions.owl#BaseMovement -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/motions.owl#BaseMovement"/>
+    
+
+
+    <!-- http://knowrob.org/kb/motions.owl#LookingAtLocation -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/motions.owl#LookingAtLocation"/>
     
 
 
@@ -1117,7 +1117,7 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#subAction"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/knowrob.owl#LookingAtLocation"/>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/motions.owl#LookingAtLocation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
