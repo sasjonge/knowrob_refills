@@ -667,11 +667,17 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
     Offset_H is Obj_H*0.5 + 0.05 ;
     Offset_H is -Obj_H*0.5 - 0.05 ),
   
+  % HACK rotate if it has a mesh
+  ( object_mesh_path(Obj,_) ->
+    Rot=[0.0, 0.0, -0.70711, 0.70711] ;
+    Rot=[0.0, 0.0, 0.0, 1.0] ),
+  writeln(Rot),
+  
   % declare transform
   object_frame_name(Layer, Layer_frame),
   belief_at_update(Obj, [Layer_frame,_, 
       [Facing_X, Offset_D, Offset_H],
-      [0.0, 0.0, 0.0, 1.0]]),
+      Rot]),
   rdf_assert(Facing, shop:productInFacing, Obj, belief_state),
   
   belief_republish_objects([Facing]).
