@@ -44,3 +44,4 @@
 
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
+:- rdf_db:rdf_register_ns(iaishop, 'http://knowrob.org/kb/iai-shop.owl#', [keep(true)]).
