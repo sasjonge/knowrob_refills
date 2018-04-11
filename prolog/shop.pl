@@ -638,7 +638,7 @@ belief_shelf_part_at(Layer, Type, Pos, Obj) :-
 belief_shelf_barcode_at(Layer, Type, ArticleNumber_value, PosNorm, Obj) :-
   create_article_number(ArticleNumber_value, ArticleNumber),
   belief_shelf_part_at(Layer, Type, PosNorm, Obj),
-  rdf_assert(Obj, shop:articleNumberOfLabel, ArticleNumber).
+  rdf_assert(Obj, shop:articleNumberOfLabel, ArticleNumber, belief_state).
 
 pos_term(Axis, norm(Pos), norm(Axis,Pos)) :- !.
 pos_term(Axis, Pos, pos(Axis,Pos)).
