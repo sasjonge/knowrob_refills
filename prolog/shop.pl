@@ -45,6 +45,7 @@
       shelf_layer_separator/2,
       shelf_layer_mounting_bar/2,
       shelf_layer_label/2,
+      shelf_layer_find_facing_at/3,
       shelf_facing/2,
       shelf_facing_product_type/2,
       % computable properties
@@ -82,7 +83,9 @@
     shelf_layer_part(r,r,r),
     belief_shelf_part_at(r,r,+,-),
     belief_shelf_barcode_at(r,r,+,+,-),
-    product_type_dimension_assert(r,r,+).
+    product_type_dimension_assert(r,r,+),
+    product_spawn_front_to_back(r,r,r),
+    product_spawn_front_to_back(r,r).
 
 :- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
 :- rdf_db:rdf_register_ns(owl, 'http://www.w3.org/2002/07/owl#', [keep(true)]).
@@ -671,7 +674,6 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
   ( object_mesh_path(Obj,_) ->
     Rot=[0.0, 0.0, -0.70711, 0.70711] ;
     Rot=[0.0, 0.0, 0.0, 1.0] ),
-  writeln(Rot),
   
   % declare transform
   object_frame_name(Layer, Layer_frame),

@@ -25,6 +25,7 @@ class UnrealObject(object):
         self.visualize = False
         self.color = ColorRGBA(0, 0, 0, 1)
         self.scale = Vector3(0.05, 0.05, 0.05)
+        # TODO set static flag
 
     def update_color(self, r, g, b, a):
         self.color = ColorRGBA()
@@ -128,6 +129,7 @@ class UnrealShop(object):
             if name.startswith("Lightbulb"):       continue
             elif name.startswith("DMShelfSystem"): continue
             elif name.startswith("CeilingLight"):  continue
+            # TODO ignore bottom layer
             
             if object_id not in self.objects.keys():
                 self.objects[object_id] = UnrealObject()
