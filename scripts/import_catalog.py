@@ -5,7 +5,9 @@ import sys, os
 import re
 import getopt
 import json
+import yaml
 from openpyxl import load_workbook
+import rospkg
 
 from class_mapping import OWLResourceManager, OWLClass, OWLIndividual
 from label_mapping import LABEL_MAPPING_PREFIX, \
@@ -119,6 +121,7 @@ class ProductTable:
     #  coltype='instance',
     #  cls='ProductBrand',
     #  role='brand'),
+    # TODO: replace this with data from meshes when available
     ProductTableColumn('width',
       labels=['Artikel Breite (DANf) cm'],
       coltype='parameter',
@@ -134,22 +137,30 @@ class ProductTable:
       coltype='parameter',
       param='depthOfProduct',
       paramType='&xsd;float'),
-    ProductTableColumn('article',
-      labels=['Artikel'],
-      coltype='annotation',
-      role='label'),
+    #ProductTableColumn('article',
+      #labels=['Artikel'],
+      #coltype='annotation',
+      #role='label'),
     ProductTableColumn('articleNumber',['DAN', 'EAN'],coltype='instance'),
+    # Different GTIN's of a product indicate different variants
+    ProductTableColumn('gtin',
+      labels=['GTIN'],
+      coltype='subclass',
+      param='gtin',
+      paramType='&xsd;string'),
   ]
   
   
-  def __init__(self, resourceManager, whitelist, meshPrefix, xlsxFile, xlsxTable, lang='de'):
+  def __init__(self, resourceManager, datafile, meshPrefix, xlsxFile, xlsxTable, lang='de'):
     self.resourceManager = resourceManager
     self.table = load_workbook(xlsxFile)[xlsxTable]
     self.lang  = lang
     self.rawLabels = set()
     self.class_articles = {}
-    self.whitelist = whitelist
+    self.datafile = datafile
     self.meshPrefix = meshPrefix
+    self.meshPathTemplate = self.meshPrefix +\
+      'models_with_convention/ProductWithAN/ProductWithAN{}/ProductWithAN{}.dae'
     # create ordered list of columns we have some meta information about
     self.header = []
     for row in self.table.iter_rows(min_row=1, max_row=1):
@@ -162,6 +173,7 @@ class ProductTable:
       article = OWLClass(articleClass, self.resourceManager.ontologyPrefix)
       article.has_type('Product')
       article.has_object_value("articleNumberOfProduct", self.article_number(articleNumber))
+      #article.has_data_value("dan", "&xsd;string", articleNumber)
       self.resourceManager.owlClasses[articleClass] = article
       return article
   
@@ -184,16 +196,25 @@ class ProductTable:
   
   def read(self):
     """ read in the complete table, create ProductClass instances on the way """
+    rospack = rospkg.RosPack()
     for row in self.table.iter_rows(min_row=2):
       # first get article class
       articleNumber = str(self.read_value(row, 'articleNumber')).zfill(6)
       # skip non whitelisted
-      if self.whitelist != None and not articleNumber in self.whitelist: continue
-      articleClass  = self.article(articleNumber)
-      # check if we have a mesh value in the whitelist
-      if self.whitelist != None:
-        meshPath = self.whitelist[articleNumber]
-        if len(meshPath)>4: articleClass.meshPath = self.meshPrefix + meshPath
+      if self.datafile != None and not articleNumber in self.datafile: continue
+      articleClass = self.article(articleNumber)
+      # FIXME proper mesh handling
+      meshPath    = self.meshPathTemplate.format(articleNumber,articleNumber)
+      meshPkg     = meshPath.split("//")[1].split("/")[0]
+      meshPathRes = str(rospack.get_path(meshPkg)) + meshPath.split("package://"+meshPkg)[1]
+      if os.path.isfile(meshPathRes):
+        articleClass.meshPath = meshPath
+      else:
+        print("WARN: mesh does not exist at " + meshPath)
+      # check if we have a mesh value in the datafile
+      if self.datafile != None:
+        # TODO read bounding box from data file
+        pass
       for i in range(len(self.header)):
         column = self.header[i]
         if column!=None and (column.role!=None or column.param!=None):
@@ -219,12 +240,21 @@ class ProductTable:
       if cellInstance==None: return None
       self.read_cell_types(article,cellInstance,row,column)
       self.read_cell_property(article,cellInstance,column)
+    elif column.coltype=='subclass':
+      className = article.name + "_" + rawLabel
+      if not className in self.resourceManager.owlClasses:
+        cls = OWLClass(className, self.resourceManager.ontologyPrefix)
+        self.resourceManager.owlClasses[className] = cls
+        cls.has_type(article.name)
+        cls.has_data_value(column.param, column.paramType, rawLabel)
     elif column.coltype=='parameter':
       # HACK cm -> m
       if column.paramType=="&xsd;float":
         num = float(rawLabel)/100.0
         rawLabel = str(num)
       self.read_cell_property(article,rawLabel,column)
+    else:
+      print("WARN: unknown column type: " + column.coltype)
     return label
 
   def add_class_article(self,article,cellClass,row,column):
@@ -291,15 +321,15 @@ def main(argv):
   outDir = os.path.abspath(os.path.dirname(os.path.realpath(__file__)) + "/../owl/")
   # handle commandline parameters
   try:
-    opts, args = getopt.getopt(argv, "tcsw:p:l:i:o:m:",
-      ["taxonomy", "catalog", "subclasses", "whitelist=", "mesh-prefix=", "list=", "input=", "output-dir=", "output-mode="])
+    opts, args = getopt.getopt(argv, "tcsd:p:l:i:o:m:",
+      ["taxonomy", "catalog", "subclasses", "datafile=", "mesh-prefix=", "list=", "input=", "output-dir=", "output-mode="])
   except getopt.GetoptError:
     sys.exit(2)
   opt_taxonomy = False
   opt_catalog = False
   opt_subclasses = False
   opt_mesh_prefix = "package://refills_models/"
-  opt_whitelist = {}
+  opt_datafile = None
   opt_list = []
   opt_tables = []
   for opt, arg in opts:
@@ -309,8 +339,11 @@ def main(argv):
       opt_subclasses = True
     elif opt in ("-c", "--catalog"):
       opt_catalog = True
-    elif opt in ("-w", "--whitelist"):
-      opt_whitelist = json.load(open(arg))
+    elif opt in ("-d", "--datafile"):
+      f = open(arg)
+      opt_datafile = yaml.load(f)
+      #opt_datafile = json.load(f)
+      f.close() 
     elif opt in ("-l", "--list"):
       opt_list.append(arg)
     elif opt in ("-i", "--input"):
@@ -323,7 +356,7 @@ def main(argv):
   tables = []
   for table_arg in opt_tables:
     x = table_arg.split(":")
-    tables.append(ProductTable(resourceManager, opt_whitelist, opt_mesh_prefix, x[0], x[1]))
+    tables.append(ProductTable(resourceManager, opt_datafile, opt_mesh_prefix, x[0], x[1]))
   # print out unique names
   for l in opt_list:
       for t in tables:
