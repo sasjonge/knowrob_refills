@@ -79,8 +79,8 @@ refills_make_shelf(Frame, [(Pos,bars(Bars),labels(Labels))|Rest]) :-
 
 refills_make_shelf(_, []).
 
-refills_random_facing(Facing) :-
-  comp_isSpaceRemainingInFacing(Facing, literal(type(_,false))), !.
+%refills_random_facing(Facing) :-
+  %comp_isSpaceRemainingInFacing(Facing, literal(type(_,false))), !.
 
 refills_random_facing(Facing) :-
   random(0,6,Full),
@@ -93,15 +93,17 @@ refills_random_facing(Facing) :-
     OtherProductType \= ProductType,
     product_spawn_front_to_back(Facing,_,OtherProductType))
   )),
-  
   ( Full>0 ->
     standing_facing_full(Facing); 
     ignore(product_spawn_front_to_back(Facing,_))
   ).
 
 standing_facing_full(Facing) :-
+  comp_isSpaceRemainingInFacing(Facing, literal(type(_,false))), !.
+
+standing_facing_full(Facing) :-
   product_spawn_front_to_back(Facing,_),
-  ignore(standing_facing_full(Facing)).
+  standing_facing_full(Facing).
 
 refills_spawn_facings :-
   refills_make_shelf('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS', [
@@ -117,10 +119,11 @@ refills_spawn_facings :-
     (1.0, bars([0.1,0.2,0.3,0.5,0.7,0.9]), labels([(0.2,'250899'),(0.9,'544382')]))
   ]),
   forall(rdfs_individual_of(Facing, shop:'ProductFacing'),(
-    random(0,6,HasProduct),
+    %random(0,6,HasProduct),
+    HasProduct is 1,
     (( HasProduct>0, holds(Facing, shop:preferredLabelOfFacing, Label ) )-> (
-       rdf_has(Label, shop:articleNumberOfLabel, ArticleNumber),
+       rdf_has(Label, shop:articleNumberOfLabel, AN),
        ( refills_random_facing(Facing) -> true ; (
-          write('[WARN] Failed to spawn products into '), owl_write_readable([Facing,ArticleNumber]), nl ))
+          write('[WARN] Failed to spawn products into '), owl_write_readable([Facing,AN]), nl ))
     ) ; true)
   )).

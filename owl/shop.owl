@@ -61,29 +61,6 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Datatypes
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://knowrob.org/kb/shop.owl#dan -->
-
-    <rdfs:Datatype rdf:about="http://knowrob.org/kb/shop.owl#dan"/>
-    
-
-
-    <!-- http://knowrob.org/kb/shop.owl#ean -->
-
-    <rdfs:Datatype rdf:about="http://knowrob.org/kb/shop.owl#ean"/>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
     // Object Properties
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -614,19 +591,15 @@
     
 
 
-    <!-- http://knowrob.org/kb/shop.owl#articleNumberString -->
 
-    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#articleNumberString">
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#dan">
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#shopParameter"/>
         <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#ArticleNumber"/>
-        <rdfs:range>
-            <rdfs:Datatype>
-                <owl:unionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://knowrob.org/kb/shop.owl#dan"/>
-                    <rdf:Description rdf:about="http://knowrob.org/kb/shop.owl#ean"/>
-                </owl:unionOf>
-            </rdfs:Datatype>
-        </rdfs:range>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#gtin">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#shopParameter"/>
+        <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#ArticleNumber"/>
     </owl:DatatypeProperty>
     
 

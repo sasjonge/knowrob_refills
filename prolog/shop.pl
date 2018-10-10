@@ -111,38 +111,42 @@ prolog:message(shop(Entities,Msg)) -->
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % shop:'ArticleNumber'
 
-create_article_number(ean(AN), ArticleNumber) :-
-  create_article_number_(literal(type('http://knowrob.org/kb/shop.owl#ean',AN)), ArticleNumber).
-create_article_number(dan(AN), ArticleNumber) :-
-  create_article_number_(literal(type('http://knowrob.org/kb/shop.owl#dan',AN)), ArticleNumber).
-create_article_number_(AN_XSD,ArticleNumber) :-
-  owl_has(ArticleNumber, shop:articleNumberString, AN_XSD), !.
-create_article_number_(AN_XSD, ArticleNumber) :-
-  strip_literal_type(AN_XSD, AN_atom),
-  atomic_list_concat([
-    'http://knowrob.org/kb/shop.owl#ArticleNumber_',
-    AN_atom], ArticleNumber),
-  rdf_assert(ArticleNumber, rdf:type, shop:'ArticleNumber'),
-  rdf_assert(ArticleNumber, rdf:type, owl:'NamedIndividual'),
-  rdf_assert(ArticleNumber, shop:articleNumberString, AN_XSD),
-  create_product_type(ArticleNumber, ProductType),
-  print_message(warning, shop([ProductType], 'Missing product type. Incomplete data?')).
+%create_article_number(ean(AN), ArticleNumber) :-
+  %create_article_number_(literal(type('http://knowrob.org/kb/shop.owl#ean',AN)), ArticleNumber).
+%create_article_number(dan(AN), ArticleNumber) :-
+  %create_article_number_(literal(type('http://knowrob.org/kb/shop.owl#dan',AN)), ArticleNumber).
+%create_article_number_(AN_XSD,ArticleNumber) :-
+  %owl_has(ArticleNumber, shop:articleNumberString, AN_XSD), !.
+%create_article_number_(AN_XSD, ArticleNumber) :-
+  %strip_literal_type(AN_XSD, AN_atom),
+  %atomic_list_concat([
+    %'http://knowrob.org/kb/shop.owl#ArticleNumber_',
+    %AN_atom], ArticleNumber),
+  %rdf_assert(ArticleNumber, rdf:type, shop:'ArticleNumber'),
+  %rdf_assert(ArticleNumber, rdf:type, owl:'NamedIndividual'),
+  %rdf_assert(ArticleNumber, shop:articleNumberString, AN_XSD),
+  %create_product_type(ArticleNumber, ProductType),
+  %print_message(warning, shop([ProductType], 'Missing product type. Incomplete data?')).
+
+article_number_of_dan(DAN,AN) :-
+  rdf_has_prolog(AN,shop:dan,DAN),
+  rdfs_individual_of(AN,shop:'ArticleNumber'),!.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % shop:'Product'
 
-create_product_type(ArticleNumber,ProductType) :-
-  rdf_has(ArticleNumber, shop:articleNumberString, literal(type(_,AN_atom))),
-  atomic_list_concat([
-    'http://knowrob.org/kb/shop.owl#ProductWithAN',
-    AN_atom], ProductType),
-  rdf_assert(ProductType, rdfs:subClassOf, shop:'Product'),
-  rdf_assert(ProductType, rdf:type, owl:'Class'),
-  owl_restriction_assert(restriction(
-    shop:articleNumberOfProduct,
-    has_value(ArticleNumber)), AN_R),
-  rdf_assert(ProductType, rdfs:subClassOf, AN_R).
+%create_product_type(ArticleNumber,ProductType) :-
+  %rdf_has(ArticleNumber, shop:articleNumberString, literal(type(_,AN_atom))),
+  %atomic_list_concat([
+    %'http://knowrob.org/kb/shop.owl#ProductWithAN',
+    %AN_atom], ProductType),
+  %rdf_assert(ProductType, rdfs:subClassOf, shop:'Product'),
+  %rdf_assert(ProductType, rdf:type, owl:'Class'),
+  %owl_restriction_assert(restriction(
+    %shop:articleNumberOfProduct,
+    %has_value(ArticleNumber)), AN_R),
+  %rdf_assert(ProductType, rdfs:subClassOf, AN_R).
 
 product_type_dimensions(Type, [D,W,H]) :-
   owl_property_range_on_class(Type, shop:depthOfProduct,  literal(type(_,D_atom))),
@@ -433,7 +437,7 @@ facing_space_remaining_behind(Facing,Obj) :-
 shelf_facing_product_type(Facing, ProductType) :-
   holds(Facing, shop:articleNumberOfFacing, ArticleNumber),
   rdf_has(R, owl:hasValue, ArticleNumber),
-  rdf_has(R, owl:onProperty, shop:articleNumberOfProduct),
+  %rdf_has(R, owl:onProperty, shop:dan),
   rdf_has(ProductType, rdfs:subClassOf, R),
   rdf_has(ProductType, rdf:type, owl:'Class'), !.
 shelf_facing_product_type(Facing, _) :-
@@ -603,7 +607,7 @@ comp_MisplacedProductFacing(Facing) :-
   rdf_has(Facing,shop:productInFacing,Product),
   owl_has(Product,shop:articleNumberOfProduct,AN),
   forall( rdf_has(Label,shop:articleNumberOfLabel,AN),
-          \+ comp_preferredLabelOfFacing(Facing,Label) ).
+          \+ comp_preferredLabelOfFacing(Facing,Label) ),!.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -638,10 +642,12 @@ belief_shelf_part_at(Layer, Type, Pos, Obj) :-
   belief_perceived_part_at_axis(Layer, Type, PosTerm, Obj),
   shelf_label_insert(Layer,Obj).
 
-belief_shelf_barcode_at(Layer, Type, ArticleNumber_value, PosNorm, Obj) :-
-  create_article_number(ArticleNumber_value, ArticleNumber),
+belief_shelf_barcode_at(Layer, Type, dan(DAN), PosNorm, Obj) :-
+  %create_article_number(ArticleNumber_value, ArticleNumber),
   belief_shelf_part_at(Layer, Type, PosNorm, Obj),
-  rdf_assert(Obj, shop:articleNumberOfLabel, ArticleNumber, belief_state).
+  % 
+  forall( article_number_of_dan(DAN,AN),
+          rdf_assert(Obj, shop:articleNumberOfLabel, AN, belief_state) ).
 
 pos_term(Axis, norm(Pos), norm(Axis,Pos)) :- !.
 pos_term(Axis, Pos, pos(Axis,Pos)).
@@ -672,8 +678,9 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
   
   % HACK rotate if it has a mesh
   ( object_mesh_path(Obj,_) ->
-    Rot=[0.0, 0.0, -0.70711, 0.70711] ;
+    Rot=[0.0, 0.0, 1.0, 0.0] ;
     Rot=[0.0, 0.0, 0.0, 1.0] ),
+  %Rot=[0.0, 0.0, 0.0, 1.0],
   
   % declare transform
   object_frame_name(Layer, Layer_frame),

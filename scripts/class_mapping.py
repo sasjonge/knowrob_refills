@@ -28,10 +28,13 @@ class OWLResource:
     self.labels.add(label)
   
   def has_data_value(self,relation,data_type,data_value):
-    self.dataValues.append((relation,data_type,data_value))
+    # FIXME: not sure why some assertions are done multiple times...
+    if not (relation,data_type,data_value) in self.dataValues:
+      self.dataValues.append((relation,data_type,data_value))
   
   def has_object_value(self,relation,object_value):
-    self.objectValues.append((relation,object_value))
+    if not (relation,object_value) in self.objectValues:
+      self.objectValues.append((relation,object_value))
 
   def write_plain(self, f):
     f.write(str(self)+'\n')

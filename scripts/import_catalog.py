@@ -122,32 +122,32 @@ class ProductTable:
     #  cls='ProductBrand',
     #  role='brand'),
     # TODO: replace this with data from meshes when available
-    ProductTableColumn('width',
-      labels=['Artikel Breite (DANf) cm'],
-      coltype='parameter',
-      param='widthOfProduct',
-      paramType='&xsd;float'),
-    ProductTableColumn('height',
-      labels=['Artikel Hoehe (DANf) cm'],
-      coltype='parameter',
-      param='heightOfProduct',
-      paramType='&xsd;float'),
-    ProductTableColumn('depth',
-      labels=['Artikel Laenge (DANf) cm'],
-      coltype='parameter',
-      param='depthOfProduct',
-      paramType='&xsd;float'),
+    #ProductTableColumn('width',
+      #labels=['Artikel Breite (DANf) cm'],
+      #coltype='parameter',
+      #param='widthOfProduct',
+      #paramType='&xsd;float'),
+    #ProductTableColumn('height',
+      #labels=['Artikel Hoehe (DANf) cm'],
+      #coltype='parameter',
+      #param='heightOfProduct',
+      #paramType='&xsd;float'),
+    #ProductTableColumn('depth',
+      #labels=['Artikel Laenge (DANf) cm'],
+      #coltype='parameter',
+      #param='depthOfProduct',
+      #paramType='&xsd;float'),
     #ProductTableColumn('article',
       #labels=['Artikel'],
       #coltype='annotation',
       #role='label'),
-    ProductTableColumn('articleNumber',['DAN', 'EAN'],coltype='instance'),
+    ProductTableColumn('articleNumber',['DAN'],coltype='instance') #,
     # Different GTIN's of a product indicate different variants
-    ProductTableColumn('gtin',
-      labels=['GTIN'],
-      coltype='subclass',
-      param='gtin',
-      paramType='&xsd;string'),
+    #ProductTableColumn('gtin',
+      #labels=['GTIN'],
+      #coltype='subclass',
+      #param='gtin',
+      #paramType='&xsd;string'),
   ]
   
   
@@ -158,9 +158,6 @@ class ProductTable:
     self.rawLabels = set()
     self.class_articles = {}
     self.datafile = datafile
-    self.meshPrefix = meshPrefix
-    self.meshPathTemplate = self.meshPrefix +\
-      'models_with_convention/ProductWithAN/ProductWithAN{}/ProductWithAN{}.dae'
     # create ordered list of columns we have some meta information about
     self.header = []
     for row in self.table.iter_rows(min_row=1, max_row=1):
@@ -172,17 +169,25 @@ class ProductTable:
     except:
       article = OWLClass(articleClass, self.resourceManager.ontologyPrefix)
       article.has_type('Product')
-      article.has_object_value("articleNumberOfProduct", self.article_number(articleNumber))
+      #article.has_object_value("articleNumberOfProduct", self.article_number(articleNumber))
       #article.has_data_value("dan", "&xsd;string", articleNumber)
       self.resourceManager.owlClasses[articleClass] = article
       return article
   
-  def article_number(self, articleNumber):
+  #def article_number(self, articleNumber):
+    #x = self.resourceManager.get_instance('ArticleNumber',
+                                          #'ArticleNumber_'+articleNumber)
+    #x.has_data_value('articleNumberString',
+                     #'http://knowrob.org/kb/shop.owl#dan',
+                     #articleNumber)
+    #return x
+  
+  def article_number(self, gtin, dans):
     x = self.resourceManager.get_instance('ArticleNumber',
-                                          'ArticleNumber_'+articleNumber)
-    x.has_data_value('articleNumberString',
-                     'http://knowrob.org/kb/shop.owl#dan',
-                     articleNumber)
+                                          'GTIN_'+gtin)
+    x.has_data_value('gtin', '&xsd;string', gtin)
+    for dan in dans:
+      x.has_data_value('dan', '&xsd;string', dan)
     return x
 
   def unique_names(self, column):
@@ -194,31 +199,63 @@ class ProductTable:
     out.sort()
     return out
   
+  def getdata(self,dan):
+      for x in self.datafile:
+          data = self.datafile[x]
+          if dan == str(data['00']['dan_raw']): return data['00']
+      return None
+  
   def read(self):
     """ read in the complete table, create ProductClass instances on the way """
     rospack = rospkg.RosPack()
+    # create article number individuals
+    gtin_map = {}
+    an_map = {}
+    for gtin in self.datafile:
+      dan = self.datafile[gtin]['00']['dan_raw']
+      if gtin in gtin_map: gtin_map[gtin].add(dan)
+      else:                gtin_map[gtin] = set([dan])
+    for gtin in gtin_map:
+      dans = list(gtin_map[gtin])
+      an = self.article_number(gtin,dans)
+      an_map[gtin] = an
+    # ..
     for row in self.table.iter_rows(min_row=2):
       # first get article class
-      articleNumber = str(self.read_value(row, 'articleNumber')).zfill(6)
+      # TODO: request taxonomy table with gtin column
+      dan = str(self.read_value(row, 'articleNumber')).zfill(6)
       # skip non whitelisted
-      if self.datafile != None and not articleNumber in self.datafile: continue
-      articleClass = self.article(articleNumber)
-      # FIXME proper mesh handling
-      meshPath    = self.meshPathTemplate.format(articleNumber,articleNumber)
-      meshPkg     = meshPath.split("//")[1].split("/")[0]
-      meshPathRes = str(rospack.get_path(meshPkg)) + meshPath.split("package://"+meshPkg)[1]
-      if os.path.isfile(meshPathRes):
-        articleClass.meshPath = meshPath
-      else:
-        print("WARN: mesh does not exist at " + meshPath)
-      # check if we have a mesh value in the datafile
-      if self.datafile != None:
-        # TODO read bounding box from data file
-        pass
+      if self.getdata(dan)==None: continue
+      articleClass = self.article(dan)
+      # ...
       for i in range(len(self.header)):
         column = self.header[i]
         if column!=None and (column.role!=None or column.param!=None):
           self.read_cell(articleClass,row,column)
+    # there could be some items in data file remaining which are not listed
+    # in the taxonomy table. We need to assert them as 'Product' here.
+    for gtin in self.datafile:
+      data = self.datafile[gtin]['00']
+      articleClass = self.article(data['dan_raw'])
+      articleNumber = an_map[gtin]
+      # product mesh
+      meshPathRel = 'models/' + data['model_path'] + '/' + data['filename_dae']
+      meshPathAbs = str(rospack.get_path('refills_models')) + '/models/' + \
+          data['model_path'] + '/' + data['filename_dae']
+      if os.path.isfile(meshPathAbs):
+        articleClass.meshPath = 'package://refills_models/' + meshPathRel
+        print("'"+articleClass.meshPath+"'")
+      else:
+        print("WARN: mesh does not exist at " + meshPathAbs)
+      # product bounding box
+      articleClass.has_data_value("widthOfProduct",  "&xsd;float", data['bounding_box_delta_y'])
+      articleClass.has_data_value("heightOfProduct", "&xsd;float", data['bounding_box_delta_z'])
+      articleClass.has_data_value("depthOfProduct",  "&xsd;float", data['bounding_box_delta_x'])
+      # product gtin/dan
+      articleClass.has_object_value("articleNumberOfProduct", articleNumber)
+      #articleClass.has_data_value("gtin", "&xsd;string", data['gtin'])
+      #articleClass.has_data_value("dan", "&xsd;string", data['dan_raw'])
+      
 
   def read_cell(self,article,row,column):
     rawLabel = self.read_value(row,column)
@@ -249,9 +286,9 @@ class ProductTable:
         cls.has_data_value(column.param, column.paramType, rawLabel)
     elif column.coltype=='parameter':
       # HACK cm -> m
-      if column.paramType=="&xsd;float":
-        num = float(rawLabel)/100.0
-        rawLabel = str(num)
+      #if column.paramType=="&xsd;float":
+      #  num = float(rawLabel)/100.0
+      #  rawLabel = str(num)
       self.read_cell_property(article,rawLabel,column)
     else:
       print("WARN: unknown column type: " + column.coltype)
@@ -352,6 +389,9 @@ def main(argv):
       outDir = arg
     elif opt in ("-m", "--output-mode"):
       resourceManager.set_output_mode(arg)
+  if opt_datafile==None:
+      print("data file is required (-d). exiting.")
+      sys.exit(0)
   # instantiate tables
   tables = []
   for table_arg in opt_tables:
@@ -421,6 +461,7 @@ def main(argv):
       print("    raw taxonomy:      " + str(len(uniqueNames)))
       print("    cleaned taxonomy:  " + str(resourceManager.entity_count(filter1)))
       print("    catalog resources: " + str(resourceManager.entity_count(filter2)))
+      print("    data entries: "      + str(len(opt_datafile)))
 
 if __name__ == "__main__":
   main(sys.argv[1:])
