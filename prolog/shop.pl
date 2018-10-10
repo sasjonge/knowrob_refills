@@ -556,7 +556,7 @@ comp_facingHeight(Facing, XSD_Val) :-
     % above is mounting layer, space must be shared. HACK For now assume equal space sharing
     Value is 0.5*Distance - 0.1
   ),
-  xsd_float(Value, XSD_Val).
+  xsd_float(Value, XSD_Val), !.
 comp_facingHeight(Facing, XSD_Val) :-
   atom(Facing),
   rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
@@ -622,7 +622,13 @@ comp_MisplacedProductFacing(Facing) :-
 belief_shelf_part_at(Frame, Type, Pos, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfLayer'), !,
   pos_term(y,Pos,PosTerm),
-  belief_perceived_part_at_axis(Frame, Type, PosTerm, Obj).
+  belief_perceived_part_at_axis(Frame, Type, PosTerm, Obj),
+  % adding a new shelf floor has influence on facing size of
+  % shelf floor siblings
+  ( shelf_layer_below(Obj,Below) ->
+    shelf_facings_mark_dirty(Below) ; true ),
+  ( shelf_layer_above(Obj,Above) ->
+    shelf_facings_mark_dirty(Above) ; true ).
 
 belief_shelf_part_at(Layer, Type, Pos, Obj) :-
   rdfs_subclass_of(Type, shop:'ShelfSeparator'), !,
