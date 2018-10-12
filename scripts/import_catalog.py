@@ -239,9 +239,9 @@ class ProductTable:
       articleClass = self.article(data['dan_raw'])
       articleNumber = an_map[gtin]
       # product mesh
-      meshPathRel = 'models/' + data['model_path'] + '/' + data['filename_dae']
+      meshPathRel = 'models/' + data['lowres_model_path'] + '/' + data['lowres_filename_dae']
       meshPathAbs = str(rospack.get_path('refills_models')) + '/models/' + \
-          data['model_path'] + '/' + data['filename_dae']
+          data['lowres_model_path'] + '/' + data['lowres_filename_dae']
       if os.path.isfile(meshPathAbs):
         articleClass.meshPath = 'package://refills_models/' + meshPathRel
         print("'"+articleClass.meshPath+"'")
