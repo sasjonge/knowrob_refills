@@ -62,7 +62,12 @@ refills_init_test_shop :-
   refills_spawn_facings.
 
 refills_make_shelf(Frame, [(Pos,separators(Separators),labels(Labels))|Rest]) :-
-  belief_shelf_part_at(Frame, dmshop:'DMShelfLayer4TilesFront', norm(Pos), Layer),
+  random(0,2,Tiles4),
+  ( Tiles4>0 ->
+    belief_shelf_part_at(Frame, dmshop:'DMShelfLayer4TilesFront', norm(Pos), Layer); 
+    belief_shelf_part_at(Frame, dmshop:'DMShelfLayer5TilesFront', norm(Pos), Layer)
+  ),
+  %belief_shelf_part_at(Frame, dmshop:'DMShelfLayer4TilesFront', norm(Pos), Layer),
   forall(member(SepPos,Separators),
          belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _)),
   forall(member((LabelPos,AN),Labels),

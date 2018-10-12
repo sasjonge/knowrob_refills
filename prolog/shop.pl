@@ -486,8 +486,8 @@ comp_facingPose(Facing, Pose) :-
   rdf_has(Facing, shop:layerOfFacing, Layer),
   object_dimensions(Facing, _, _, Facing_H),
   shelf_facing_position(Facing, Pos_X),
-  Pos_Y is -0.06,               % 0.06 to leave some room at the front and back of the facing
-  Pos_Z is 0.5*Facing_H + 0.05, % 0.05 pushes ontop of supporting plane
+  Pos_Y is -0.02,               % 0.06 to leave some room at the front and back of the facing
+  Pos_Z is 0.5*Facing_H + 0.08, % 0.05 pushes ontop of supporting plane
   owl_instance_from_class('http://knowrob.org/kb/knowrob.owl#Pose',
     [pose=(Layer,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0])], Pose).
 comp_facingPose(Facing, Pose) :-
@@ -515,7 +515,7 @@ shelf_facing_width(Facing, Value) :-
   rdf_has(Facing, shop:rightSeparator, Right),
   shelf_layer_position(ShelfLayer, Left, Pos_Left),
   shelf_layer_position(ShelfLayer, Right, Pos_Right),
-  Value is abs(Pos_Right - Pos_Left). % leave 2cm to each side
+  Value is abs(Pos_Right - Pos_Left) - 0.02. % leave 2cm to each side
 shelf_facing_width(Facing, Value) :-
   rdf_has(Facing, shop:layerOfFacing, ShelfLayer),
   shelf_layer_mounting(ShelfLayer), !,
@@ -679,7 +679,7 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
   belief_at_id(Facing, [_,_,[Facing_X,_,_],_]),
   
   ( shelf_layer_standing(Layer) ->
-    Offset_H is Obj_H*0.5 + 0.05 ;
+    Offset_H is Obj_H*0.5 + 0.08 ;
     Offset_H is -Obj_H*0.5 - 0.05 ),
   
   % HACK rotate if it has a mesh
