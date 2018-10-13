@@ -201,7 +201,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
-                <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/models/alexis_student/Denkmit_Balea_AN402186/autogen/low-res/Denkmit_Balea_AN402186_bb.dae</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/models/alexis_student/Denkmit_Balea_AN402186/autogen/low-res/Denkmit_Balea_AN402186_bb.dae.orig</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
