@@ -74,6 +74,15 @@ refills_make_shelf(Frame, [(Pos,separators(Separators),labels(Labels))|Rest]) :-
          belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
   refills_make_shelf(Frame, Rest).
 
+refills_make_shelf(Frame, [(separators(Separators),labels(Labels))|Rest]) :-
+  Pos is 0.075,
+  belief_shelf_part_at(Frame, dmshop:'DMShelfLayer5TilesBottom', norm(Pos), Layer),
+  forall(member(SepPos,Separators),
+         belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _)),
+  forall(member((LabelPos,AN),Labels),
+         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
+  refills_make_shelf(Frame, Rest).
+
 refills_make_shelf(Frame, [(Pos,bars(Bars),labels(Labels))|Rest]) :-
   belief_shelf_part_at(Frame, dmshop:'DMShelfLayerMountingFront', norm(Pos), Layer),
   forall(member(BarPos,Bars),
@@ -112,7 +121,7 @@ standing_facing_full(Facing) :-
 
 refills_spawn_facings :-
   refills_make_shelf('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS', [
-    (0.2, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.21,'378940'),(0.5,'402186'),(0.925,'346864')])),
+    (separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.21,'378940'),(0.5,'402186'),(0.925,'346864')])),
     (0.4, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'378981'),(0.925,'553736')])),
     (0.6, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'553735'),(0.925,'251188')])),
     (0.8, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'250899'),(0.925,'544382')]))

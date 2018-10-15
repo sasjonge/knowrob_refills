@@ -92,6 +92,7 @@
 :- rdf_db:rdf_register_ns(knowrob, 'http://knowrob.org/kb/knowrob.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(xsd, 'http://www.w3.org/2001/XMLSchema#', [keep(true)]).
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
+:- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(knowrob_assembly, 'http://knowrob.org/kb/knowrob_assembly.owl#', [keep(true)]).
 
 % TODO: should be somewhere else
@@ -176,6 +177,7 @@ product_type_dimension_assert(Type, P, Val) :-
 shelf_layer_mounting(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerMounting').
 %% 
 shelf_layer_standing(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerStanding').
+shelf_layer_standing_bottom(ShelfLayer) :- rdfs_individual_of(ShelfLayer, dmshop:'DMShelfLayer5TilesBottom').
 
 %% 
 shelf_layer_frame(Layer, Frame) :-
@@ -487,7 +489,10 @@ comp_facingPose(Facing, Pose) :-
   object_dimensions(Facing, _, _, Facing_H),
   shelf_facing_position(Facing, Pos_X),
   Pos_Y is -0.02,               % 0.06 to leave some room at the front and back of the facing
-  Pos_Z is 0.5*Facing_H + 0.08, % 0.05 pushes ontop of supporting plane
+  % FIXME: should be done by offset, also redundant with spawn predicate
+  ( shelf_layer_standing_bottom(Layer) ->
+    Pos_Z is 0.5*Facing_H + 0.025 ;
+    Pos_Z is 0.5*Facing_H + 0.08 ),
   owl_instance_from_class('http://knowrob.org/kb/knowrob.owl#Pose',
     [pose=(Layer,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0])], Pose).
 comp_facingPose(Facing, Pose) :-
@@ -678,8 +683,11 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
   product_dimensions(Obj,_,_,Obj_H),
   belief_at_id(Facing, [_,_,[Facing_X,_,_],_]),
   
-  ( shelf_layer_standing(Layer) ->
-    Offset_H is Obj_H*0.5 + 0.08 ;
+  % FIXME: this should be handled by offsets from ontology
+  ( shelf_layer_standing(Layer) -> (
+    shelf_layer_standing_bottom(Layer) ->
+    Offset_H is  Obj_H*0.5 + 0.025 ;
+    Offset_H is  Obj_H*0.5 + 0.08 ) ;
     Offset_H is -Obj_H*0.5 - 0.05 ),
   
   % HACK rotate if it has a mesh
