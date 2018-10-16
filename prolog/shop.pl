@@ -688,7 +688,7 @@ product_spawn_at(Facing, Type, Offset_D, Obj) :-
     shelf_layer_standing_bottom(Layer) ->
     Offset_H is  Obj_H*0.5 + 0.025 ;
     Offset_H is  Obj_H*0.5 + 0.08 ) ;
-    Offset_H is -Obj_H*0.5 - 0.05 ),
+    Offset_H is -Obj_H*0.5 - 0.025 ),
   
   % HACK rotate if it has a mesh
   ( object_mesh_path(Obj,_) ->
