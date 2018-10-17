@@ -221,13 +221,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0E-4</owl:hasValue>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.001</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.02</owl:hasValue>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.04</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -240,6 +240,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.04</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/DMPriceLabel/SM_DMPriceLabel.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
