@@ -177,7 +177,9 @@ product_type_dimension_assert(Type, P, Val) :-
 shelf_layer_mounting(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerMounting').
 %% 
 shelf_layer_standing(ShelfLayer) :- rdfs_individual_of(ShelfLayer, shop:'ShelfLayerStanding').
-shelf_layer_standing_bottom(ShelfLayer) :- rdfs_individual_of(ShelfLayer, dmshop:'DMShelfLayer5TilesBottom').
+shelf_layer_standing_bottom(ShelfLayer) :- rdfs_individual_of(ShelfLayer, dmshop:'DMShelfLayer5TilesBottom'), !.
+shelf_layer_standing_bottom(ShelfLayer) :- rdfs_individual_of(ShelfLayer, dmshop:'DMShelfLayer6TilesBottom'), !.
+shelf_layer_standing_bottom(ShelfLayer) :- rdfs_individual_of(ShelfLayer, dmshop:'DMShelfLayer7TilesBottom').
 
 %% 
 shelf_layer_frame(Layer, Frame) :-
