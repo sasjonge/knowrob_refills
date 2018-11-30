@@ -55,6 +55,12 @@
       comp_facingHeight/2,
       comp_facingDepth/2,
       comp_preferredLabelOfFacing/2,
+      %%%%% rooming in
+      belief_shelf_left_marker_at/3,
+      belief_shelf_right_marker_at/3,
+      belief_shelf_at/3,
+      shelf_classify/4,
+      %shelf_estimate_pose/1,
       %%%%%
       belief_shelf_part_at/4,
       belief_shelf_barcode_at/5,
@@ -81,11 +87,14 @@
     shelf_layer_separator(r,r),
     shelf_facing_product_type(r,r),
     shelf_layer_part(r,r,r),
-    belief_shelf_part_at(r,r,+,-),
+    belief_shelf_part_at(r,r,+,-,t),
     belief_shelf_barcode_at(r,r,+,+,-),
     product_type_dimension_assert(r,r,+),
     product_spawn_front_to_back(r,r,r),
-    product_spawn_front_to_back(r,r).
+    product_spawn_front_to_back(r,r),
+    shelf_classify(r,+,+,+),
+    rdfs_classify(r,r),
+    owl_classify(r,r).
 
 :- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
 :- rdf_db:rdf_register_ns(owl, 'http://www.w3.org/2002/07/owl#', [keep(true)]).
@@ -618,6 +627,146 @@ comp_MisplacedProductFacing(Facing) :-
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% "rooming in" -- perceive shelf barcodes and classify shelves
+% TODO: make marker pose relative
+% TODO: shelf pose computation
+
+shelf_marker_offset(0.04).
+
+shelf_type(LeftMarker,RightMarker,ShelfType) :-
+  ValidWidths=[
+    [0.6,'http://knowrob.org/kb/dm-market.owl#DMShelfW60'],
+    [1.0,'http://knowrob.org/kb/dm-market.owl#DMShelfW100'],
+    [1.2,'http://knowrob.org/kb/dm-market.owl#DMShelfW120']
+  ],
+  % estimate width from markers
+  object_distance(LeftMarker,RightMarker,Distance),
+  shelf_marker_offset(Offset),
+  WidthEstimate is Distance + Offset,
+  % find closest match
+  findall([D,Type], (
+    member([Width,Type],ValidWidths),
+    D is abs(WidthEstimate - Width)),
+    ShelfTypes),
+  sort(ShelfTypes, [[_,ShelfType]|_]).
+
+shelf_with_marker(Shelf,Marker) :- (
+  rdf_has(Shelf,dmshop:leftMarker,Marker);
+  rdf_has(Shelf,dmshop:rightMarker,Marker)),!.
+
+shelf_marker(Id,Marker):-
+  atom(Id), rdf_has_prolog(Marker,dmshop:markerId,Id),!.
+shelf_marker(Marker,Marker):-
+  atom(Marker), rdf_has_prolog(Marker,dmshop:markerId,_),!.
+
+%%
+%
+belief_shelf_marker_at(MarkerType,MarkerId,Pose,Marker):-
+  belief_new_object(MarkerType, Marker),
+  rdf_assert_prolog(Marker, dmshop:markerId, MarkerId, belief_state),
+  belief_at_update(Marker,Pose).
+%%
+%
+belief_shelf_left_marker_at(Pose,MarkerId,Marker):-
+  rdf_equal(MarkerType,dmshop:'DMShelfMarkerLeft'),
+  belief_shelf_marker_at(MarkerType,MarkerId,Pose,Marker).
+%%
+%
+belief_shelf_right_marker_at(Pose,MarkerId,Marker):-
+  rdf_equal(MarkerType,dmshop:'DMShelfMarkerRight'),
+  belief_shelf_marker_at(MarkerType,MarkerId,Pose,Marker).
+
+%%
+%
+belief_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
+  shelf_marker(LeftMarkerId,LeftMarker),
+  shelf_marker(RightMarkerId,RightMarker),
+  once((
+    % asserted before
+    shelf_with_marker(Shelf,LeftMarker);
+    shelf_with_marker(Shelf,RightMarker);
+    % new shelf
+    belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf))).
+
+belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
+  % infer shelf type (e.g. 'DMShelfFrameW100')
+  shelf_marker(LeftMarkerId,LeftMarker),
+  shelf_marker(RightMarkerId,RightMarker),
+  shelf_type(LeftMarker,RightMarker,ShelfType),
+  % assert to belief state and link marker to shelf
+  belief_new_object(ShelfType,Shelf),
+  % temporary assert height/depth
+rdfs_classify(Shelf,ShelfType),
+  rdf_assert(Shelf, knowrob:depthOfObject, literal(type(xsd:float, '0.2'))),
+  rdf_assert(Shelf, knowrob:heightOfObject, literal(type(xsd:float, '0.2'))),
+  rdf_assert(Shelf, dmshop:leftMarker, LeftMarker, belief_state),
+  rdf_assert(Shelf, dmshop:rightMarker, RightMarker, belief_state).
+
+shelf_find_type(Shelf,Type) :-
+  rdfs_subclass_of(Type,dmshop:'DMShelfFrame'),
+  forall((
+    rdf_has(Shelf,rdf:type,X),
+    rdfs_subclass_of(X,dmshop:'DMShelfFrame')),
+    owl_subclass_of(Type,X)).
+
+%%
+%
+shelf_classify(Shelf,Height,NumTiles,Payload) :-
+  % retract temporary height/depth
+  rdf_retractall(Shelf, knowrob:depthOfObject, _),
+  rdf_retractall(Shelf, knowrob:heightOfObject, _),
+  % assert various types based on input.
+  % this fails in case input is not valid.
+  shelf_classify_height(Shelf,Height),
+  shelf_classify_num_tiles(Shelf,NumTiles),
+  shelf_classify_payload(Shelf,Payload),
+  % use closed world semantics to infer all the shelf frame
+  % types currently implied for `Shelf`
+  ( shelf_find_type(Shelf,ShelfType) -> (
+    print_message(info, shop([Shelf,ShelfType], 'Is classified as.')),
+    rdfs_classify(Shelf,ShelfType));(
+    findall(X,(
+      rdf_has(Shelf,rdf:type,X),
+      rdfs_subclass_of(X,dmshop:'DMShelfFrame')),Xs),
+    print_message(warning, shop([Shelf,Xs], 'Failed to classify. Type not defined in ontology?'))
+  )).
+
+%%
+% Classify shelf based on its height.
+shelf_classify_height(Shelf,1.6):-
+  rdfs_classify(Shelf, dmshop:'DMShelfH160'),!.
+shelf_classify_height(Shelf,1.8):-
+  rdfs_classify(Shelf, dmshop:'DMShelfH180'),!.
+shelf_classify_height(Shelf,2.0):-
+  rdfs_classify(Shelf, dmshop:'DMShelfH200'),!.
+shelf_classify_height(_Shelf,H):-
+  print_message(warning, shop([H], 'Is not a valid shelf height (one of [1.6,1.8,2.0]).')),
+  fail.
+
+%%
+% Classify shelf based on number of tiles in bottom floor.
+shelf_classify_num_tiles(Shelf,5):-
+  rdfs_classify(Shelf, dmshop:'DMShelfT5'),!.
+shelf_classify_num_tiles(Shelf,6):-
+  rdfs_classify(Shelf, dmshop:'DMShelfT6'),!.
+shelf_classify_num_tiles(Shelf,7):-
+  rdfs_classify(Shelf, dmshop:'DMShelfT7'),!.
+shelf_classify_num_tiles(_Shelf,Count):-
+  print_message(warning, shop([Count], 'Is not a valid number of shelf tiles (one of [5,6,7]).')),
+  fail.
+
+%%
+% Classify shelf based on payload.
+shelf_classify_payload(Shelf,heavy) :-
+  rdfs_classify(Shelf, dmshop:'DMShelfH'),!.
+shelf_classify_payload(Shelf,light) :-
+  rdfs_classify(Shelf, dmshop:'DMShelfL'),!.
+shelf_classify_payload(_Shelf,Mode):-
+  print_message(warning, shop([Mode], 'Is not a valid payload mode (one of [heavy,light]).')),
+  fail.
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % belief_state part of shelves
 
 %%
@@ -753,3 +902,18 @@ min_positive_element([(A,D_A)|Rest], (Needle,D_Needle)) :-
     Needle=A, D_Needle=D_A;
     Needle=B, D_Needle=D_B ).
 min_positive_element([(A,D_A)|_], (A,D_A)).
+
+rdfs_classify(Entity,Type) :-
+  forall((
+    rdf_has(Entity,rdf:type,X),
+    rdfs_subclass_of(Type,X)),
+    rdf_retractall(Entity,rdf:type,X)),
+  rdf_assert(Entity,rdf:type,Type,belief_state).
+
+owl_classify(Entity,Type) :-
+  % find RDF graph of Entity
+  forall((
+    rdf_has(Entity,rdf:type,X),
+    once(owl_subclass_of(Type,X))),
+    rdf_retractall(Entity,rdf:type,X)),
+  rdf_assert(Entity,rdf:type,Type,belief_state).

@@ -44,6 +44,31 @@
     
 
 
+    <!-- http://knowrob.org/kb/dm-market.owl#leftMarker -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/dm-market.owl#leftMarker">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/dm-market.owl#shelfMarker"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#rightMarker -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/dm-market.owl#rightMarker">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/dm-market.owl#shelfMarker"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#shelfMarker -->
+
+    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/dm-market.owl#shelfMarker">
+        <rdfs:domain rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+        <rdfs:range rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfMarker"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://knowrob.org/kb/knowrob.owl#hasAffordance -->
 
     <owl:ObjectProperty rdf:about="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
@@ -76,6 +101,15 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#markerType -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/dm-market.owl#markerType">
+        <rdfs:domain rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfMarker"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
     
 
 
@@ -140,64 +174,98 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#FloorOffsetBottom"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
                 <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#LayerMountingOffsetAffordance"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <!--
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance5"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance5_Bottom"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        -->
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">40</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerSlideInF"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore -->
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH -->
 
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore">
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH160 -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH160">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.6</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH160W100T5L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH160W100T5L">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH160"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT5L"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW100"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH160T5L10G/ShelfSystemH160T5L10G.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>occurs in lab</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH180 -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH180">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.8</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH180W100T5L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH180W100T5L">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH180"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT5L"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW100"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
                 <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceFrameFront"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.616</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.8</owl:hasValue>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceFrameH180W100T5"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -206,33 +274,37 @@
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH180T510W/SM_ShelfSystemH180T5L10W.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>occurs in lab</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH200 -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.08</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance5_Bottom"/>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.0</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfFrameH200W100T6 -->
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH200W100T6H -->
 
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfFrameH200W100T6">
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200W100T6H">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT6H"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW100"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -243,14 +315,33 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.723</owl:hasValue>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T6L10W/ShelfSystemH200T6L10W.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>occurs in lab</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH200W100T6L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200W100T6L">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT6L"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW100"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.0</owl:hasValue>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceFrameH200W100T6"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -259,33 +350,22 @@
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T6L10W/ShelfSystemH200T6L10W.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.08</owl:hasValue>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#Offset_H200W100T6_T6_Bottom"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#Offset_H200W100T6_T5"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
 
-    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfFrameH200W100T7 -->
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH200W100T7H -->
 
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfFrameH200W100T7">
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200W100T7H">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT7H"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW100"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -296,14 +376,33 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.847</owl:hasValue>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T7L10W/ShelfSystemH200T7L10W.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>occurs in lab</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH200W100T7L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200W100T7L">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT7L"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW100"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">2.0</owl:hasValue>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceFrameH200W100T7"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -312,26 +411,85 @@
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T7L10W/ShelfSystemH200T7L10W.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH200W120T7H -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200W120T7H">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT7H"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW120"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
-                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.08</owl:hasValue>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T7L12W/ShelfSystemH200T7L12W.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH200W60T6H -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200W60T6H">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT6H"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW60"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#Offset_H200W100T7_T7_Bottom"/>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T6L7W/ShelfSystemH200T6L7W.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:comment>occurs in lab</rdfs:comment>
+        <rdfs:comment>todo: mesh might be the light load one</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfH200W60T6L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200W60T6L">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH200"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT6L"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW60"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#Offset_H200W100T7_T6"/>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T6L7W/ShelfSystemH200T6L7W.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfL -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfL">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
     </owl:Class>
     
 
@@ -432,7 +590,7 @@
     <!-- http://knowrob.org/kb/dm-market.owl#DMShelfLayer5TilesBottom -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfLayer5TilesBottom">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerStanding"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerBottom"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
@@ -538,7 +696,7 @@
     <!-- http://knowrob.org/kb/dm-market.owl#DMShelfLayer6TilesBottom -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfLayer6TilesBottom">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerStanding"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerBottom"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
@@ -644,7 +802,7 @@
     <!-- http://knowrob.org/kb/dm-market.owl#DMShelfLayer7TilesBottom -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfLayer7TilesBottom">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerStanding"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerBottom"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
@@ -690,6 +848,14 @@
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfLayerBottom -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfLayerBottom">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerStanding"/>
     </owl:Class>
     
 
@@ -771,6 +937,50 @@
     
 
 
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfMarker -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfMarker">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShelfLabel"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.01</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.047</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.047</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>the labels at the footer of the shelf.</rdfs:comment>
+        <rdfs:comment>todo: less confusing naming</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfMarkerLeft -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfMarkerLeft">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfMarker"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfMarkerRight -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfMarkerRight">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfMarker"/>
+    </owl:Class>
+    
+
+
     <!-- http://knowrob.org/kb/dm-market.owl#DMShelfMountingBar -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfMountingBar">
@@ -819,9 +1029,9 @@
     
 
 
-    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceFrameFront -->
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceFrameH180W100T5 -->
 
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceFrameFront">
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceFrameH180W100T5">
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordance"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -889,6 +1099,20 @@
     
 
 
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer5_bottom -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer5_bottom">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordance"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
+                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_Layer5_bottom"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
     <!-- http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer6 -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer6">
@@ -903,30 +1127,6 @@
     
 
 
-    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer7 -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer7">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordance"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
-                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_Layer7"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer5 -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer5_bottom">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordance"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
-                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_Layer5_bottom"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-
     <!-- http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer6_Bottom -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer6_Bottom">
@@ -935,6 +1135,20 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_Layer6_Bottom"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer7 -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordanceLayer7">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionAffordance"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
+                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_Layer7"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1054,6 +1268,327 @@
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfSystem">
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShelfSystem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfT5 -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT5">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfT5L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT5L">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfL"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT5"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#FloorOffsetT5ToT4L"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.616</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfT6 -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT6">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfT6H -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT6H">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT6"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#FloorOffsetT6ToT5H"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.734</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfT6L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT6L">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfL"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT6"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#FloorOffsetT6ToT5L"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.723</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfT7 -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT7">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfT7H -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT7H">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT7"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#FloorOffsetT7ToT6H"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.847</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfT7L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT7L">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfL"/>
+                    <rdf:Description rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfT7"/>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasAffordance"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#FloorOffsetT7ToT6L"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.836</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfW100 -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW100">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.08</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfW120 -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW120">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.33</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfW60 -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfW60">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.65</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#FloorOffsetBottom -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#FloorOffsetBottom">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
+                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerBottom"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
+                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Floor_Pose_Bottom"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment>bottom floors need to be &apos;pushed away&apos; a few centimeters from the backwall.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#FloorOffsetT5ToT4L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#FloorOffsetT5ToT4L">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
+                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
+                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_T5_T4_L"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#FloorOffsetT6ToT5H -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#FloorOffsetT6ToT5H">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
+                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer5TilesFront"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#FloorOffsetT6ToT5L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#FloorOffsetT6ToT5L">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
+                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer5TilesFront"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
+                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_T6_T5_L"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#FloorOffsetT7ToT6H -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#FloorOffsetT7ToT6H">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
+                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer6TilesFront"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
+                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_T7_T6_H"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#FloorOffsetT7ToT6L -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#FloorOffsetT7ToT6L">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
+                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer6TilesFront"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
+                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_T7_T6_L"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1212,135 +1747,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerMounting"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
-                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
-                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerStanding"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance5 -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance5">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
-                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer5TilesFront"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
-                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerStanding5"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#Offset_H200W100T7_T7_Bottom">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
-                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer7TilesBottom"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
-                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_H200W100T7_T7_Bottom"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#Offset_H200W100T7_T6">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
-                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer6TilesFront"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
-                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_H200W100T7_T6"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-    
-
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#Offset_H200W100T6_T6_Bottom">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
-                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer6TilesBottom"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
-                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_H200W100T6_T6_Bottom"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#Offset_H200W100T6_T5">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
-                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer5TilesFront"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
-                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_H200W100T6_T5"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-    </owl:Class>
-    
-
-
-    <!-- http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance5_Bottom -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#LayerStandingOffsetAffordance5_Bottom">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#ShelfOffsetAffordance"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#userOfAffordance"/>
-                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer5TilesBottom"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
-                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerStanding5_Bottom"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1596,6 +2002,66 @@
     
 
 
+    <!-- http://knowrob.org/kb/dm-market.owl#Floor_Pose_Bottom -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Floor_Pose_Bottom">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.08 0.0</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#Pose_T5_T4_L -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Pose_T5_T4_L">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 -0.095</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#Pose_T6_T5_H -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Pose_T6_T5_H">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 -0.095</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#Pose_T6_T5_L -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Pose_T6_T5_L">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.01 -0.085</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#Pose_T7_T6_H -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Pose_T7_T6_H">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 -0.105</knowrob:translation>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://knowrob.org/kb/dm-market.owl#Pose_T7_T6_L -->
+
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Pose_T7_T6_L">
+        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
+        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.01 -0.075</knowrob:quaternion>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_FrameFront -->
 
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_FrameFront">
@@ -1637,14 +2103,17 @@
 
 
     <!-- http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_Layer5 -->
-<!-- transfrom for layer 5 standing -->
+
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_Layer5">
         <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
         <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
         <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-0.5 -0.292 0.085</knowrob:translation>
-    </owl:NamedIndividual> 
+    </owl:NamedIndividual>
+    
 
-<!-- transform for layer 5 bottom -->
+
+    <!-- http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_Layer5_bottom -->
+
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#StaticTransformPerception_Layer5_bottom">
         <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
         <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
@@ -1799,64 +2268,6 @@
         <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
         <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
         <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.07 0.0</knowrob:translation>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerStanding -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerStanding">
-        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
-        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 -0.095</knowrob:translation>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerStanding5 -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerStanding5">
-        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
-        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.03 -0.068</knowrob:translation>
-    </owl:NamedIndividual>
-    
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Pose_H200W100T6_T6_Bottom">
-        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
-        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.08 0.0</knowrob:translation>
-    </owl:NamedIndividual>
-    
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Pose_H200W100T7_T7_Bottom">
-        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
-        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.08 0.0</knowrob:translation>
-    </owl:NamedIndividual>
-    
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Pose_H200W100T7_T6">
-        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
-        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 -0.105</knowrob:translation>
-    </owl:NamedIndividual>
-    
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Pose_H200W100T6_T5">
-        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
-        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.01 -0.085</knowrob:translation>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerStanding5_Bottom -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerStanding5_Bottom">
-        <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
-        <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.085 0.0</knowrob:translation>
     </owl:NamedIndividual>
     
 
