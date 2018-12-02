@@ -60,6 +60,7 @@
       belief_shelf_right_marker_at/3,
       belief_shelf_at/3,
       shelf_classify/4,
+      shelf_with_marker/2,
       %shelf_estimate_pose/1,
       %%%%%
       belief_shelf_part_at/4,
@@ -87,12 +88,13 @@
     shelf_layer_separator(r,r),
     shelf_facing_product_type(r,r),
     shelf_layer_part(r,r,r),
-    belief_shelf_part_at(r,r,+,-,t),
+    belief_shelf_part_at(r,r,+,r),
     belief_shelf_barcode_at(r,r,+,+,-),
     product_type_dimension_assert(r,r,+),
     product_spawn_front_to_back(r,r,r),
     product_spawn_front_to_back(r,r),
     shelf_classify(r,+,+,+),
+    shelf_with_marker(r,r),
     rdfs_classify(r,r),
     owl_classify(r,r).
 
@@ -653,6 +655,10 @@ shelf_type(LeftMarker,RightMarker,ShelfType) :-
 shelf_with_marker(Shelf,Marker) :- (
   rdf_has(Shelf,dmshop:leftMarker,Marker);
   rdf_has(Shelf,dmshop:rightMarker,Marker)),!.
+shelf_with_marker(Shelf,Id) :-
+  atom(Id),
+  rdf_has_prolog(Marker,dmshop:markerId,Id),
+  shelf_with_marker(Shelf,Marker),!.
 
 shelf_marker(Id,Marker):-
   atom(Id), rdf_has_prolog(Marker,dmshop:markerId,Id),!.

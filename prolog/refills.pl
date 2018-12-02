@@ -33,7 +33,10 @@
     [
       refills_init_test_shop/0,
       refills_init_iai_shop/0,
-      refills_spawn_facings/0
+      refills_spawn_facings/0,
+      refills_spawn_products/0,
+      refills_spawn_shelf1/1,
+      refills_spawn_shelf2/1
     ]).
 
 :- use_module(library('semweb/rdf_db')).
@@ -52,7 +55,32 @@
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(knowrob_assembly, 'http://knowrob.org/kb/knowrob_assembly.owl#', [keep(true)]).
 
+:-  rdf_meta
+    refills_spawn_shelf1(r),
+    refills_spawn_shelf2(r),
+    refills_make_shelf(r,t).
+
 :- use_module(library('shop')).
+
+shelf_bottom_floor_type(Frame,Type) :-
+  rdfs_individual_of(Frame,dmshop:'DMShelfT5'),
+  rdf_equal(Type,dmshop:'DMShelfLayer5TilesBottom'),!.
+shelf_bottom_floor_type(Frame,Type) :-
+  rdfs_individual_of(Frame,dmshop:'DMShelfT6'),
+  rdf_equal(Type,dmshop:'DMShelfLayer6TilesBottom'),!.
+shelf_bottom_floor_type(Frame,Type) :-
+  rdfs_individual_of(Frame,dmshop:'DMShelfT7'),
+  rdf_equal(Type,dmshop:'DMShelfLayer7TilesBottom'),!.
+
+shelf_floor_type(Frame,Type) :-
+  rdfs_individual_of(Frame,dmshop:'DMShelfT5'),
+  rdf_equal(Type,dmshop:'DMShelfLayer4TilesFront'),!.
+shelf_floor_type(Frame,Type) :-
+  rdfs_individual_of(Frame,dmshop:'DMShelfT6'),
+  rdf_equal(Type,dmshop:'DMShelfLayer5TilesFront'),!.
+shelf_floor_type(Frame,Type) :-
+  rdfs_individual_of(Frame,dmshop:'DMShelfT7'),
+  rdf_equal(Type,dmshop:'DMShelfLayer6TilesFront'),!.
 
 refills_init_iai_shop :-
   owl_parser:owl_parse('package://knowrob_refills/owl/dm-market-iai.owl', belief_state).
@@ -62,12 +90,9 @@ refills_init_test_shop :-
   refills_spawn_facings.
 
 refills_make_shelf(Frame, [(Pos,separators(Separators),labels(Labels))|Rest]) :-
-  random(0,2,Tiles4),
-  ( Tiles4>0 ->
-    belief_shelf_part_at(Frame, dmshop:'DMShelfLayer4TilesFront', norm(Pos), Layer); 
-    belief_shelf_part_at(Frame, dmshop:'DMShelfLayer5TilesFront', norm(Pos), Layer)
-  ),
-  %belief_shelf_part_at(Frame, dmshop:'DMShelfLayer4TilesFront', norm(Pos), Layer),
+  shelf_floor_type(Frame,FloorType),
+  belief_shelf_part_at(Frame, FloorType, norm(Pos), Layer),
+  % spawn separators and labels
   forall(member(SepPos,Separators),
          belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _)),
   forall(member((LabelPos,AN),Labels),
@@ -76,7 +101,8 @@ refills_make_shelf(Frame, [(Pos,separators(Separators),labels(Labels))|Rest]) :-
 
 refills_make_shelf(Frame, [(separators(Separators),labels(Labels))|Rest]) :-
   Pos is 0.075,
-  belief_shelf_part_at(Frame, dmshop:'DMShelfLayer5TilesBottom', norm(Pos), Layer),
+  shelf_bottom_floor_type(Frame,BottomFloorType),
+  belief_shelf_part_at(Frame, BottomFloorType, norm(Pos), Layer),
   forall(member(SepPos,Separators),
          belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _)),
   forall(member((LabelPos,AN),Labels),
@@ -119,19 +145,7 @@ standing_facing_full(Facing) :-
   product_spawn_front_to_back(Facing,_),
   standing_facing_full(Facing).
 
-refills_spawn_facings :-
-  refills_make_shelf('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS', [
-    (separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.21,'378940'),(0.5,'402186'),(0.925,'346864')])),
-    (0.4, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'378981'),(0.925,'553736')])),
-    (0.6, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'553735'),(0.925,'251188')])),
-    (0.8, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'250899'),(0.925,'544382')]))
-  ]),
-  refills_make_shelf('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8', [
-    (0.1, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.4,'553733'),(0.925,'404491')])),
-    (0.3, separators([0.0,0.2,0.4,0.6,0.8,1.0]),  labels([(0.3,'522988'),(0.7,'402186'),(0.5,'520689'),(0.1,'476935'),(0.9,'004728')])),
-    (0.8, bars([0.1,0.2,0.3,0.5,0.7,0.9]), labels([(0.2,'544382'),(0.9,'250899')])),
-    (1.0, bars([0.1,0.2,0.3,0.5,0.7,0.9]), labels([(0.2,'250899'),(0.9,'544382')]))
-  ]),
+refills_spawn_products :-
   forall(rdfs_individual_of(Facing, shop:'ProductFacing'),(
     %random(0,6,HasProduct),
     HasProduct is 1,
@@ -141,3 +155,24 @@ refills_spawn_facings :-
           write('[WARN] Failed to spawn products into '), owl_write_readable([Facing,AN]), nl ))
     ) ; true)
   )).
+
+refills_spawn_shelf1(Shelf) :-
+  refills_make_shelf(Shelf, [
+    (separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.21,'378940'),(0.5,'402186'),(0.925,'346864')])),
+    (0.4, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'378981'),(0.925,'553736')])),
+    (0.6, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'553735'),(0.925,'251188')])),
+    (0.8, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'250899'),(0.925,'544382')]))
+  ]).
+  
+refills_spawn_shelf2(Shelf) :-
+  refills_make_shelf(Shelf, [
+    (0.1, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.4,'553733'),(0.925,'404491')])),
+    (0.3, separators([0.0,0.2,0.4,0.6,0.8,1.0]),  labels([(0.3,'522988'),(0.7,'402186'),(0.5,'520689'),(0.1,'476935'),(0.9,'004728')])),
+    (0.8, bars([0.1,0.2,0.3,0.5,0.7,0.9]), labels([(0.2,'544382'),(0.9,'250899')])),
+    (1.0, bars([0.1,0.2,0.3,0.5,0.7,0.9]), labels([(0.2,'250899'),(0.9,'544382')]))
+  ]).
+
+refills_spawn_facings :-
+  refills_spawn_shelf1('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS'),
+  refills_spawn_shelf2('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8'),
+  refills_spawn_products.
