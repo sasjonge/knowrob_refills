@@ -637,7 +637,8 @@ shelf_marker_offset(0.04).
 
 shelf_type(LeftMarker,RightMarker,ShelfType) :-
   ValidWidths=[
-    [0.6,'http://knowrob.org/kb/dm-market.owl#DMShelfW60'],
+    [0.65,'http://knowrob.org/kb/dm-market.owl#DMShelfW60'],
+    [0.73,'http://knowrob.org/kb/dm-market.owl#DMShelfW70'],
     [1.0,'http://knowrob.org/kb/dm-market.owl#DMShelfW100'],
     [1.2,'http://knowrob.org/kb/dm-market.owl#DMShelfW120']
   ],
@@ -753,6 +754,8 @@ shelf_classify_height(_Shelf,H):-
 
 %%
 % Classify shelf based on number of tiles in bottom floor.
+shelf_classify_num_tiles(Shelf,4):-
+  rdfs_classify(Shelf, dmshop:'DMShelfT4'),!.
 shelf_classify_num_tiles(Shelf,5):-
   rdfs_classify(Shelf, dmshop:'DMShelfT5'),!.
 shelf_classify_num_tiles(Shelf,6):-
