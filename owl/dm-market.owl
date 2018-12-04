@@ -959,6 +959,12 @@
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.047</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#mainColorOfObject"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0 0.0 1.0 0.6</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:comment>the labels at the footer of the shelf.</rdfs:comment>
         <rdfs:comment>todo: less confusing naming</rdfs:comment>
     </owl:Class>
