@@ -705,6 +705,7 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
 rdfs_classify(Shelf,ShelfType),
   rdf_assert(Shelf, knowrob:depthOfObject, literal(type(xsd:float, '0.2'))),
   rdf_assert(Shelf, knowrob:heightOfObject, literal(type(xsd:float, '0.2'))),
+  rdf_assert(Shelf, knowrob:mainColorOfObject, literal(type(xsd:string, '0.0 1.0 0.5 0.6'))),
   rdf_assert(Shelf, dmshop:leftMarker, LeftMarker, belief_state),
   rdf_assert(Shelf, dmshop:rightMarker, RightMarker, belief_state).
 
@@ -721,6 +722,7 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   % retract temporary height/depth
   rdf_retractall(Shelf, knowrob:depthOfObject, _),
   rdf_retractall(Shelf, knowrob:heightOfObject, _),
+  rdf_retractall(Shelf, knowrob:mainColorOfObject, _),
   % assert various types based on input.
   % this fails in case input is not valid.
   shelf_classify_height(Shelf,Height),
