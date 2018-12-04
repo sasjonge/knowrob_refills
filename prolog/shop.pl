@@ -703,8 +703,8 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   belief_new_object(ShelfType,Shelf),
   % temporary assert height/depth
 rdfs_classify(Shelf,ShelfType),
-  rdf_assert(Shelf, knowrob:depthOfObject, literal(type(xsd:float, '0.2'))),
-  rdf_assert(Shelf, knowrob:heightOfObject, literal(type(xsd:float, '0.2'))),
+  rdf_assert(Shelf, knowrob:depthOfObject, literal(type(xsd:float, '0.02'))),
+  rdf_assert(Shelf, knowrob:heightOfObject, literal(type(xsd:float, '0.11'))),
   rdf_assert(Shelf, knowrob:mainColorOfObject, literal(type(xsd:string, '0.0 1.0 0.5 0.6'))),
   rdf_assert(Shelf, dmshop:leftMarker, LeftMarker, belief_state),
   rdf_assert(Shelf, dmshop:rightMarker, RightMarker, belief_state).
