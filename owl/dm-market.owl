@@ -2279,7 +2279,7 @@
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#Floor_Pose_Bottom">
         <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
         <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.08 0.0</knowrob:translation>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 -0.08 -0.025</knowrob:translation>
     </owl:NamedIndividual>
     
 
