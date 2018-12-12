@@ -160,6 +160,7 @@ article_number_of_dan(DAN,AN) :-
     %has_value(ArticleNumber)), AN_R),
   %rdf_assert(ProductType, rdfs:subClassOf, AN_R).
 
+product_type_dimensions([D,W,H], [D,W,H]) :- !.
 product_type_dimensions(Type, [D,W,H]) :-
   owl_property_range_on_class(Type, shop:depthOfProduct,  literal(type(_,D_atom))),
   owl_property_range_on_class(Type, shop:widthOfProduct,  literal(type(_,W_atom))),
@@ -828,21 +829,24 @@ pos_term(Axis, Pos, pos(Axis,Pos)).
 product_dimensions(X,D,W,H):-object_dimensions(X,D,W,H), !.
 product_dimensions(_,0.04,0.04,0.04).
 
-product_spawn_at(Facing, Type, Offset_D, Obj) :-
+product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   rdf_has(Facing, shop:layerOfFacing, Layer),
   
-  product_type_dimensions(Type, [Obj_D,_,_]),
+  product_type_dimensions(TypeOrBBOX, [Obj_D,_,Obj_H]),
   object_dimensions(Layer,Layer_D,_,_),
   Layer_D*0.5 > Offset_D + Obj_D*0.5 + 0.04,
   
-  belief_new_object(Type, Obj),
+  ( TypeOrBBOX=[D,W,H] -> (
+    belief_new_object(shop:'Product', Obj),
+    object_assert_dimensions(Obj,D,W,H) ) ;
+    belief_new_object(TypeOrBBOX, Obj) ),
   % enforce we have a product here
   ( rdfs_individual_of(Obj,shop:'Product') -> true ;(
     print_message(warning, shop([Obj], 'Is not subclass of shop:Product.')),
     rdf_assert(Obj,rdf:type,shop:'Product') )),
   
   % compute offset
-  product_dimensions(Obj,_,_,Obj_H),
+  %product_dimensions(Obj,_,_,Obj_H),
   belief_at_id(Facing, [_,_,[Facing_X,_,_],_]),
   
   % FIXME: this should be handled by offsets from ontology
@@ -871,19 +875,19 @@ product_spawn_front_to_back(Facing, Obj) :-
   shelf_facing_product_type(Facing, ProductType),
   product_spawn_front_to_back(Facing, Obj, ProductType).
   
-product_spawn_front_to_back(Facing, Obj, Type) :-
+product_spawn_front_to_back(Facing, Obj, TypeOrBBOX) :-
   rdf_has(Facing, shop:layerOfFacing, Layer),
-  product_type_dimensions(Type, [Obj_D,_,_]),
+  product_type_dimensions(TypeOrBBOX, [Obj_D,_,_]),
   shelf_facing_products(Facing, ProductsFrontToBack),
   reverse(ProductsFrontToBack, ProductsBackToFront),
   ( ProductsBackToFront=[] -> (
     object_dimensions(Layer,Layer_D,_,_),
     Obj_Pos is -Layer_D*0.5 + Obj_D*0.5 + 0.01,
-    product_spawn_at(Facing, Type, Obj_Pos, Obj));(
+    product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj));(
     ProductsBackToFront=[(Last_Pos,Last)|_],
     product_dimensions(Last,Last_D,_,_),
     Obj_Pos is Last_Pos + 0.5*Last_D + 0.5*Obj_D + 0.02,
-    product_spawn_at(Facing, Type, Obj_Pos, Obj)
+    product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj)
   )).
   
 shelf_facing_products(Facing, Products) :-
