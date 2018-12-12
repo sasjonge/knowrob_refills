@@ -627,6 +627,9 @@ comp_MisplacedProductFacing(Facing) :-
   owl_has(Product,shop:articleNumberOfProduct,AN),
   forall( rdf_has(Label,shop:articleNumberOfLabel,AN),
           \+ comp_preferredLabelOfFacing(Facing,Label) ),!.
+comp_MisplacedProductFacing(Facing) :-
+  rdf_has(Facing,shop:productInFacing,Product),
+  \+ owl_has(Product,shop:articleNumberOfProduct,AN),!.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
