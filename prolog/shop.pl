@@ -66,7 +66,10 @@
       belief_shelf_part_at/4,
       belief_shelf_barcode_at/5,
       product_spawn_front_to_back/2,
-      product_spawn_front_to_back/3
+      product_spawn_front_to_back/3,
+      %%%%%
+      create_article_type/2,
+      create_article_number/3
     ]).
 
 :- use_module(library('semweb/rdf_db')).
@@ -96,7 +99,8 @@
     shelf_classify(r,+,+,+),
     shelf_with_marker(r,r),
     rdfs_classify(r,r),
-    owl_classify(r,r).
+    owl_classify(r,r),
+    create_article_type(r,r).
 
 :- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
 :- rdf_db:rdf_register_ns(owl, 'http://www.w3.org/2002/07/owl#', [keep(true)]).
@@ -140,6 +144,24 @@ prolog:message(shop(Entities,Msg)) -->
   %create_product_type(ArticleNumber, ProductType),
   %print_message(warning, shop([ProductType], 'Missing product type. Incomplete data?')).
 
+create_article_number(GTIN,DAN,AN) :-
+  term_to_atom(GTIN,GTIN_atom),
+  term_to_atom(DAN,DAN_atom),
+  rdf_instance_from_class(shop:'ArticleNumber', belief_state, AN),
+  rdf_assert(AN, shop:gtin, literal(type(xsd:string,GTIN_atom))),
+  rdf_assert(AN, shop:dan, literal(type(xsd:string,DAN_atom))).
+
+create_article_type(AN,ProductType) :-
+  rdf_has_prolog(AN,shop:gtin,GTIN),
+  atomic_list_concat([
+    'http://knowrob.org/kb/shop.owl#Product_',GTIN], ProductType),
+  rdf_assert(ProductType, rdfs:subClassOf, shop:'Product'),
+  rdf_assert(ProductType, rdf:type, owl:'Class'),
+  owl_restriction_assert(restriction(
+    shop:articleNumberOfProduct,
+    has_value(AN)), AN_R),
+  rdf_assert(ProductType, rdfs:subClassOf, AN_R).
+
 article_number_of_dan(DAN,AN) :-
   rdf_has_prolog(AN,shop:dan,DAN),
   rdfs_individual_of(AN,shop:'ArticleNumber'),!.
@@ -147,18 +169,6 @@ article_number_of_dan(DAN,AN) :-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % shop:'Product'
-
-%create_product_type(ArticleNumber,ProductType) :-
-  %rdf_has(ArticleNumber, shop:articleNumberString, literal(type(_,AN_atom))),
-  %atomic_list_concat([
-    %'http://knowrob.org/kb/shop.owl#ProductWithAN',
-    %AN_atom], ProductType),
-  %rdf_assert(ProductType, rdfs:subClassOf, shop:'Product'),
-  %rdf_assert(ProductType, rdf:type, owl:'Class'),
-  %owl_restriction_assert(restriction(
-    %shop:articleNumberOfProduct,
-    %has_value(ArticleNumber)), AN_R),
-  %rdf_assert(ProductType, rdfs:subClassOf, AN_R).
 
 product_type_dimensions([D,W,H], [D,W,H]) :- !.
 product_type_dimensions(Type, [D,W,H]) :-
@@ -629,7 +639,7 @@ comp_MisplacedProductFacing(Facing) :-
           \+ comp_preferredLabelOfFacing(Facing,Label) ),!.
 comp_MisplacedProductFacing(Facing) :-
   rdf_has(Facing,shop:productInFacing,Product),
-  \+ owl_has(Product,shop:articleNumberOfProduct,AN),!.
+  \+ owl_has(Product,shop:articleNumberOfProduct,_),!.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
