@@ -70,7 +70,8 @@
       %%%%%
       create_article_type/2,
       create_article_type/3,
-      create_article_number/3
+      create_article_number/3,
+      create_article_number/2
     ]).
 
 :- use_module(library('semweb/rdf_db')).
@@ -154,6 +155,16 @@ create_article_number(GTIN,DAN,AN) :-
   rdf_instance_from_class(shop:'ArticleNumber', belief_state, AN),
   rdf_assert(AN, shop:gtin, literal(type(xsd:string,GTIN_atom))),
   rdf_assert(AN, shop:dan, literal(type(xsd:string,DAN_atom))).
+
+create_article_number(dan(DAN),AN) :-
+  atomize(DAN,DAN_atom),
+  rdf_instance_from_class(shop:'ArticleNumber', belief_state, AN),
+  rdf_assert(AN, shop:dan, literal(type(xsd:string,DAN_atom))).
+
+create_article_number(gtin(GTIN),AN) :-
+  atomize(GTIN,GTIN_atom),
+  rdf_instance_from_class(shop:'ArticleNumber', belief_state, AN),
+  rdf_assert(AN, shop:gtin, literal(type(xsd:string,GTIN_atom))).
 
 create_article_type(AN,[D,W,H],ProductType) :-
   create_article_type(AN,ProductType),
