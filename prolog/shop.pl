@@ -69,6 +69,7 @@
       product_spawn_front_to_back/3,
       %%%%%
       create_article_type/2,
+      create_article_type/3,
       create_article_number/3
     ]).
 
@@ -143,24 +144,42 @@ prolog:message(shop(Entities,Msg)) -->
   %rdf_assert(ArticleNumber, shop:articleNumberString, AN_XSD),
   %create_product_type(ArticleNumber, ProductType),
   %print_message(warning, shop([ProductType], 'Missing product type. Incomplete data?')).
+  
+atomize(A,A) :- atom(A), !.
+atomize(T,A) :- term_to_atom(T,A).
 
 create_article_number(GTIN,DAN,AN) :-
-  term_to_atom(GTIN,GTIN_atom),
-  term_to_atom(DAN,DAN_atom),
+  atomize(GTIN,GTIN_atom),
+  atomize(DAN,DAN_atom),
   rdf_instance_from_class(shop:'ArticleNumber', belief_state, AN),
   rdf_assert(AN, shop:gtin, literal(type(xsd:string,GTIN_atom))),
   rdf_assert(AN, shop:dan, literal(type(xsd:string,DAN_atom))).
 
-create_article_type(AN,ProductType) :-
-  rdf_has_prolog(AN,shop:gtin,GTIN),
-  atomic_list_concat([
-    'http://knowrob.org/kb/shop.owl#Product_',GTIN], ProductType),
-  rdf_assert(ProductType, rdfs:subClassOf, shop:'Product'),
-  rdf_assert(ProductType, rdf:type, owl:'Class'),
+create_article_type(AN,[D,W,H],ProductType) :-
+  create_article_type(AN,ProductType),
+  % specify bounding box
+  xsd_float(D,D_XSD),
+  xsd_float(W,W_XSD),
+  xsd_float(H,H_XSD),
   owl_restriction_assert(restriction(
-    shop:articleNumberOfProduct,
-    has_value(AN)), AN_R),
-  rdf_assert(ProductType, rdfs:subClassOf, AN_R).
+    shop:widthOfProduct, has_value(W_XSD)), W_R, belief_state),
+  owl_restriction_assert(restriction(
+    shop:heightOfProduct, has_value(H_XSD)), H_R, belief_state),
+  owl_restriction_assert(restriction(
+    shop:depthOfProduct, has_value(D_XSD)), D_R, belief_state),
+  rdf_assert(ProductType, rdfs:subClassOf, W_R, belief_state),
+  rdf_assert(ProductType, rdfs:subClassOf, H_R, belief_state),
+  rdf_assert(ProductType, rdfs:subClassOf, D_R, belief_state).
+
+create_article_type(AN,ProductType) :-
+  rdf_has(AN,shop:gtin,GTIN), strip_literal_type(GTIN,GTIN_stripped),
+  atomic_list_concat([
+    'http://knowrob.org/kb/shop.owl#Product_',GTIN_stripped], ProductType),
+  rdf_assert(ProductType, rdfs:subClassOf, shop:'Product', belief_state),
+  rdf_assert(ProductType, rdf:type, owl:'Class', belief_state),
+  owl_restriction_assert(restriction(
+    shop:articleNumberOfProduct, has_value(AN)), AN_R, belief_state),
+  rdf_assert(ProductType, rdfs:subClassOf, AN_R, belief_state).
 
 article_number_of_dan(DAN,AN) :-
   rdf_has_prolog(AN,shop:dan,DAN),
