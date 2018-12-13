@@ -154,18 +154,18 @@ create_article_number(GTIN,DAN,AN) :-
   atomize(GTIN,GTIN_atom),
   atomize(DAN,DAN_atom),
   rdf_instance_from_class(shop:'ArticleNumber', belief_state, AN),
-  rdf_assert(AN, shop:gtin, literal(type(xsd:string,GTIN_atom))),
-  rdf_assert(AN, shop:dan, literal(type(xsd:string,DAN_atom))).
+  rdf_assert(AN, shop:gtin, literal(type(xsd:string,GTIN_atom)), belief_state),
+  rdf_assert(AN, shop:dan, literal(type(xsd:string,DAN_atom)), belief_state).
 
 create_article_number(dan(DAN),AN) :-
   atomize(DAN,DAN_atom),
   rdf_instance_from_class(shop:'ArticleNumber', belief_state, AN),
-  rdf_assert(AN, shop:dan, literal(type(xsd:string,DAN_atom))).
+  rdf_assert(AN, shop:dan, literal(type(xsd:string,DAN_atom)), belief_state).
 
 create_article_number(gtin(GTIN),AN) :-
   atomize(GTIN,GTIN_atom),
   rdf_instance_from_class(shop:'ArticleNumber', belief_state, AN),
-  rdf_assert(AN, shop:gtin, literal(type(xsd:string,GTIN_atom))).
+  rdf_assert(AN, shop:gtin, literal(type(xsd:string,GTIN_atom)), belief_state).
 
 create_article_type(AN,[D,W,H],ProductType) :-
   create_article_type(AN,ProductType),
