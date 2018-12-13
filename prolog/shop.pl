@@ -71,8 +71,7 @@
       create_article_type/2,
       create_article_type/3,
       create_article_number/3,
-      create_article_number/2,
-      article_number_of_dan/2
+      create_article_number/2
     ]).
 
 :- use_module(library('semweb/rdf_db')).
@@ -184,9 +183,11 @@ create_article_type(AN,[D,W,H],ProductType) :-
   rdf_assert(ProductType, rdfs:subClassOf, D_R, belief_state).
 
 create_article_type(AN,ProductType) :-
-  rdf_has(AN,shop:gtin,GTIN), strip_literal_type(GTIN,GTIN_stripped),
+  once((
+    rdf_has_prolog(AN,shop:gtin,NUM) ;
+    rdf_has_prolog(AN,shop:dan,NUM) )),
   atomic_list_concat([
-    'http://knowrob.org/kb/shop.owl#Product_',GTIN_stripped], ProductType),
+    'http://knowrob.org/kb/shop.owl#UnknownProduct_',NUM], ProductType),
   rdf_assert(ProductType, rdfs:subClassOf, shop:'Product', belief_state),
   rdf_assert(ProductType, rdf:type, owl:'Class', belief_state),
   owl_restriction_assert(restriction(
