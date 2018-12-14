@@ -71,7 +71,8 @@
       create_article_type/2,
       create_article_type/3,
       create_article_number/3,
-      create_article_number/2
+      create_article_number/2,
+      article_number_of_dan/2
     ]).
 
 :- use_module(library('semweb/rdf_db')).
