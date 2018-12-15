@@ -38,7 +38,9 @@
       refills_spawn_shelf1/1,
       refills_spawn_shelf2/1,
       shelf_floor_type/2,
-      shelf_bottom_floor_type/2
+      shelf_bottom_floor_type/2,
+      refills_test_spawning/1,
+      refills_test_spawning/2
     ]).
 
 :- use_module(library('semweb/rdf_db')).
@@ -62,66 +64,75 @@
     refills_spawn_shelf2(r),
     refills_make_shelf(r,t),
     shelf_floor_type(r,r),
-    shelf_bottom_floor_type(r,r).
+    shelf_bottom_floor_type(r,r),
+    refills_test_spawning(r),
+    refills_test_spawning(r,+),
+    bulk_insert_floor(r,+,+).
 
 :- use_module(library('shop')).
-  
+
 shelf_bottom_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT5'),
-  owl_individual_of(Frame,dmshop:'DMShelfW100'),
+  rdfs_individual_of(Frame,FrameType),
+  shelf_bottom_floor_type_(FrameType,Type), !.
+shelf_bottom_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT5'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMBFloorT5W100'),!.
-shelf_bottom_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT6'),
-  owl_individual_of(Frame,dmshop:'DMShelfW50'),
-  rdf_equal(Type,dmshop:'DMBFloorT6W50'),!.
-shelf_bottom_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT6'),
-  owl_individual_of(Frame,dmshop:'DMShelfW75'),
+shelf_bottom_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW60'),
+  rdf_equal(Type,dmshop:'DMBFloorT6W60'),!.
+shelf_bottom_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW70'),
   rdf_equal(Type,dmshop:'DMBFloorT6W75'),!.
-shelf_bottom_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT6'),
-  owl_individual_of(Frame,dmshop:'DMShelfW100'),
+shelf_bottom_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMBFloorT6W100'),!.
-shelf_bottom_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT6'),
-  owl_individual_of(Frame,dmshop:'DMShelfW120'),
+shelf_bottom_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMBFloorT6W120'),!.
-shelf_bottom_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT7'),
-  owl_individual_of(Frame,dmshop:'DMShelfW100'),
+shelf_bottom_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT7'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMBFloorT7W100'),!.
-shelf_bottom_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT7'),
-  owl_individual_of(Frame,dmshop:'DMShelfW120'),
+shelf_bottom_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT7'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMBFloorT7W120'),!.
 
 shelf_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT5'),
-  owl_individual_of(Frame,dmshop:'DMShelfW100'),
+  rdfs_individual_of(Frame,FrameType),
+  shelf_floor_type_(FrameType,Type), !.
+shelf_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT5'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMFloorT4W100'),!.
-shelf_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT6'),
-  owl_individual_of(Frame,dmshop:'DMShelfW50'),
-  rdf_equal(Type,dmshop:'DMFloorT5W50'),!.
-shelf_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT6'),
-  owl_individual_of(Frame,dmshop:'DMShelfW75'),
+shelf_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW60'),
+  rdf_equal(Type,dmshop:'DMFloorT5W60'),!.
+shelf_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW70'),
   rdf_equal(Type,dmshop:'DMFloorT5W75'),!.
-shelf_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT6'),
-  owl_individual_of(Frame,dmshop:'DMShelfW100'),
+shelf_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMFloorT5W100'),!.
-shelf_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT6'),
-  owl_individual_of(Frame,dmshop:'DMShelfW120'),
+shelf_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMFloorT5W120'),!.
-shelf_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT7'),
-  owl_individual_of(Frame,dmshop:'DMShelfW100'),
+shelf_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT7'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMFloorT6W100'),!.
-shelf_floor_type(Frame,Type) :-
-  owl_individual_of(Frame,dmshop:'DMShelfT7'),
-  owl_individual_of(Frame,dmshop:'DMShelfW120'),
+shelf_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT7'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMFloorT6W120'),!.
 
 refills_init_iai_shop :-
@@ -131,17 +142,29 @@ refills_init_test_shop :-
   belief_parse('package://knowrob_refills/owl/shop-test.owl'),
   refills_spawn_facings.
 
-refills_make_shelf(Frame, [(Pos,separators(Separators),labels(Labels))|Rest]) :-
+bulk_insert_floor(Floor, separators(Separators), labels(Labels)) :-
+  forall(
+    member(SepPos,Separators),
+    belief_shelf_part_at(Floor,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _, [insert])),
+  forall(
+    member((LabelPos,AN),Labels),
+    belief_shelf_barcode_at(Floor,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos), _, [insert])),
+  % update facings 
+  shelf_facings_mark_dirty(Floor).
+
+% @deprecated
+refills_make_shelf_old(Frame, [(Pos,separators(Separators),labels(Labels))|Rest]) :-
   shelf_floor_type(Frame,FloorType),
   belief_shelf_part_at(Frame, FloorType, norm(Pos), Layer),
-  % spawn separators and labels
+  % assert to belief state
   forall(member(SepPos,Separators),
          belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _)),
   forall(member((LabelPos,AN),Labels),
          belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
   refills_make_shelf(Frame, Rest).
 
-refills_make_shelf(Frame, [(separators(Separators),labels(Labels))|Rest]) :-
+% @deprecated
+refills_make_shelf_old(Frame, [(separators(Separators),labels(Labels))|Rest]) :-
   Pos is 0.075,
   shelf_bottom_floor_type(Frame,BottomFloorType),
   belief_shelf_part_at(Frame, BottomFloorType, norm(Pos), Layer),
@@ -149,6 +172,19 @@ refills_make_shelf(Frame, [(separators(Separators),labels(Labels))|Rest]) :-
          belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _)),
   forall(member((LabelPos,AN),Labels),
          belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
+  refills_make_shelf(Frame, Rest).
+
+refills_make_shelf(Frame, [(Pos,Separators,Labels)|Rest]) :-
+  shelf_floor_type(Frame,FloorType),
+  belief_shelf_part_at(Frame, FloorType, norm(Pos), Layer),
+  bulk_insert_floor(Layer,Separators,Labels),
+  refills_make_shelf(Frame, Rest).
+
+refills_make_shelf(Frame, [(Separators,Labels)|Rest]) :-
+  Pos is 0.075,
+  shelf_bottom_floor_type(Frame,BottomFloorType),
+  belief_shelf_part_at(Frame, BottomFloorType, norm(Pos), Layer),
+  bulk_insert_floor(Layer,Separators,Labels),
   refills_make_shelf(Frame, Rest).
 
 refills_make_shelf(Frame, [(Pos,bars(Bars),labels(Labels))|Rest]) :-
@@ -218,3 +254,46 @@ refills_spawn_facings :-
   refills_spawn_shelf1('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS'),
   refills_spawn_shelf2('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8'),
   refills_spawn_products.
+
+%%%%%%%%
+
+shelf_type(Type) :-
+  rdfs_subclass_of(Type,shop:'ShelfFrame'),
+  once( owl_class_properties(Type, knowrob:pathToCadModel, _) ).
+
+shelf_fill(Shelf,Data) :-
+  current_time(T0),
+  refills_make_shelf(Shelf,Data),
+  current_time(T1),
+  Diff is T1 - T0,
+  write('    spawning floors took: '), write(Diff), writeln(' s').
+
+refills_test_spawning(Shelf) :-
+  refills_test_spawning(Shelf, [
+    (separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.21,'378940'),(0.5,'402186'),(0.925,'346864')])),
+    (0.4, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'378981'),(0.925,'553736')])),
+    (0.6, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'553735'),(0.925,'251188')])),
+    (0.8, separators([0.0,0.2,0.4,0.6,0.85,1.0]), labels([(0.475,'250899'),(0.925,'544382')]))
+  ]).
+
+refills_test_spawning(Shelf,Data) :-
+  shelf_type(ShelfType),
+  % remove old marker
+  write('cleaning up...'),nl,
+  belief_forget,
+  %reload_objects,
+  sleep(2.0),
+  write('shelf type: '), owl_write_readable(ShelfType), nl,
+  belief_new_object(ShelfType,Shelf),
+  object_dimensions(Shelf,_,_,ShelfH),
+  ShelfH2 is 0.5*ShelfH,
+  belief_at_update(Shelf,[map,_,[0.0,0.0,ShelfH2],[0,0,0,1]]),
+  writeln('  spawning floors...'),
+  ( shelf_fill(Shelf,Data) ->
+    writeln('    done.') ;
+    writeln('    ERROR something went wrong!') ),
+  writeln('  spawning objects...'),
+  refills_spawn_products,
+  writeln('done.').
+  
+  
