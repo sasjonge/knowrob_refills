@@ -48,6 +48,11 @@
       shelf_layer_find_facing_at/3,
       shelf_facing/2,
       shelf_facing_product_type/2,
+      shelf_facings_mark_dirty/1,
+      shelf_separator_insert/2,
+      shelf_separator_insert/3,
+      shelf_label_insert/2,
+      shelf_label_insert/3,
       % computable properties
       comp_isSpaceRemainingInFacing/2,
       comp_facingPose/2,
@@ -64,7 +69,9 @@
       %shelf_estimate_pose/1,
       %%%%%
       belief_shelf_part_at/4,
+      belief_shelf_part_at/5,
       belief_shelf_barcode_at/5,
+      belief_shelf_barcode_at/6,
       product_spawn_front_to_back/2,
       product_spawn_front_to_back/3,
       %%%%%
@@ -95,7 +102,9 @@
     shelf_facing_product_type(r,r),
     shelf_layer_part(r,r,r),
     belief_shelf_part_at(r,r,+,r),
+    belief_shelf_part_at(r,r,+,r,+),
     belief_shelf_barcode_at(r,r,+,+,-),
+    belief_shelf_barcode_at(r,r,+,+,-,+),
     product_type_dimension_assert(r,r,+),
     product_spawn_front_to_back(r,r,r),
     product_spawn_front_to_back(r,r),
@@ -103,6 +112,7 @@
     shelf_with_marker(r,r),
     rdfs_classify(r,r),
     owl_classify(r,r),
+    shelf_facings_mark_dirty(r),
     create_article_type(r,r).
 
 :- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
@@ -318,6 +328,8 @@ shelf_facings_mark_dirty(ShelfLayer) :-
 
 %%
 shelf_separator_insert(ShelfLayer,Separator) :-
+  shelf_separator_insert(ShelfLayer,Separator,[update_facings]).
+shelf_separator_insert(ShelfLayer,Separator,Options) :-
   shelf_layer_standing(ShelfLayer),
   % [X.pos - Separator.pos]
   shelf_layer_neighbours(ShelfLayer, Separator, shelf_layer_separator, Xs),
@@ -332,12 +344,14 @@ shelf_separator_insert(ShelfLayer,Separator) :-
   ((rdf_has(Y,shop:leftSeparator,Separator);
     rdf_has(Y,shop:rightSeparator,Separator)) ->
     shelf_facing_labels_update(ShelfLayer,Y) ; true ),
-  shelf_facings_mark_dirty(ShelfLayer).
+  ( member(update_facings,Options) ->
+    shelf_facings_mark_dirty(ShelfLayer) ;
+    true ).
    
 shelf_separator_update(_, X, [LeftOf,RightOf]) :-
-  % LeftOf,RightOf unchanged if ...
   % FIXME: could be that productInFacing changes, but highly unlikely.
   %        this is at the moment only updated when a facing is retracted.
+  % LeftOf,RightOf unchanged if ...
   ( rdf_has(Facing1,shop:rightSeparator,X) ->
   ( ground(LeftOf), rdf_has(Facing1,shop:leftSeparator,LeftOf));    \+ ground(LeftOf)),
   ( rdf_has(Facing2,shop:leftSeparator,X) ->
@@ -378,6 +392,8 @@ shelf_separator_remove_leftSeparator(Facing,X) :-
 % knowrob:'ShelfMountingBar'
 
 shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
+  shelf_mounting_bar_insert(ShelfLayer,MountingBar,[update_facings]).
+shelf_mounting_bar_insert(ShelfLayer,MountingBar,Options) :-
   (( rdf_has(Facing,shop:mountingBarOfFacing,MountingBar),
      shelf_mounting_bar_remove(MountingBar) );
      shelf_facing_assert(ShelfLayer,MountingBar,Facing)), !,
@@ -399,7 +415,9 @@ shelf_mounting_bar_insert(ShelfLayer,MountingBar) :-
     true ),
   % update labelOfFacing and productInFacing relations
   shelf_facing_labels_update(ShelfLayer,Facing),
-  shelf_facings_mark_dirty(ShelfLayer).
+  ( member(update_facings,Options) ->
+    shelf_facings_mark_dirty(ShelfLayer) ;
+    true ).
 
 shelf_mounting_bar_remove(MountingBar) :-
   rdf_has(Facing,shop:mountingBarOfFacing,MountingBar),
@@ -418,6 +436,8 @@ shelf_mounting_bar_remove(MountingBar) :-
 % shop:'ShelfLabel'
 
 shelf_label_insert(ShelfLayer,Label) :-
+  shelf_label_insert(ShelfLayer,Label,[update_facings]).
+shelf_label_insert(ShelfLayer,Label,Options) :-
   rdf_retractall(_,shop:labelOfFacing,Label),
   % find the position of Label on the shelf
   shelf_layer_position(ShelfLayer, Label, LabelPos),
@@ -433,7 +453,9 @@ shelf_label_insert(ShelfLayer,Label) :-
     LabeledFacingRight \= LabeledFacingLeft ) ->
     rdf_assert(LabeledFacingRight,shop:labelOfFacing,Label,belief_state) ;
     true ),
-  shelf_facings_mark_dirty(ShelfLayer).
+  ( member(update_facings,Options) ->
+    shelf_facings_mark_dirty(ShelfLayer) ;
+    true ).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -441,8 +463,6 @@ shelf_label_insert(ShelfLayer,Label) :-
 
 shelf_facing_assert(ShelfLayer,[Left,Right],Facing) :-
   shelf_layer_standing(ShelfLayer), !,
-  rdfs_individual_of(Left, shop:'ShelfSeparator'),
-  rdfs_individual_of(Right, shop:'ShelfSeparator'),
   rdf_instance_from_class(shop:'ProductFacingStanding', belief_state, Facing),
   rdf_assert(Facing, shop:leftSeparator, Left, belief_state),
   rdf_assert(Facing, shop:rightSeparator, Right, belief_state),
@@ -450,7 +470,6 @@ shelf_facing_assert(ShelfLayer,[Left,Right],Facing) :-
 
 shelf_facing_assert(ShelfLayer,MountingBar,Facing) :-
   shelf_layer_mounting(ShelfLayer), !,
-  rdfs_individual_of(MountingBar, shop:'ShelfMountingBar'),
   rdf_instance_from_class(shop:'ProductFacingMounting', belief_state, Facing),
   rdf_assert(Facing, shop:mountingBarOfFacing, MountingBar, belief_state),
   rdf_assert(Facing, shop:layerOfFacing, ShelfLayer, belief_state).
@@ -832,6 +851,9 @@ shelf_classify_payload(_Shelf,Mode):-
 % between separators and mounting bars.
 %
 belief_shelf_part_at(Frame, Type, Pos, Obj) :-
+  belief_shelf_part_at(Frame, Type, Pos, Obj, [insert,update_facings]).
+
+belief_shelf_part_at(Frame, Type, Pos, Obj, _Options) :-
   rdfs_subclass_of(Type, shop:'ShelfLayer'), !,
   pos_term(y,Pos,PosTerm),
   belief_perceived_part_at_axis(Frame, Type, PosTerm, Obj),
@@ -842,27 +864,36 @@ belief_shelf_part_at(Frame, Type, Pos, Obj) :-
   ( shelf_layer_above(Obj,Above) ->
     shelf_facings_mark_dirty(Above) ; true ).
 
-belief_shelf_part_at(Layer, Type, Pos, Obj) :-
+belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   rdfs_subclass_of(Type, shop:'ShelfSeparator'), !,
   pos_term(x,Pos,PosTerm),
   belief_perceived_part_at_axis(Layer, Type, PosTerm, Obj),
-  shelf_separator_insert(Layer,Obj).
+  ( member(insert,Options) ->
+    shelf_separator_insert(Layer,Obj,Options) ;
+    true ).
 
-belief_shelf_part_at(Layer, Type, Pos, Obj) :-
+belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   rdfs_subclass_of(Type, shop:'ShelfMountingBar'), !,
   pos_term(x,Pos,PosTerm),
   belief_perceived_part_at_axis(Layer, Type, PosTerm, Obj),
-  shelf_mounting_bar_insert(Layer,Obj).
+  ( member(insert,Options) ->
+    shelf_mounting_bar_insert(Layer,Obj,Options) ;
+    true ).
 
-belief_shelf_part_at(Layer, Type, Pos, Obj) :-
+belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   rdfs_subclass_of(Type, shop:'ShelfLabel'), !,
   pos_term(x,Pos,PosTerm),
   belief_perceived_part_at_axis(Layer, Type, PosTerm, Obj),
-  shelf_label_insert(Layer,Obj).
+  ( member(insert,Options) ->
+    shelf_label_insert(Layer,Obj,Options) ;
+    true ).
 
 belief_shelf_barcode_at(Layer, Type, dan(DAN), PosNorm, Obj) :-
+  belief_shelf_barcode_at(Layer, Type, dan(DAN), PosNorm, Obj, [insert,update_facings]).
+
+belief_shelf_barcode_at(Layer, Type, dan(DAN), PosNorm, Obj, Options) :-
   %create_article_number(ArticleNumber_value, ArticleNumber),
-  belief_shelf_part_at(Layer, Type, PosNorm, Obj),
+  belief_shelf_part_at(Layer, Type, PosNorm, Obj, Options),
   % 
   forall( article_number_of_dan(DAN,AN),
           rdf_assert(Obj, shop:articleNumberOfLabel, AN, belief_state) ).
