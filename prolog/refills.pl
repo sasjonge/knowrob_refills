@@ -40,7 +40,8 @@
       shelf_floor_type/2,
       shelf_bottom_floor_type/2,
       refills_test_spawning/1,
-      refills_test_spawning/2
+      refills_test_spawning/2,
+      bulk_insert_floor/3
     ]).
 
 :- use_module(library('semweb/rdf_db')).
