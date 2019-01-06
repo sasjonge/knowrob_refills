@@ -43,13 +43,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.140354260802</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.140354245901</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0508718006313</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0508718043566</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -105,7 +105,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0503909029067</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0503908991814</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -117,7 +117,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0509957969189</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0509958006442</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -145,13 +145,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0926622673869</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0926622599363</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0675561130047</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0675561055541</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -179,7 +179,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.188191011548</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.188190996647</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -207,19 +207,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0448133014143</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0448133051395</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.150572016835</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.150572001934</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0538325980306</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0538326017559</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -241,13 +241,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0587886981666</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0587887018919</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0975323691964</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.097532376647</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -287,7 +287,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0964669957757</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0964669883251</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -321,7 +321,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.104218497872</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.104218490422</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -479,13 +479,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0308315902948</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0308315921575</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.231434807181</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.231434822083</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -519,7 +519,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.257948487997</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.257948517799</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -593,7 +593,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.104218497872</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.104218490422</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -649,7 +649,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0276493094862</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0276493076235</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -723,7 +723,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.226232096553</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.226232111454</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -751,7 +751,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0749710872769</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0749710947275</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -763,7 +763,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0734780952334</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0734780877829</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -797,7 +797,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0753219947219</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0753219872713</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -819,13 +819,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.032027002424</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0320269986987</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.131216317415</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.131216302514</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -955,7 +955,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0510868094862</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0510868057609</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1023,7 +1023,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0974552929401</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0974553003907</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1057,7 +1057,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0263027958572</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0263027977198</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1165,7 +1165,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.100781701505</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.100781708956</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1193,7 +1193,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0276493094862</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0276493076235</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1227,7 +1227,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0276493094862</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0276493076235</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1261,7 +1261,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0355322994292</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0355323031545</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1273,7 +1273,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0752849951386</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0752849876881</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1307,7 +1307,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0530137009919</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0530137047172</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1329,13 +1329,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0346661992371</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0346662029624</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.137839749455</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.137839734554</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1369,7 +1369,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.130652591586</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.130652606487</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1397,7 +1397,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0453233011067</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.045323304832</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1409,7 +1409,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0849745050073</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0849744975567</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1437,13 +1437,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.154044017196</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.154044002295</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0929166004062</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0929166078568</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1499,13 +1499,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0687352046371</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0687351971865</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0875828787684</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.087582886219</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1539,13 +1539,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.217293009162</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.217293024063</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.144950196147</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.144950211048</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1567,13 +1567,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0451575033367</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0451574996114</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.210369035602</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.2103690207</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1601,7 +1601,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0706792995334</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0706793069839</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1647,7 +1647,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0812771916389</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0812771990895</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1675,13 +1675,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.194537118077</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.194537132978</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.123043306172</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.123043298721</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1709,13 +1709,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.180686041713</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.180686056614</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0956924930215</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0956924855709</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1737,13 +1737,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.029068896547</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0290688984096</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.160196021199</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.160196006298</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1771,13 +1771,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0308315902948</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0308315921575</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.231434807181</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.231434822083</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1817,7 +1817,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0772737041116</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.077273696661</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1839,13 +1839,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0505657978356</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0505658015609</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.171507671475</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.171507656574</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1873,7 +1873,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0479236021638</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0479235984385</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1907,7 +1907,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.02939417772</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0293941795826</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1987,7 +1987,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.144112423062</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.144112408161</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2021,7 +2021,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0368713028729</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0368712991476</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2077,7 +2077,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0468817986548</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0468818023801</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2089,7 +2089,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0835444107652</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0835444033146</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2100,36 +2100,36 @@
         </rdfs:subClassOf>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ProductWithAN027995">
+    <owl:Class rdf:about="&shop;ProductWithAN450081">
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
-                <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/models/andrei_student/ProductWithAN027995/autogen/low-res/ProductWithAN027995.dae</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/models/alexis_student/Denkmit_Backoffen_AN450081/autogen/low-res/Denkmit_Backoffen_AN450081_bb.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0889682024717</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0615098997951</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.306488037109</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.310742080212</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0889438986778</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0599711984396</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;articleNumberOfProduct"/>
-                <owl:hasValue rdf:resource="&shop;GTIN_4000125077310"/>
+                <owl:hasValue rdf:resource="&shop;GTIN_4010355055774"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2145,7 +2145,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0259593036026</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0259593054652</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2179,13 +2179,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0255181808025</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0255181789398</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.22154481709</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.221544802189</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2253,7 +2253,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.251143187284</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.251143217087</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2287,7 +2287,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.271247684956</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.271247714758</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2327,7 +2327,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0677004829049</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0677004754543</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2349,13 +2349,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.04916780442</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0491678006947</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.166103735566</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.166103720665</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2423,13 +2423,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.233079001307</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.233079016209</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0707738101482</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0707738026977</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2451,7 +2451,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0729950889945</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0729950815439</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2463,7 +2463,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0736690983176</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0736691057682</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2491,7 +2491,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0660607144237</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0660607218742</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2519,7 +2519,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.051989197731</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0519892014563</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2531,7 +2531,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0933139100671</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0933139026165</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2559,7 +2559,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.156520426273</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.156520411372</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2587,7 +2587,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.02939417772</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0293941795826</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2621,13 +2621,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0503212064505</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0503212101758</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.168628796935</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.168628782034</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2655,7 +2655,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0289605911821</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0289605930448</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2701,7 +2701,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0924016907811</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0924016982317</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2723,7 +2723,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0496192015707</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0496191978455</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2735,7 +2735,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0497211031616</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0497210994363</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2797,13 +2797,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.238720908761</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.238720923662</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0438687987626</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0438688024879</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2825,13 +2825,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0687894001603</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0687893927097</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.160856977105</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.160856962204</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2893,7 +2893,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0382389985025</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0382390022278</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2905,7 +2905,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0375214032829</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0375213995576</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2961,7 +2961,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0410686023533</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.041068598628</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3001,7 +3001,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0500597022474</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0500596985221</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3029,7 +3029,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0374333970249</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0374334007502</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3041,7 +3041,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.037246696651</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0372467003763</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3069,7 +3069,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.210526004434</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.210526019335</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3103,7 +3103,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.111426405609</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.111426398158</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3131,7 +3131,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0276493094862</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0276493076235</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3171,13 +3171,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.225183114409</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.225183099508</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0558524020016</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0558523982763</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3205,13 +3205,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.154044017196</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.154044002295</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0929166004062</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0929166078568</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3245,7 +3245,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0389803014696</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0389802977443</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3267,13 +3267,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.050534401089</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0505343973637</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.178995981812</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.178995996714</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3313,7 +3313,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0853458866477</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0853458940983</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3381,7 +3381,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0540978051722</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0540978014469</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3403,7 +3403,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0396764986217</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.039676502347</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3415,7 +3415,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0536270998418</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0536271035671</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3437,13 +3437,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0420163981616</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0420164018869</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.118313409388</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.118313401937</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3505,7 +3505,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0359355024993</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0359354987741</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3551,13 +3551,47 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0858145952225</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0858145877719</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;articleNumberOfProduct"/>
                 <owl:hasValue rdf:resource="&shop;GTIN_4010355319364"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <owl:Class rdf:about="&shop;ProductWithAN536803">
+        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/models/andrei_student/ProductWithAN536803/autogen/low-res/ProductWithAN536803.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0501987040043</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:hasValue rdf:datatype="&xsd;float">0.15682309866</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0497447997332</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;articleNumberOfProduct"/>
+                <owl:hasValue rdf:resource="&shop;GTIN_4260484410054"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -3641,7 +3675,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0267532970756</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0267532989383</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3653,7 +3687,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0565783046186</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0565783008933</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3687,7 +3721,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0772737041116</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.077273696661</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3755,7 +3789,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0748616978526</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0748617053032</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3777,13 +3811,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0401828028262</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0401827991009</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.194122970104</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.194122955203</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3845,7 +3879,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0287427771837</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.028742775321</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3879,7 +3913,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0163396317512</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0163396298885</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3891,7 +3925,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0941474065185</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0941473990679</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3919,7 +3953,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0529859028757</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0529858991504</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3947,13 +3981,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0317979156971</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0317979119718</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.238328814507</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.238328799605</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3981,7 +4015,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0276493094862</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0276493076235</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4027,7 +4061,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0771616846323</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0771616920829</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4049,7 +4083,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0278234947473</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0278234966099</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4083,19 +4117,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0401113070548</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0401113033295</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.181451573968</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.181451588869</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.117507405579</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.117507398129</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4117,7 +4151,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0671165063977</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0671164989471</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4151,19 +4185,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0363386012614</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0363386049867</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.129302099347</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.129302114248</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0378903970122</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0378904007375</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4191,13 +4225,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.190793260932</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.190793275833</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0514408014715</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0514408051968</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4293,13 +4327,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.254982918501</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.254982888699</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.130371525884</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.130371510983</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4333,7 +4367,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0775441899896</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.077544182539</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4361,13 +4395,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.16825351119</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.168253526092</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0407175906003</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0407175943255</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4389,13 +4423,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0685280039907</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0685279965401</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.152629718184</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.152629733086</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4429,13 +4463,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.182336837053</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.182336822152</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.146264508367</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.146264523268</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4463,13 +4497,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.154044017196</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.154044002295</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0929166004062</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0929166078568</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4480,36 +4514,36 @@
         </rdfs:subClassOf>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ProductWithAN536803">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <owl:Class rdf:about="&shop;ProductWithAN291557">
+        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
-                <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/models/andrei_student/ProductWithAN536803/autogen/low-res/ProductWithAN536803.dae</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/models/naive_box_meshes/alverde_AN291557/autogen/low-res/alverde_AN291557_bb.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0501987040043</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0599999390543</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.15682309866</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0550000034273</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0497447997332</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0599999390543</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;articleNumberOfProduct"/>
-                <owl:hasValue rdf:resource="&shop;GTIN_4260484410054"/>
+                <owl:hasValue rdf:resource="&shop;GTIN_4010355212504"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4565,13 +4599,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.161137357354</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.161137342453</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.11698859185</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.1169885993</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4599,7 +4633,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.121898017824</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.121898010373</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4627,13 +4661,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0292769800872</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0292769819498</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.238929107785</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.238929092884</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4673,7 +4707,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.104218497872</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.104218490422</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4695,7 +4729,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0259593036026</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0259593054652</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4729,19 +4763,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0597953982651</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0597954019904</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.193386510015</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.193386524916</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.140616491437</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.140616506338</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4797,7 +4831,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0548011027277</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0548011064529</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4831,7 +4865,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0459500066936</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0459500029683</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4899,13 +4933,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0447958000004</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0447958037257</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.211708024144</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.211708039045</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4939,7 +4973,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.180467963219</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.18046797812</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4967,13 +5001,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0684824958444</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0684824883938</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.21343909204</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.213439106941</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5001,7 +5035,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0523950979114</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0523951016366</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5047,7 +5081,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0677004829049</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0677004754543</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5075,13 +5109,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.238720908761</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.238720923662</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0438687987626</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0438688024879</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5092,36 +5126,36 @@
         </rdfs:subClassOf>
     </owl:Class>
 
-    <owl:Class rdf:about="&shop;ProductWithAN450081">
+    <owl:Class rdf:about="&shop;ProductWithAN027995">
         <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
-                <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/models/alexis_student/Denkmit_Backoffen_AN450081/autogen/low-res/Denkmit_Backoffen_AN450081_bb.dae</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/models/andrei_student/ProductWithAN027995/autogen/low-res/ProductWithAN027995.dae</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0615098997951</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0889682024717</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.310742080212</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.306488037109</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0599712021649</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0889438986778</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;articleNumberOfProduct"/>
-                <owl:hasValue rdf:resource="&shop;GTIN_4010355055774"/>
+                <owl:hasValue rdf:resource="&shop;GTIN_4000125077310"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5137,7 +5171,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0744550079107</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0744550004601</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5177,7 +5211,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.092098467052</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0920984745026</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5217,7 +5251,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0483915023506</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0483914986253</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5353,7 +5387,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.077004685998</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0770046934485</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5421,7 +5455,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0643993988633</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0643994063139</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5489,7 +5523,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0661493837833</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0661493912339</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5517,7 +5551,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.304240018129</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.304239988327</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5545,13 +5579,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0516523011029</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0516522973776</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.148792430758</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.14879244566</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5585,13 +5619,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.154044017196</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.154044002295</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0929166004062</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0929166078568</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5647,7 +5681,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0746265128255</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0746265053749</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5681,7 +5715,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0363459028304</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0363458991051</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5715,7 +5749,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0436437018216</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0436436980963</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5727,7 +5761,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0647652968764</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.064765304327</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5755,7 +5789,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.140278980136</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.140278995037</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5783,7 +5817,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0659611970186</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0659612044692</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5795,7 +5829,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0651732087135</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.065173201263</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5851,7 +5885,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0510333031416</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0510333068669</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5885,7 +5919,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0373135022819</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0373134985566</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5919,7 +5953,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.042050499469</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0420505031943</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5953,7 +5987,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0697617009282</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0697616934776</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5993,13 +6027,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0505203045905</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0505203008652</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.184875890613</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.184875905514</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6033,7 +6067,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0754554048181</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0754553973675</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6055,7 +6089,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0630440041423</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0630439966917</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6095,13 +6129,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.175100907683</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.175100922585</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0660528019071</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0660528093576</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6191,7 +6225,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0471619069576</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0471619032323</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6225,13 +6259,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0494516007602</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0494516044855</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.196690410376</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.196690395474</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6265,7 +6299,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.121714495122</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.121714502573</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6305,7 +6339,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0584364049137</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0584364011884</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6367,13 +6401,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0577534995973</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0577535033226</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0615809001029</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0615809038281</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6435,13 +6469,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.11872690171</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.118726909161</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.048657502979</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0486574992537</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6463,19 +6497,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0745399072766</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.074539899826</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0934024676681</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0934024751186</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0736122950912</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0736122876406</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6503,7 +6537,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.182687878609</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.182687863708</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6531,13 +6565,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.025770207867</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0257702097297</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.141401723027</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.141401737928</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6565,7 +6599,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0258504990488</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0258504971862</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6599,7 +6633,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.02939417772</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0293941795826</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6667,19 +6701,19 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0663157105446</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.066315703094</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.088832385838</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0888323932886</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0672301873565</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0672301948071</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6707,7 +6741,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.187131106853</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.187131121755</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6775,13 +6809,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.154044017196</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.154044002295</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0929166004062</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0929166078568</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6803,7 +6837,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0502291060984</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0502291023731</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6815,7 +6849,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0679613947868</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0679614022374</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6843,7 +6877,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.287156015635</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.287156045437</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6905,7 +6939,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0399377010763</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.039937697351</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6951,7 +6985,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.08547218889</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0854721963406</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6973,7 +7007,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0486009009182</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0486009046435</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6985,7 +7019,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0688780918717</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0688780993223</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7007,7 +7041,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0371655039489</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0371655002236</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7019,7 +7053,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0652041062713</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0652040988207</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7047,7 +7081,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.281655818224</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.281655788422</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7075,7 +7109,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0497122965753</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0497123003006</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7143,7 +7177,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0496429987252</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0496430024505</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7177,7 +7211,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0401489026845</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0401488989592</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7189,7 +7223,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0533883981407</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.053388401866</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7211,13 +7245,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.084187798202</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0841878056526</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.140634223819</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.140634208918</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7245,13 +7279,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0447099022567</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0447098985314</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.142858400941</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.142858415842</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7285,13 +7319,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.238720908761</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.238720923662</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0438687987626</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0438688024879</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7313,7 +7347,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.148792997003</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.148792982101</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7415,13 +7449,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0270280037075</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0270280018449</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.143391877413</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.143391892314</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7483,7 +7517,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0413451008499</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0413451045752</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7495,7 +7529,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0531500056386</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0531500019133</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7517,7 +7551,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.101764887571</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.101764895022</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7597,7 +7631,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.104218497872</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.104218490422</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7625,13 +7659,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0829253867269</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0829253941774</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.0914089903235</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0914089977741</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -7727,7 +7761,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
-                <owl:hasValue rdf:datatype="&xsd;float">0.18091379106</owl:hasValue>
+                <owl:hasValue rdf:datatype="&xsd;float">0.180913805962</owl:hasValue>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -8884,10 +8918,10 @@
         <shop:dan rdf:datatype="&xsd;string">553733</shop:dan>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&shop;GTIN_4010355407641">
+    <owl:NamedIndividual rdf:about="&shop;GTIN_4010355212504">
         <rdf:type rdf:resource="&shop;ArticleNumber"/>
-        <shop:gtin rdf:datatype="&xsd;string">4010355407641</shop:gtin>
-        <shop:dan rdf:datatype="&xsd;string">252312</shop:dan>
+        <shop:gtin rdf:datatype="&xsd;string">4010355212504</shop:gtin>
+        <shop:dan rdf:datatype="&xsd;string">291557</shop:dan>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&shop;GTIN_4001638098083">
@@ -8972,6 +9006,12 @@
         <rdf:type rdf:resource="&shop;ArticleNumber"/>
         <shop:gtin rdf:datatype="&xsd;string">4001638098014</shop:gtin>
         <shop:dan rdf:datatype="&xsd;string">036988</shop:dan>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&shop;GTIN_4010355407641">
+        <rdf:type rdf:resource="&shop;ArticleNumber"/>
+        <shop:gtin rdf:datatype="&xsd;string">4010355407641</shop:gtin>
+        <shop:dan rdf:datatype="&xsd;string">252312</shop:dan>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&shop;GTIN_4010355319968">
