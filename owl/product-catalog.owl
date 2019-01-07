@@ -40282,6 +40282,40 @@
         </rdfs:subClassOf>
     </owl:Class>
 
+    <owl:Class rdf:about="&shop;ProductWithAN159487">
+        <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&knowrob;pathToCadModel"/>
+                <owl:hasValue rdf:datatype="&xsd;string">package://refills_models/models/naive_box_meshes/model_AN159487/autogen/low-res/model_AN159487_bb.dae</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;widthOfProduct"/>
+                <owl:hasValue rdf:datatype="&xsd;float">0.0629999563098</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;heightOfProduct"/>
+                <owl:hasValue rdf:datatype="&xsd;float">0.194000005722</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;depthOfProduct"/>
+                <owl:hasValue rdf:datatype="&xsd;float">0.105999939144</owl:hasValue>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&shop;articleNumberOfProduct"/>
+                <owl:hasValue rdf:resource="&shop;GTIN_4010355487636"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
     <owl:Class rdf:about="&shop;ProductWithAN447751">
         <rdfs:subClassOf rdf:resource="&shop;SqueezeBag"/>
         <rdfs:subClassOf>
@@ -61328,10 +61362,10 @@
         <shop:dan rdf:datatype="&xsd;string">159194</shop:dan>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&shop;GTIN_8001090747723">
+    <owl:NamedIndividual rdf:about="&shop;GTIN_7322540963526">
         <rdf:type rdf:resource="&shop;ArticleNumber"/>
-        <shop:gtin rdf:datatype="&xsd;string">8001090747723</shop:gtin>
-        <shop:dan rdf:datatype="&xsd;string">606453</shop:dan>
+        <shop:gtin rdf:datatype="&xsd;string">7322540963526</shop:gtin>
+        <shop:dan rdf:datatype="&xsd;string">610544</shop:dan>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&shop;GTIN_5412533414868">
@@ -62376,6 +62410,12 @@
         <rdf:type rdf:resource="&shop;ArticleNumber"/>
         <shop:gtin rdf:datatype="&xsd;string">8001090336521</shop:gtin>
         <shop:dan rdf:datatype="&xsd;string">523707</shop:dan>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&shop;GTIN_4062300294462">
+        <rdf:type rdf:resource="&shop;ArticleNumber"/>
+        <shop:gtin rdf:datatype="&xsd;string">4062300294462</shop:gtin>
+        <shop:dan rdf:datatype="&xsd;string">582007</shop:dan>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&shop;GTIN_4010355427175">
@@ -63686,10 +63726,10 @@
         <shop:dan rdf:datatype="&xsd;string">520700</shop:dan>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&shop;GTIN_4062700836286">
+    <owl:NamedIndividual rdf:about="&shop;GTIN_8001090747723">
         <rdf:type rdf:resource="&shop;ArticleNumber"/>
-        <shop:gtin rdf:datatype="&xsd;string">4062700836286</shop:gtin>
-        <shop:dan rdf:datatype="&xsd;string">628907</shop:dan>
+        <shop:gtin rdf:datatype="&xsd;string">8001090747723</shop:gtin>
+        <shop:dan rdf:datatype="&xsd;string">606453</shop:dan>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&shop;GTIN_4010355473585">
@@ -63992,10 +64032,10 @@
         <shop:dan rdf:datatype="&xsd;string">430752</shop:dan>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&shop;GTIN_4062300294462">
+    <owl:NamedIndividual rdf:about="&shop;GTIN_4010355487636">
         <rdf:type rdf:resource="&shop;ArticleNumber"/>
-        <shop:gtin rdf:datatype="&xsd;string">4062300294462</shop:gtin>
-        <shop:dan rdf:datatype="&xsd;string">582007</shop:dan>
+        <shop:gtin rdf:datatype="&xsd;string">4010355487636</shop:gtin>
+        <shop:dan rdf:datatype="&xsd;string">159487</shop:dan>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&shop;GTIN_4062300290136">
@@ -67802,12 +67842,6 @@
         <shop:dan rdf:datatype="&xsd;string">503807</shop:dan>
     </owl:NamedIndividual>
 
-    <owl:NamedIndividual rdf:about="&shop;GTIN_7322540963526">
-        <rdf:type rdf:resource="&shop;ArticleNumber"/>
-        <shop:gtin rdf:datatype="&xsd;string">7322540963526</shop:gtin>
-        <shop:dan rdf:datatype="&xsd;string">610544</shop:dan>
-    </owl:NamedIndividual>
-
     <owl:NamedIndividual rdf:about="&shop;GTIN_4010355054852">
         <rdf:type rdf:resource="&shop;ArticleNumber"/>
         <shop:gtin rdf:datatype="&xsd;string">4010355054852</shop:gtin>
@@ -68550,6 +68584,12 @@
         <rdf:type rdf:resource="&shop;ArticleNumber"/>
         <shop:gtin rdf:datatype="&xsd;string">4062300119635</shop:gtin>
         <shop:dan rdf:datatype="&xsd;string">233668</shop:dan>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&shop;GTIN_4062700836286">
+        <rdf:type rdf:resource="&shop;ArticleNumber"/>
+        <shop:gtin rdf:datatype="&xsd;string">4062700836286</shop:gtin>
+        <shop:dan rdf:datatype="&xsd;string">628907</shop:dan>
     </owl:NamedIndividual>
 
     <owl:NamedIndividual rdf:about="&shop;GTIN_0000040161808">
