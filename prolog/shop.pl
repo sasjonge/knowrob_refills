@@ -673,13 +673,13 @@ comp_facingDepth(Facing, Selector, Offset, XSD_Val) :-
 
 comp_mainColorOfFacing(Facing, Color_XSD) :-
   rdf_has(Facing, shop:layerOfFacing, _), !,
-  ((owl_individual_of_during(Facing, shop:'UnlabeledProductFacing'),Col='1.0 0.35 0.0 0.1');
+  ((owl_individual_of_during(Facing, shop:'UnlabeledProductFacing'),Col='1.0 0.35 0.0 0.5');
    % FIXME: MisplacedProductFacing seems slow, comp_MisplacedProductFacing is a bit faster
-   (comp_MisplacedProductFacing(Facing),Col='1.0 0.0 0.0 0.1');
+   (comp_MisplacedProductFacing(Facing),Col='1.0 0.0 0.0 0.0');
    %(owl_individual_of_during(Facing, shop:'MisplacedProductFacing'),Col='1.0 0.0 0.0 0.4');
-   (owl_individual_of_during(Facing, shop:'EmptyProductFacing'),Col='1.0 1.0 0.0 0.1');
-   (owl_individual_of_during(Facing, shop:'FullProductFacing'),Col='0.0 0.25 0.0 0.1');
-   Col='0.0 1.0 0.0 0.1'),
+   (owl_individual_of_during(Facing, shop:'EmptyProductFacing'),Col='1.0 1.0 0.0 0.5');
+   (owl_individual_of_during(Facing, shop:'FullProductFacing'),Col='0.0 0.25 0.0 0.0');
+   Col='0.0 1.0 0.0 0.0'),
   Color_XSD=literal(type(xsd:string, Col)), !.
 
 comp_MisplacedProductFacing(Facing) :-
