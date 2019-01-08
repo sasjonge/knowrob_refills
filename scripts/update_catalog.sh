@@ -9,5 +9,5 @@ rosrun knowrob_refills import_catalog.py \
     --catalog \
     --datafile=$MODEL_DIR/model_data.yaml \
     -i $DATA_DIR/tax.xlsx:Tabelle1 \
-    -i $DATA_DIR/gtin.xlsx:GTIN-EAN \
+    -i $DATA_DIR/gtin.xlsx:DAN-GTIN \
     -o $OUTPUT_DIR
