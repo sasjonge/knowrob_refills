@@ -3226,7 +3226,7 @@
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/dm-market.owl#PerceptionTransform_FrameH200W120T6">
         <rdf:type rdf:resource="http://knowrob.org/kb/knowrob.owl#AffordanceTransform"/>
         <knowrob:quaternion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0 0.0 0.0 1.0</knowrob:quaternion>
-        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-0.615 -0.4615 -1</knowrob:translation>
+        <knowrob:translation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-0.615 -0.3615 -1</knowrob:translation>
     </owl:NamedIndividual>
     
 
