@@ -41,7 +41,8 @@
       shelf_bottom_floor_type/2,
       refills_test_spawning/1,
       refills_test_spawning/2,
-      bulk_insert_floor/3
+      bulk_insert_floor/3,
+      refills_test_spawning60/1
     ]).
 
 :- use_module(library('semweb/rdf_db')).
@@ -268,6 +269,16 @@ shelf_fill(Shelf,Data) :-
   current_time(T1),
   Diff is T1 - T0,
   write('    spawning floors took: '), write(Diff), writeln(' s').
+
+refills_test_spawning60(Shelf) :-
+  S15=[0.06,0.12,0.18,0.24,0.3,0.36,0.42,0.48,0.54,0.6,0.66,0.72,0.78,0.84,1.0],
+  L5=[(0.12,'378940'),(0.36,'402186'),(0.6,'346864'),(0.72,'553736'),(0.84,'250899')],
+  refills_test_spawning(Shelf, [
+    (     separators(S15), labels(L5)),
+    (0.4, separators(S15), labels(L5)),
+    (0.6, separators(S15), labels(L5)),
+    (0.8, separators(S15), labels(L5))
+  ]).
 
 refills_test_spawning(Shelf) :-
   refills_test_spawning(Shelf, [
