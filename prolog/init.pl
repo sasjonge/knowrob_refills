@@ -30,6 +30,7 @@
 
 :- register_ros_package(knowrob_common).
 :- register_ros_package(knowrob_objects).
+:- register_ros_package(knowrob_memory).
 :- register_ros_package(knowrob_assembly).
 :- register_ros_package(knowrob_refills).
 :- register_ros_package(knowrob_cram).
