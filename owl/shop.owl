@@ -11,13 +11,7 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:computable="http://knowrob.org/kb/computable.owl#">
     <owl:Ontology rdf:about="http://knowrob.org/kb/shop.owl">
-        <owl:imports rdf:resource="package://knowrob_common/owl/agents.owl"/>
-        <owl:imports rdf:resource="package://knowrob_common/owl/physical-events.owl"/>
-        <owl:imports rdf:resource="package://knowrob_common/owl/motions.owl"/>
-        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob_common.owl"/>
-        <owl:imports rdf:resource="package://knowrob_common/owl/actions.owl"/>
-        <owl:imports rdf:resource="package://knowrob_common/owl/objects.owl"/>
-        <owl:imports rdf:resource="package://knowrob_common/owl/buildings.owl"/>
+        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob.owl"/>
         <owl:imports rdf:resource="package://knowrob_assembly/owl/knowrob_assembly.owl"/>
     </owl:Ontology>
     
@@ -591,13 +585,9 @@
     
 
 
+    <!-- http://knowrob.org/kb/shop.owl#dan -->
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#dan">
-        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#shopParameter"/>
-        <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#ArticleNumber"/>
-    </owl:DatatypeProperty>
-
-    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#gtin">
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#shopParameter"/>
         <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#ArticleNumber"/>
     </owl:DatatypeProperty>
@@ -609,6 +599,15 @@
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#depthOfProduct">
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
         <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#productParameter"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#gtin -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/shop.owl#gtin">
+        <rdfs:subPropertyOf rdf:resource="http://knowrob.org/kb/shop.owl#shopParameter"/>
+        <rdfs:domain rdf:resource="http://knowrob.org/kb/shop.owl#ArticleNumber"/>
     </owl:DatatypeProperty>
     
 
@@ -669,13 +668,6 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
-    
-
-
-    <!-- http://knowrob.org/kb/actions.owl#SemanticMapping -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/actions.owl#SemanticMapping"/>
     
 
 
@@ -685,57 +677,9 @@
     
 
 
-    <!-- http://knowrob.org/kb/computable.owl#PrologTemporalProperty -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/computable.owl#PrologTemporalProperty"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#Agent-Generic -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#Agent-Generic"/>
-    
-
-
     <!-- http://knowrob.org/kb/knowrob.owl#AssemblyAffordance -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#AssemblyAffordance"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#Building -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#Building"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#FindingSomething -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#FindingSomething"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#HomogeneousExtendedSpaceRegion -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#HomogeneousExtendedSpaceRegion"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#HumanScaleObject -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#HumanScaleObject"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#Image -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#Image"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#InformationBearingThing -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#InformationBearingThing"/>
     
 
 
@@ -745,69 +689,9 @@
     
 
 
-    <!-- http://knowrob.org/kb/knowrob.owl#Perceiving -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#Perceiving"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#Perceiving-Voluntary -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#Perceiving-Voluntary"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#Person -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#Person"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#PhysicalPartOfObject -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#PhysicalPartOfObject"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#PurposefulAction -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#PurposefulAction"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#PuttingSomethingSomewhere -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#PuttingSomethingSomewhere"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#RoomInAConstruction -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#RoomInAConstruction"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#SpatialThing-Localized -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#SpatialThing-Localized"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#StorageConstruct -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#StorageConstruct"/>
-    
-
-
     <!-- http://knowrob.org/kb/knowrob.owl#SupportingPlane -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#SupportingPlane"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob.owl#TakingSomething -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob.owl#TakingSomething"/>
     
 
 
@@ -829,18 +713,6 @@
     
 
 
-    <!-- http://knowrob.org/kb/motions.owl#BaseMovement -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/motions.owl#BaseMovement"/>
-    
-
-
-    <!-- http://knowrob.org/kb/motions.owl#LookingAtLocation -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/motions.owl#LookingAtLocation"/>
-    
-
-
     <!-- http://knowrob.org/kb/shop.owl#ArrangingShelf -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ArrangingShelf">
@@ -852,7 +724,6 @@
     <!-- http://knowrob.org/kb/shop.owl#ArrangingShelfLabel -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ArrangingShelfLabel">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#PuttingSomethingSomewhere"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ArrangingShelf"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -897,7 +768,6 @@
     <!-- http://knowrob.org/kb/shop.owl#ArrangingShelfSeparator -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ArrangingShelfSeparator">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#PuttingSomethingSomewhere"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ArrangingShelf"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -921,7 +791,7 @@
     <!-- http://knowrob.org/kb/shop.owl#ArticleNumber -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ArticleNumber">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#InformationBearingThing"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
     </owl:Class>
     
 
@@ -966,8 +836,8 @@
     <!-- http://knowrob.org/kb/shop.owl#Customer -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Customer">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#Person"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShopPersona"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Person"/>
         <owl:disjointWith rdf:resource="http://knowrob.org/kb/shop.owl#ShopWorker"/>
     </owl:Class>
     
@@ -1059,7 +929,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://knowrob.org/kb/knowrob.owl#FindingSomething"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#objectSought"/>
                         <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShelfLayer"/>
@@ -1067,7 +937,7 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#FindingSomething"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#objectSought"/>
@@ -1080,19 +950,6 @@
                 <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShelfLayerPerception"/>
             </owl:Restriction>
         </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#subEvents"/>
-                <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/knowrob.owl#Perceiving"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#subAction"/>
-                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
-                <owl:onClass rdf:resource="http://knowrob.org/kb/motions.owl#LookingAtLocation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1103,7 +960,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://knowrob.org/kb/knowrob.owl#FindingSomething"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#objectSought"/>
                         <owl:someValuesFrom>
@@ -1119,7 +976,7 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#FindingSomething"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
     </owl:Class>
     
 
@@ -1278,12 +1135,6 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#MovingToLocation"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_common.owl#subMotion"/>
-                <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/motions.owl#BaseMovement"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#goalLocation"/>
                 <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShelfFrame"/>
             </owl:Restriction>
@@ -1307,12 +1158,6 @@
             </owl:Class>
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#MovingToLocation"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob_common.owl#subMotion"/>
-                <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/motions.owl#BaseMovement"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#goalLocation"/>
@@ -1385,7 +1230,7 @@
     <!-- http://knowrob.org/kb/shop.owl#Product -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Product">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#HumanScaleObject"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/shop.owl#articleNumberOfProduct"/>
@@ -1415,7 +1260,7 @@
     <!-- http://knowrob.org/kb/shop.owl#ProductContainer -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ProductContainer">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#StorageConstruct"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/EASE.owl#DesignedContainer"/>
     </owl:Class>
     
 
@@ -1556,7 +1401,6 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#PuttingSomethingSomewhere"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#PuttingProductSomewhere"/>
     </owl:Class>
     
@@ -1565,7 +1409,6 @@
     <!-- http://knowrob.org/kb/shop.owl#PuttingProductSomewhere -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#PuttingProductSomewhere">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#PuttingSomethingSomewhere"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShopActivity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1609,7 +1452,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://knowrob.org/kb/knowrob.owl#Perceiving-Voluntary"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#detectedObject"/>
                         <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShelfMountingBar"/>
@@ -1617,7 +1460,7 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#Perceiving-Voluntary"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#detectedObject"/>
@@ -1733,7 +1576,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://knowrob.org/kb/knowrob.owl#Perceiving-Voluntary"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#detectedObject"/>
                         <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShelfLabel"/>
@@ -1741,7 +1584,7 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#Perceiving-Voluntary"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#detectedObject"/>
@@ -1854,7 +1697,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://knowrob.org/kb/knowrob.owl#Perceiving-Voluntary"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#detectedObject"/>
                         <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShelfLayer"/>
@@ -1862,7 +1705,7 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#Perceiving-Voluntary"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#detectedObject"/>
@@ -1904,7 +1747,6 @@
     <!-- http://knowrob.org/kb/shop.owl#ShelfMapping -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfMapping">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/actions.owl#SemanticMapping"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShopWorkerActivity"/>
         <rdfs:subClassOf>
             <owl:Restriction>
@@ -1934,7 +1776,7 @@
     <!-- http://knowrob.org/kb/shop.owl#ShelfPart -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfPart">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#PhysicalPartOfObject"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/EASE.owl#PhysicalPart"/>
     </owl:Class>
     
 
@@ -1954,7 +1796,7 @@
         <owl:equivalentClass>
             <owl:Class>
                 <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://knowrob.org/kb/knowrob.owl#Perceiving-Voluntary"/>
+                    <rdf:Description rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
                     <owl:Restriction>
                         <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#detectedObject"/>
                         <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShelfSeparator"/>
@@ -1962,7 +1804,7 @@
                 </owl:intersectionOf>
             </owl:Class>
         </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#Perceiving-Voluntary"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#detectedObject"/>
@@ -1976,7 +1818,7 @@
     <!-- http://knowrob.org/kb/shop.owl#ShelfSpace -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfSpace">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#HomogeneousExtendedSpaceRegion"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Place"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty>
@@ -2061,7 +1903,7 @@
     <!-- http://knowrob.org/kb/shop.owl#Shop -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Shop">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#Building"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/EASE.owl#Building"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#hasRooms"/>
@@ -2082,7 +1924,7 @@
     <!-- http://knowrob.org/kb/shop.owl#ShopActivity -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShopActivity">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#PurposefulAction"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#performedBy"/>
@@ -2124,23 +1966,8 @@
     <!-- http://knowrob.org/kb/shop.owl#ShopLifter -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShopLifter">
-        <owl:equivalentClass>
-            <owl:Class>
-                <owl:intersectionOf rdf:parseType="Collection">
-                    <rdf:Description rdf:about="http://knowrob.org/kb/knowrob.owl#Person"/>
-                    <owl:Restriction>
-                        <owl:onProperty>
-                            <rdf:Description>
-                                <owl:inverseOf rdf:resource="http://knowrob.org/kb/knowrob.owl#performedBy"/>
-                            </rdf:Description>
-                        </owl:onProperty>
-                        <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShopLifting"/>
-                    </owl:Restriction>
-                </owl:intersectionOf>
-            </owl:Class>
-        </owl:equivalentClass>
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#Person"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShopPersona"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Person"/>
     </owl:Class>
     
 
@@ -2167,7 +1994,7 @@
     <!-- http://knowrob.org/kb/shop.owl#ShopPersona -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShopPersona">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#Agent-Generic"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent"/>
     </owl:Class>
     
 
@@ -2175,7 +2002,7 @@
     <!-- http://knowrob.org/kb/shop.owl#ShopRoom -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShopRoom">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#RoomInAConstruction"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/EASE.owl#RoomInABuilding"/>
     </owl:Class>
     
 
@@ -2183,8 +2010,8 @@
     <!-- http://knowrob.org/kb/shop.owl#ShopWorker -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShopWorker">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#Person"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShopPersona"/>
+        <rdfs:subClassOf rdf:resource="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Person"/>
     </owl:Class>
     
 
@@ -2295,7 +2122,6 @@
     <!-- http://knowrob.org/kb/shop.owl#TakingProduct -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#TakingProduct">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#TakingSomething"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShopActivity"/>
     </owl:Class>
     
@@ -2361,6 +2187,72 @@
     
 
 
+    <!-- http://www.ease-crc.org/ont/EASE.owl#Building -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/EASE.owl#Building"/>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/EASE.owl#DesignedContainer -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/EASE.owl#DesignedContainer"/>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/EASE.owl#PhysicalPart -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/EASE.owl#PhysicalPart"/>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/EASE.owl#RoomInABuilding -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/EASE.owl#RoomInABuilding"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Person -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Person"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalAgent"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalObject"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Place -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Place"/>
+    
+
+
+    <!-- http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task -->
+
+    <owl:Class rdf:about="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Task"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -2368,67 +2260,6 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
-    
-
-
-    <!-- http://knowrob.org/kb/shop.owl#comp_facingDepth -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop.owl#comp_facingDepth">
-        <rdf:type rdf:resource="http://knowrob.org/kb/computable.owl#PrologProperty"/>
-        <computable:visible rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unvisible</computable:visible>
-        <computable:cache rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dontCache</computable:cache>
-        <computable:command rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shop:comp_facingDepth</computable:command>
-        <computable:target rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://knowrob.org/kb/shop.owl#comp_facingHeight -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop.owl#comp_facingHeight">
-        <rdf:type rdf:resource="http://knowrob.org/kb/computable.owl#PrologProperty"/>
-        <computable:visible rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unvisible</computable:visible>
-        <computable:cache rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dontCache</computable:cache>
-        <computable:command rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shop:comp_facingHeight</computable:command>
-        <computable:target rdf:resource="http://knowrob.org/kb/knowrob.owl#heightOfObject"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://knowrob.org/kb/shop.owl#comp_facingPose -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop.owl#comp_facingPose">
-        <rdf:type rdf:resource="http://knowrob.org/kb/computable.owl#PrologProperty"/>
-        <computable:visible rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unvisible</computable:visible>
-        <computable:cache rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dontCache</computable:cache>
-        <computable:command rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shop:comp_facingPose</computable:command>
-        <computable:target rdf:resource="http://knowrob.org/kb/knowrob.owl#pose"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://knowrob.org/kb/shop.owl#comp_facingWidth -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop.owl#comp_facingWidth">
-        <rdf:type rdf:resource="http://knowrob.org/kb/computable.owl#PrologProperty"/>
-        <computable:visible rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unvisible</computable:visible>
-        <computable:cache rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dontCache</computable:cache>
-        <computable:command rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shop:comp_facingWidth</computable:command>
-        <computable:target rdf:resource="http://knowrob.org/kb/knowrob.owl#widthOfObject"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://knowrob.org/kb/shop.owl#comp_mainColorOfFacing -->
-
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop.owl#comp_mainColorOfFacing">
-        <rdf:type rdf:resource="http://knowrob.org/kb/computable.owl#PrologProperty"/>
-        <computable:visible rdf:datatype="http://www.w3.org/2001/XMLSchema#string">unvisible</computable:visible>
-        <computable:cache rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dontCache</computable:cache>
-        <computable:command rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shop:comp_mainColorOfFacing</computable:command>
-        <computable:target rdf:resource="http://knowrob.org/kb/knowrob.owl#mainColorOfObject"/>
-    </owl:NamedIndividual>
     
 
 

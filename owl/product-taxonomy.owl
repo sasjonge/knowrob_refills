@@ -21,7 +21,7 @@
       xmlns:computable="http://knowrob.org/kb/computable.owl#"
       xmlns:shop="http://knowrob.org/kb/shop.owl#">
     <owl:Ontology rdf:about="http://knowrob.org/kb/product-taxonomy.owl">
-        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob_common.owl"/>
+        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob.owl"/>
         <owl:imports rdf:resource="package://knowrob_refills/owl/shop.owl"/>
         <owl:imports rdf:resource="package://knowrob_refills/owl/dm-market.owl"/>
     </owl:Ontology>
