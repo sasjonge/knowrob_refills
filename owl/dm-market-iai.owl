@@ -161,13 +161,13 @@
 
     <!-- http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore -->
 
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfH180W100T5L"/>
     
 
 
-    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront -->
+    <!-- http://knowrob.org/kb/dm-market.owl#DMFloorT4W100 -->
 
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
     
 
 
@@ -3427,7 +3427,7 @@
     <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfFrameFrontStore_5gKS -->
 
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfFrameFrontStore_5gKS">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfH180W100T5L"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_Swj7"/>
     </owl:NamedIndividual>
@@ -3437,7 +3437,7 @@
     <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfFrameFrontStore_Bnc8 -->
 
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfFrameFrontStore_Bnc8">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfH180W100T5L"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_4qsb"/>
     </owl:NamedIndividual>
@@ -3447,7 +3447,7 @@
     <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfFrameFrontStore_RyFm -->
 
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfFrameFrontStore_RyFm">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfH180W100T5L"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_ogag"/>
     </owl:NamedIndividual>
@@ -3457,177 +3457,177 @@
     <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfFrameFrontStore_yHyT -->
 
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfFrameFrontStore_yHyT">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfH180W100T5L"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_Ffy7"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_4BkB -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_4BkB -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_4BkB">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_4BkB">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_O7BE"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_69tt -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_69tt -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_69tt">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_69tt">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_tTRZ"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_8hdn -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_8hdn -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_8hdn">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_8hdn">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_3C64"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_AhQZ -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_AhQZ -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_AhQZ">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_AhQZ">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_xvGB"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_Bwbd -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_Bwbd -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_Bwbd">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_Bwbd">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_0dKU"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_CZWL -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_CZWL -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_CZWL">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_CZWL">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_o6Ka"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_IsHl -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_IsHl -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_IsHl">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_IsHl">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_WuoD"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_KTMY -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_KTMY -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_KTMY">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_KTMY">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_byNc"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_L84H -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_L84H -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_L84H">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_L84H">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_rHiJ"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_RGVp -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_RGVp -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_RGVp">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_RGVp">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_Bjom"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_RNOE -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_RNOE -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_RNOE">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_RNOE">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_sAwS"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_Vdec -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_Vdec -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_Vdec">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_Vdec">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_iVOU"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_YxPu -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_YxPu -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_YxPu">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_YxPu">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_Ksuz"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_cJAy -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_cJAy -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_cJAy">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_cJAy">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_26jk"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_pKRA -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_pKRA -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_pKRA">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_pKRA">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_zMQa"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_wNZc -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_wNZc -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_wNZc">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_wNZc">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_2aW2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_xkp1 -->
+    <!-- http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_xkp1 -->
 
-    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMShelfLayer4TilesFront_xkp1">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayer4TilesFront"/>
+    <owl:NamedIndividual rdf:about="http://knowrob.org/kb/unreal_log.owl#DMFloorT4W100_xkp1">
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT4W100"/>
         <knowrob:describedInMap rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#SemanticEnvironmentMap_wB8V"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/iai-dm-market.owl#Transformation_LIJP"/>
     </owl:NamedIndividual>

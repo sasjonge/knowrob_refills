@@ -108,13 +108,6 @@
     //
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
-
-    
-
-
-    <!-- http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
     
 
 
@@ -318,7 +311,7 @@
     <!-- http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS -->
 
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfH180W100T5L"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_Swj7FE4S"/>
         <knowrob_assembly:hasAffordance rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceLeft_GteDJ94J"/>
         <knowrob_assembly:hasAffordance rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceRight_GteDJ94J"/>
@@ -329,7 +322,7 @@
     <!-- http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8 -->
 
     <owl:NamedIndividual rdf:about="http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8">
-        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrameFrontStore"/>
+        <rdf:type rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfH180W100T5L"/>
         <knowrob:pose rdf:resource="http://knowrob.org/kb/shop-test.owl#Pose_4qsbFe3S"/>
         <knowrob_assembly:hasAffordance rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceLeft_H5FelHFS"/>
         <knowrob_assembly:hasAffordance rdf:resource="http://knowrob.org/kb/shop-test.owl#ShelfSystemAffordanceRight_H5FelHFS"/>
