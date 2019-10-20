@@ -51,7 +51,7 @@
 :- use_module(library('semweb/owl')).
 :- use_module(library('knowrob/computable')).
 :- use_module(library('knowrob/temporal')).
-:- use_module(library('knowrob/owl')).
+:- use_module(library('knowrob/knowrob')).
 
 :- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
@@ -176,7 +176,17 @@ refills_make_shelf_old(Frame, [(separators(Separators),labels(Labels))|Rest]) :-
          belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
   refills_make_shelf(Frame, Rest).
 
+refills_make_shelf(Frame, [(Pos,bars(Bars),labels(Labels))|Rest]) :-
+  !,
+  belief_shelf_part_at(Frame, dmshop:'DMShelfLayerMountingFront', norm(Pos), Layer),
+  forall(member(BarPos,Bars),
+         belief_shelf_part_at(Layer,dmshop:'DMShelfMountingBar',norm(BarPos),_)),
+  forall(member((LabelPos,AN),Labels),
+         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
+  refills_make_shelf(Frame, Rest).
+
 refills_make_shelf(Frame, [(Pos,Separators,Labels)|Rest]) :-
+  !,
   shelf_floor_type(Frame,FloorType),
   belief_shelf_part_at(Frame, FloorType, norm(Pos), Layer),
   bulk_insert_floor(Layer,Separators,Labels),
@@ -187,14 +197,6 @@ refills_make_shelf(Frame, [(Separators,Labels)|Rest]) :-
   shelf_bottom_floor_type(Frame,BottomFloorType),
   belief_shelf_part_at(Frame, BottomFloorType, norm(Pos), Layer),
   bulk_insert_floor(Layer,Separators,Labels),
-  refills_make_shelf(Frame, Rest).
-
-refills_make_shelf(Frame, [(Pos,bars(Bars),labels(Labels))|Rest]) :-
-  belief_shelf_part_at(Frame, dmshop:'DMShelfLayerMountingFront', norm(Pos), Layer),
-  forall(member(BarPos,Bars),
-         belief_shelf_part_at(Layer,dmshop:'DMShelfMountingBar',norm(BarPos),_)),
-  forall(member((LabelPos,AN),Labels),
-         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
   refills_make_shelf(Frame, Rest).
 
 refills_make_shelf(_, []).
@@ -232,7 +234,7 @@ refills_spawn_products :-
     (( HasProduct>0, holds(Facing, shop:preferredLabelOfFacing, Label ) )-> (
        rdf_has(Label, shop:articleNumberOfLabel, AN),
        ( refills_random_facing(Facing) -> true ; (
-          write('[WARN] Failed to spawn products into '), owl_write_readable([Facing,AN]), nl ))
+          write('[WARN] Failed to spawn products into '), write([Facing,AN]), nl ))
     ) ; true)
   )).
 
