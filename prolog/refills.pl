@@ -231,7 +231,7 @@ refills_spawn_products :-
   forall(rdfs_individual_of(Facing, shop:'ProductFacing'),(
     %random(0,6,HasProduct),
     HasProduct is 1,
-    (( HasProduct>0, holds(Facing, shop:preferredLabelOfFacing, Label ) )-> (
+    (( HasProduct>0, comp_preferredLabelOfFacing(Facing,Label) )-> (
        rdf_has(Label, shop:articleNumberOfLabel, AN),
        ( refills_random_facing(Facing) -> true ; (
           write('[WARN] Failed to spawn products into '), write([Facing,AN]), nl ))
