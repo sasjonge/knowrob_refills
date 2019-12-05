@@ -516,7 +516,8 @@ facing_space_remaining_behind(Facing,Obj) :-
 %% shelf_facing_product_type
 %
 shelf_facing_product_type(Facing, ProductType) :-
-  holds(Facing, shop:articleNumberOfFacing, ArticleNumber),
+  comp_preferredLabelOfFacing(Facing,Label),
+  rdf_has(Label,shop:articleNumberOfLabel,ArticleNumber),
   rdf_has(R, owl:hasValue, ArticleNumber),
   %rdf_has(R, owl:onProperty, shop:dan),
   rdf_has(ProductType, rdfs:subClassOf, R),
@@ -562,8 +563,8 @@ comp_isSpaceRemainingInFacing(Facing,Val_XSD) :-
 
 shelf_facing_update(Facing) :-
   % update geometry
-  comp_facingDepth(Facing,D),
-  comp_facingWidth(Facing,W),
+  comp_facingDepth(Facing,W),
+  comp_facingWidth(Facing,D),
   comp_facingHeight(Facing,H),
   object_assert_dimensions(Facing,D,W,H),
   % update pose
@@ -927,12 +928,12 @@ center_part_pos(Obj, z, In, Out) :-
   object_dimensions(Obj,V,_,_),
   Out is In - 0.5*V.
 
-belief_part_offset(Parent, PartType, [DX,DY,DZ], Rotation) :-
-  object_affordance(Parent,Affordance),
-  rdfs_individual_of(Affordance, knowrob:'PartOffsetAffordance'),
-  owl_property_range_on_subject(Affordance, knowrob:userOfAffordance, AllowedType),
-  rdfs_subclass_of(PartType, AllowedType),
-  object_affordance_static_transform(Parent,Affordance,[_,_,[DX,DY,DZ],Rotation]),!.
+belief_part_offset(Parent, PartType, Offset, Rotation) :-
+  object_disposition(Parent,Linkage,DispositionType),
+  once(owl_subclass_of(DispositionType,ease_obj:'Linkage')),
+  disposition_trigger_type(Linkage,PartType),
+  kb_triple(Linkage,ease_obj:hasSpaceRegion,LinkageSpace),
+  transform_data(LinkageSpace,(Offset, Rotation)),!.
 belief_part_offset(_, _, [0,0,0], [0,0,0,1]).
 
 perceived_part_at_axis__(Parent, PartType, norm(Axis,Pos), Part) :- !,
