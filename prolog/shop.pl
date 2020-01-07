@@ -563,13 +563,19 @@ comp_isSpaceRemainingInFacing(Facing,Val_XSD) :-
 
 shelf_facing_update(Facing) :-
   % update geometry
-  comp_facingDepth(Facing,W),
-  comp_facingWidth(Facing,D),
+  comp_facingDepth(Facing,D),
+  comp_facingWidth(Facing,W),
   comp_facingHeight(Facing,H),
   object_assert_dimensions(Facing,D,W,H),
   % update pose
   comp_facingPose(Facing,Pose),
   object_pose_update(Facing,Pose),
+  % preferred label
+  rdf_retractall(Facing,shop:preferredLabelOfFacing,Label),
+  ( comp_preferredLabelOfFacing(Facing,Label) ->
+    rdf_assert(Facing,shop:preferredLabelOfFacing,Label) ;
+    true
+  ),
   % update color
   comp_mainColorOfFacing(Facing,Color),
   object_assert_color(Facing,Color).
