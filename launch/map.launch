@@ -1,5 +1,7 @@
 <launch>
   <arg name="semantic_map" default="package://knowrob_refills/owl/dm-market-iai.owl" />
+  <arg name="num_pl_threads" default="2" />
+  <arg name="num_ros_threads" default="4" />
   <arg name="mongodb_name" default="roslog" />
   <arg name="memory_dir" default="" />
   
@@ -8,9 +10,12 @@
   
   <param name="initial_package" type="string" value="knowrob_refills" />
   <param name="initial_goal" type="string" value="mem_import('$(arg semantic_map)')" />
+
+  <param name="num_pl_threads" type="int" value="$(arg num_pl_threads)" />
+  <param name="num_ros_threads" type="int" value="$(arg num_ros_threads)" />
   <node name="rosprolog" pkg="rosprolog" type="rosprolog_node" output="screen"/>
   
-  <node name="json_wrapper" pkg="rosprolog" type="json_wrapper.py" output="screen"/> 
+  <node name="json_wrapper" pkg="rosprolog" type="json_ros.py" output="screen"/> 
 
   <node name="object_state_publisher" pkg="knowrob_objects" type="object_state_publisher.py" output="screen">
     <param name="hz" value="10" />
