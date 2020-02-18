@@ -9,10 +9,10 @@ project(knowrob_refills)
 # Catkin
 ##############################################################################
 
-find_package(catkin REQUIRED knowrob_assembly knowrob_memory knowrob_objects)
+find_package(catkin REQUIRED knowrob_memory knowrob_objects)
 
 catkin_package(
-  DEPENDS knowrob_assembly knowrob_memory knowrob_objects
+  DEPENDS knowrob_memory knowrob_objects
 )
 
 ##############################################################################
