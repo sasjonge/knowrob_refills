@@ -80,6 +80,10 @@ shelf_bottom_floor_type_(FrameType,Type) :-
   owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMBFloorT5W100'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT5'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW60'),
+  rdf_equal(Type,dmshop:'DMBFloorT5W60'),!.
+shelf_bottom_floor_type_(FrameType,Type) :-
   owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
   owl_subclass_of(FrameType,dmshop:'DMShelfW60'),
   rdf_equal(Type,dmshop:'DMBFloorT6W60'),!.
@@ -111,6 +115,10 @@ shelf_floor_type_(FrameType,Type) :-
   owl_subclass_of(FrameType,dmshop:'DMShelfT5'),
   owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMFloorT4W100'),!.
+shelf_floor_type_(FrameType,Type) :-
+  owl_subclass_of(FrameType,dmshop:'DMShelfT5'),
+  owl_subclass_of(FrameType,dmshop:'DMShelfW60'),
+  rdf_equal(Type,dmshop:'DMFloorT5W60'),!.
 shelf_floor_type_(FrameType,Type) :-
   owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
   owl_subclass_of(FrameType,dmshop:'DMShelfW60'),

@@ -754,7 +754,7 @@ shelf_marker(Marker,Marker):-
 %
 belief_shelf_marker_at(MarkerType,MarkerId,Pose,Marker):-
   belief_new_object(MarkerType, Marker),
-  kb_assert(Marker, dmshop:markerId, MarkerId),
+  kb_assert(Marker, dmshop:markerId, MarkerId, _{graph: belief_state}),
   belief_at_update(Marker,Pose).
 %%
 %

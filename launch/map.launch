@@ -1,6 +1,7 @@
 <launch>
   <arg name="semantic_map" default="package://knowrob_refills/owl/scan-map.owl" />
   <arg name="mongodb_uri" default="mongodb://localhost:27017/?appname=knowrob" />
+
   <arg name="mongodb_name" default="roslog" />
   <arg name="memory_dir" default="" />
   
@@ -10,6 +11,9 @@
   <param name="mongodb_uri" type="string" value="$(arg mongodb_uri)" />
   <param name="initial_package" type="string" value="knowrob_refills" />
   <param name="initial_goal" type="string" value="mem_import('$(arg semantic_map)')" />
+
+  <param name="num_pl_threads" type="int" value="$(arg num_pl_threads)" />
+  <param name="num_ros_threads" type="int" value="$(arg num_ros_threads)" />
   <node name="rosprolog" pkg="rosprolog" type="rosprolog_node" output="screen"/>
   
   <node name="json_wrapper" pkg="rosprolog" type="json_ros.py" output="screen"/> 
