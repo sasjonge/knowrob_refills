@@ -1,7 +1,8 @@
 <launch>
   <arg name="semantic_map" default="package://knowrob_refills/owl/scan-map.owl" />
+  <arg name="num_pl_threads" default="2" />
+  <arg name="num_ros_threads" default="4" />
   <arg name="mongodb_uri" default="mongodb://localhost:27017/?appname=knowrob" />
-
   <arg name="mongodb_name" default="roslog" />
   <arg name="memory_dir" default="" />
   
