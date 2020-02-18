@@ -121,7 +121,6 @@
 :- rdf_db:rdf_register_ns(xsd, 'http://www.w3.org/2001/XMLSchema#', [keep(true)]).
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
-:- rdf_db:rdf_register_ns(knowrob_assembly, 'http://knowrob.org/kb/knowrob_assembly.owl#', [keep(true)]).
 
 % TODO: should be somewhere else
 % TODO: must work in both directions
@@ -755,7 +754,7 @@ shelf_marker(Marker,Marker):-
 %
 belief_shelf_marker_at(MarkerType,MarkerId,Pose,Marker):-
   belief_new_object(MarkerType, Marker),
-  rdf_assert_prolog(Marker, dmshop:markerId, MarkerId, belief_state),
+  kb_assert(Marker, dmshop:markerId, MarkerId),
   belief_at_update(Marker,Pose).
 %%
 %
