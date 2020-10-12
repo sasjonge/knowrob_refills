@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://knowrob.org/kb/dm-market.owl#"
      xml:base="http://knowrob.org/kb/dm-market.owl"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
      xmlns:dm="http://knowrob.org/kb/dm-market.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
      xmlns:computable="http://knowrob.org/kb/computable.owl#">
     <owl:Ontology rdf:about="http://knowrob.org/kb/dm-market.owl">
         <owl:imports rdf:resource="package://knowrob_refills/owl/shop.owl"/>
@@ -90,6 +90,12 @@
     <!-- http://www.ease-crc.org/ont/EASE-OBJ.owl#hasFeature -->
 
     <owl:ObjectProperty rdf:about="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasFeature"/>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion -->
+
+    <owl:ObjectProperty rdf:about="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
     
 
 
@@ -2012,7 +2018,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Floor_Pose_Bottom"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2038,7 +2044,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_T5_T4_L"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2066,6 +2072,12 @@
                 </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
+                <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_T6_T5_H"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2087,7 +2099,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_T6_T5_L"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2112,7 +2124,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_T7_T6_H"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2137,7 +2149,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#Pose_T7_T6_L"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2162,7 +2174,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#TransformOffset_LabelMounting"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2187,7 +2199,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#LabelTransformT4"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2212,7 +2224,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#LabelTransformT5"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2237,7 +2249,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#LabelTransformT5B"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2262,7 +2274,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#LabelTransformT6"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2287,7 +2299,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#LabelTransformT6B"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2312,7 +2324,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#LabelTransformT7B"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2337,7 +2349,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#TransformOffset_LayerMounting"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2362,7 +2374,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#TransformOffset_MountingBar"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2779,7 +2791,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#SeparatorTransformT4"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2804,7 +2816,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#SeparatorTransformT5"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2829,7 +2841,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#SeparatorTransformT5B"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2854,7 +2866,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#SeparatorTransformT6"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2879,7 +2891,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#SeparatorTransformT6B"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2904,7 +2916,7 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#hasSpaceRegion"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasSpaceRegion"/>
                 <owl:hasValue rdf:resource="http://knowrob.org/kb/dm-market.owl#SeparatorTransformT7B"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2915,7 +2927,7 @@
     <!-- http://knowrob.org/kb/dm-market.owl#ShelfLinkage -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#ShelfLinkage">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#Linkage"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Linkage"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#affordsTrigger"/>
@@ -3015,9 +3027,9 @@
     
 
 
-    <!-- http://www.ease-crc.org/ont/EASE-OBJ.owl#Linkage -->
+    <!-- http://www.ease-crc.org/ont/SOMA.owl#Linkage -->
 
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/EASE-OBJ.owl#Linkage"/>
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/SOMA.owl#Linkage"/>
     
 
 
@@ -3563,5 +3575,5 @@
 
 
 
-<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.12.2019-05-06T20:49:08Z) https://github.com/owlcs/owlapi -->
 
