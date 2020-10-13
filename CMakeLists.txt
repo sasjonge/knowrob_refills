@@ -9,10 +9,10 @@ project(knowrob_refills)
 # Catkin
 ##############################################################################
 
-find_package(catkin REQUIRED knowrob_memory knowrob_objects)
+find_package(catkin REQUIRED knowrob)
 
 catkin_package(
-  DEPENDS knowrob_memory knowrob_objects
+  DEPENDS knowrob
 )
 
 ##############################################################################
@@ -29,7 +29,4 @@ install(DIRECTORY launch/
 
 install(DIRECTORY owl/
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/owl)
-  
-install(DIRECTORY prolog/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/prolog)
         
