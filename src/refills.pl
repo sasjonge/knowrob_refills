@@ -32,26 +32,33 @@
 :- module(refills,
     [
       refills_init_test_shop/0,
-      refills_init_iai_shop/0,
+      %refills_init_iai_shop/0,
       refills_spawn_facings/0,
       refills_spawn_products/0,
-      refills_spawn_shelf1/1,
-      refills_spawn_shelf2/1,
-      shelf_floor_type/2,
-      shelf_bottom_floor_type/2,
-      refills_test_spawning/1,
-      refills_test_spawning/2,
-      bulk_insert_floor/3,
-      refills_test_spawning60/1
+      refills_test_spawning60(r),
+      refills_spawn_shelf1(r),
+      refills_spawn_shelf2(r),
+      refills_make_shelf(r,t),
+      shelf_floor_type(r,r),
+      shelf_bottom_floor_type(r,r),
+      refills_test_spawning(r),
+      refills_test_spawning(r,+),
+      bulk_insert_floor(r,+,+)
     ]).
 
 :- use_module(library('semweb/rdf_db')).
 :- use_module(library('semweb/rdfs')).
-:- use_module(library('semweb/owl_parser')).
-:- use_module(library('semweb/owl')).
-:- use_module(library('knowrob/computable')).
-:- use_module(library('knowrob/temporal')).
-:- use_module(library('knowrob/knowrob')).
+% :- use_module(library('semweb/owl_parser')).
+% :- use_module(library('semweb/owl')).
+:- use_module(library('model/SOMA/OBJ')).
+:- use_module(library('lang/computable')).
+:- use_module(library('lang/terms/is_a')).
+:- use_module(library('lang/query')).
+:- use_module(library('lang/terms/temporal')).
+:- use_module(library('db/tripledb')).
+:- use_module(library('ros/tf/tf_plugin')).
+
+% :- use_module(library('knowrob/knowrob')).
 
 :- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(rdf, 'http://www.w3.org/1999/02/22-rdf-syntax-ns#', [keep(true)]).
@@ -59,105 +66,107 @@
 :- rdf_db:rdf_register_ns(knowrob, 'http://knowrob.org/kb/knowrob.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(xsd, 'http://www.w3.org/2001/XMLSchema#', [keep(true)]).
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
+:- tripledb_load('package://knowrob_refills/owl/shop-test.owl', 
+  [namespace(shoptest,'http://knowrob.org/kb/shop-test.owl#')] ).
 
-:-  rdf_meta
-    refills_spawn_shelf1(r),
-    refills_spawn_shelf2(r),
-    refills_make_shelf(r,t),
-    shelf_floor_type(r,r),
-    shelf_bottom_floor_type(r,r),
-    refills_test_spawning(r),
-    refills_test_spawning(r,+),
-    bulk_insert_floor(r,+,+).
+% :-  rdf_meta
+%     refills_spawn_shelf1(r),
+%     refills_spawn_shelf2(r),
+%     refills_make_shelf(r,t),
+%     shelf_floor_type(r,r),
+%     shelf_bottom_floor_type(r,r),
+%     refills_test_spawning(r),
+%     refills_test_spawning(r,+),
+%     bulk_insert_floor(r,+,+).
 
 :- use_module(library('shop')).
 
 shelf_bottom_floor_type(Frame,Type) :-
-  rdfs_individual_of(Frame,FrameType),
+  instance_of(Frame,FrameType),
   shelf_bottom_floor_type_(FrameType,Type), !.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT5'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
+  subclass_of(FrameType,dmshop:'DMShelfT5'),
+  subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMBFloorT5W100'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT5'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW60'),
+  subclass_of(FrameType,dmshop:'DMShelfT5'),
+  subclass_of(FrameType,dmshop:'DMShelfW60'),
   rdf_equal(Type,dmshop:'DMBFloorT5W60'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW60'),
+  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  subclass_of(FrameType,dmshop:'DMShelfW60'),
   rdf_equal(Type,dmshop:'DMBFloorT6W60'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW70'),
+  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  subclass_of(FrameType,dmshop:'DMShelfW70'),
   rdf_equal(Type,dmshop:'DMBFloorT6W75'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
+  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMBFloorT6W100'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW120'),
+  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMBFloorT6W120'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT7'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
+  subclass_of(FrameType,dmshop:'DMShelfT7'),
+  subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMBFloorT7W100'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT7'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW120'),
+  subclass_of(FrameType,dmshop:'DMShelfT7'),
+  subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMBFloorT7W120'),!.
 
 shelf_floor_type(Frame,Type) :-
-  rdfs_individual_of(Frame,FrameType),
+  instance_of(Frame,FrameType),
   shelf_floor_type_(FrameType,Type), !.
 shelf_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT5'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
+  subclass_of(FrameType,dmshop:'DMShelfT5'),
+  subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMFloorT4W100'),!.
 shelf_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT5'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW60'),
+  subclass_of(FrameType,dmshop:'DMShelfT5'),
+  subclass_of(FrameType,dmshop:'DMShelfW60'),
   rdf_equal(Type,dmshop:'DMFloorT5W60'),!.
 shelf_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW60'),
+  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  subclass_of(FrameType,dmshop:'DMShelfW60'),
   rdf_equal(Type,dmshop:'DMFloorT5W60'),!.
 shelf_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW70'),
+  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  subclass_of(FrameType,dmshop:'DMShelfW70'),
   rdf_equal(Type,dmshop:'DMFloorT5W75'),!.
 shelf_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
+  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMFloorT5W100'),!.
 shelf_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT6'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW120'),
+  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMFloorT5W120'),!.
 shelf_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT7'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW100'),
+  subclass_of(FrameType,dmshop:'DMShelfT7'),
+  subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMFloorT6W100'),!.
 shelf_floor_type_(FrameType,Type) :-
-  owl_subclass_of(FrameType,dmshop:'DMShelfT7'),
-  owl_subclass_of(FrameType,dmshop:'DMShelfW120'),
+  subclass_of(FrameType,dmshop:'DMShelfT7'),
+  subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMFloorT6W120'),!.
 
-refills_init_iai_shop :-
-  owl_parser:owl_parse('package://knowrob_refills/owl/dm-market-iai.owl', belief_state).
+%refills_init_iai_shop :-
+  %tripledb_load('package://knowrob_refills/owl/dm-market-iai.owl').
 
 refills_init_test_shop :-
-  belief_parse('package://knowrob_refills/owl/shop-test.owl'),
+  
   refills_spawn_facings.
 
 bulk_insert_floor(Floor, separators(Separators), labels(Labels)) :-
   forall(
     member(SepPos,Separators),
-    belief_shelf_part_at(Floor,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _, [insert])),
+    belief_shelf_part_at(Floor,'http://knowrob.org/kb/dm-market.owl#DMShelfSeparator4Tiles', norm(SepPos), _, [insert])),
   forall(
     member((LabelPos,AN),Labels),
-    belief_shelf_barcode_at(Floor,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos), _, [insert])),
+    belief_shelf_barcode_at(Floor,'http://knowrob.org/kb/dm-market.owl#DMShelfLabel',dan(AN),norm(LabelPos), _, [insert])),
   % update facings 
   shelf_facings_mark_dirty(Floor).
 
@@ -167,9 +176,9 @@ refills_make_shelf_old(Frame, [(Pos,separators(Separators),labels(Labels))|Rest]
   belief_shelf_part_at(Frame, FloorType, norm(Pos), Layer),
   % assert to belief state
   forall(member(SepPos,Separators),
-         belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _)),
+         belief_shelf_part_at(Layer,'http://knowrob.org/kb/dm-market.owl#DMShelfSeparator4Tiles', norm(SepPos), _)),
   forall(member((LabelPos,AN),Labels),
-         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
+         belief_shelf_barcode_at(Layer,'http://knowrob.org/kb/dm-market.owl#DMShelfLabel',dan(AN),norm(LabelPos),_)),
   refills_make_shelf(Frame, Rest).
 
 % @deprecated
@@ -178,18 +187,18 @@ refills_make_shelf_old(Frame, [(separators(Separators),labels(Labels))|Rest]) :-
   shelf_bottom_floor_type(Frame,BottomFloorType),
   belief_shelf_part_at(Frame, BottomFloorType, norm(Pos), Layer),
   forall(member(SepPos,Separators),
-         belief_shelf_part_at(Layer,dmshop:'DMShelfSeparator4Tiles', norm(SepPos), _)),
+         belief_shelf_part_at(Layer,'http://knowrob.org/kb/dm-market.owl#DMShelfSeparator4Tiles', norm(SepPos), _)),
   forall(member((LabelPos,AN),Labels),
-         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
+         belief_shelf_barcode_at(Layer,'http://knowrob.org/kb/dm-market.owl#DMShelfLabel',dan(AN),norm(LabelPos),_)),
   refills_make_shelf(Frame, Rest).
 
 refills_make_shelf(Frame, [(Pos,bars(Bars),labels(Labels))|Rest]) :-
   !,
-  belief_shelf_part_at(Frame, dmshop:'DMShelfLayerMountingFront', norm(Pos), Layer),
+  belief_shelf_part_at(Frame, 'http://knowrob.org/kb/dm-market.owl#DMShelfLayerMountingFront', norm(Pos), Layer),
   forall(member(BarPos,Bars),
-         belief_shelf_part_at(Layer,dmshop:'DMShelfMountingBar',norm(BarPos),_)),
+         belief_shelf_part_at(Layer,'http://knowrob.org/kb/dm-market.owl#DMShelfMountingBar',norm(BarPos),_, [insert])),
   forall(member((LabelPos,AN),Labels),
-         belief_shelf_barcode_at(Layer,dmshop:'DMShelfLabel',dan(AN),norm(LabelPos),_)),
+         belief_shelf_barcode_at(Layer,'http://knowrob.org/kb/dm-market.owl#DMShelfLabel',dan(AN),norm(LabelPos),_, [insert])),
   refills_make_shelf(Frame, Rest).
 
 refills_make_shelf(Frame, [(Pos,Separators,Labels)|Rest]) :-
@@ -204,6 +213,7 @@ refills_make_shelf(Frame, [(Separators,Labels)|Rest]) :-
   shelf_bottom_floor_type(Frame,BottomFloorType),
   belief_shelf_part_at(Frame, BottomFloorType, norm(Pos), Layer),
   bulk_insert_floor(Layer,Separators,Labels),
+  %bulk_insert_floor('http://knowrob.org/kb/shop-test.owl#shelfLayer_test',Separators,Labels),
   refills_make_shelf(Frame, Rest).
 
 refills_make_shelf(_, []).
@@ -217,7 +227,7 @@ refills_random_facing(Facing) :-
   
   once(shelf_facing_product_type(Facing, ProductType)),
   once(( Misplaced>0 ; (
-    rdfs_individual_of(OtherFacing, shop:'ProductFacing'),
+    instance_of(OtherFacing, shop:'ProductFacing'),
     shelf_facing_product_type(OtherFacing, OtherProductType),
     OtherProductType \= ProductType,
     product_spawn_front_to_back(Facing,_,OtherProductType))
@@ -235,11 +245,11 @@ standing_facing_full(Facing) :-
   standing_facing_full(Facing).
 
 refills_spawn_products :-
-  forall(rdfs_individual_of(Facing, shop:'ProductFacing'),(
+  forall(instance_of(Facing, shop:'ProductFacing'),(
     %random(0,6,HasProduct),
     HasProduct is 1,
     (( HasProduct>0, comp_preferredLabelOfFacing(Facing,Label) )-> (
-       rdf_has(Label, shop:articleNumberOfLabel, AN),
+       holds(Label, shop:articleNumberOfLabel, AN),
        ( refills_random_facing(Facing) -> true ; (
           write('[WARN] Failed to spawn products into '), write([Facing,AN]), nl ))
     ) ; true)
@@ -261,9 +271,19 @@ refills_spawn_shelf2(Shelf) :-
     (1.0, bars([0.1,0.2,0.3,0.5,0.7,0.9]), labels([(0.2,'250899'),(0.9,'544382')]))
   ]).
 
+% assert_dimensions_(Object) :-
+%   tell(holds(Object, soma:'hasShape', soma:'BoxShape')), 
+%   tell(object_dimensions(Object, '0.02', '1.0', '0.11')).
+
 refills_spawn_facings :-
-  refills_spawn_shelf1('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS'),
-  refills_spawn_shelf2('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8'),
+  tell(is_at(dmshop:'Pose_T5_T4_L', [_,[0.0,0.01,-0.095],[0.0,0.0,0.0,1.0]])),
+  %tell(is_at(shoptest:'DMShelfFrameFrontStore_5gKS', [world, [0.0569,2.0474,0.8532], [0.0,0.0,0.7071,0.7071]])),
+  % assert_dimensions_('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8'),
+  % assert_dimensions_('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS'),
+  tell(holds(shoptest:'DMShelfFrameFrontStore_Bnc8', knowrob:'frameName', 'DMShelfFrameFrontStore_Bnc8')),
+  tell(holds(shoptest:'DMShelfFrameFrontStore_5gKS', knowrob:'frameName', 'DMShelfFrameFrontStore_5gKS')),
+  %refills_spawn_shelf1('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_5gKS'),
+  %refills_spawn_shelf2('http://knowrob.org/kb/shop-test.owl#DMShelfFrameFrontStore_Bnc8'),
   refills_spawn_products.
 
 %%%%%%%%
@@ -317,4 +337,22 @@ refills_test_spawning(Shelf,Data) :-
   refills_spawn_products,
   writeln('done.').
   
+
+%%%%%%%%
+%%
+%%  Unit Tests
+%%  
+%%%%%%%%
   
+:- begin_tripledb_tests(
+    'refills',
+    'package://knowrob_refills/owl/shop.owl',
+    [ namespace('http://knowrob.org/kb/shop.owl#')
+    ]).
+
+test('init'):-
+  %refills_init_iai_shop,
+  gtrace,
+  refills_init_test_shop.
+
+:- end_tripledb_tests('refills').

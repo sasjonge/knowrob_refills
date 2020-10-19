@@ -28,20 +28,53 @@
   @license BSD
 */
 
-:- register_ros_package(knowrob_common).
-:- register_ros_package(knowrob_objects).
-:- register_ros_package(knowrob_memory).
+:- register_ros_package(knowrob).
+% :- register_ros_package(knowrob_objects).
+% :- register_ros_package(knowrob_memory).
 :- register_ros_package(knowrob_refills).
 
 :- use_module(library('shop')).
 :- use_module(library('refills')).
 
-:- owl_parser:owl_parse('package://knowrob_refills/owl/shop.owl').
-:- owl_parser:owl_parse('package://knowrob_refills/owl/dm-market.owl').
-:- owl_parser:owl_parse('package://knowrob_refills/owl/product-taxonomy.owl').
-:- owl_parser:owl_parse('package://knowrob_refills/owl/product-catalog.owl').
 
-:- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
-:- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
-:- rdf_db:rdf_register_ns(iaishop, 'http://knowrob.org/kb/iai-shop.owl#', [keep(true)]).
-:- rdf_db:rdf_register_ns(donbot, 'http://knowrob.org/kb/donbot.owl#', [keep(true)]).
+:- use_module(library('db/tripledb'), 
+              [tripledb_load/2, tripledb_load/1]).
+
+:- tripledb_load(
+    'package://knowrob_refills/owl/shop.owl',
+    [ namespace(shop, 
+      'http://knowrob.org/kb/shop.owl#')
+    ]).
+
+:- tripledb_load(
+    'package://knowrob_refills/owl/dm-market.owl',
+    [ namespace(dmshop, 
+      'http://knowrob.org/kb/dm-market.owl#')
+    ]).
+
+
+:- tripledb_load(
+    'package://knowrob_refills/owl/iai-shop.owl',
+    [ namespace(iaishop, 
+      'http://knowrob.org/kb/iai-shop.owl#')
+    ]).
+
+% :- tripledb_load(
+%     'package://knowrob/owl/robots/donbot_0418.owl',
+%     [ namespace(donbot, 
+%       'http://knowrob.org/kb/donbot.owl#')
+%     ]).
+
+
+:- tripledb_load('package://knowrob_refills/owl/product-catalog.owl').
+:- tripledb_load('package://knowrob_refills/owl/product-taxonomy.owl').
+
+% :- owl_parser:owl_parse('package://knowrob_refills/owl/shop.owl').
+% :- owl_parser:owl_parse('package://knowrob_refills/owl/dm-market.owl').
+% :- owl_parser:owl_parse('package://knowrob_refills/owl/product-taxonomy.owl').
+% :- owl_parser:owl_parse('package://knowrob_refills/owl/product-catalog.owl').
+
+% :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
+% :- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
+% :- rdf_db:rdf_register_ns(iaishop, 'http://knowrob.org/kb/iai-shop.owl#', [keep(true)]).
+% :- rdf_db:rdf_register_ns(donbot, 'http://knowrob.org/kb/donbot.owl#', [keep(true)]).
