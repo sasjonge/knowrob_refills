@@ -5,7 +5,16 @@
   <env name="KNOWROB_MONGO_DB_NAME" value="$(arg mongodb_name)" />
   
   <param name="initial_package" type="string" value="knowrob_refills" />
-  <param name="initial_goal" type="string" value="register_ros_package(robosherlock_knowrob),owl_parser:owl_parse('package://knowrob_refills/owl/iai-shop.owl'),owl_parser:owl_parse('package://knowrob_refills/owl/product-catalog.owl')" />
+
+  <include file="$(find rosprolog)/launch/rosprolog.launch">
+    <arg name="initial_package" default="knowrob_refills" />
+    <arg name="initial_goal" default="register_ros_package(knowrob)" />
+  </include>
+ 
+ <!-- TODO: Dependency to robosherlock package should be added as the robosherlock_knowrob is deprecated and the owl and prolog folder is moved to main robosherlock -->
+  <!-- <param name="initial_goal" type="string" value="register_ros_package(robosherlock_knowrob),
+  owl_parser:owl_parse('package://knowrob_refills/owl/iai-shop.owl'),owl_parser:owl_parse('package://knowrob_refills/owl/product-catalog.owl')" /> -->
+
 <!--
   <node name="json_prolog" pkg="json_prolog" type="json_prolog_node" output="screen"/>
 -->
@@ -13,18 +22,18 @@
   <param name="num_pl_threads" type="int" value="$(arg num_pl_threads)" />
   <param name="num_ros_threads" type="int" value="$(arg num_ros_threads)" />
   
-  <node name="rosprolog" pkg="rosprolog" type="rosprolog_node" cwd="node" output="screen" />
+  <!-- <node name="rosprolog" pkg="rosprolog" type="rosprolog_node" cwd="node" output="screen" /> -->
 
 <!--
   <include file="$(find knowrob_paramserver)/launch/upload_owl_to_paramserver.launch" />
 -->
   
-  <node name="json_wrapper" pkg="rosprolog" type="json_ros.py" output="screen"/> 
+  <!-- <node name="json_wrapper" pkg="rosprolog" type="json_ros.py" output="screen"/>  -->
 
 
-  <node name="object_state_publisher" pkg="knowrob_objects" type="object_state_publisher.py" output="screen">
+  <!-- <node name="object_state_publisher" pkg="knowrob_objects" type="object_state_publisher.py" output="screen">
     <param name="hz" value="10" />
     <param name="object_types" value="dul:'PhysicalObject',shop:'ProductFacing'" />
-  </node>
+  </node> -->
 
 </launch>
