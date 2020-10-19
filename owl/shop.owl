@@ -98,12 +98,6 @@
     
 
 
-    <!-- http://knowrob.org/kb/knowrob.owl#properPhysicalParts -->
-
-    <owl:ObjectProperty rdf:about="http://knowrob.org/kb/knowrob.owl#properPhysicalParts"/>
-    
-
-
     <!-- http://knowrob.org/kb/knowrob.owl#subAction -->
 
     <owl:ObjectProperty rdf:about="http://knowrob.org/kb/knowrob.owl#subAction"/>
@@ -495,6 +489,12 @@
     
 
 
+    <!-- http://www.ease-crc.org/ont/SOMA.owl#hasPhysicalComponent -->
+
+    <owl:ObjectProperty rdf:about="http://www.ease-crc.org/ont/SOMA.owl#hasPhysicalComponent"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -626,12 +626,6 @@
     <!-- http://knowrob.org/kb/knowrob_assembly.owl#AssemblyConnection -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/knowrob_assembly.owl#AssemblyConnection"/>
-    
-
-
-    <!-- http://knowrob.org/kb/knowrob_assembly.owl#SlideInAffordance -->
-
-    <owl:Class rdf:about="http://knowrob.org/kb/knowrob_assembly.owl#SlideInAffordance"/>
     
 
 
@@ -1333,7 +1327,7 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShelfPart"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#properPhysicalParts"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasPhysicalComponent"/>
                 <owl:allValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShelfLayer"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1496,13 +1490,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShelfLayer"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#properPhysicalParts"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasPhysicalComponent"/>
                 <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShelfMountingBar"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#properPhysicalParts"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasPhysicalComponent"/>
                 <owl:allValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
@@ -1556,13 +1550,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShelfLayer"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#properPhysicalParts"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasPhysicalComponent"/>
                 <owl:someValuesFrom rdf:resource="http://knowrob.org/kb/shop.owl#ShelfSeparator"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#properPhysicalParts"/>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasPhysicalComponent"/>
                 <owl:allValuesFrom>
                     <owl:Class>
                         <owl:unionOf rdf:parseType="Collection">
@@ -1691,7 +1685,7 @@
     <!-- http://knowrob.org/kb/shop.owl#ShelfSystemAffordance -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShelfSystemAffordance">
-        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob_assembly.owl#SlideInAffordance"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/knowrob.owl#AssemblyAffordance"/>
     </owl:Class>
     
 
