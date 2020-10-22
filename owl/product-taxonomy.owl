@@ -1,796 +1,1547 @@
 <?xml version="1.0"?>
-<!DOCTYPE rdf:RDF [
-    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
-    <!ENTITY xml "http://www.w3.org/XML/1998/namespace" >
-    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY knowrob "http://knowrob.org/kb/knowrob.owl#" >
-    <!ENTITY computable "http://knowrob.org/kb/computable.owl#" >
-    <!ENTITY shop "http://knowrob.org/kb/shop.owl#" >
-]>
-
 <rdf:RDF xmlns="http://knowrob.org/kb/product-taxonomy.owl#"
-      xml:base="http://knowrob.org/kb/product-taxonomy.owl"
-      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-      xmlns:owl="http://www.w3.org/2002/07/owl#"
-      xmlns:xml="http://www.w3.org/XML/1998/namespace"
-      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-      xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
-      xmlns:computable="http://knowrob.org/kb/computable.owl#"
-      xmlns:shop="http://knowrob.org/kb/shop.owl#">
+     xml:base="http://knowrob.org/kb/product-taxonomy.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:shop="http://knowrob.org/kb/shop.owl#"
+     xmlns:knowrob="http://knowrob.org/kb/knowrob.owl#"
+     xmlns:computable="http://knowrob.org/kb/computable.owl#">
     <owl:Ontology rdf:about="http://knowrob.org/kb/product-taxonomy.owl">
-        <owl:imports rdf:resource="package://knowrob_common/owl/knowrob.owl"/>
-        <owl:imports rdf:resource="package://knowrob_refills/owl/shop.owl"/>
+        <owl:imports rdf:resource="package://knowrob/owl/knowrob.owl"/>
         <owl:imports rdf:resource="package://knowrob_refills/owl/dm-market.owl"/>
+        <owl:imports rdf:resource="package://knowrob_refills/owl/shop.owl"/>
     </owl:Ontology>
+    
 
-    <owl:Class rdf:about="&shop;PerfumePen">
-        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#AccessoryItem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#AccessoryItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;FleeceDiaper">
-        <rdfs:subClassOf rdf:resource="&shop;Diaper"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#AnimalAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#AnimalAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;PrepaidCard">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#Anther -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Anther">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Atomizer -->
 
-    <owl:Class rdf:about="&shop;Food">
-        <rdfs:subClassOf rdf:resource="&shop;FoodOrDrink"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Atomizer">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Perfume"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Grain">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#BabyAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BabyAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BabyItem"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;YogurtCup">
-        <rdfs:subClassOf rdf:resource="&shop;ConvinienceFood"/>
+    <!-- http://knowrob.org/kb/shop.owl#BabyBottle -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BabyBottle">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BabyAccessory"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#BabyClothing -->
 
-    <owl:Class rdf:about="&shop;AccessoryItem">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BabyClothing">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BabyItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Clothing"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;BodyCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#BabyDrink -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BabyDrink">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BabyItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Beverage"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Cream">
-        <rdfs:subClassOf rdf:resource="&shop;BodyLotion"/>
+    <!-- http://knowrob.org/kb/shop.owl#BabyFood -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BabyFood">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BabyItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Food"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#BabyItem -->
 
-    <owl:Class rdf:about="&shop;MedicalCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BabyItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;MouthCleaningProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;MouthCareProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Bag -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Bag">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;SqueezeBag">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
+    <!-- http://knowrob.org/kb/shop.owl#BakeryProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BakeryProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OrganicFood"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Balm -->
 
-    <owl:Class rdf:about="&shop;FootCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Balm">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;HouseholdCleaningItem">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#BathAdditive -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BathAdditive">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyCareProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;BeautyProduct">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <!-- http://knowrob.org/kb/shop.owl#BathroomCleaningItem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BathroomCleaningItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BathroomItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#BathroomItem -->
 
-    <owl:Class rdf:about="&shop;ToothWhiteningSystem">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomCleaningItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;MouthCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BathroomItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdItem"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Anther">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Battery -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Battery">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;GiftWrapping">
-        <rdfs:subClassOf rdf:resource="&shop;Paper"/>
+    <!-- http://knowrob.org/kb/shop.owl#BeautyProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BeautyProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Beverage -->
 
-    <owl:Class rdf:about="&shop;GreenTea">
-        <rdfs:subClassOf rdf:resource="&shop;Tea"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Beverage">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#FoodOrDrink"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;BakeryProduct">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#BirdAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BirdAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AnimalAccessory"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Shoesole">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#BirthdayAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BirthdayAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#BlackTea -->
 
-    <owl:Class rdf:about="&shop;FruitCup">
-        <rdfs:subClassOf rdf:resource="&shop;ConvinienceFood"/>
-        <rdfs:subClassOf rdf:resource="&shop;Fruit"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BlackTea">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Tea"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;HandSanitizer">
-        <rdfs:subClassOf rdf:resource="&shop;HandCleaningProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#BodyCareProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BodyCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BathroomItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;DogAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalAccessory"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#BodyLotion -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BodyLotion">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyCareProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;HandCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#BodyOil -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#BodyOil">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyLotion"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Book -->
 
-    <owl:Class rdf:about="&shop;ChewingGum">
-        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Book">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MediaProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Filter">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Candle -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Candle">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;BodyLotion">
-        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#CareLotion -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#CareLotion">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyLotion"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#CareProduct -->
 
-    <owl:Class rdf:about="&shop;ProblemSolver">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#CareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;NutOrFruit">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#CarnivalArticle -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#CarnivalArticle">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#SeasonalItem"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Sweetener">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
+    <!-- http://knowrob.org/kb/shop.owl#CatAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#CatAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AnimalAccessory"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ChewingGum -->
 
-    <owl:Class rdf:about="&shop;Clothing">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ChewingGum">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Confectionery"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;RooibosTea">
-        <rdfs:subClassOf rdf:resource="&shop;Tea"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#ChildAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ChildAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ChildItem"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Battery">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#ChildClothing -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ChildClothing">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ChildItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Clothing"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ChildFood -->
 
-    <owl:Class rdf:about="&shop;Gloves">
-        <rdfs:subClassOf rdf:resource="&shop;ClothingAccessory"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ChildFood">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Food"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Mash">
-        <rdfs:subClassOf rdf:resource="&shop;BabyFood"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#ChildItem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ChildItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;BodyOil">
-        <rdfs:subClassOf rdf:resource="&shop;BodyLotion"/>
+    <!-- http://knowrob.org/kb/shop.owl#ChildLaundry -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ChildLaundry">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ChildItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ChristmasAccessory -->
 
-    <owl:Class rdf:about="&shop;ServiceProduct">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ChristmasAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#SeasonalItem"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;KitchenTowel">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningPaper"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#CirculatoryHealthCareProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#CirculatoryHealthCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;BabyClothing">
-        <rdfs:subClassOf rdf:resource="&shop;BabyItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;Clothing"/>
+    <!-- http://knowrob.org/kb/shop.owl#CleaningPaper -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#CleaningPaper">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningProduct"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Paper"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#CleaningProduct -->
 
-    <owl:Class rdf:about="&shop;CareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#CleaningProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Umbrella">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Clothing -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Clothing">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Dummy">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
+    <!-- http://knowrob.org/kb/shop.owl#ClothingAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ClothingAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Clothing"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ColdMedicine -->
 
-    <owl:Class rdf:about="&shop;LiquidSoap">
-        <rdfs:subClassOf rdf:resource="&shop;HandCleaningProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;Soap"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ColdMedicine">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;ReadingGlass">
-        <rdfs:subClassOf rdf:resource="&shop;VisualAidProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Coloration -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Coloration">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HairCareProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;HouseholdFoil">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+    <!-- http://knowrob.org/kb/shop.owl#Confectionery -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Confectionery">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Food"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Coloration">
-        <rdfs:subClassOf rdf:resource="&shop;HairCareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#ContactLens -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ContactLens">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#VisualAidProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Contraceptive -->
 
-    <owl:Class rdf:about="&shop;BabyAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;BabyItem"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Contraceptive">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MedicalCareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;CirculatoryHealthCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#ControlAgent -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ControlAgent">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;VitaminOrMineral">
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#ConvinienceFood -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ConvinienceFood">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Food"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#CosmeticTowel -->
 
-    <owl:Class rdf:about="&shop;MakeUpRemover">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;Remover"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#CosmeticTowel">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Tissue">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningPaper"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#CottonProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#CottonProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;TreeDecoration">
-        <rdfs:subClassOf rdf:resource="&shop;ChristmasAccessory"/>
+    <!-- http://knowrob.org/kb/shop.owl#CoughDrops -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#CoughDrops">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Confectionery"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Cream -->
 
-    <owl:Class rdf:about="&shop;ChildClothing">
-        <rdfs:subClassOf rdf:resource="&shop;ChildItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;Clothing"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Cream">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyLotion"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;FrozenFood">
-        <rdfs:subClassOf rdf:resource="&shop;ConvinienceFood"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Curtain -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Curtain">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;EyeMakeUpRemover">
-        <rdfs:subClassOf rdf:resource="&shop;FacialCareProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;MakeUpRemover"/>
+    <!-- http://knowrob.org/kb/shop.owl#Decoration -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Decoration">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#DentureAdhesive -->
 
-    <owl:Class rdf:about="&shop;ColdMedicine">
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#DentureAdhesive">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MouthCareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;SparePart">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#DentureCleaner -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#DentureCleaner">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MouthCleaningProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;TableCloth">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+    <!-- http://knowrob.org/kb/shop.owl#DiagnosticProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#DiagnosticProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Diaper -->
 
-    <owl:Class rdf:about="&shop;Beverage">
-        <rdfs:subClassOf rdf:resource="&shop;FoodOrDrink"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Diaper">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BabyItem"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;SeasonalItem">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#DiaperAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#DiaperAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BabyAccessory"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;PhotoAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <!-- http://knowrob.org/kb/shop.owl#DogAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#DogAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AnimalAccessory"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Dummy -->
 
-    <owl:Class rdf:about="&shop;MedicinalTea">
-        <rdfs:subClassOf rdf:resource="&shop;Tea"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Dummy">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BabyAccessory"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Vegetable">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Duster -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Duster">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdCleaningItem"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;ShoeCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#EyeCareProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#EyeCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyCareProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#EyeMakeUp -->
 
-    <owl:Class rdf:about="&shop;CoughDrops">
-        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#EyeMakeUp">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MakeUp"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Mouthwash">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomCleaningItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;MouthCareProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#EyeMakeUpRemover -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#EyeMakeUpRemover">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#FacialCareProduct"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MakeUpRemover"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Wipe">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
+    <!-- http://knowrob.org/kb/shop.owl#FacialCareProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#FacialCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyCareProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Fertilizer -->
 
-    <owl:Class rdf:about="&shop;SunglassAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Fertilizer">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ProblemSolver"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Remover">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Filter -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Filter">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdItem"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;SaunaInfusion">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#FleeceDiaper -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#FleeceDiaper">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Diaper"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;RoomDecoration">
-        <rdfs:subClassOf rdf:resource="&shop;Decoration"/>
+    <!-- http://knowrob.org/kb/shop.owl#Food -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Food">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#FoodOrDrink"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#FoodOrDrink -->
 
-    <owl:Class rdf:about="&shop;RodentControlAgent">
-        <rdfs:subClassOf rdf:resource="&shop;ControlAgent"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#FoodOrDrink">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;ChildLaundry">
-        <rdfs:subClassOf rdf:resource="&shop;ChildItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#FootCareProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#FootCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyCareProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;SunProtectionItem">
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#FrozenFood -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#FrozenFood">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ConvinienceFood"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Fruit -->
 
-    <owl:Class rdf:about="&shop;CarnivalArticle">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;SeasonalItem"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Fruit">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#FruitOrCereal"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Glucose">
-        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#FruitCup -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#FruitCup">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ConvinienceFood"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Fruit"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;HairCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#FruitOrCereal -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#FruitOrCereal">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OrganicFood"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#FruitTea -->
 
-    <owl:Class rdf:about="&shop;BirdAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalAccessory"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#FruitTea">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Tea"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Toothbrush">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomCleaningItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;MouthCareProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#GarbageBag -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#GarbageBag">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ServiceProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;ShowerGel">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomCleaningItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#GiftWrapping -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#GiftWrapping">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Paper"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Gloves -->
 
-    <owl:Class rdf:about="&shop;PhotoFrame">
-        <rdfs:subClassOf rdf:resource="&shop;PhotoAccessory"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Gloves">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ClothingAccessory"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;GarbageBag">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;ServiceProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Glucose -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Glucose">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Confectionery"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;DiagnosticProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#Grain -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Grain">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OrganicFood"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#GreenTea -->
 
-    <owl:Class rdf:about="&shop;BabyFood">
-        <rdfs:subClassOf rdf:resource="&shop;BabyItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#GreenTea">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Tea"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;ContactLens">
-        <rdfs:subClassOf rdf:resource="&shop;VisualAidProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#GreetingCard -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#GreetingCard">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;ChildFood">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
+    <!-- http://knowrob.org/kb/shop.owl#HairAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HairAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#HairCareProduct -->
 
-    <owl:Class rdf:about="&shop;WoundHealingProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HairCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyCareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;ManPerfume">
-        <rdfs:subClassOf rdf:resource="&shop;ManItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#HairstylingProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HairstylingProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BeautyProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;MediaProduct">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#HandCareProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HandCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyCareProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#HandCleaningProduct -->
 
-    <owl:Class rdf:about="&shop;DiaperAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HandCleaningProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningProduct"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HandCareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Tea">
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#HandSanitizer -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HandSanitizer">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HandCleaningProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;HouseholdItem">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <!-- http://knowrob.org/kb/shop.owl#HealthCareProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HealthCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CareProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Confectionery">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
+    <!-- http://knowrob.org/kb/shop.owl#HealthyFood -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HealthyFood">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Food"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#HerbalTea -->
 
-    <owl:Class rdf:about="&shop;WeddingAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HerbalTea">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Tea"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;HairstylingProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#HouseholdCleaningItem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HouseholdCleaningItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningProduct"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdItem"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;PerfumeScooter">
-        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
+    <!-- http://knowrob.org/kb/shop.owl#HouseholdFoil -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HouseholdFoil">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#HouseholdItem -->
 
-    <owl:Class rdf:about="&shop;BathroomCleaningItem">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#HouseholdItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;ChildItem">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#IceCream -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#IceCream">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Confectionery"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#FrozenFood"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;ToiletCase">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomItem"/>
+    <!-- http://knowrob.org/kb/shop.owl#IncontinenceHealthCareProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#IncontinenceHealthCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Insecticide -->
 
-    <owl:Class rdf:about="&shop;PerfumeSpray">
-        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Insecticide">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ProblemSolver"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Movie">
-        <rdfs:subClassOf rdf:resource="&shop;MediaProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#KitchenTowel -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#KitchenTowel">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningPaper"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;HerbalTea">
-        <rdfs:subClassOf rdf:resource="&shop;Tea"/>
+    <!-- http://knowrob.org/kb/shop.owl#Lightbulb -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Lightbulb">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#LipCosmetic -->
 
-    <owl:Class rdf:about="&shop;WiperSystem">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#LipCosmetic">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MakeUp"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;BabyBottle">
-        <rdfs:subClassOf rdf:resource="&shop;BabyAccessory"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#LiquidSoap -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#LiquidSoap">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HandCleaningProduct"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Soap"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;StorageMedia">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#MakeUp -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#MakeUp">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BeautyProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#MakeUpRemover -->
 
-    <owl:Class rdf:about="&shop;SelfTanningCream">
-        <rdfs:subClassOf rdf:resource="&shop;SunProtectionItem"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#MakeUpRemover">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BeautyProduct"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Remover"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;DentureAdhesive">
-        <rdfs:subClassOf rdf:resource="&shop;MouthCareProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#ManItem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ManItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;OrganicFood">
-        <rdfs:subClassOf rdf:resource="&shop;HealthyFood"/>
+    <!-- http://knowrob.org/kb/shop.owl#ManPerfume -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ManPerfume">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ManItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Perfume"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Manicure -->
 
-    <owl:Class rdf:about="&shop;Insecticide">
-        <rdfs:subClassOf rdf:resource="&shop;ProblemSolver"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Manicure">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BeautyProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;FoodOrDrink">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Mash -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Mash">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BabyFood"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;ToiletPaper">
-        <rdfs:subClassOf rdf:resource="&shop;BathroomCleaningItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;Paper"/>
+    <!-- http://knowrob.org/kb/shop.owl#MediaProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#MediaProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#MedicalCareProduct -->
 
-    <owl:Class rdf:about="&shop;HealthyFood">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#MedicalCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Napkin">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningPaper"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#MedicinalTea -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#MedicinalTea">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Tea"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;CosmeticTowel">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#MourningAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#MourningAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#MouthCareProduct -->
 
-    <owl:Class rdf:about="&shop;VisualAidProduct">
-        <rdfs:subClassOf rdf:resource="&shop;ProblemSolver"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#MouthCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyCareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Spices">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#MouthCleaningProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#MouthCleaningProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningProduct"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MouthCareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;FacialCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Mouthwash -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Mouthwash">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BathroomCleaningItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MouthCareProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Curtain">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#Movie -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Movie">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MediaProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#NailCosmetic -->
 
-    <owl:Class rdf:about="&shop;Paper">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#NailCosmetic">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MakeUp"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;CottonProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#NailPolishRemover -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#NailPolishRemover">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HandCleaningProduct"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Remover"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Fertilizer">
-        <rdfs:subClassOf rdf:resource="&shop;ProblemSolver"/>
+    <!-- http://knowrob.org/kb/shop.owl#Napkin -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Napkin">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningPaper"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#NutOrFruit -->
 
-    <owl:Class rdf:about="&shop;ClothingAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;Clothing"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#NutOrFruit">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OrganicFood"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;HandCleaningProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;HandCareProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#OrganicFood -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#OrganicFood">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthyFood"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;IceCream">
-        <rdfs:subClassOf rdf:resource="&shop;Confectionery"/>
-        <rdfs:subClassOf rdf:resource="&shop;FrozenFood"/>
+    <!-- http://knowrob.org/kb/shop.owl#OtherProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#OtherProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Paper -->
 
-    <owl:Class rdf:about="&shop;TongueCleaner">
-        <rdfs:subClassOf rdf:resource="&shop;MouthCleaningProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Paper">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;MouthCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Pasta -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Pasta">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OrganicFood"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Book">
-        <rdfs:subClassOf rdf:resource="&shop;MediaProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#Perfume -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Perfume">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BeautyProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#PerfumePen -->
 
-    <owl:Class rdf:about="&shop;CleaningProduct">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#PerfumePen">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Perfume"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;ControlAgent">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#PerfumeScooter -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#PerfumeScooter">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Perfume"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;NailCosmetic">
-        <rdfs:subClassOf rdf:resource="&shop;MakeUp"/>
+    <!-- http://knowrob.org/kb/shop.owl#PerfumeSpray -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#PerfumeSpray">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Perfume"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#PhotoAccessory -->
 
-    <owl:Class rdf:about="&shop;SnackOrFruitBar">
-        <rdfs:subClassOf rdf:resource="&shop;ConvinienceFood"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#PhotoAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Atomizer">
-        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#PhotoFrame -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#PhotoFrame">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#PhotoAccessory"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;BathAdditive">
-        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#PrepaidCard -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#PrepaidCard">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ProblemSolver -->
 
-    <owl:Class rdf:about="&shop;Contraceptive">
-        <rdfs:subClassOf rdf:resource="&shop;MedicalCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ProblemSolver">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Product -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Product"/>
+    
 
-    <owl:Class rdf:about="&shop;ChildAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;ChildItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#ReadingGlass -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ReadingGlass">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#VisualAidProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;TinkerAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <!-- http://knowrob.org/kb/shop.owl#Remover -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Remover">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#RodentControlAgent -->
 
-    <owl:Class rdf:about="&shop;EyeCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#RodentControlAgent">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ControlAgent"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Sunglass">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#RooibosTea -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#RooibosTea">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Tea"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;BathroomItem">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#RoomDecoration -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#RoomDecoration">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Decoration"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Soap">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#SaunaInfusion -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#SaunaInfusion">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BathroomItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#SeasonalItem -->
 
-    <owl:Class rdf:about="&shop;BirthdayAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#SeasonalItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;MourningAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#SelfTanningCream -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#SelfTanningCream">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#SunProtectionItem"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Perfume">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#ServiceProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ServiceProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#ShoeCareProduct -->
 
-    <owl:Class rdf:about="&shop;Toothpaste">
-        <rdfs:subClassOf rdf:resource="&shop;MouthCleaningProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShoeCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;CatAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AnimalAccessory"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Shoesole -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Shoesole">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;NailPolishRemover">
-        <rdfs:subClassOf rdf:resource="&shop;HandCleaningProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;Remover"/>
+    <!-- http://knowrob.org/kb/shop.owl#ShowerGel -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ShowerGel">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BathroomCleaningItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyCareProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#SnackOrFruitBar -->
 
-    <owl:Class rdf:about="&shop;FruitTea">
-        <rdfs:subClassOf rdf:resource="&shop;Tea"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#SnackOrFruitBar">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ConvinienceFood"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;GreetingCard">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Soap -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Soap">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Candle">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#SparePart -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#SparePart">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Spices -->
 
-    <owl:Class rdf:about="&shop;WomanPerfume">
-        <rdfs:subClassOf rdf:resource="&shop;Perfume"/>
-        <rdfs:subClassOf rdf:resource="&shop;WomanItem"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Spices">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OrganicFood"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;AnimalAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Spread -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Spread">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OrganicFood"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Lightbulb">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdItem"/>
+    <!-- http://knowrob.org/kb/shop.owl#SqueezeBag -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#SqueezeBag">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Food"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#StomachHealthCareProduct -->
 
-    <owl:Class rdf:about="&shop;EyeMakeUp">
-        <rdfs:subClassOf rdf:resource="&shop;MakeUp"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#StomachHealthCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;BabyDrink">
-        <rdfs:subClassOf rdf:resource="&shop;BabyItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;Beverage"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#StorageMedia -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#StorageMedia">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Manicure">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#SunProtectionItem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#SunProtectionItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Sunglass -->
 
-    <owl:Class rdf:about="&shop;Diaper">
-        <rdfs:subClassOf rdf:resource="&shop;BabyItem"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Sunglass">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;ChristmasAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
-        <rdfs:subClassOf rdf:resource="&shop;SeasonalItem"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#SunglassAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#SunglassAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;ConvinienceFood">
-        <rdfs:subClassOf rdf:resource="&shop;Food"/>
+    <!-- http://knowrob.org/kb/shop.owl#Sweetener -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Sweetener">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Food"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#TableCloth -->
 
-    <owl:Class rdf:about="&shop;WomanCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;BodyCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#TableCloth">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdItem"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;CareLotion">
-        <rdfs:subClassOf rdf:resource="&shop;BodyLotion"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#Tea -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Tea">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Beverage"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;BlackTea">
-        <rdfs:subClassOf rdf:resource="&shop;Tea"/>
+    <!-- http://knowrob.org/kb/shop.owl#Tights -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Tights">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Clothing"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;HealthCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;CareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#TinkerAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#TinkerAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Tissue -->
 
-    <owl:Class rdf:about="&shop;IncontinenceHealthCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Tissue">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#CleaningPaper"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Voucher">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#ToiletCase -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ToiletCase">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BathroomItem"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;HairAccessory">
-        <rdfs:subClassOf rdf:resource="&shop;AccessoryItem"/>
+    <!-- http://knowrob.org/kb/shop.owl#ToiletPaper -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ToiletPaper">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BathroomCleaningItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Paper"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#TongueCleaner -->
 
-    <owl:Class rdf:about="&shop;LipCosmetic">
-        <rdfs:subClassOf rdf:resource="&shop;MakeUp"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#TongueCleaner">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MouthCleaningProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Bag">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#ToothWhiteningSystem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#ToothWhiteningSystem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BathroomCleaningItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MouthCareProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;DentureCleaner">
-        <rdfs:subClassOf rdf:resource="&shop;MouthCleaningProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#Toothbrush -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Toothbrush">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BathroomCleaningItem"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MouthCareProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Toothpaste -->
 
-    <owl:Class rdf:about="&shop;OtherProduct">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Toothpaste">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#MouthCleaningProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;FruitOrCereal">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#TreeDecoration -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#TreeDecoration">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ChristmasAccessory"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;ManItem">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <!-- http://knowrob.org/kb/shop.owl#Umbrella -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Umbrella">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Vegetable -->
 
-    <owl:Class rdf:about="&shop;Duster">
-        <rdfs:subClassOf rdf:resource="&shop;HouseholdCleaningItem"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Vegetable">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OrganicFood"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;WrappingPaper">
-        <rdfs:subClassOf rdf:resource="&shop;Paper"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#VisualAidProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#VisualAidProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ProblemSolver"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;Fruit">
-        <rdfs:subClassOf rdf:resource="&shop;FruitOrCereal"/>
+    <!-- http://knowrob.org/kb/shop.owl#VitaminOrMineral -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#VitaminOrMineral">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#Voucher -->
 
-    <owl:Class rdf:about="&shop;Spread">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Voucher">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#OtherProduct"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Tights">
-        <rdfs:subClassOf rdf:resource="&shop;Clothing"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#WeddingAccessory -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#WeddingAccessory">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#AccessoryItem"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;BabyItem">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <!-- http://knowrob.org/kb/shop.owl#Wipe -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#Wipe">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdCleaningItem"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#WiperSystem -->
 
-    <owl:Class rdf:about="&shop;CleaningPaper">
-        <rdfs:subClassOf rdf:resource="&shop;CleaningProduct"/>
-        <rdfs:subClassOf rdf:resource="&shop;Paper"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#WiperSystem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HouseholdCleaningItem"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Decoration">
-        <rdfs:subClassOf rdf:resource="&shop;OtherProduct"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#WomanCareProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#WomanCareProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#BodyCareProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;MakeUp">
-        <rdfs:subClassOf rdf:resource="&shop;BeautyProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#WomanItem -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#WomanItem">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Product"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#WomanPerfume -->
 
-    <owl:Class rdf:about="&shop;WomanItem">
-        <rdfs:subClassOf rdf:resource="&shop;Product"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#WomanPerfume">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Perfume"/>
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#WomanItem"/>
     </owl:Class>
+    
 
-    <owl:Class rdf:about="&shop;Pasta">
-        <rdfs:subClassOf rdf:resource="&shop;OrganicFood"/>
+
+    <!-- http://knowrob.org/kb/shop.owl#WoundHealingProduct -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#WoundHealingProduct">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#HealthCareProduct"/>
     </owl:Class>
+    
+
 
-    <owl:Class rdf:about="&shop;StomachHealthCareProduct">
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+    <!-- http://knowrob.org/kb/shop.owl#WrappingPaper -->
+
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#WrappingPaper">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#Paper"/>
     </owl:Class>
+    
+
+
+    <!-- http://knowrob.org/kb/shop.owl#YogurtCup -->
 
-    <owl:Class rdf:about="&shop;Balm">
-        <rdfs:subClassOf rdf:resource="&shop;HealthCareProduct"/>
+    <owl:Class rdf:about="http://knowrob.org/kb/shop.owl#YogurtCup">
+        <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ConvinienceFood"/>
     </owl:Class>
 </rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.12.2019-05-06T20:49:08Z) https://github.com/owlcs/owlapi -->
+
