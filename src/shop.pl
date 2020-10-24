@@ -59,7 +59,7 @@
       shelf_label_insert(r,r,r),
       % computable properties
       comp_isSpaceRemainingInFacing(r,r),
-      comp_facingPose(r,r),
+      comp_facingPose(r,r,r),
       comp_facingWidth(r,r),
       comp_facingHeight(r,r),
       comp_facingDepth(r,r),
@@ -83,12 +83,12 @@
       create_article_type(r,r,r),
       create_article_number(r,r,r),
       create_article_number(r,r),
-      article_number_of_dan(r,r)
+      article_number_of_dan(r,r),
+      product_dimensions(r,r,r,r) % REMOVE just for testing
     ]).
 
 :- use_module(library('semweb/rdf_db')).
 :- use_module(library('semweb/rdfs')).
-%:- use_module(library('semweb/owl')).
 :- use_module(library('lang/computable')).
 :- use_module(library('lang/query')).
 :- use_module(library('lang/terms/holds')).
@@ -101,6 +101,7 @@
 :- use_module(library('model/SOMA/OBJ')).
 :- use_module(library('model/DUL/Object')).
 :- use_module(library('reasoning/spatial/distance')).
+:- use_module(library('ros/marker/marker_plugin')).
 
 % :-  rdf_meta  create_article_type(r,r,r),
 %               belief_shelf_part_at(r,r,r,r),
@@ -216,15 +217,15 @@ create_article_type(AN,[D,W,H],ProductType) :-
 
   tell(subclass_of(ProductType,W_R)),
   tripledb_tell(is_restriction(W_R, 
-    value(soma:hasWidth, W_XSD))), % adds a fact
+    value(shop:widthOfProduct, W_XSD))), % adds a fact
 
   tell(subclass_of(ProductType,D_R)),
   tripledb_tell(is_restriction(D_R, 
-    value(soma:hasDepth, D_XSD))), % adds a fact
+    value(shop:depthOfProduct, D_XSD))), % adds a fact
 
   tell(subclass_of(ProductType,H_R)),
   tripledb_tell(is_restriction(H_R, 
-    value(soma:hasHeight, H_XSD))). % adds a fact
+    value(shop:heightOfProduct, H_XSD))). % adds a fact
 
 create_article_type(AN,ProductType) :-
   once((
@@ -249,15 +250,13 @@ article_number_of_dan(DAN,AN) :-
 
 product_type_dimensions([D,W,H], [D,W,H]) :- !.
 product_type_dimensions(Type, [D,W,H]) :-
-  owl_property_range(Type, shop:depthOfProduct, D_atom),
-  owl_property_range(Type, shop:widthOfProduct,  W_atom),
-  owl_property_range(Type, shop:heightOfProduct, H_atom),
-  % owl_property_range_on_class(Type, shop:depthOfProduct,  literal(type(_,D_atom))),
-  % owl_property_range_on_class(Type, shop:widthOfProduct,  literal(type(_,W_atom))),
-  % owl_property_range_on_class(Type, shop:heightOfProduct, literal(type(_,H_atom))),
-  atom_number(D_atom, D),
-  atom_number(W_atom, W),
-  atom_number(H_atom, H), !.
+  product_dimensions(Type, D,W,H).
+  % (owl_property_range(Type, shop:depthOfProduct, D_atom),
+  % owl_property_range(Type, shop:widthOfProduct,  W_atom),
+  % owl_property_range(Type, shop:heightOfProduct, H_atom),
+  % atom_number(D_atom, D),
+  % atom_number(W_atom, W),
+  % atom_number(H_atom, H)), !.
 product_type_dimensions(Type, [0.04,0.04,0.04]) :-
   print_message(warning, shop(Type,'No bounding box is defined')),
   product_type_dimension_assert(Type, shop:depthOfProduct, 0.04),
@@ -266,7 +265,7 @@ product_type_dimensions(Type, [0.04,0.04,0.04]) :-
 
 product_type_dimension_assert(Type, P, Val) :-
   xsd_float(Val,Val_XSD),
-  is_restriction(R, value(P, Val_XSD)),
+  tell(is_restriction(R, value(P, Val_XSD))),
   tell(subclass_of(R, Type)).
   % owl:owl_property_range_clear_cache(Type,P).
 
@@ -549,16 +548,20 @@ shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
   FacingPos-0.5*Width =< Pos, Pos =< FacingPos+0.5*Width, !.
 
 facing_space_remaining_in_front(Facing,Obj) :-
-  is_at(Obj, [_, Obj_pos, _]),
+  is_at(Obj, [_,[_,Obj_pos,_], _]),
   % object_pose(Obj, [_,_,[_,Obj_pos,_],_]),
-  product_dimensions(Obj,Obj_depth,_,_),
+  instance_of(Obj, Product),
+  product_dimensions(Product,Obj_depth,_,_),
+  %subclass_of(Product, Restriction), is_restriction(Restriction, value(shop:'depthOfProduct', Obj_depth)),
   object_dimensions(Facing,Facing_depth,_,_),
   Obj_pos > Obj_depth + 0.06 - 0.5*Facing_depth.
 
 facing_space_remaining_behind(Facing,Obj) :-
   is_at(Obj, [_, [_,Obj_pos, _],_]),
   % object_pose(Obj, [_,_,[_,Obj_pos,_],_]),
-  product_dimensions(Obj,Obj_depth,_,_),
+  instance_of(Obj, Product),
+  product_dimensions(Product,Obj_depth,_,_),
+  % subclass_of(Product, Restriction), is_restriction(Restriction, value(shop:'depthOfProduct', Obj_depth)),
   object_dimensions(Facing,Facing_depth,_,_),
   Obj_pos < Facing_depth*0.5 - Obj_depth - 0.06.
 
@@ -567,13 +570,9 @@ facing_space_remaining_behind(Facing,Obj) :-
 shelf_facing_product_type(Facing, ProductType) :-
   comp_preferredLabelOfFacing(Facing,Label),
   holds(Label,shop:articleNumberOfLabel,ArticleNumber),
-  holds(Facing, shop:productInFacing, ProductType),
   is_restriction(R,value(shop:articleNumberOfProduct,ArticleNumber)),
   subclass_of(ProductType, R), !.
- 
-  %rdf_has(R, owl:onProperty, shop:dan),
-  % rdf_has(ProductType, rdfs:subClassOf, R),
-  % rdf_has(ProductType, rdf:type, owl:'Class'), !.
+
 shelf_facing_product_type(Facing, _) :-
   print_message(warning, shop([Facing], 'Facing has no associated product type.')),
   fail.
@@ -623,7 +622,7 @@ shelf_facing_update(Facing) :-
   tell(holds(Facing, knowrob:'widthOfObject', W)),
   tell(holds(Facing, knowrob:'heightOfObject', H)),
   % update pose
-  comp_facingPose(Facing,Pose),
+  comp_facingPose(Facing,FacingFrame, Pose),
   tell(object_localization(Facing,Pose)),
   % preferred label
   tripledb_forget(Facing,shop:preferredLabelOfFacing,Label),
@@ -639,7 +638,7 @@ shelf_facing_update(Facing) :-
 
 %% comp_facingPose
 %
-comp_facingPose(Facing, [FloorFrame,FacingFrame,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
+comp_facingPose(Facing, FacingFrame, [FloorFrame,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
   holds(Facing, shop:leftSeparator, _), !,
   holds(Facing, shop:layerOfFacing, Layer),
   holds(Facing, knowrob:frameName, FacingFrame),
@@ -652,7 +651,7 @@ comp_facingPose(Facing, [FloorFrame,FacingFrame,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0
   ( shelf_layer_standing_bottom(Layer) ->
     Pos_Z is 0.5*Facing_H + 0.025 ;
     Pos_Z is 0.5*Facing_H + 0.08 ).
-comp_facingPose(Facing, [FloorFrame,FacingFrame,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
+comp_facingPose(Facing, FacingFrame, [FloorFrame, [Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
   holds(Facing, shop:mountingBarOfFacing, _), !,
   holds(Facing, shop:layerOfFacing, Layer),
   holds(Facing, knowrob:frameName, FacingFrame),
@@ -1044,7 +1043,6 @@ belief_shelf_barcode_at(Layer, Type, dan(DAN), PosNorm, Obj) :-
   belief_shelf_barcode_at(Layer, Type, dan(DAN), PosNorm, Obj, [insert,update_facings]).
 
 belief_shelf_barcode_at(Layer, Type, dan(DAN), PosNorm, Obj, Options) :-
-  create_article_number(dan(DAN), ArticleNumber),
   belief_shelf_part_at(Layer, Type, PosNorm, Obj, Options),
   % 
   forall( article_number_of_dan(DAN,AN),
@@ -1053,7 +1051,11 @@ belief_shelf_barcode_at(Layer, Type, dan(DAN), PosNorm, Obj, Options) :-
 pos_term(Axis, norm(Pos), norm(Axis,Pos)) :- !.
 pos_term(Axis, Pos, pos(Axis,Pos)).
 
-product_dimensions(X,D,W,H):-object_dimensions(X,D,W,H), !.
+product_dimensions(X,D,W,H):- 
+  subclass_of(X, R1), is_restriction(R1, value(shop:'depthOfProduct', D)),
+  subclass_of(X, R2), is_restriction(R2, value(shop:'widthOfProduct', W)),
+  subclass_of(X, R3), is_restriction(R3, value(shop:'heightOfProduct', H)), !.
+
 product_dimensions(_,0.04,0.04,0.04).
 
 product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
@@ -1061,26 +1063,28 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   holds(Facing, shop:'labelOfFacing', Label),
   holds(Label, shop:articleNumberOfLabel, ArticleNumber),
 
-  product_type_dimensions(TypeOrBBOX, [Obj_D,_,Obj_H]),
-  object_dimensions(Layer,Layer_D,_,_),
-  Layer_D*0.5 > Offset_D + Obj_D*0.5 + 0.04,
-  
   ( TypeOrBBOX=[D,W,H] -> (
+    product_type_dimensions(TypeOrBBOX, [Obj_D,_,Obj_H]),
     belief_new_object(shop:'Product', Obj),
-    tell(holds(Obj, knowrob:'depthOfObject', D)),
-    tell(holds(Obj, knowrob:'widthOfObject', W)),
-    tell(holds(Obj, knowrob:'heightOfObject', H)) ) ;
+    tell(holds(Obj, shop:'depthOfProduct', D)),
+    tell(holds(Obj, shop:'widthOfProduct', W)),
+    tell(holds(Obj, shop:'heightOfProduct', H)) ) ;
     belief_new_object(TypeOrBBOX, Obj) ),
-  % enforce we have a product here
+  % enforce we have a product here   ASK: Below 3 lines, is it necessary
   ( instance_of(Obj,shop:'Product') -> true ;(
     print_message(warning, shop([Obj], 'Is not subclass of shop:Product.')),
     tell(has_type(Obj,shop:'Product')) )),
     
   % compute offset
-  %product_dimensions(Obj,_,_,Obj_H),
-  is_at(Facing, [_,[Facing_X,_,_],_]),
-  % object_pose(Facing, [_,_,[Facing_X,_,_],_]),
-  
+  product_dimensions(TypeOrBBOX, Obj_D,_,Obj_H), %---- ASK: Why does it not work, object_dimensions work with knowrob:'widthofobject' and not with shop;widthOfProduct.
+
+  % subclass_of(TypeOrBBOX, R1), is_restriction(R1, value(shop:'depthOfProduct', Obj_D)),
+  % subclass_of(TypeOrBBOX, R2), is_restriction(R2, value(shop:'heightOfProduct', Obj_H)),
+
+  comp_facingPose(Facing, FacingFrame, [_,[Facing_X,_, _], _]),
+  %is_at(Facing, [_,[Facing_X,_,_],_]),
+  object_dimensions(Layer,Layer_D,_,_),
+  Layer_D*0.5 > Offset_D + Obj_D*0.5 + 0.04,
   % FIXME: this should be handled by offsets from ontology
   ( shelf_layer_standing(Layer) -> (
     shelf_layer_standing_bottom(Layer) ->
@@ -1089,21 +1093,24 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
     Offset_H is -Obj_H*0.5 - 0.025 ),
   
   % HACK rotate if it has a mesh
-  ( object_mesh_path(Obj,_) ->
+  ( % object_mesh_path(Obj,_) CHECK
+    subclass_of(TypeOrBBOX, Restriction), is_restriction(Restriction, value(knowrob:'pathToCadModel', Value)) ->  
     Rot=[0.0, 0.0, 1.0, 0.0] ;
     Rot=[0.0, 0.0, 0.0, 1.0] ),
   %Rot=[0.0, 0.0, 0.0, 1.0],
   
   % declare transform
   holds(Layer, knowrob:frameName, LayerFrame),
-  is_at(Obj, [Layer_frame, 
+  tell(is_at(Obj, [Layer_frame, 
       [Facing_X, Offset_D, Offset_H],
-      Rot]),
+      Rot])),
   tell(holds(Facing, shop:productInFacing, Obj)),
   
   % update facing
   comp_mainColorOfFacing(Facing,Color),
-  object_assert_color(Facing,Color).
+  with_output_to(string(FacingColor), maplist(write, Color)),
+  tell(holds(Facing, knowrob:'mainColorOfObject', FacingColor)),
+  show_marker(Facing, _).
   % mark_dirty_objects([Facing]).
 
 product_spawn_front_to_back(Facing, Obj) :-
@@ -1121,6 +1128,7 @@ product_spawn_front_to_back(Facing, Obj, TypeOrBBOX) :-
     product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj));(
     ProductsBackToFront=[(Last_Pos,Last)|_],
     product_dimensions(Last,Last_D,_,_),
+    % subclass_of(TypeOrBBOX, Restriction), is_restriction(Restriction, value(shop:'depthOfProduct', Last_D)),
     Obj_Pos is Last_Pos + 0.5*Last_D + 0.5*Obj_D + 0.02,
     product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj)
   )).
