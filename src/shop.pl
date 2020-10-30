@@ -530,8 +530,8 @@ facing_space_remaining_behind(Facing,Obj) :-
 shelf_facing_product_type(Facing, ProductType) :-
   comp_preferredLabelOfFacing(Facing,Label),
   holds(Label,shop:articleNumberOfLabel,ArticleNumber),
-  is_restriction(R,value(shop:articleNumberOfProduct,ArticleNumber)),
-  subclass_of(ProductType, R), !.
+  subclass_of(ProductType, R),
+  has_description(R,value(shop:articleNumberOfProduct,ArticleNumber)), !.
 
 shelf_facing_product_type(Facing, _) :-
   print_message(warning, shop([Facing], 'Facing has no associated product type.')),
@@ -760,7 +760,7 @@ shelf_type(LeftMarker,RightMarker,ShelfType) :-
     D is abs(WidthEstimate - Width)),
     ShelfTypes),
   sort(ShelfTypes, [[W,ShelfType]|_]),
-  tell(holds(ShelfType, knowrob:'widthOfObject', W)).
+  tell(holds(ShelfType, knowrob:widthOfObject, W)).
 
 shelf_with_marker(Shelf,Marker) :- (
   holds(Shelf,dmshop:leftMarker,Marker);
@@ -779,7 +779,7 @@ shelf_marker(Marker,Marker):-
 %
 belief_shelf_marker_at(MarkerType,MarkerId,PoseData,Marker):-
   belief_new_object(MarkerType, Marker),
-  tell(holds(Marker, dmshop:'markerId', MarkerId)),
+  tell(holds(Marker, dmshop:markerId, MarkerId)),
   tell(is_at(Marker,PoseData)). % Pose here is [RefFrame, Translation, Quat]
 %%
 %
@@ -815,9 +815,6 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   % temporary assert height/depth
   % FIXME: what is going on here? why assert? rather use object_* predicates
   rdfs_classify(Shelf,ShelfType),
-  %holds(ShelfType, knowrob:'widthOfObject', Width),
-  %tell(object_dimensions(Shelf, 0.02, Width, 0.11)),
-  %tell(object_color_rgb(Shelf, [0.0,1.0,0.5])),
   tell(holds(Shelf, knowrob:depthOfObject, '0.02')),
   tell(holds(Shelf, knowrob:heightOfObject, '0.11')),
   tell(holds(Shelf, knowrob:mainColorOfObject, '0.0 1.0 0.5 0.6')),
@@ -1134,7 +1131,7 @@ rdfs_classify(Entity,Type) :-
     triple(Entity,rdf:type,X),
     transitive(subclass_of(Type,X))),
     tripledb_forget(Entity,rdf:type,X)),
-  tell(is_a(Entity,Type)).
+  tell(has_type(Entity,Type)).
 
 owl_classify(Entity,Type) :-
   % find RDF graph of Entity
@@ -1142,7 +1139,7 @@ owl_classify(Entity,Type) :-
     triple(Entity,rdf:type,X),
     once(subclass_of(Type,X))),
     tripledb_forget(Entity,rdf:type,X)),
-  tell(is_a(Entity,Type)).
+  tell(has_type(Entity,Type)).
 
 belief_new_object(ObjType, Obj) :-
   tell(instance_of(Obj, ObjType)),
