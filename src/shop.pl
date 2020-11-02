@@ -821,7 +821,14 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   tell(holds(Shelf, knowrob:heightOfObject, '0.11')),
   tell(holds(Shelf, knowrob:mainColorOfObject, '0.0 1.0 0.5 0.6')),
   tell(holds(Shelf, dmshop:leftMarker, LeftMarker)),
-  tell(holds(Shelf, dmshop:rightMarker, RightMarker)).
+  tell(holds(Shelf, dmshop:rightMarker, RightMarker)),
+  tell(holds(Shelf, soma:hasFeature, LeftMarker)),
+  tell(holds(Shelf, soma:hasFeature, RightMarker)),
+  % tell(has_type(LeftFeature, soma:Feature)),
+  % tell(has_type(RightFeature, soma:Feature)),
+  tell(is_at(LeftMarker, [Shelf, LPos, LRot])),
+  tell(is_at(RightMarker, [Shelf, RPos, RRot])).
+
 
 shelf_find_type(Shelf,Type) :-
   has_type(Shelf, Type),
@@ -1157,16 +1164,16 @@ belief_new_object(ObjType, Obj) :-
 assert_object_shape_(Object):-
   has_type(Object, ObjectType),
   
-  tell([is_individual(Shape),
-        holds(Object,soma:hasShape,Shape),
-        is_individual(ShapeRegion),
-        holds(Shape,dul:hasRegion,ShapeRegion)], [[], _]),
+  tell(is_individual(Shape)),
+  tell(holds(Object,soma:hasShape,Shape)),
+  tell(is_individual(ShapeRegion)),
+  tell(holds(Shape,dul:hasRegion,ShapeRegion)),
 
   transitive(subclass_of(ObjectType, R1)), has_description(R1, value(knowrob:pathToCadModel, FilePath)),
   tell(triple(ShapeRegion,soma:hasFilePath,FilePath)),
-  Pos is [0,0,0], Rot is [0,0,0,1],
+  Pos = [0,0,0], Rot = [0,0,0,1],
 
-  tell([is_individual(Origin),
-        triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin),
-	      triple(Origin, soma:hasPositionVector, term(Pos)),
-	      triple(Origin, soma:hasOrientationVector, term(Rot)], [[], _]).
+  tell(is_individual(Origin)),
+  tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
+	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
+	tell(triple(Origin, soma:hasOrientationVector, term(Rot))).

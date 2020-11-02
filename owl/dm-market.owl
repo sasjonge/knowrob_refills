@@ -63,6 +63,7 @@
     <!-- http://knowrob.org/kb/dm-market.owl#shelfMarker -->
 
     <owl:ObjectProperty rdf:about="http://knowrob.org/kb/dm-market.owl#shelfMarker">
+        <rdfs:subPropertyOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
         <rdfs:domain rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:range rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfMarker"/>
     </owl:ObjectProperty>
@@ -84,6 +85,12 @@
     <!-- http://www.ease-crc.org/ont/SOMA.owl#hasDisposition -->
 
     <owl:ObjectProperty rdf:about="http://www.ease-crc.org/ont/SOMA.owl#hasDisposition"/>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/SOMA.owl#hasFeature -->
+
+    <owl:ObjectProperty rdf:about="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
     
 
 
@@ -1356,6 +1363,7 @@
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfMarker">
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShelfLabel"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#Feature"/>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
@@ -2812,6 +2820,12 @@
     <!-- http://www.ease-crc.org/ont/EASE-OBJ.owl#DependentPlace -->
 
     <owl:Class rdf:about="http://www.ease-crc.org/ont/EASE-OBJ.owl#DependentPlace"/>
+    
+
+
+    <!-- http://www.ease-crc.org/ont/SOMA.owl#Feature -->
+
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/SOMA.owl#Feature"/>
     
 
 
