@@ -823,11 +823,13 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   tell(holds(Shelf, dmshop:rightMarker, RightMarker)).
 
 shelf_find_type(Shelf,Type) :-
-  transitive(subclass_of(Type,dmshop:'DMShelfFrame')),
-  forall((
-    triple(Shelf,rdf:type,X),
-    transitive(subclass_of(X,dmshop:'DMShelfFrame'))),
-    transitive(subclass_of(Type,X))).
+  has_type(Shelf, Type),
+  transitive(subclass_of(Type,dmshop:'DMShelfFrame')).
+  % transitive(subclass_of(Type,dmshop:'DMShelfFrame')),
+  % forall((
+  %   triple(Shelf,rdf:type,X),
+  %   transitive(subclass_of(X,dmshop:'DMShelfFrame'))),
+  %   subclass_of(Type,X)).
 
 %%
 %
@@ -1128,11 +1130,12 @@ min_positive_element([(A,D_A)|Rest], (Needle,D_Needle)) :-
 min_positive_element([(A,D_A)|_], (A,D_A)).
 
 rdfs_classify(Entity,Type) :-
-  forall((
-    triple(Entity,rdf:type,X),
-    transitive(subclass_of(Type,X))),
-    tripledb_forget(Entity,rdf:type,X)),
   tell(has_type(Entity,Type)).
+  % forall((
+  %   triple(Entity,rdf:type,X),
+  %   transitive(subclass_of(Type,X))),
+  %   tripledb_forget(Entity,rdf:type,X)),
+  % tell(has_type(Entity,Type)).
 
 owl_classify(Entity,Type) :-
   % find RDF graph of Entity
