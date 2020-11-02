@@ -1130,12 +1130,11 @@ min_positive_element([(A,D_A)|Rest], (Needle,D_Needle)) :-
 min_positive_element([(A,D_A)|_], (A,D_A)).
 
 rdfs_classify(Entity,Type) :-
+  forall((
+    triple(Entity,rdf:type,X),
+    transitive(subclass_of(Type,X))),
+    tripledb_forget(Entity,rdf:type,X)),
   tell(has_type(Entity,Type)).
-  % forall((
-  %   triple(Entity,rdf:type,X),
-  %   transitive(subclass_of(Type,X))),
-  %   tripledb_forget(Entity,rdf:type,X)),
-  % tell(has_type(Entity,Type)).
 
 owl_classify(Entity,Type) :-
   % find RDF graph of Entity
