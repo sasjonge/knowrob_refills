@@ -96,6 +96,7 @@
 :- use_module(library('lang/terms/transitive')).
 :- use_module(library('ros/tf/tf_plugin')).
 :- use_module(library('db/tripledb')).
+:- use_module(library('db/scope')).
 :- use_module(library('model/OWL')).
 :- use_module(library('reasoning/OWL/plowl/class')).
 :- use_module(library('reasoning/OWL/plowl/property')).
@@ -920,7 +921,8 @@ belief_shelf_part_at(Frame, Type, Pos, Obj, _Options) :-
   ( shelf_layer_below(Obj,Below) ->
     shelf_facings_mark_dirty(Below) ; true ),
   ( shelf_layer_above(Obj,Above) ->
-    shelf_facings_mark_dirty(Above) ; true ).
+    shelf_facings_mark_dirty(Above) ; true ),
+  assert_object_shape_(Obj).
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   transitive(subclass_of(Type, shop:'ShelfSeparator')), !,
@@ -928,7 +930,8 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   perceived_part_at_axis__(Layer, Type, PosTerm, Obj),
   ( member(insert,Options) ->
     shelf_separator_insert(Layer,Obj,Options) ;
-    true ).
+    true ),
+  assert_object_shape_(Obj).
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   transitive(subclass_of(Type, shop:'ShelfMountingBar')), !,
@@ -936,7 +939,8 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   perceived_part_at_axis__(Layer, Type, PosTerm, Obj),
   ( member(insert,Options) ->
     shelf_mounting_bar_insert(Layer,Obj,Options) ;
-    true ).
+    true ),
+  assert_object_shape_(Obj).
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :- 
   transitive(subclass_of(Type, shop:'ShelfLabel')), !,
@@ -1081,7 +1085,8 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
 
 product_spawn_front_to_back(Facing, Obj) :-
   shelf_facing_product_type(Facing, ProductType),
-  product_spawn_front_to_back(Facing, Obj, ProductType).
+  product_spawn_front_to_back(Facing, Obj, ProductType),
+  assert_object_shape_(Obj).
   
 product_spawn_front_to_back(Facing, Obj, TypeOrBBOX) :-
   triple(Facing, shop:layerOfFacing, Layer),
@@ -1148,4 +1153,20 @@ belief_new_object(ObjType, Obj) :-
   tell(instance_of(Obj, ObjType)),
   rdf_split_url(_, ObjFrameName, Obj), 
   tell(holds(Obj, knowrob:frameName, ObjFrameName)).
+
+assert_object_shape_(Object):-
+  has_type(Object, ObjectType),
   
+  tell([is_individual(Shape),
+        holds(Object,soma:hasShape,Shape),
+        is_individual(ShapeRegion),
+        holds(Shape,dul:hasRegion,ShapeRegion)], [[], _]),
+
+  transitive(subclass_of(ObjectType, R1)), has_description(R1, value(knowrob:pathToCadModel, FilePath)),
+  tell(triple(ShapeRegion,soma:hasFilePath,FilePath)),
+  Pos is [0,0,0], Rot is [0,0,0,1],
+
+  tell([is_individual(Origin),
+        triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin),
+	      triple(Origin, soma:hasPositionVector, term(Pos)),
+	      triple(Origin, soma:hasOrientationVector, term(Rot)], [[], _]).
