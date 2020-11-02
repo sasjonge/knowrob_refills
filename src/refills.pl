@@ -186,7 +186,7 @@ refills_make_shelf(Frame, [(Pos,bars(Bars),labels(Labels))|Rest]) :-
   forall(member(BarPos,Bars),
          belief_shelf_part_at(Layer,'http://knowrob.org/kb/dm-market.owl#DMShelfMountingBar',norm(BarPos),_, [insert])),
   forall(member((LabelPos,AN),Labels),
-         belief_shelf_barcode_at(Layer,'http://knowrob.org/kb/dm-market.owl#DMShelfLabel', gtin(GTIN), dan(DAN),norm(LabelPos),_, [insert])),
+         belief_shelf_barcode_at(Layer,'http://knowrob.org/kb/dm-market.owl#DMShelfLabel', dan(DAN),norm(LabelPos),_, [insert])),
   refills_make_shelf(Frame, Rest).
 
 refills_make_shelf(Frame, [(Pos,Separators,Labels)|Rest]) :-
