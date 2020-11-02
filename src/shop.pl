@@ -93,6 +93,7 @@
 :- use_module(library('lang/query')).
 :- use_module(library('lang/terms/holds')).
 :- use_module(library('lang/terms/is_a')).
+:- use_module(library('lang/terms/transitive')).
 :- use_module(library('ros/tf/tf_plugin')).
 :- use_module(library('db/tripledb')).
 :- use_module(library('model/OWL')).
@@ -583,7 +584,7 @@ shelf_facing_update(Facing) :-
   tell(holds(Facing, knowrob:'heightOfObject', H)),
   % update pose
   comp_facingPose(Facing, Pose),
-  tell(object_localization(Facing,Pose)),
+  tell(is_at(Facing,Pose)),
   % preferred label
   tripledb_forget(Facing,shop:preferredLabelOfFacing,Label),
   ( comp_preferredLabelOfFacing(Facing,Label) ->
