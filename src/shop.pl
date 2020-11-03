@@ -822,12 +822,16 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   tell(holds(Shelf, knowrob:mainColorOfObject, '0.0 1.0 0.5 0.6')),
   tell(holds(Shelf, dmshop:leftMarker, LeftMarker)),
   tell(holds(Shelf, dmshop:rightMarker, RightMarker)),
-  tell(holds(Shelf, soma:hasFeature, LeftMarker)),
-  tell(holds(Shelf, soma:hasFeature, RightMarker)),
-  % tell(has_type(LeftFeature, soma:Feature)),
-  % tell(has_type(RightFeature, soma:Feature)),
-  tell(is_at(LeftMarker, [Shelf, LPos, LRot])),
-  tell(is_at(RightMarker, [Shelf, RPos, RRot])).
+  subclass_of(ShelfType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),
+  subclass_of(PerceptionFeature, R1), is_restriction(R1, value(knowrob:pose, FeaturePose)),
+  holds(FeaturePose, knowrob:quaternion, FeatureRot),
+  holds(FeaturePose, knowrob:translation, FeaturePos),
+  
+  tell(has_type(FeatureType, PerceptionFeature)),
+  rdf_split_url(_, FeatureFrameName, FeatureType), 
+  tell(holds(PerceptionFeature, knowrob:frameName, FeatureFrameName)),
+  tell(is_at(FeatureFrameName, [Shelf, FeaturePos, FeatureRot])),
+  tell(holds(Shelf, soma:hasFeature, FeatureType)).
 
 
 shelf_find_type(Shelf,Type) :-
@@ -1079,7 +1083,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   
   % declare transform
   holds(Layer, knowrob:frameName, LayerFrame),
-  tell(is_at(Obj, [Layer_frame, 
+  tell(is_at(Obj, [LayerFrame, 
       [Facing_X, Offset_D, Offset_H],
       Rot])),
   tell(holds(Facing, shop:productInFacing, Obj)),
@@ -1164,9 +1168,9 @@ belief_new_object(ObjType, Obj) :-
 assert_object_shape_(Object):-
   has_type(Object, ObjectType),
   
-  tell(is_individual(Shape)),
+  tell(has_type(Shape, soma:'Shape')),
   tell(holds(Object,soma:hasShape,Shape)),
-  tell(is_individual(ShapeRegion)),
+  tell(has_type(ShapeRegion, soma:'ShapeRegion')),
   tell(holds(Shape,dul:hasRegion,ShapeRegion)),
 
   transitive(subclass_of(ObjectType, R1)), has_description(R1, value(knowrob:pathToCadModel, FilePath)),

@@ -155,15 +155,14 @@
     
 
 
-    <!-- http://knowrob.org/kb/knowrob.owl#nameString -->
-
-    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/knowrob.owl#nameString"/>
-    
-
-
     <!-- http://knowrob.org/kb/knowrob.owl#pathToCadModel -->
 
     <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
+
+
+    <!-- http://knowrob.org/kb/knowrob.owl#nameString -->
+
+    <owl:DatatypeProperty rdf:about="http://knowrob.org/kb/knowrob.owl#nameString"/>
     
 
 
@@ -245,6 +244,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMBFloorW100"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureBFloorT5W100"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfLayer5TilesL10_Bottom/ShelfLayer5TilesL10_Bottom.dae</owl:hasValue>
             </owl:Restriction>
@@ -302,6 +308,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMBFloorW100"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureBFloorT6W100"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfLayer6TilesL10_Bottom/ShelfLayer6TilesL10_Bottom.dae</owl:hasValue>
             </owl:Restriction>
@@ -323,6 +336,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMBFloorT6"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMBFloorW120"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureBFloorT6W120"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -348,6 +368,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMBFloorW60"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureBFloorT6W60"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfLayer6TilesL6_Bottom/ShelfLayer6TilesL6_Bottom.dae</owl:hasValue>
             </owl:Restriction>
@@ -369,6 +396,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMBFloorT6"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMBFloorW75"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureBFloorT6W75"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -428,6 +462,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMBFloorW100"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureBFloorT7W100"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfLayer7TilesL10_Bottom/ShelfLayer7TilesL10_Bottom.dae</owl:hasValue>
             </owl:Restriction>
@@ -449,6 +490,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMBFloorT7"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMBFloorW120"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureBFloorT7W120"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -564,6 +612,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorW100"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureFloorT4W100"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfLayer4TilesL10/ShelfLayer4TilesL10.dae</owl:hasValue>
             </owl:Restriction>
@@ -621,6 +676,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorW100"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureFloorT5W100"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfLayer5TilesL10/ShelfLayer5TilesL10.dae</owl:hasValue>
             </owl:Restriction>
@@ -642,6 +704,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT5"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorW120"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureFloorT5W120"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -667,6 +736,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorW60"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureFloorT5W60"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfLayer5TilesL6/ShelfLayer5TilesL6.dae</owl:hasValue>
             </owl:Restriction>
@@ -688,6 +764,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT5"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorW75"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureFloorT5W75"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -747,6 +830,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorW100"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureFloorT6W100"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfLayer6TilesL10/ShelfLayer6TilesL10.dae</owl:hasValue>
             </owl:Restriction>
@@ -768,6 +858,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorT6"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMFloorW120"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureFloorT6W120"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -912,6 +1009,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT4L"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH160W100T4"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH160T4L10W/SM_ShelfSystemH160T4L10W.dae</owl:hasValue>
             </owl:Restriction>
@@ -937,6 +1041,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfW100"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH160W100T5"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH160T5L10W/ShelfSystemH160T5L10W.dae</owl:hasValue>
             </owl:Restriction>
@@ -960,6 +1071,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT6L"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH160W100T6"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -1001,6 +1119,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfW100"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH180W100T5"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH180T510W/SM_ShelfSystemH180T5L10W.dae</owl:hasValue>
             </owl:Restriction>
@@ -1024,6 +1149,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT5L"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH180W60T5"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -1064,6 +1196,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT5L"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH200W100T5"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T5L10W/ShelfSystemH200T5L10W.dae</owl:hasValue>
             </owl:Restriction>
@@ -1088,6 +1227,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT6L"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH200W100T6"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T6L10W/ShelfSystemH200T6L10W.dae</owl:hasValue>
             </owl:Restriction>
@@ -1110,6 +1256,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT7H"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH200W100T7"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -1137,6 +1290,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT5L"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH200W120T5"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T5L12W/SM_ShelfSystemH200T5L12W.dae</owl:hasValue>
             </owl:Restriction>
@@ -1159,6 +1319,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT6L"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH200W120T6"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -1185,6 +1352,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT7H"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH200W120T7"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T7L12W/ShelfSystemH200T7L12W.dae</owl:hasValue>
             </owl:Restriction>
@@ -1207,6 +1381,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT5L"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH200W60T5"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -1233,6 +1414,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT6L"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH200W60T6"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">package://refills_models/shelf_models/ShelfSystemH200T6L6W/ShelfSystemH200T6L6W.dae</owl:hasValue>
             </owl:Restriction>
@@ -1255,6 +1443,13 @@
         </owl:equivalentClass>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfFrame"/>
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfT6L"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#PerceptionFeatureH200W70T6"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#pathToCadModel"/>
@@ -1331,6 +1526,13 @@
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfLayerMountingFront">
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfLayerMounting"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionFeatureLayerMounting"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
@@ -1416,6 +1618,13 @@
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/shop.owl#ShelfMountingBar"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionFeatureMountingBar"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
                 <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.318463</owl:hasValue>
             </owl:Restriction>
@@ -1446,7 +1655,7 @@
     <!-- http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionFeature -->
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionFeature">
-        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/EASE-OBJ.owl#DependentPlace"/>
+        <rdfs:subClassOf rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#DependentPlace"/>
     </owl:Class>
     
 
@@ -1505,6 +1714,13 @@
 
     <owl:Class rdf:about="http://knowrob.org/kb/dm-market.owl#DMShelfSeparator4Tiles">
         <rdfs:subClassOf rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfSeparator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.ease-crc.org/ont/SOMA.owl#hasFeature"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://knowrob.org/kb/dm-market.owl#DMShelfPerceptionFeatureSeparator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://knowrob.org/kb/knowrob.owl#depthOfObject"/>
@@ -2817,9 +3033,9 @@
     
 
 
-    <!-- http://www.ease-crc.org/ont/EASE-OBJ.owl#DependentPlace -->
+    <!-- http://www.ease-crc.org/ont/SOMA.owl#DependentPlace -->
 
-    <owl:Class rdf:about="http://www.ease-crc.org/ont/EASE-OBJ.owl#DependentPlace"/>
+    <owl:Class rdf:about="http://www.ease-crc.org/ont/SOMA.owl#DependentPlace"/>
     
 
 
@@ -3378,4 +3594,3 @@
 
 
 <!-- Generated by the OWL API (version 4.5.12.2019-05-06T20:49:08Z) https://github.com/owlcs/owlapi -->
-
