@@ -821,7 +821,19 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   tell(holds(Shelf, knowrob:heightOfObject, '0.11')),
   tell(holds(Shelf, knowrob:mainColorOfObject, '0.0 1.0 0.5 0.6')),
   tell(holds(Shelf, dmshop:leftMarker, LeftMarker)),
-  tell(holds(Shelf, dmshop:rightMarker, RightMarker)).
+  tell(holds(Shelf, dmshop:rightMarker, RightMarker)),
+
+  subclass_of(ShelfType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),
+  subclass_of(PerceptionFeature, R1), is_restriction(R1, value(knowrob:pose, FeaturePose)),
+  holds(FeaturePose, knowrob:quaternion, FeatureRot),
+  holds(FeaturePose, knowrob:translation, FeaturePos),
+  
+  tell(has_type(FeatureType, PerceptionFeature)),
+  rdf_split_url(_, FeatureFrameName, FeatureType), 
+  tell(holds(PerceptionFeature, knowrob:frameName, FeatureFrameName)),
+  tell(is_at(FeatureFrameName, [Shelf, FeatureRot, FeaturePos])),
+  tell(holds(Shelf, soma:hasFeature, FeatureType)).
+
 
 shelf_find_type(Shelf,Type) :-
   has_type(Shelf, Type),
@@ -1072,7 +1084,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   
   % declare transform
   holds(Layer, knowrob:frameName, LayerFrame),
-  tell(is_at(Obj, [Layer_frame, 
+  tell(is_at(Obj, [LayerFrame, 
       [Facing_X, Offset_D, Offset_H],
       Rot])),
   tell(holds(Facing, shop:productInFacing, Obj)),
@@ -1157,16 +1169,16 @@ belief_new_object(ObjType, Obj) :-
 assert_object_shape_(Object):-
   has_type(Object, ObjectType),
   
-  tell([is_individual(Shape),
-        holds(Object,soma:hasShape,Shape),
-        is_individual(ShapeRegion),
-        holds(Shape,dul:hasRegion,ShapeRegion)], [[], _]),
+  tell(has_type(Shape, soma:'Shape')),
+  tell(holds(Object,soma:hasShape,Shape)),
+  tell(has_type(ShapeRegion, soma:'ShapeRegion')),
+  tell(holds(Shape,dul:hasRegion,ShapeRegion)),
 
   transitive(subclass_of(ObjectType, R1)), has_description(R1, value(knowrob:pathToCadModel, FilePath)),
   tell(triple(ShapeRegion,soma:hasFilePath,FilePath)),
-  Pos is [0,0,0], Rot is [0,0,0,1],
+  Pos = [0,0,0], Rot = [0,0,0,1],
 
-  tell([is_individual(Origin),
-        triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin),
-	      triple(Origin, soma:hasPositionVector, term(Pos)),
-	      triple(Origin, soma:hasOrientationVector, term(Rot)], [[], _]).
+  tell(is_individual(Origin)),
+  tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
+	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
+	tell(triple(Origin, soma:hasOrientationVector, term(Rot))).
