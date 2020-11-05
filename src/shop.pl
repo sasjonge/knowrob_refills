@@ -1181,3 +1181,4 @@ assert_object_shape_(Object):-
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
 	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
 	tell(triple(Origin, soma:hasOrientationVector, term(Rot))).
+
