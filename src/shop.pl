@@ -858,10 +858,6 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   shelf_classify_height(Shelf,Height),
   shelf_classify_num_tiles(Shelf,NumTiles),
   shelf_classify_payload(Shelf,Payload),
-<<<<<<< HEAD
-  %
-=======
->>>>>>> 288754b56de881d5be8eb323f074ff7eacdf167f
   % use closed world semantics to infer all the shelf frame
   % types currently implied for `Shelf`
   ( shelf_find_type(Shelf,ShelfType) -> (
