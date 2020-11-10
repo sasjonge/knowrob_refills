@@ -605,6 +605,7 @@ comp_facingPose(Facing, [FloorFrame,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
   holds(Facing, shop:layerOfFacing, Layer),
   holds(Facing, knowrob:frameName, FacingFrame),
   holds(Layer, knowrob:frameName, FloorFrame),
+  assert_object_shape_(Layer),
   object_dimensions(Facing, _, _, Facing_H),
   %holds(Facing, knowrob:'heightOfObject', Facing_H),
   shelf_facing_position(Facing, Pos_X),
@@ -618,6 +619,7 @@ comp_facingPose(Facing, [FloorFrame, [Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
   holds(Facing, shop:layerOfFacing, Layer),
   holds(Facing, knowrob:frameName, FacingFrame),
   holds(Layer, knowrob:frameName, FloorFrame),
+  assert_object_shape_(Layer),
   comp_facingHeight(Facing, Facing_H),
   shelf_facing_position(Facing,Pos_X),
   Pos_Y is -0.03,           
@@ -808,6 +810,7 @@ belief_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
     belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf))).
 
 belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
+
   % infer shelf type (e.g. 'DMShelfFrameW100')
   shelf_marker(LeftMarkerId,LeftMarker),
   shelf_marker(RightMarkerId,RightMarker),
@@ -822,12 +825,12 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   tell(holds(Shelf, knowrob:mainColorOfObject, '0.0 1.0 0.5 0.6')),
   tell(holds(Shelf, dmshop:leftMarker, LeftMarker)),
   tell(holds(Shelf, dmshop:rightMarker, RightMarker)),
-
+  
   subclass_of(ShelfType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),
   subclass_of(PerceptionFeature, R1), is_restriction(R1, value(knowrob:pose, FeaturePose)),
   holds(FeaturePose, knowrob:quaternion, FeatureRot),
   holds(FeaturePose, knowrob:translation, FeaturePos),
-  
+ 
   tell(has_type(FeatureType, PerceptionFeature)),
   rdf_split_url(_, FeatureFrameName, FeatureType), 
   tell(holds(PerceptionFeature, knowrob:frameName, FeatureFrameName)),
@@ -856,16 +859,23 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   shelf_classify_height(Shelf,Height),
   shelf_classify_num_tiles(Shelf,NumTiles),
   shelf_classify_payload(Shelf,Payload),
+  shelf_classify_upper(Shelf),
+  %
   % use closed world semantics to infer all the shelf frame
   % types currently implied for `Shelf`
   ( shelf_find_type(Shelf,ShelfType) -> (
     print_message(info, shop([Shelf,ShelfType], 'Is classified as.')),
     rdfs_classify(Shelf,ShelfType));(
-    findall(X,(
+    findall(X,
+      (
       triple(Shelf,rdf:type,X),
-      transitive(subclass_of(X,dmshop:'DMShelfFrame'))),Xs),
+      transitive(subclass_of(X,dmshop:'DMShelfFrame'))
+      )
+    ,Xs),
     print_message(warning, shop([Shelf,Xs], 'Failed to classify. Type not defined in ontology?'))
   )).
+
+shelf_classify_upper(Shelf) :-
 
 %%
 % Classify shelf based on its height.
@@ -925,6 +935,7 @@ belief_shelf_part_at(Frame, Type, Pos, Obj, _Options) :-
   transitive(subclass_of(Type, R2)), has_description(R2, value(knowrob:'depthOfObject', D)),
   transitive(subclass_of(Type, R3)), has_description(R3, value(knowrob:'widthOfObject', W)),
   tell(holds(Obj, knowrob:frameName, ObjFrame)),
+  assert_object_shape_(Obj),
   tell(holds(Obj, knowrob:depthOfObject, D)),
   tell(holds(Obj, knowrob:heightOfObject, H)),
   tell(holds(Obj, knowrob:widthOfObject, W)),
@@ -933,8 +944,7 @@ belief_shelf_part_at(Frame, Type, Pos, Obj, _Options) :-
   ( shelf_layer_below(Obj,Below) ->
     shelf_facings_mark_dirty(Below) ; true ),
   ( shelf_layer_above(Obj,Above) ->
-    shelf_facings_mark_dirty(Above) ; true ),
-  assert_object_shape_(Obj).
+    shelf_facings_mark_dirty(Above) ; true ).
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   transitive(subclass_of(Type, shop:'ShelfSeparator')), !,
@@ -942,8 +952,7 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   perceived_part_at_axis__(Layer, Type, PosTerm, Obj),
   ( member(insert,Options) ->
     shelf_separator_insert(Layer,Obj,Options) ;
-    true ),
-  assert_object_shape_(Obj).
+    true ).
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   transitive(subclass_of(Type, shop:'ShelfMountingBar')), !,
@@ -1097,8 +1106,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
 
 product_spawn_front_to_back(Facing, Obj) :-
   shelf_facing_product_type(Facing, ProductType),
-  product_spawn_front_to_back(Facing, Obj, ProductType),
-  assert_object_shape_(Obj).
+  product_spawn_front_to_back(Facing, Obj, ProductType).
   
 product_spawn_front_to_back(Facing, Obj, TypeOrBBOX) :-
   triple(Facing, shop:layerOfFacing, Layer),
@@ -1164,7 +1172,8 @@ owl_classify(Entity,Type) :-
 belief_new_object(ObjType, Obj) :-
   tell(instance_of(Obj, ObjType)),
   rdf_split_url(_, ObjFrameName, Obj), 
-  tell(holds(Obj, knowrob:frameName, ObjFrameName)).
+  tell(holds(Obj, knowrob:frameName, ObjFrameName)),
+  ignore(assert_object_shape_(Obj)).
 
 assert_object_shape_(Object):-
   has_type(Object, ObjectType),
