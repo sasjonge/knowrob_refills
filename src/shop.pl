@@ -347,11 +347,12 @@ shelf_separator_insert(ShelfLayer,Separator,Options) :-
   (( holds(_,shop:rightSeparator,Separator) ;
      holds(_,shop:leftSeparator,Separator)) ->
      shelf_separator_update(ShelfLayer, Separator, [LeftOf,RightOf]);
-     shelf_separator_add(   ShelfLayer, Separator, [LeftOf,RightOf]) ),
+     shelf_separator_add(ShelfLayer, Separator, [LeftOf,RightOf]) ),
   % update labelOfFacing relation
   ((holds(Y,shop:leftSeparator,Separator);
     holds(Y,shop:rightSeparator,Separator)) ->
     shelf_facing_labels_update(ShelfLayer,Y) ; true ),
+    assert_object_shape_(Separator),
   ( member(update_facings,Options) ->
     shelf_facings_mark_dirty(ShelfLayer) ;
     true ).
@@ -421,6 +422,7 @@ shelf_mounting_bar_insert(ShelfLayer,MountingBar,Options) :-
     tripledb_forget(LeftFacing, shop:rightMountingBar, _),
     tell(holds(LeftFacing, shop:rightMountingBar, MountingBar))) ;
     true ),
+    assert_object_shape_(MountingBar),
   % update labelOfFacing and productInFacing relations
   shelf_facing_labels_update(ShelfLayer,Facing),
   ( member(update_facings,Options) ->
@@ -838,9 +840,18 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   tell(holds(Shelf, soma:hasFeature, FeatureType)).
 
 
-shelf_find_type(Shelf,Type) :-
-  has_type(Shelf, Type),
-  transitive(subclass_of(Type,dmshop:'DMShelfFrame')).
+shelf_find_type(Shelf, Type) :-
+    findall(T, (has_type(Shelf, T), subclass_of(T, dmshop:'DMShelfFrame')), Types),
+
+    subclass_of(Type, dmshop:'DMShelfFrame'),
+    owl_subclass_of(Type,B), has_description(B,intersection_of(C)), 
+
+    subtract(C, Types, List1),
+    subtract(Types, C, List2),
+    member(X, List1), owl_subclass_of(X, Desc), has_description(Desc, intersection_of(TempL)), 
+    
+    subtract(List2, TempL, ListDiff), length(ListDiff, Length), Length=0.
+
   % transitive(subclass_of(Type,dmshop:'DMShelfFrame')),
   % forall((
   %   triple(Shelf,rdf:type,X),
@@ -873,7 +884,17 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
       )
     ,Xs),
     print_message(warning, shop([Shelf,Xs], 'Failed to classify. Type not defined in ontology?'))
-  )).
+  )),
+  transitive(subclass_of(ShelfType, R1)), has_description(R1, value(soma:hasFeature, PerceptionFeature)),
+  transitive(subclass_of(PerceptionFeature, R2)), has_description(R2, value(knowrob:pose, FeaturePose)),
+
+  holds(FeaturePose, knowrob:translation, Translation),
+  holds(FeaturePose, knowrob:quaternion, Rotation),
+
+  tell(has_type(FeatureIndividual, PerceptionFeature)),
+  tell(triple(Shelf, soma:'hasFeature', FeatureIndividual)),
+  tell(is_at(FeatureIndividual, [Shelf, Translation, Rotation])),
+  assert_object_shape_(Shelf).
 
 shelf_classify_upper(Shelf) :-
 
@@ -960,8 +981,8 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   perceived_part_at_axis__(Layer, Type, PosTerm, Obj),
   ( member(insert,Options) ->
     shelf_mounting_bar_insert(Layer,Obj,Options) ;
-    true ),
-  assert_object_shape_(Obj).
+    true ).
+
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :- 
   transitive(subclass_of(Type, shop:'ShelfLabel')), !,
@@ -1093,6 +1114,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   
   % declare transform
   holds(Layer, knowrob:frameName, LayerFrame),
+  assert_object_shape_(Obj),
   tell(is_at(Obj, [LayerFrame, 
       [Facing_X, Offset_D, Offset_H],
       Rot])),
