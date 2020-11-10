@@ -812,7 +812,6 @@ belief_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
     belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf))).
 
 belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
-
   % infer shelf type (e.g. 'DMShelfFrameW100')
   shelf_marker(LeftMarkerId,LeftMarker),
   shelf_marker(RightMarkerId,RightMarker),
@@ -826,18 +825,7 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   tell(holds(Shelf, knowrob:heightOfObject, '0.11')),
   tell(holds(Shelf, knowrob:mainColorOfObject, '0.0 1.0 0.5 0.6')),
   tell(holds(Shelf, dmshop:leftMarker, LeftMarker)),
-  tell(holds(Shelf, dmshop:rightMarker, RightMarker)),
-
-  subclass_of(ShelfType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),
-  subclass_of(PerceptionFeature, R1), is_restriction(R1, value(knowrob:pose, FeaturePose)),
-  holds(FeaturePose, knowrob:quaternion, FeatureRot),
-  holds(FeaturePose, knowrob:translation, FeaturePos),
- 
-  tell(has_type(FeatureType, PerceptionFeature)),
-  rdf_split_url(_, FeatureFrameName, FeatureType), 
-  tell(holds(PerceptionFeature, knowrob:frameName, FeatureFrameName)),
-  tell(is_at(FeatureFrameName, [Shelf, FeaturePos, FeatureRot])),
-  tell(holds(Shelf, soma:hasFeature, FeatureType)).
+  tell(holds(Shelf, dmshop:rightMarker, RightMarker)).
 
 
 shelf_find_type(Shelf, Type) :-
@@ -870,29 +858,35 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   shelf_classify_height(Shelf,Height),
   shelf_classify_num_tiles(Shelf,NumTiles),
   shelf_classify_payload(Shelf,Payload),
+<<<<<<< HEAD
   %
+=======
+>>>>>>> 288754b56de881d5be8eb323f074ff7eacdf167f
   % use closed world semantics to infer all the shelf frame
   % types currently implied for `Shelf`
   ( shelf_find_type(Shelf,ShelfType) -> (
     print_message(info, shop([Shelf,ShelfType], 'Is classified as.')),
     rdfs_classify(Shelf,ShelfType));(
-    findall(X,
-      (
+    findall(X,(
       triple(Shelf,rdf:type,X),
-      transitive(subclass_of(X,dmshop:'DMShelfFrame'))
-      )
-    ,Xs),
+      transitive(subclass_of(X,dmshop:'DMShelfFrame'))),Xs),
     print_message(warning, shop([Shelf,Xs], 'Failed to classify. Type not defined in ontology?'))
   )),
+  
   transitive(subclass_of(ShelfType, R1)), has_description(R1, value(soma:hasFeature, PerceptionFeature)),
   transitive(subclass_of(PerceptionFeature, R2)), has_description(R2, value(knowrob:pose, FeaturePose)),
 
   holds(FeaturePose, knowrob:translation, Translation),
   holds(FeaturePose, knowrob:quaternion, Rotation),
+ 
+  atomic_list_concat(Translation,' ', T1),  maplist(atom_number, T1, T2), 
+  atomic_list_concat(Rotation,' ', R1),  maplist(atom_number, R1, R2), 
 
   tell(has_type(FeatureIndividual, PerceptionFeature)),
-  tell(triple(Shelf, soma:'hasFeature', FeatureIndividual)),
-  tell(is_at(FeatureIndividual, [Shelf, Translation, Rotation])),
+  tell(triple(Shelf, soma:hasFeature, FeatureIndividual)),
+  tell(is_at(FeatureIndividual, [Shelf, T2, R2])),
+  rdf_split_url(_, FeatureFrameName, FeatureIndividual), 
+  tell(holds(FeatureIndividual, knowrob:frameName, FeatureFrameName)),
   assert_object_shape_(Shelf).
 
 %%
@@ -971,6 +965,7 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   ( member(insert,Options) ->
     shelf_separator_insert(Layer,Obj,Options) ;
     true ).
+ 
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   transitive(subclass_of(Type, shop:'ShelfMountingBar')), !,
@@ -1127,6 +1122,7 @@ product_spawn_front_to_back(Facing, Obj) :-
   shelf_facing_product_type(Facing, ProductType),
   product_spawn_front_to_back(Facing, Obj, ProductType).
   
+  
 product_spawn_front_to_back(Facing, Obj, TypeOrBBOX) :-
   triple(Facing, shop:layerOfFacing, Layer),
   product_dimensions(TypeOrBBOX, [Obj_D,_,_]),
@@ -1191,8 +1187,7 @@ owl_classify(Entity,Type) :-
 belief_new_object(ObjType, Obj) :-
   tell(instance_of(Obj, ObjType)),
   rdf_split_url(_, ObjFrameName, Obj), 
-  tell(holds(Obj, knowrob:frameName, ObjFrameName)),
-  ignore(assert_object_shape_(Obj)).
+  tell(holds(Obj, knowrob:frameName, ObjFrameName)).
 
 assert_object_shape_(Object):-
   has_type(Object, ObjectType),
