@@ -875,7 +875,17 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
       triple(Shelf,rdf:type,X),
       transitive(subclass_of(X,dmshop:'DMShelfFrame'))),Xs),
     print_message(warning, shop([Shelf,Xs], 'Failed to classify. Type not defined in ontology?'))
-  )).
+  )),
+  transitive(subclass_of(ShelfType, R1)), has_description(R1, value(soma:hasFeature, PerceptionFeature)),
+  transitive(subclass_of(PerceptionFeature, R2)), has_description(R2, value(knowrob:pose, FeaturePose)),
+
+  holds(FeaturePose, knowrob:translation, Translation),
+  holds(FeaturePose, knowrob:quaternion, Rotation),
+
+  tell(has_type(FeatureIndividual, PerceptionFeature)),
+  tell(triple(Shelf, soma:'hasFeature', FeatureIndividual)),
+  tell(is_at(FeatureIndividual, [Shelf, Translation, Rotation])),
+  assert_object_shape_(Shelf).
 
 %%
 % Classify shelf based on its height.
