@@ -870,7 +870,6 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   shelf_classify_height(Shelf,Height),
   shelf_classify_num_tiles(Shelf,NumTiles),
   shelf_classify_payload(Shelf,Payload),
-  shelf_classify_upper(Shelf),
   %
   % use closed world semantics to infer all the shelf frame
   % types currently implied for `Shelf`
@@ -895,8 +894,6 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   tell(triple(Shelf, soma:'hasFeature', FeatureIndividual)),
   tell(is_at(FeatureIndividual, [Shelf, Translation, Rotation])),
   assert_object_shape_(Shelf).
-
-shelf_classify_upper(Shelf) :-
 
 %%
 % Classify shelf based on its height.
