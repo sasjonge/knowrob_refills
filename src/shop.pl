@@ -825,7 +825,7 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   tell(holds(Shelf, knowrob:mainColorOfObject, '0.0 1.0 0.5 0.6')),
   tell(holds(Shelf, dmshop:leftMarker, LeftMarker)),
   tell(holds(Shelf, dmshop:rightMarker, RightMarker)),
-  
+
   subclass_of(ShelfType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),
   subclass_of(PerceptionFeature, R1), is_restriction(R1, value(knowrob:pose, FeaturePose)),
   holds(FeaturePose, knowrob:quaternion, FeatureRot),
@@ -834,7 +834,7 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
   tell(has_type(FeatureType, PerceptionFeature)),
   rdf_split_url(_, FeatureFrameName, FeatureType), 
   tell(holds(PerceptionFeature, knowrob:frameName, FeatureFrameName)),
-  tell(is_at(FeatureFrameName, [Shelf, FeatureRot, FeaturePos])),
+  tell(is_at(FeatureFrameName, [Shelf, FeaturePos, FeatureRot])),
   tell(holds(Shelf, soma:hasFeature, FeatureType)).
 
 
@@ -1191,3 +1191,4 @@ assert_object_shape_(Object):-
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
 	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
 	tell(triple(Origin, soma:hasOrientationVector, term(Rot))).
+

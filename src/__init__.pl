@@ -59,3 +59,4 @@
 :- tripledb_load('package://knowrob_refills/owl/product-catalog.owl').
 :- tripledb_load('package://knowrob_refills/owl/product-taxonomy.owl').
 :- use_module(library('ros/marker/marker_plugin')).
+:- use_module(library('ros/tf/tf_plugin')).
