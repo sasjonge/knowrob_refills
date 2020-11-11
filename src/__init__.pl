@@ -32,6 +32,7 @@
 :- register_ros_package(knowrob_refills).
 
 :- use_module(library('shop')).
+:- use_module(library('refills')).
 
 
 :- use_module(library('db/tripledb'), 

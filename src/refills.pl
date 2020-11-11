@@ -63,8 +63,8 @@
 :- rdf_db:rdf_register_ns(knowrob, 'http://knowrob.org/kb/knowrob.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(xsd, 'http://www.w3.org/2001/XMLSchema#', [keep(true)]).
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
-:- tripledb_load('package://knowrob_refills/owl/shop-test.owl', 
-  [namespace(shoptest,'http://knowrob.org/kb/shop-test.owl#')] ).
+%% :- tripledb_load('package://knowrob_refills/owl/shop-test.owl', 
+%%   [namespace(shoptest,'http://knowrob.org/kb/shop-test.owl#')] ).
 :- tripledb_load('package://knowrob_refills/owl/product-catalog.owl').
 
 :- use_module(library('shop')).
@@ -73,35 +73,35 @@ shelf_bottom_floor_type(Frame,Type) :-
   instance_of(Frame,FrameType),
   shelf_bottom_floor_type_(FrameType,Type), !.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT5'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT5')),
   subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMBFloorT5W100'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT5'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT5')),
   subclass_of(FrameType,dmshop:'DMShelfW60'),
   rdf_equal(Type,dmshop:'DMBFloorT5W60'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT6')),
   subclass_of(FrameType,dmshop:'DMShelfW60'),
   rdf_equal(Type,dmshop:'DMBFloorT6W60'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT6')),
   subclass_of(FrameType,dmshop:'DMShelfW70'),
   rdf_equal(Type,dmshop:'DMBFloorT6W75'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT6')),
   subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMBFloorT6W100'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT6'),
-  subclass_of(FrameType,dmshop:'DMShelfW120'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT6')),
+  subclass_of(Frame,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMBFloorT6W120'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT7'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT7')),
   subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMBFloorT7W100'),!.
 shelf_bottom_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT7'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT7')),
   subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMBFloorT7W120'),!.
 
