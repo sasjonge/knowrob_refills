@@ -868,19 +868,20 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
       transitive(subclass_of(X,dmshop:'DMShelfFrame'))),Xs),
     print_message(warning, shop([Shelf,Xs], 'Failed to classify. Type not defined in ontology?'))
   )),
-  
-  transitive(subclass_of(ShelfType, R1)), has_description(R1, value(soma:hasFeature, PerceptionFeature)),
-  transitive(subclass_of(PerceptionFeature, R2)), has_description(R2, value(knowrob:pose, FeaturePose)),
 
+  subclass_of(ShelfType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),  
+  subclass_of(PerceptionFeature, Desc), has_description(Desc, value(knowrob:pose, FeaturePose)),
+  
   holds(FeaturePose, knowrob:translation, Translation),
   holds(FeaturePose, knowrob:quaternion, Rotation),
  
-  atomic_list_concat(Translation,' ', T1),  maplist(atom_number, T1, T2), 
-  atomic_list_concat(Rotation,' ', R1),  maplist(atom_number, R1, R2), 
+  atomic_list_concat(T1,' ', Translation),  maplist(atom_number, T1, T2), 
+  atomic_list_concat(R1,' ', Rotation),  maplist(atom_number, R1, R2), 
 
   tell(has_type(FeatureIndividual, PerceptionFeature)),
   tell(triple(Shelf, soma:hasFeature, FeatureIndividual)),
-  tell(is_at(FeatureIndividual, [Shelf, T2, R2])),
+  holds(Shelf, knowrob:frameName, ShelfFrame),
+  tell(is_at(FeatureIndividual, [ShelfFrame, T2, R2])),
   rdf_split_url(_, FeatureFrameName, FeatureIndividual), 
   tell(holds(FeatureIndividual, knowrob:frameName, FeatureFrameName)),
   assert_object_shape_(Shelf).
