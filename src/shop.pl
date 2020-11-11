@@ -869,7 +869,35 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
     print_message(warning, shop([Shelf,Xs], 'Failed to classify. Type not defined in ontology?'))
   )),
 
-  subclass_of(ShelfType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),  
+  %%%% Assert Shelf dimensions
+  has_type(Shelf, Type), 
+  subclass_of(Type, DepthDesc), has_description(DepthDesc, value(knowrob:depthOfObject, Depth)),
+
+  has_type(Shelf, Type), 
+  subclass_of(Type, HeightDesc), has_description(HeightDesc, value(knowrob:heightOfObject, Height)),
+
+  has_type(Shelf, Type), 
+  subclass_of(Type, WidthDesc), has_description(WidthDesc, value(knowrob:widthOfObject, Width)),
+  
+  tell(has_type(Shape, soma:'Shape')),
+  tell(holds(Shelf,soma:hasShape,Shape)),
+  tell(object_dimensions(Shelf, Depth, Width, Height)),
+
+  %%%% Assert object shape to get the object markers
+  
+  has_type(Shelf, ObjectType),
+  transitive(subclass_of(ObjectType, MeshDesc)), has_description(MeshDesc, value(knowrob:pathToCadModel, FilePath)),
+  tell(triple(ShapeRegion,soma:hasFilePath,FilePath)),
+  Pos = [0,0,0], Rot = [0,0,0,1],
+
+  tell(is_individual(Origin)),
+  tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
+	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
+	tell(triple(Origin, soma:hasOrientationVector, term(Rot)))
+
+  %%%% Assert perception feature
+
+  subclass_of(ShelfType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),
   subclass_of(PerceptionFeature, Desc), has_description(Desc, value(knowrob:pose, FeaturePose)),
   
   holds(FeaturePose, knowrob:translation, Translation),
@@ -883,8 +911,8 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   holds(Shelf, knowrob:frameName, ShelfFrame),
   tell(is_at(FeatureIndividual, [ShelfFrame, T2, R2])),
   rdf_split_url(_, FeatureFrameName, FeatureIndividual), 
-  tell(holds(FeatureIndividual, knowrob:frameName, FeatureFrameName)),
-  assert_object_shape_(Shelf).
+  tell(holds(FeatureIndividual, knowrob:frameName, FeatureFrameName)).
+  %assert_object_shape_(Shelf).
 
 %%
 % Classify shelf based on its height.
