@@ -838,7 +838,10 @@ shelf_find_type(Shelf, Type) :-
     subtract(Types, C, List2),
     member(X, List1), owl_subclass_of(X, Desc), has_description(Desc, intersection_of(TempL)), 
     
-    subtract(List2, TempL, ListDiff), length(ListDiff, Length), Length=0.
+    subtract(List2, TempL, ListDiff), length(ListDiff, Length), Length=0,
+    forall(member(T, TempL), tripledb_forget(Shelf, rdf:type, T)),
+    tell(has_type(Shelf, X)).
+    
 
   % transitive(subclass_of(Type,dmshop:'DMShelfFrame')),
   % forall((
@@ -861,6 +864,18 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   % use closed world semantics to infer all the shelf frame
   % types currently implied for `Shelf`
   ( shelf_find_type(Shelf,ShelfType) -> (
+     findall(X,(
+      triple(Shelf,rdf:type,X),
+      transitive(subclass_of(X,dmshop:'DMShelfFrame'))),Xs),
+    
+    %%%% Assert Shelf dimensions
+
+     forall(member(Type, Xs), 
+        ( subclass_of(Type, HeightDesc), has_description(HeightDesc, value(knowrob:heightOfObject, Height)), tell(holds(O, knowrob:heightOfObject, Height));
+          subclass_of(Type, WidthDesc), has_description(WidthDesc, value(knowrob:widthOfObject, Width)),  tell(holds(O, knowrob:widthOfObject, Width)); 
+          subclass_of(Type, DepthDesc), has_description(DepthDesc, value(knowrob:depthOfObject, Depth)),  tell(holds(O, knowrob:depthOfObject, Depth))
+        )),
+
     print_message(info, shop([Shelf,ShelfType], 'Is classified as.')),
     rdfs_classify(Shelf,ShelfType));(
     findall(X,(
@@ -869,31 +884,22 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
     print_message(warning, shop([Shelf,Xs], 'Failed to classify. Type not defined in ontology?'))
   )),
 
-  %%%% Assert Shelf dimensions
-  has_type(Shelf, Type), 
-  subclass_of(Type, DepthDesc), has_description(DepthDesc, value(knowrob:depthOfObject, Depth)),
+  %%%% Assert object shape to get the object markers
 
-  has_type(Shelf, Type), 
-  subclass_of(Type, HeightDesc), has_description(HeightDesc, value(knowrob:heightOfObject, Height)),
-
-  has_type(Shelf, Type), 
-  subclass_of(Type, WidthDesc), has_description(WidthDesc, value(knowrob:widthOfObject, Width)),
-  
   tell(has_type(Shape, soma:'Shape')),
   tell(holds(Shelf,soma:hasShape,Shape)),
-  tell(object_dimensions(Shelf, Depth, Width, Height)),
 
-  %%%% Assert object shape to get the object markers
-  
   has_type(Shelf, ObjectType),
-  transitive(subclass_of(ObjectType, MeshDesc)), has_description(MeshDesc, value(knowrob:pathToCadModel, FilePath)),
+  subclass_of(ObjectType, MeshDesc), has_description(MeshDesc, value(knowrob:pathToCadModel, FilePath)),
+  tell(has_type(ShapeRegion, soma:'ShapeRegion')),
+  tell(holds(Shape,dul:hasRegion,ShapeRegion)),
   tell(triple(ShapeRegion,soma:hasFilePath,FilePath)),
   Pos = [0,0,0], Rot = [0,0,0,1],
 
   tell(is_individual(Origin)),
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
 	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
-	tell(triple(Origin, soma:hasOrientationVector, term(Rot)))
+	tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
 
   %%%% Assert perception feature
 
