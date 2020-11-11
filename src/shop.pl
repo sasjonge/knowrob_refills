@@ -871,19 +871,18 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
     %%%% Assert Shelf dimensions
 
      forall(member(Type, Xs), 
-        ( subclass_of(Type, HeightDesc), has_description(HeightDesc, value(knowrob:heightOfObject, Height)), tell(holds(O, knowrob:heightOfObject, Height));
-          subclass_of(Type, WidthDesc), has_description(WidthDesc, value(knowrob:widthOfObject, Width)),  tell(holds(O, knowrob:widthOfObject, Width)); 
-          subclass_of(Type, DepthDesc), has_description(DepthDesc, value(knowrob:depthOfObject, Depth)),  tell(holds(O, knowrob:depthOfObject, Depth))
+        ( subclass_of(Type, HeightDesc), has_description(HeightDesc, value(knowrob:heightOfObject, Height)), tell(holds(Shelf, knowrob:heightOfObject, Height));
+          subclass_of(Type, WidthDesc), has_description(WidthDesc, value(knowrob:widthOfObject, Width)),  tell(holds(Shelf, knowrob:widthOfObject, Width)); 
+          subclass_of(Type, DepthDesc), has_description(DepthDesc, value(knowrob:depthOfObject, Depth)),  tell(holds(Shelf, knowrob:depthOfObject, Depth))
         )),
 
     print_message(info, shop([Shelf,ShelfType], 'Is classified as.')),
-    rdfs_classify(Shelf,ShelfType));(
+    tell(has_type(Shelf,ShelfType)));(
     findall(X,(
       triple(Shelf,rdf:type,X),
       transitive(subclass_of(X,dmshop:'DMShelfFrame'))),Xs),
     print_message(warning, shop([Shelf,Xs], 'Failed to classify. Type not defined in ontology?'))
   )),
-
   %%%% Assert object shape to get the object markers
 
   tell(has_type(Shape, soma:'Shape')),
@@ -900,25 +899,9 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
 	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
 	tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
-
-  %%%% Assert perception feature
-
-  subclass_of(ShelfType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),
-  subclass_of(PerceptionFeature, Desc), has_description(Desc, value(knowrob:pose, FeaturePose)),
   
-  holds(FeaturePose, knowrob:translation, Translation),
-  holds(FeaturePose, knowrob:quaternion, Rotation),
- 
-  atomic_list_concat(T1,' ', Translation),  maplist(atom_number, T1, T2), 
-  atomic_list_concat(R1,' ', Rotation),  maplist(atom_number, R1, R2), 
-
-  tell(has_type(FeatureIndividual, PerceptionFeature)),
-  tell(triple(Shelf, soma:hasFeature, FeatureIndividual)),
-  holds(Shelf, knowrob:frameName, ShelfFrame),
-  tell(is_at(FeatureIndividual, [ShelfFrame, T2, R2])),
-  rdf_split_url(_, FeatureFrameName, FeatureIndividual), 
-  tell(holds(FeatureIndividual, knowrob:frameName, FeatureFrameName)).
-  %assert_object_shape_(Shelf).
+  %%%% Assert perception feature
+  assert_perception_feature_(Shelf).
 
 %%
 % Classify shelf based on its height.
@@ -982,6 +965,7 @@ belief_shelf_part_at(Frame, Type, Pos, Obj, _Options) :-
   tell(holds(Obj, knowrob:depthOfObject, D)),
   tell(holds(Obj, knowrob:heightOfObject, H)),
   tell(holds(Obj, knowrob:widthOfObject, W)),
+  assert_perception_feature_(Obj),
   % adding a new shelf floor has influence on facing size of
   % shelf floor siblings
   ( shelf_layer_below(Obj,Below) ->
@@ -995,7 +979,8 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   perceived_part_at_axis__(Layer, Type, PosTerm, Obj),
   ( member(insert,Options) ->
     shelf_separator_insert(Layer,Obj,Options) ;
-    true ).
+    true ),
+  assert_perception_feature_(Obj).
  
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
@@ -1004,7 +989,8 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   perceived_part_at_axis__(Layer, Type, PosTerm, Obj),
   ( member(insert,Options) ->
     shelf_mounting_bar_insert(Layer,Obj,Options) ;
-    true ).
+    true ),
+  assert_perception_feature_(Obj).
 
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :- 
@@ -1013,7 +999,8 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   perceived_part_at_axis__(Layer, Type, PosTerm, Obj),
   ( member(insert,Options) ->
     shelf_label_insert(Layer,Obj,Options) ;
-    true ).
+    true ),
+  assert_perception_feature_(Obj).
 
 %%
 %%
@@ -1236,4 +1223,24 @@ assert_object_shape_(Object):-
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
 	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
 	tell(triple(Origin, soma:hasOrientationVector, term(Rot))).
+
+assert_perception_feature_(Object) :-
+  has_type(Object, ObjectType),
+  subclass_of(ObjectType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),
+  subclass_of(PerceptionFeature, Desc), has_description(Desc, value(knowrob:pose, FeaturePose)),
+  
+  holds(FeaturePose, knowrob:translation, Translation),
+  holds(FeaturePose, knowrob:quaternion, Rotation),
+
+  atomic_list_concat(T1,' ', Translation),  maplist(atom_number, T1, T2), 
+  atomic_list_concat(R1,' ', Rotation),  maplist(atom_number, R1, R2), 
+  
+  tell(has_type(FeatureIndividual, PerceptionFeature)),
+  tell(triple(Object, soma:hasFeature, FeatureIndividual)),
+  
+  holds(Object, knowrob:frameName, ObjFrame),
+  tell(is_at(FeatureIndividual, [ObjFrame, T2, R2])),
+  rdf_split_url(_, FeatureFrameName, FeatureIndividual), 
+  tell(holds(FeatureIndividual, knowrob:frameName, FeatureFrameName)).
+
 
