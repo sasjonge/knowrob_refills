@@ -534,6 +534,7 @@ facing_space_remaining_behind(Facing,Obj) :-
 shelf_facing_product_type(Facing, ProductType) :-
   comp_preferredLabelOfFacing(Facing,Label),
   holds(Label,shop:articleNumberOfLabel,ArticleNumber),
+  subclass_of(ProductType, shop:'Product'),
   subclass_of(ProductType, R),
   has_description(R,value(shop:articleNumberOfProduct,ArticleNumber)), !.
 
@@ -1033,8 +1034,7 @@ belief_part_offset(Parent, PartType, Offset, Rotation) :-
   
   subclass_of(ParentType, S), subclass_of(S, Description), is_restriction(Description, exactly(soma:'hasDisposition', 1, Linkage)), 
   subclass_of(Linkage, R), has_description(R, only(soma:'affordsTrigger', Desc)),  has_description(Desc, only(dul:'classifies', PartClass)),
-  subclass_of(Linkage, SpaceRestriction), has_description(SpaceRestriction, value(soma:hasSpaceRegion, LinkageSpace)), 
-  
+  subclass_of(Linkage, SpaceRestriction), has_description(SpaceRestriction, value(soma:hasSpaceRegion, LinkageSpace)), !,
   holds(LinkageSpace, knowrob:quaternion, Q),  
   holds(LinkageSpace, knowrob:translation, T), 
   
@@ -1050,7 +1050,7 @@ perceived_part_at_axis__(Parent, PartType, norm(Axis,Pos), Part) :- !,
 perceived_part_at_axis__(Parent, PartType, pos(Axis,Pos), Part) :- 
   center_part_pos(Parent, Axis, Pos, Centered),
   holds(Parent, knowrob:frameName, ParentFrame),
-  belief_part_offset(Parent, PartType, Offset, Rotation),
+  belief_part_offset(Parent, PartType, Offset, Rotation), !, 
   perceived_pos__(Offset, pos(Axis,Centered), PerceivedPos),
   tell(instance_of(Part,PartType)),
   tell(holds(Parent, soma:hasPhysicalComponent, Part)),
