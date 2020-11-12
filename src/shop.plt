@@ -15,11 +15,7 @@
 :- tripledb_load('package://knowrob_refills/owl/shop-test.owl', 
   [namespace(shoptest,'http://knowrob.org/kb/shop-test.owl#')] ).
 
-:- begin_tripledb_tests(
-    shop,
-    'package://knowrob_refills/owl/shop.owl',
-    [ namespace('http://knowrob.org/kb/shop.owl#')
-    ]).
+
 
     %   shelf_classify(r,+,+,+),
     %   shelf_with_marker(r,r),
