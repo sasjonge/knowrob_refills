@@ -980,6 +980,7 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   ( member(insert,Options) ->
     shelf_separator_insert(Layer,Obj,Options) ;
     true ),
+  belief_new_object(Type, Obj),
   assert_perception_feature_(Obj).
  
 
@@ -990,6 +991,7 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   ( member(insert,Options) ->
     shelf_mounting_bar_insert(Layer,Obj,Options) ;
     true ),
+  belief_new_object(Type, Obj),
   assert_perception_feature_(Obj).
 
 
@@ -999,8 +1001,7 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   perceived_part_at_axis__(Layer, Type, PosTerm, Obj),
   ( member(insert,Options) ->
     shelf_label_insert(Layer,Obj,Options) ;
-    true ),
-  assert_perception_feature_(Obj).
+    true ).
 
 %%
 %%
