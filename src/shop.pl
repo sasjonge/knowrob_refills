@@ -1028,12 +1028,18 @@ center_part_pos(Obj, z, In, Out) :-
   Out is In - 0.5*V.
 
 belief_part_offset(Parent, PartType, Offset, Rotation) :-
-  has_disposition_type(Parent,Linkage,DispositionType),
-  once(transitive(subclass_of(DispositionType,soma:'Linkage'))), 
-  disposition_trigger_type(Linkage, X), % PartType
-  holds(Linkage,soma:hasSpaceRegion,LinkageSpace),
-  is_at(LinkageSpace, [_, Offset, Rotation]), !.
-  %transform_data(LinkageSpace,(Offset, Rotation)),!. %%ASK: has to be checked if this is okay. Not sure what to replace this with
+  has_type(Parent, ParentType),
+  transitive(subclass_of(PartType, PartClass)), 
+  
+  subclass_of(ParentType, S), subclass_of(S, Description), is_restriction(Description, exactly(soma:'hasDisposition', 1, Linkage)), 
+  subclass_of(Linkage, R), has_description(R, only(soma:'affordsTrigger', Desc)),  has_description(Desc, only(dul:'classifies', PartClass)),
+  subclass_of(Linkage, SpaceRestriction), has_description(SpaceRestriction, value(soma:hasSpaceRegion, LinkageSpace)), 
+  
+  holds(LinkageSpace, knowrob:quaternion, Q),  
+  holds(LinkageSpace, knowrob:translation, T), 
+  
+  atomic_list_concat(T1,' ', T), maplist(atom_number, T1, Offset), 
+  atomic_list_concat(R1,' ', Q),  maplist(atom_number, R1, Rotation).
 
 belief_part_offset(_, _, [0,0,0], [0,0,0,1]).
 
