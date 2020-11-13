@@ -109,35 +109,35 @@ shelf_floor_type(Frame,Type) :-
   instance_of(Frame,FrameType),
   shelf_floor_type_(FrameType,Type), !.
 shelf_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT5'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT5')),
   subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMFloorT4W100'),!.
 shelf_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT5'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT5')),
   subclass_of(FrameType,dmshop:'DMShelfW60'),
   rdf_equal(Type,dmshop:'DMFloorT5W60'),!.
 shelf_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT6')),
   subclass_of(FrameType,dmshop:'DMShelfW60'),
   rdf_equal(Type,dmshop:'DMFloorT5W60'),!.
 shelf_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT6')),
   subclass_of(FrameType,dmshop:'DMShelfW70'),
   rdf_equal(Type,dmshop:'DMFloorT5W75'),!.
 shelf_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT6')),
   subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMFloorT5W100'),!.
 shelf_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT6'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT6')),
   subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMFloorT5W120'),!.
 shelf_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT7'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT7')),
   subclass_of(FrameType,dmshop:'DMShelfW100'),
   rdf_equal(Type,dmshop:'DMFloorT6W100'),!.
 shelf_floor_type_(FrameType,Type) :-
-  subclass_of(FrameType,dmshop:'DMShelfT7'),
+  transitive(subclass_of(FrameType,dmshop:'DMShelfT7')),
   subclass_of(FrameType,dmshop:'DMShelfW120'),
   rdf_equal(Type,dmshop:'DMFloorT6W120'),!.
 
@@ -145,7 +145,6 @@ shelf_floor_type_(FrameType,Type) :-
   %tripledb_load('package://knowrob_refills/owl/dm-market-iai.owl').
 
 refills_init_test_shop :-
-  
   refills_spawn_facings.
 
 bulk_insert_floor(Floor, separators(Separators), labels(Labels)) :-
@@ -336,7 +335,6 @@ refills_test_spawning(Shelf,Data) :-
 
 test('init'):-
   %refills_init_iai_shop,
-  gtrace,
   refills_init_test_shop.
 
 :- end_tripledb_tests('refills').

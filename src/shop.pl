@@ -830,25 +830,12 @@ belief_new_shelf_at(LeftMarkerId,RightMarkerId,Shelf) :-
 
 
 shelf_find_type(Shelf, Type) :-
-    findall(T, (has_type(Shelf, T), subclass_of(T, dmshop:'DMShelfFrame')), Types),
-
-    subclass_of(Type, dmshop:'DMShelfFrame'),
-    owl_subclass_of(Type,B), has_description(B,intersection_of(C)), 
-
-    subtract(C, Types, List1),
-    subtract(Types, C, List2),
-    member(X, List1), owl_subclass_of(X, Desc), has_description(Desc, intersection_of(TempL)), 
-    
-    subtract(List2, TempL, ListDiff), length(ListDiff, Length), Length=0,
-    forall(member(T, TempL), tripledb_forget(Shelf, rdf:type, T)),
-    tell(has_type(Shelf, X)).
-    
-
-  % transitive(subclass_of(Type,dmshop:'DMShelfFrame')),
-  % forall((
-  %   triple(Shelf,rdf:type,X),
-  %   transitive(subclass_of(X,dmshop:'DMShelfFrame'))),
-  %   subclass_of(Type,X)).
+  subclass_of(Type,dmshop:'DMShelfFrame'),
+  forall(
+      (has_type(Shelf, X), 
+      subclass_of(X, dmshop:'DMShelfFrame')),
+      transitive(subclass_of(Type, X))
+    ).
 
 %%
 %
@@ -865,42 +852,40 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   % use closed world semantics to infer all the shelf frame
   % types currently implied for `Shelf`
   ( shelf_find_type(Shelf,ShelfType) -> (
-     findall(X,(
-      triple(Shelf,rdf:type,X),
-      transitive(subclass_of(X,dmshop:'DMShelfFrame'))),Xs),
-    
-    %%%% Assert Shelf dimensions
-
-     forall(member(Type, Xs), 
-        ( subclass_of(Type, HeightDesc), has_description(HeightDesc, value(knowrob:heightOfObject, Height)), tell(holds(Shelf, knowrob:heightOfObject, Height));
-          subclass_of(Type, WidthDesc), has_description(WidthDesc, value(knowrob:widthOfObject, Width)),  tell(holds(Shelf, knowrob:widthOfObject, Width)); 
-          subclass_of(Type, DepthDesc), has_description(DepthDesc, value(knowrob:depthOfObject, Depth)),  tell(holds(Shelf, knowrob:depthOfObject, Depth))
-        )),
-
     print_message(info, shop([Shelf,ShelfType], 'Is classified as.')),
-    tell(has_type(Shelf,ShelfType)));(
+    rdfs_classify(Shelf,ShelfType));(
     findall(X,(
       triple(Shelf,rdf:type,X),
       transitive(subclass_of(X,dmshop:'DMShelfFrame'))),Xs),
     print_message(warning, shop([Shelf,Xs], 'Failed to classify. Type not defined in ontology?'))
   )),
-  %%%% Assert object shape to get the object markers
+
+  %%%% Assert Shelf dimensions
+    
+  subclass_of(Type1, dmshop:'DMShelfFrame'), transitive(subclass_of(ShelfType, Type1)),
+  subclass_of(Type1, HeightDesc), has_description(HeightDesc, value(knowrob:heightOfObject, Height)),
+  
+  subclass_of(Type2, dmshop:'DMShelfFrame'), transitive(subclass_of(ShelfType, Type2)),
+  subclass_of(Type2, WidthDesc), has_description(WidthDesc, value(knowrob:widthOfObject, Width)), 
+
+  subclass_of(Type3, dmshop:'DMShelfFrame'), transitive(subclass_of(ShelfType, Type3)),
+  subclass_of(Type3, DepthDesc), has_description(DepthDesc, value(knowrob:depthOfObject, Depth)), 
 
   tell(has_type(Shape, soma:'Shape')),
   tell(holds(Shelf,soma:hasShape,Shape)),
-
-  has_type(Shelf, ObjectType),
-  subclass_of(ObjectType, MeshDesc), has_description(MeshDesc, value(knowrob:pathToCadModel, FilePath)),
-  tell(has_type(ShapeRegion, soma:'ShapeRegion')),
-  tell(holds(Shape,dul:hasRegion,ShapeRegion)),
-  tell(triple(ShapeRegion,soma:hasFilePath,FilePath)),
+  tell(object_dimensions(Shelf, Depth, Width, Height)),
+  holds(Shape,dul:hasRegion,ShapeRegion),
+ 
+  %%%% Assert object shape to get the object markers
+  
+  subclass_of(ShelfType, MeshDesc), has_description(MeshDesc, value(knowrob:pathToCadModel, FilePath)), 
+  tell(holds(ShapeRegion,soma:hasFilePath,FilePath)),
   Pos = [0,0,0], Rot = [0,0,0,1],
-
   tell(is_individual(Origin)),
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
 	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
 	tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
-  
+ 
   %%%% Assert perception feature
   assert_perception_feature_(Shelf).
 
@@ -1030,11 +1015,11 @@ center_part_pos(Obj, z, In, Out) :-
 
 belief_part_offset(Parent, PartType, Offset, Rotation) :-
   has_type(Parent, ParentType),
-  transitive(subclass_of(PartType, PartClass)), 
+  subclass_of(PartClass, shop:'ShelfLayerPart'), transitive(subclass_of(PartType, PartClass)), 
   
   subclass_of(ParentType, S), subclass_of(S, Description), is_restriction(Description, exactly(soma:'hasDisposition', 1, Linkage)), 
   subclass_of(Linkage, R), has_description(R, only(soma:'affordsTrigger', Desc)),  has_description(Desc, only(dul:'classifies', PartClass)),
-  subclass_of(Linkage, SpaceRestriction), has_description(SpaceRestriction, value(soma:hasSpaceRegion, LinkageSpace)), !,
+  subclass_of(Linkage, SpaceRestriction), has_description(SpaceRestriction, value(soma:hasSpaceRegion, LinkageSpace)), 
   holds(LinkageSpace, knowrob:quaternion, Q),  
   holds(LinkageSpace, knowrob:translation, T), 
   
@@ -1050,7 +1035,7 @@ perceived_part_at_axis__(Parent, PartType, norm(Axis,Pos), Part) :- !,
 perceived_part_at_axis__(Parent, PartType, pos(Axis,Pos), Part) :- 
   center_part_pos(Parent, Axis, Pos, Centered),
   holds(Parent, knowrob:frameName, ParentFrame),
-  belief_part_offset(Parent, PartType, Offset, Rotation), !, 
+  belief_part_offset(Parent, PartType, Offset, Rotation),
   perceived_pos__(Offset, pos(Axis,Centered), PerceivedPos),
   tell(instance_of(Part,PartType)),
   tell(holds(Parent, soma:hasPhysicalComponent, Part)),
@@ -1249,5 +1234,3 @@ assert_perception_feature_(Object) :-
   tell(is_at(FeatureIndividual, [ObjFrame, T2, R2])),
   rdf_split_url(_, FeatureFrameName, FeatureIndividual), 
   tell(holds(FeatureIndividual, knowrob:frameName, FeatureFrameName)).
-
-
