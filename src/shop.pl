@@ -53,6 +53,7 @@
       shelf_facing(r,r),
       shelf_facing_product_type(r,r),
       shelf_facings_mark_dirty(r),
+      shelf_facings_assert_adjacent_label(r),
       shelf_separator_insert(r,r),
       shelf_separator_insert(r,r,r),
       shelf_label_insert(r,r),
@@ -85,7 +86,7 @@
       create_article_number(r,r),
       article_number_of_dan(r,r),
       product_dimensions(r,r)
-    ]).
+      ]).
 
 :- use_module(library('semweb/rdf_db')).
 :- use_module(library('semweb/rdfs')).
@@ -277,8 +278,8 @@ shelf_layer_position(Layer, Object, Position) :-
 
 shelf_facing_position(Facing,Pos) :-
   holds(Facing, shop:leftSeparator, Left), !,
-  holds(Facing, shop:rightSeparator, Right),
-  holds(Facing, shop:layerOfFacing, Layer),
+  holds(Facing, shop:rightSeparator, Right), 
+  holds(Facing, shop:layerOfFacing, Layer), !,
   shelf_layer_position(Layer, Left, Pos_Left),
   shelf_layer_position(Layer, Right, Pos_Right),
   Pos is 0.5*(Pos_Left+Pos_Right).
@@ -452,21 +453,17 @@ shelf_label_insert(ShelfLayer,Label,Options) :-
   % find the position of Label on the shelf
   shelf_layer_position(ShelfLayer, Label, LabelPos),
   has_type(Label, ShelfLabel),
-  transitive(subclass_of(ShelfLabel, Restriction)), has_description(Restriction, value(knowrob:'widthOfObject', LabelWidth)),
+  subclass_of(ShelfLabel, Restriction), has_description(Restriction, value(knowrob:'widthOfObject', LabelWidth)),
   LabelPosLeft  is LabelPos - 0.5*LabelWidth,
   LabelPosRight is LabelPos + 0.5*LabelWidth,
   % first find the facing under which the label was perceived, 
   % then assert labelOfFacing relation
   ( shelf_layer_find_facing_at(ShelfLayer,LabelPosLeft,LabeledFacingLeft) ->
     tell(holds(LabeledFacingLeft,shop:labelOfFacing,Label)) ;
-    % rdf_split_url(_, ObjFrameNameLeft, LabeledFacingLeft),
-    % tell(holds(LabeledFacingLeft, knowrob:frameName, ObjFrameNameLeft)) ;
     true ),
   ((shelf_layer_find_facing_at(ShelfLayer,LabelPosRight,LabeledFacingRight),
     LabeledFacingRight \= LabeledFacingLeft ) ->
     tell(holds(LabeledFacingRight,shop:labelOfFacing,Label)) ;
-    % rdf_split_url(_, ObjFrameNameRight, LabeledFacingRight),
-    % tell(holds(LabeledFacingRight, knowrob:frameName, ObjFrameNameRight)) ;
     true ),
   ( member(update_facings,Options) ->
     shelf_facings_mark_dirty(ShelfLayer) ; 
@@ -476,7 +473,7 @@ shelf_label_insert(ShelfLayer,Label,Options) :-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % knowrob:'ProductFacing'
 
-shelf_facing_assert(ShelfLayer,[Left,Right],Facing) :- %%%% Product in facinf should be added here???
+shelf_facing_assert(ShelfLayer,[Left,Right],Facing) :-
   shelf_layer_standing(ShelfLayer), !,
   tell(instance_of(Facing, shop:'ProductFacingStanding')),
   rdf_split_url(_, ObjFrameName, Facing), 
@@ -507,11 +504,17 @@ shelf_layer_insert_product(ShelfLayer,Product) :-
     true ).
 
 shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
-  holds(Facing, shop:layerOfFacing, ShelfLayer),
-  shelf_facing_position(Facing,FacingPos),
-  shelf_facing_width(Facing, FacingWidth),!,
-  Width is FacingWidth+0.02,
-  FacingPos-0.5*Width =< Pos, Pos =< FacingPos+0.5*Width, !.
+  %% Remove Later, Facing values are repeated
+  findall(F, holds(F, shop:layerOfFacing, ShelfLayer), AllFacings),
+  list_to_set(AllFacings, FacingsInLayer),
+  findall(F, 
+    (member(F, FacingsInLayer),
+    shelf_facing_position(F,FacingPos),
+    shelf_facing_width(F, FacingWidth),
+    Width is FacingWidth+0.02,
+    FacingPos-0.5*Width =< Pos, Pos =< FacingPos+0.5*Width), 
+    Facings),
+  member(Facing, Facings).
 
 facing_space_remaining_in_front(Facing,Obj) :-
   is_at(Obj, [_,[_,Obj_pos,_], _]),
@@ -528,6 +531,46 @@ facing_space_remaining_behind(Facing,Obj) :-
   product_dimensions(Product,[Obj_depth,_,_]),
   object_dimensions(Facing,Facing_depth,_,_),
   Obj_pos < Facing_depth*0.5 - Obj_depth - 0.06.
+
+shelf_facings_assert_adjacent_label(ShelfLayer) :-
+  findall(Facing, 
+    ( holds(Facing, shop:layerOfFacing, ShelfLayer),
+      \+ holds(Facing, shop:labelOfFacing, Label)),
+  AllFacings),
+  list_to_set(AllFacings, Facings),
+  forall( member(FacingWithoutLabel, Facings),
+  ( % Get neighbours
+    get_adjacent_label_of_facing(FacingWithoutLabel, ShelfLayer, Label),
+    tell(triple(FacingWithoutLabel, shop:adjacentLabelOfFacing, Label)))
+  ).
+
+get_adjacent_label_of_facing(Facing, ShelfLayer, AdjacentLabel) :-
+  triple(Facing, shop:leftSeparator, Left), 
+  triple(Facing, shop:rightSeparator, Right),
+  shelf_facing_position(Facing, FacingPosition),
+
+  ((triple(FacingLeft, shop:rightSeparator, Left), 
+  triple(FacingRight, shop:leftSeparator, Right), Neighbours = [FacingLeft, FacingRight]) ;
+  (triple(FacingLeft, shop:rightSeparator, Left), Neighbours = [FacingLeft] ; 
+  triple(FacingRight, shop:leftSeparator, Right), Neighbours = [FacingRight])),
+
+  length(Neighbours, NeighbourLength),
+  NeighbourLength > 1 ->
+  ( 
+    % Facing left - get right label pos
+    (triple(FacingLeft, shop:labelOfFacing, LabelLeft), triple(FacingRight, shop:labelOfFacing, LabelRight), 
+    has_type(LabelLeft, ShelfLabel),
+
+    shelf_layer_position(ShelfLayer, LabelLeft, LeftFacingLabelPos),
+    shelf_layer_position(ShelfLayer, LabelRight, RightFacingLabelPos),
+    
+    (abs(FacingPosition- LeftFacingLabelPos) > abs(FacingPosition- RightFacingLabelPos) -> (AdjacentLabel = LabelRight)) ;
+    AdjacentLabel = LabelLeft ); 
+    (triple(FacingLeft, shop:labelOfFacing, AdjacentLabel); triple(FacingRight, shop:labelOfFacing, AdjacentLabel)); true
+  );
+  (
+    member(N, Neighbours), triple(N, shop:labelOfFacing, AdjacentLabel)
+  ); true.
 
 %% shelf_facing_product_type
 %
@@ -597,7 +640,7 @@ shelf_facing_update(Facing) :-
   ),
   % update color
   comp_mainColorOfFacing(Facing,Color),
-  with_output_to(string(FacingColor), maplist(write, Color)),
+  atomic_list_concat(Color, ',', FacingColor),
   tell(holds(Facing, knowrob:'mainColorOfObject', FacingColor)), !.
   % tell(object_color_rgb(Facing,Color)).
 
@@ -637,8 +680,8 @@ shelf_facing_width(Facing, Value) :-
   atom(Facing),
   holds(Facing, shop:layerOfFacing, ShelfLayer),
   shelf_layer_standing(ShelfLayer), !,
-  holds(Facing, shop:leftSeparator, Left),
-  holds(Facing, shop:rightSeparator, Right),
+  holds(Facing, shop:leftSeparator, Left), !,
+  holds(Facing, shop:rightSeparator, Right), !,
   shelf_layer_position(ShelfLayer, Left, Pos_Left),
   shelf_layer_position(ShelfLayer, Right, Pos_Right),
   Value is abs(Pos_Right - Pos_Left) - 0.02. % leave 2cm to each side
@@ -1124,7 +1167,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   
   % update facing
   comp_mainColorOfFacing(Facing,Color),
-  with_output_to(string(FacingColor), maplist(write, Color)),
+  atomic_list_concat(Color, ',', FacingColor),
   tell(holds(Facing, knowrob:'mainColorOfObject', FacingColor)),
   show_marker(Facing, Facing).
 
