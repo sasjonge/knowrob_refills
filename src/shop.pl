@@ -37,7 +37,6 @@
 :- module(shop,
     [ 
       owl_classify(r,r),
-      product_dimension_assert(r,r),
       rdfs_classify(r,r),
       shelf_layer_frame(r,r),
       shelf_layer_mounting(r),
@@ -548,29 +547,25 @@ get_adjacent_label_of_facing(Facing, ShelfLayer, AdjacentLabel) :-
   triple(Facing, shop:leftSeparator, Left), 
   triple(Facing, shop:rightSeparator, Right),
   shelf_facing_position(Facing, FacingPosition),
-
-  ((triple(FacingLeft, shop:rightSeparator, Left), 
-  triple(FacingRight, shop:leftSeparator, Right), Neighbours = [FacingLeft, FacingRight]) ;
-  (triple(FacingLeft, shop:rightSeparator, Left), Neighbours = [FacingLeft] ; 
-  triple(FacingRight, shop:leftSeparator, Right), Neighbours = [FacingRight])),
-
-  length(Neighbours, NeighbourLength),
-  NeighbourLength > 1 ->
-  ( 
-    % Facing left - get right label pos
-    (triple(FacingLeft, shop:labelOfFacing, LabelLeft), triple(FacingRight, shop:labelOfFacing, LabelRight), 
-    has_type(LabelLeft, ShelfLabel),
-
-    shelf_layer_position(ShelfLayer, LabelLeft, LeftFacingLabelPos),
-    shelf_layer_position(ShelfLayer, LabelRight, RightFacingLabelPos),
-    
-    (abs(FacingPosition- LeftFacingLabelPos) > abs(FacingPosition- RightFacingLabelPos) -> (AdjacentLabel = LabelRight)) ;
-    AdjacentLabel = LabelLeft ); 
-    (triple(FacingLeft, shop:labelOfFacing, AdjacentLabel); triple(FacingRight, shop:labelOfFacing, AdjacentLabel)); true
-  );
   (
-    member(N, Neighbours), triple(N, shop:labelOfFacing, AdjacentLabel)
-  ); true.
+  (triple(FacingLeft, shop:rightSeparator, Left), 
+  triple(FacingRight, shop:leftSeparator, Right),
+  
+  triple(FacingLeft, shop:labelOfFacing, LabelLeft), 
+  triple(FacingRight, shop:labelOfFacing, LabelRight), 
+  
+  shelf_layer_position(ShelfLayer, LabelLeft, LeftFacingLabelPos),
+  shelf_layer_position(ShelfLayer, LabelRight, RightFacingLabelPos),
+    
+  (abs(FacingPosition- LeftFacingLabelPos) > abs(FacingPosition- RightFacingLabelPos) -> 
+  (AdjacentLabel = LabelRight); 
+  AdjacentLabel = LabelLeft ));
+  
+  triple(FacingLeft, shop:rightSeparator, Left), triple(FacingLeft, shop:labelOfFacing, AdjacentLabel) ; 
+  
+  triple(FacingRight, shop:leftSeparator, Right), triple(FacingRight, shop:labelOfFacing, AdjacentLabel)
+  );
+  true.
 
 %% shelf_facing_product_type
 %
@@ -593,9 +588,10 @@ shelf_facing_product_type(Facing, _) :-
 %
 comp_preferredLabelOfFacing(Facing,Label) :-
   ground(Facing),
+  holds(Facing,shop:labelOfFacing,Label).
   % preferred if label is one of the labelOfFacing
-  findall(L,holds(Facing,shop:labelOfFacing,L),[X|Xs]), !,
-  member(Label,[X|Xs]).
+  %% findall(L,holds(Facing,shop:labelOfFacing,L),[X|Xs]), !,
+  %% member(Label,[X|Xs]).
 comp_preferredLabelOfFacing(Facing,Label) :-
   ground(Facing), !,
   holds(Facing,shop:adjacentLabelOfFacing,Label).
@@ -930,7 +926,8 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
 	tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
  
   %%%% Assert perception feature
-  assert_perception_feature_(Shelf).
+  assert_perception_feature_(Shelf),
+  republish.
 
 %%
 % Classify shelf based on its height.
@@ -1000,7 +997,8 @@ belief_shelf_part_at(Frame, Type, Pos, Obj, _Options) :-
   ( shelf_layer_below(Obj,Below) ->
     shelf_facings_mark_dirty(Below) ; true ),
   ( shelf_layer_above(Obj,Above) ->
-    shelf_facings_mark_dirty(Above) ; true ).
+    shelf_facings_mark_dirty(Above) ; true ),
+  marker_plugin:republish.
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
   transitive(subclass_of(Type, shop:'ShelfSeparator')), !,
@@ -1115,11 +1113,6 @@ product_dimensions(X,[D,W,H]):-
 product_dimensions(Type, [0.04,0.04,0.04]) :-
   print_message(warning, shop(Type,'No bounding box is defined')).
 
-product_dimension_assert(Type, [D, W, H]) :-
-  tell(is_restriction(R1, value(shop:'depthOfProduct', D))), tell(subclass_of(Type, R1)),
-  tell(is_restriction(R2, value(shop:'widthOfProduct', W))), tell(subclass_of(Type, R2)),
-  tell(is_restriction(R3, value(shop:'heightOfProduct', H))), tell(subclass_of(Type, R3)), !.
-
 product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   triple(Facing, shop:layerOfFacing, Layer),
   triple(Facing, shop:'labelOfFacing', Label),
@@ -1131,10 +1124,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
 
   ( TypeOrBBOX=[D,W,H] -> (  
     belief_new_object(shop:'Product', Obj),
-    product_dimension_assert(Obj, shop:'depthOfProduct', D),
-    product_dimension_assert(Obj, shop:'widthOfProduct', W),
-    product_dimension_assert(Obj, shop:'heightOfProduct', H) );
-
+    tell(object_dimensions(Obj, D, W, H)));
     belief_new_object(TypeOrBBOX, Obj) ),
   % enforce we have a product here   ASK: Below 3 lines, is it necessary
   ( instance_of(Obj,shop:'Product') -> true ;(
@@ -1178,19 +1168,25 @@ product_spawn_front_to_back(Facing, Obj) :-
   
 product_spawn_front_to_back(Facing, Obj, TypeOrBBOX) :-
   triple(Facing, shop:layerOfFacing, Layer),
+  writeln('Found layer'),
   product_dimensions(TypeOrBBOX, [Obj_D,_,_]),
   shelf_facing_products(Facing, ProductsFrontToBack),
+  writeln('got the facing products'),
   reverse(ProductsFrontToBack, ProductsBackToFront),
   ( ProductsBackToFront=[] -> (
+    writeln('No products in facing'),
     object_dimensions(Layer,Layer_D,_,_),
+    writeln('got obj dim'),
     Obj_Pos is -Layer_D*0.5 + Obj_D*0.5 + 0.01,
+    writeln('spawning pdts'),
     product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj));(
+    writeln('pdts in facing'),
     ProductsBackToFront=[(Last_Pos,Last)|_],
     has_type(Last, LastType),
     product_dimensions(LastType,[Last_D,_,_]),
     Obj_Pos is Last_Pos + 0.5*Last_D + 0.5*Obj_D + 0.02,
     product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj)
-  )).
+  )), writeln('completes'), !.
   
 shelf_facing_products(Facing, Products) :-
   findall((Pos,Product), (

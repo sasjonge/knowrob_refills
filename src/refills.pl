@@ -155,6 +155,7 @@ bulk_insert_floor(Floor, separators(Separators), labels(Labels)) :-
     member((LabelPos,AN),Labels),
     belief_shelf_barcode_at(Floor,'http://knowrob.org/kb/dm-market.owl#DMShelfLabel',dan(AN),norm(LabelPos), _, [insert])),
   % update facings 
+  shelf_facings_assert_adjacent_label(Floor),
   shelf_facings_mark_dirty(Floor).
 
 % @deprecated
