@@ -635,6 +635,9 @@ shelf_facing_update(Facing) :-
   % tell(holds(Facing, knowrob:'depthOfObject', D)),
   % tell(holds(Facing, knowrob:'widthOfObject', W)),
   % tell(holds(Facing, knowrob:'heightOfObject', H)),
+  tell(has_type(FacingShape, soma:'Shape')),
+  tell(triple(Facing, soma:hasShape, FacingShape)),
+  tell(object_dimensions(Facing, D,W,H)),
   % update pose
   comp_facingPose(Facing, Pose),
   tell(is_at(Facing,Pose)),
@@ -647,7 +650,7 @@ shelf_facing_update(Facing) :-
   % update color
   comp_mainColorOfFacing(Facing,Color),
   nth0(3, Color, _, RGB),
-  assert_object_shape_(Facing, D,W, H, RGB),!.
+  once(assert_object_shape_(Facing, D,W, H, RGB)),!.
   % tell(object_color_rgb(Facing,Color)).
 
 %% comp_facingPose
@@ -1002,8 +1005,8 @@ belief_shelf_part_at(Frame, Type, Pos, Obj, _Options) :-
   tell(has_type(ShelfShape,soma:'Shape')),
   tell(triple(Obj,soma:hasShape,ShelfShape)),
   tell(object_dimensions(Obj, D, W, H)),
-  assert_object_shape_(Obj),
-  assert_perception_feature_(Obj),
+  once(assert_object_shape_(Obj)),
+  once(assert_perception_feature_(Obj)),
   % adding a new shelf floor has influence on facing size of
   % shelf floor siblings
   ( shelf_layer_below(Obj,Below) ->
@@ -1167,7 +1170,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   
   % declare transform
   holds(Layer, knowrob:frameName, LayerFrame),
-  assert_object_shape_(Obj),
+  once(assert_object_shape_(Obj)),
   tell(is_at(Obj, [LayerFrame, 
       [Facing_X, Offset_D, Offset_H],
       Rot])),
@@ -1278,9 +1281,10 @@ assert_object_shape_(Object):-  %% TODO : Check if the object shape of facing an
 assert_object_shape_(Object, D, W, H, RGBValue):- 
   has_type(Object, ObjectType),
   
-  tell(has_type(Shape, soma:'Shape')),
+  object_dimensions(Object, D, W, H);
+  (tell(has_type(Shape, soma:'Shape')),
   tell(holds(Object,soma:hasShape,Shape)),
-  tell(object_dimensions(Object, D, W, H)),
+  tell(object_dimensions(Object, D, W, H))),
   holds(Shape,dul:hasRegion,ShapeRegion),
 
   Pos = [0,0,0], Rot = [0,0,0,1],
