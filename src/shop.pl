@@ -272,7 +272,7 @@ shelf_layer_part(Layer, Type, Part) :-
 %
 shelf_layer_position(Layer, Object, Position) :-
   holds(Layer, knowrob:frameName, LayerFrame),
-  is_at(Object, [LayerFrame, [Position,_,_], _]).
+  is_at(Object, [LayerFrame, [Position,_,_], _]), !.
   % object_pose(Object, [LayerFrame,_,[Position,_,_],_]).
 
 shelf_facing_position(Facing,Pos) :-
@@ -543,6 +543,7 @@ shelf_facings_assert_adjacent_label(ShelfLayer) :-
     tell(triple(FacingWithoutLabel, shop:adjacentLabelOfFacing, Label)))
   ).
 
+%%% TODO : if there are no labels for the neighbouring facings, get the labels from the layer, find the closest and assign it to facing
 get_adjacent_label_of_facing(Facing, ShelfLayer, AdjacentLabel) :-
   triple(Facing, shop:leftSeparator, Left), 
   triple(Facing, shop:rightSeparator, Right),
@@ -1056,15 +1057,21 @@ center_part_pos(Obj, z, In, Out) :-
 
 belief_part_offset(Parent, PartType, Offset, Rotation) :-
   has_type(Parent, ParentType),
-  subclass_of(PartClass, shop:'ShelfLayerPart'), transitive(subclass_of(PartType, PartClass)), 
+
+  %% Get Disposition
+  subclass_of(ParentType, S),
+  subclass_of(S, Description),
+  is_restriction(Description, exactly(soma:'hasDisposition', 1, Disposition)),
   
-  subclass_of(ParentType, S), subclass_of(S, Description), is_restriction(Description, exactly(soma:'hasDisposition', 1, Linkage)), 
-  subclass_of(Linkage, R), has_description(R, only(soma:'affordsTrigger', Desc)),  has_description(Desc, only(dul:'classifies', PartClass)),
-  subclass_of(Linkage, SpaceRestriction), has_description(SpaceRestriction, value(soma:hasSpaceRegion, LinkageSpace)), 
-  holds(LinkageSpace, knowrob:quaternion, Q),  
-  holds(LinkageSpace, knowrob:translation, T), 
+  %% Get Trigger type
+  subclass_of(Disposition, R), has_description(R, only(soma:'affordsTrigger', Desc)),  has_description(Desc, only(dul:'classifies', TriggerType)),
+  transitive(subclass_of(PartType, TriggerType)),
   
-  atomic_list_concat(T1,' ', T), maplist(atom_number, T1, Offset), 
+  subclass_of(Disposition, SpaceRestriction), has_description(SpaceRestriction, value(soma:hasSpaceRegion, LinkageSpace)),
+  holds(LinkageSpace, knowrob:quaternion, Q),
+  holds(LinkageSpace, knowrob:translation, T),
+  
+  atomic_list_concat(T1,' ', T), maplist(atom_number, T1, Offset),
   atomic_list_concat(R1,' ', Q),  maplist(atom_number, R1, Rotation).
 
 belief_part_offset(_, _, [0,0,0], [0,0,0,1]).
