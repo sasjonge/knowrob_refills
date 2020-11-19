@@ -464,8 +464,17 @@ shelf_label_insert(ShelfLayer,Label,Options) :-
     LabeledFacingRight \= LabeledFacingLeft ) ->
     tell(holds(LabeledFacingRight,shop:labelOfFacing,Label)) ;
     true ),
+  subclass_of(ShelfLabel, HeightRest), has_description(HeightRest, value(knowrob:'heightOfObject', LabelHeight)),
+  subclass_of(ShelfLabel, DepthRest), has_description(DepthRest, value(knowrob:'depthOfObject', LabelDepth)),
+  
+  subclass_of(ObjectType, ColorRest), has_description(ColorRest, value(knowrob:'mainColorOfObject', Color)), 
+  atomic_list_concat(ListColor,' ', Color), maplist(atom_number, ListColor, ObjectColor), 
+  nth0(3, ObjectColor, _, RGBValue),
+  
+  assert_object_shape_(Label,LabelDepth, LabelWidth, LabelHeight, RGBValue),
+  
   ( member(update_facings,Options) ->
-    shelf_facings_mark_dirty(ShelfLayer) ; 
+    shelf_facings_mark_dirty(ShelfLayer) ;
     true ).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -622,10 +631,10 @@ shelf_facing_update(Facing) :-
   comp_facingDepth(Facing,D),
   comp_facingWidth(Facing,W),
   comp_facingHeight(Facing,H),
-  %tell(object_dimensions(Facing,D,W,H)), %%%% TODO : FIX tell_All to fix this 
-  tell(holds(Facing, knowrob:'depthOfObject', D)),
-  tell(holds(Facing, knowrob:'widthOfObject', W)),
-  tell(holds(Facing, knowrob:'heightOfObject', H)),
+  
+  % tell(holds(Facing, knowrob:'depthOfObject', D)),
+  % tell(holds(Facing, knowrob:'widthOfObject', W)),
+  % tell(holds(Facing, knowrob:'heightOfObject', H)),
   % update pose
   comp_facingPose(Facing, Pose),
   tell(is_at(Facing,Pose)),
@@ -637,8 +646,8 @@ shelf_facing_update(Facing) :-
   ),
   % update color
   comp_mainColorOfFacing(Facing,Color),
-  atomic_list_concat(Color, ',', FacingColor),
-  tell(holds(Facing, knowrob:'mainColorOfObject', FacingColor)), !.
+  nth0(3, Color, _, RGB),
+  assert_object_shape_(Facing, D,W, H, RGB),!.
   % tell(object_color_rgb(Facing,Color)).
 
 %% comp_facingPose
@@ -648,7 +657,6 @@ comp_facingPose(Facing, [FloorFrame,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
   holds(Facing, shop:layerOfFacing, Layer),
   holds(Facing, knowrob:frameName, FacingFrame),
   holds(Layer, knowrob:frameName, FloorFrame),
-  assert_object_shape_(Layer),
   object_dimensions(Facing, _, _, Facing_H),
   %holds(Facing, knowrob:'heightOfObject', Facing_H),
   shelf_facing_position(Facing, Pos_X),
@@ -662,7 +670,6 @@ comp_facingPose(Facing, [FloorFrame, [Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
   holds(Facing, shop:layerOfFacing, Layer),
   holds(Facing, knowrob:frameName, FacingFrame),
   holds(Layer, knowrob:frameName, FloorFrame),
-  assert_object_shape_(Layer),
   comp_facingHeight(Facing, Facing_H),
   shelf_facing_position(Facing,Pos_X),
   Pos_Y is -0.03,           
@@ -988,10 +995,14 @@ belief_shelf_part_at(Frame, Type, Pos, Obj, _Options) :-
   transitive(subclass_of(Type, R2)), has_description(R2, value(knowrob:'depthOfObject', D)),
   transitive(subclass_of(Type, R3)), has_description(R3, value(knowrob:'widthOfObject', W)),
   tell(holds(Obj, knowrob:frameName, ObjFrame)),
+  
+  % tell(holds(Obj, knowrob:depthOfObject, D)),
+  % tell(holds(Obj, knowrob:heightOfObject, H)),
+  % tell(holds(Obj, knowrob:widthOfObject, W)),
+  tell(has_type(ShelfShape,soma:'Shape')),
+  tell(triple(Obj,soma:hasShape,ShelfShape)),
+  tell(object_dimensions(Obj, D, W, H)),
   assert_object_shape_(Obj),
-  tell(holds(Obj, knowrob:depthOfObject, D)),
-  tell(holds(Obj, knowrob:heightOfObject, H)),
-  tell(holds(Obj, knowrob:widthOfObject, W)),
   assert_perception_feature_(Obj),
   % adding a new shelf floor has influence on facing size of
   % shelf floor siblings
@@ -1062,7 +1073,7 @@ belief_part_offset(Parent, PartType, Offset, Rotation) :-
   subclass_of(ParentType, S),
   subclass_of(S, Description),
   is_restriction(Description, exactly(soma:'hasDisposition', 1, Disposition)),
-  
+
   %% Get Trigger type
   subclass_of(Disposition, R), has_description(R, only(soma:'affordsTrigger', Desc)),  has_description(Desc, only(dul:'classifies', TriggerType)),
   transitive(subclass_of(PartType, TriggerType)),
@@ -1083,14 +1094,12 @@ perceived_part_at_axis__(Parent, PartType, norm(Axis,Pos), Part) :- !,
 perceived_part_at_axis__(Parent, PartType, pos(Axis,Pos), Part) :- 
   center_part_pos(Parent, Axis, Pos, Centered),
   holds(Parent, knowrob:frameName, ParentFrame),
-  belief_part_offset(Parent, PartType, Offset, Rotation),
+  once(belief_part_offset(Parent, PartType, Offset, Rotation)), 
   perceived_pos__(Offset, pos(Axis,Centered), PerceivedPos),
   tell(instance_of(Part,PartType)),
   tell(holds(Parent, soma:hasPhysicalComponent, Part)),
   tell(is_at(Part,[ParentFrame, PerceivedPos, Rotation])).
  
-  % belief_perceived_part_at(PartType, [ParentFrame,_,PerceivedPos,
-  %     Rotation], 0.02, Part, Parent).
 
 %%
 %%
@@ -1131,6 +1140,8 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
 
   ( TypeOrBBOX=[D,W,H] -> (  
     belief_new_object(shop:'Product', Obj),
+    tell(has_type(ProductShape, soma:'Shape')),
+    tell(triple(Obj, soma:'hasShape', Productshape)),
     tell(object_dimensions(Obj, D, W, H)));
     belief_new_object(TypeOrBBOX, Obj) ),
   % enforce we have a product here   ASK: Below 3 lines, is it necessary
@@ -1245,13 +1256,15 @@ belief_new_object(ObjType, Obj) :-
   rdf_split_url(_, ObjFrameName, Obj), 
   tell(holds(Obj, knowrob:frameName, ObjFrameName)).
 
-assert_object_shape_(Object):-
+assert_object_shape_(Object):-  %% TODO : Check if the object shape of facing and labels are asserted, assert as box shape
   has_type(Object, ObjectType),
   
-  tell(has_type(Shape, soma:'Shape')),
+  ((triple(Object, soma:'Shape', Shape),
+  holds(Shape,dul:hasRegion,ShapeRegion));
+  (tell(has_type(Shape, soma:'Shape')),
   tell(holds(Object,soma:hasShape,Shape)),
   tell(has_type(ShapeRegion, soma:'ShapeRegion')),
-  tell(holds(Shape,dul:hasRegion,ShapeRegion)),
+  tell(holds(Shape,dul:hasRegion,ShapeRegion)))),
 
   transitive(subclass_of(ObjectType, R1)), has_description(R1, value(knowrob:pathToCadModel, FilePath)),
   tell(triple(ShapeRegion,soma:hasFilePath,FilePath)),
@@ -1261,6 +1274,24 @@ assert_object_shape_(Object):-
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
 	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
 	tell(triple(Origin, soma:hasOrientationVector, term(Rot))).
+
+assert_object_shape_(Object, D, W, H, RGBValue):- 
+  has_type(Object, ObjectType),
+  
+  tell(has_type(Shape, soma:'Shape')),
+  tell(holds(Object,soma:hasShape,Shape)),
+  tell(object_dimensions(Object, D, W, H)),
+  holds(Shape,dul:hasRegion,ShapeRegion),
+
+  Pos = [0,0,0], Rot = [0,0,0,1],
+  tell(is_individual(Origin)),
+  tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
+	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
+	tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
+
+  tell(has_type(ColorType, soma:'Color')),
+  tell(holds(Object,soma:hasColor,ColorType)),
+  tell(object_color_rgb(Object, RGBValue)).
 
 assert_perception_feature_(Object) :-
   has_type(Object, ObjectType),
