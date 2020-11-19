@@ -938,7 +938,7 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
  
   %%%% Assert perception feature
   assert_perception_feature_(Shelf),
-  republish.
+  marker_plugin:republish.
 
 %%
 % Classify shelf based on its height.
