@@ -1,27 +1,20 @@
 import os
-import json
-import string
 import traceback
 import yaml
-from collections import OrderedDict, defaultdict
+from collections import OrderedDict
 from multiprocessing import Lock
-from rospkg import RosPack
 
-import rospy
-import rosservice
-from geometry_msgs.msg import PoseStamped, Point, Quaternion, TransformStamped
 import numpy as np
-from rospy_message_converter.message_converter import convert_dictionary_to_ros_message
-
-from std_srvs.srv import Trigger, TriggerRequest
+import rospy
+from geometry_msgs.msg import PoseStamped, Point, Quaternion, TransformStamped
 from tf2_geometry_msgs import do_transform_pose
-from visualization_msgs.msg import Marker
 
 from refills_perception_interface.not_hacks import add_separator_between_barcodes, add_edge_separators, \
     merge_close_separators, merge_close_shelf_layers
 from refills_perception_interface.tfwrapper import transform_pose, lookup_pose, lookup_transform
 from refills_perception_interface.utils import print_with_prefix, ordered_load
 from rosprolog_client import Prolog, PrologException
+from rospy_message_converter.message_converter import convert_dictionary_to_ros_message
 
 MAP = 'map'
 SHOP = 'shop'
@@ -142,12 +135,12 @@ class KnowRob(object):
             self.path_to_json = rospy.get_param('~order_yaml')
             with open(self.path_to_json, 'r') as f:
                 order_dict = ordered_load(f, yaml.SafeLoader)
-            self.order_dict = OrderedDict((self.get_shelf_system_from_erp_id(k), v) for k,v in order_dict.items())
+            self.order_dict = OrderedDict((self.get_shelf_system_from_erp_id(k), v) for k, v in order_dict.items())
             prev_id = None
             for i, shelf_system_id in enumerate(self.order_dict):
                 if i > 0 and prev_id != self.order_dict[shelf_system_id]['starting-point']:
                     rospy.logwarn('starting point doesn\'t match the prev entry at {}'.format(shelf_system_id))
-                prev_id = shelf_system_id
+                prev_id = self.get_erp_id_from_shelf(shelf_system_id)
                 via_points = self.order_dict[shelf_system_id]['via-points']
                 for i in range(len(via_points)):
                     via_points[i] = convert_dictionary_to_ros_message("geometry_msgs/PoseStamped", via_points[i])
@@ -214,13 +207,12 @@ class KnowRob(object):
         return self.once(q)['LayerType']
 
     def rename_graph(self, old_name, new_name):
-        q = 'mng_update(roslog,triples,[graph,string({})],[\'$set\',[graph,string({})]])'.format(old_name,new_name)
+        q = 'mng_update(roslog,triples,[graph,string({})],[\'$set\',[graph,string({})]])'.format(old_name, new_name)
         self.once(q)
         q = 'tripledb_add_subgraph({},common)'.format(new_name)
         self.once(q)
         q = 'tripledb_add_subgraph(user,{})'.format(new_name)
         self.once(q)
-
 
     def get_shelf_layer_from_system(self, shelf_system_id):
         """
@@ -292,8 +284,8 @@ class KnowRob(object):
             frame_names.append(str(binding['Frame']))
         np.unique(frame_names).tolist()
         q = 'forall( member(Frame, {0}), ' \
-                '(tf_mng_lookup(Frame, _, {1}.{2}, P, _,_), ' \
-                'tf_mem_set_pose(Frame, P, {1}.{2}),!)).'.format(frame_names, time.secs, time.nsecs)
+            '(tf_mng_lookup(Frame, _, {1}.{2}, P, _,_), ' \
+            'tf_mem_set_pose(Frame, P, {1}.{2}),!)).'.format(frame_names, time.secs, time.nsecs)
         bindings = self.once(q)
         self.republish_marker()
 
@@ -432,8 +424,14 @@ class KnowRob(object):
         :type id: str
         :type pose: PoseStamped
         """
-        q = 'is_at(\'{}\', {})'.format(id, self.pose_to_prolog(pose))
+        frame_id = self.get_object_frame_id(id)
+        q = "get_time(T), " \
+            "tf_mem_set_pose('{0}', {1}, T), " \
+            "tf_mng_store('{0}', {1}, T)".format(frame_id,
+                                                 self.pose_to_prolog(pose))
         return self.once(q)
+        # q = 'is_at(\'{}\', {})'.format(id, self.pose_to_prolog(pose))
+        # return self.once(q)
 
     # def get_objects(self, object_type):
     #     """
@@ -726,7 +724,6 @@ class KnowRob(object):
         except TypeError:
             raise PrologException('no shelf found with id {}'.format(id))
 
-
     def get_erp_id_from_shelf(self, shelf_id):
         q = 'shelf_with_erp_id(\'{}\', ID)'.format(shelf_id)
         bindings = self.once(q)
@@ -775,14 +772,14 @@ class KnowRob(object):
     #         if result == []:
     #             raise RuntimeError('failed to load {}'.format(initial_beliefstate))
 
-        # # put path of owl here
-        # # q = 'retractall(owl_parser:owl_file_loaded(\'{}/beliefstate.owl\'))'.format(initial_beliefstate)
-        # # Works only if the beliefstate.owl is loaded with namespace beliefstate
-        # q = 'tripledb:tripledb_graph_drop(' + \
-        #     'beliefstate)'.format(initial_beliefstate)
-        # result = self.once(q) != []
-        # self.reset_object_state_publisher.call(TriggerRequest())
-        # return result
+    # # put path of owl here
+    # # q = 'retractall(owl_parser:owl_file_loaded(\'{}/beliefstate.owl\'))'.format(initial_beliefstate)
+    # # Works only if the beliefstate.owl is loaded with namespace beliefstate
+    # q = 'tripledb:tripledb_graph_drop(' + \
+    #     'beliefstate)'.format(initial_beliefstate)
+    # result = self.once(q) != []
+    # self.reset_object_state_publisher.call(TriggerRequest())
+    # return result
 
     # def reset_beliefstate(self, inital_beliefstate=None):
     #     """
@@ -799,8 +796,6 @@ class KnowRob(object):
         cmd = 'mongorestore -d roslog {}'.format(path)
         rospy.loginfo('executing: {}'.format(cmd))
         os.system(cmd)
-
-
 
         # q = 'remember(\'{}\')'.format(self.initial_beliefstate)
         # result = self.once(q)
@@ -827,27 +822,28 @@ class KnowRob(object):
 
     def start_episode(self):
         raise NotImplementedError()
+
     #     self.clear_beliefstate(path_to_old_episode)
     #     q = 'tell([is_episode(Episode)]).'
     #     result = self.once(q)
-        # if path_to_old_episode is not None:
-        #     q = 'remember({})'.format(path_to_old_episode)
-        #     result = self.once(q)
-        #     if result == []:
-        #         raise RuntimeError('failed to load {}'.format(path_to_old_episode))
-        # if result:
-        #     q = 'knowrob_memory:current_episode(E), mem_episode_stop(E)'
-        #     self.once(q)
+    # if path_to_old_episode is not None:
+    #     q = 'remember({})'.format(path_to_old_episode)
+    #     result = self.once(q)
+    #     if result == []:
+    #         raise RuntimeError('failed to load {}'.format(path_to_old_episode))
+    # if result:
+    #     q = 'knowrob_memory:current_episode(E), mem_episode_stop(E)'
+    #     self.once(q)
 
-        # if path_to_old_episode is None:
-        #     q = 'mem_episode_start(E).'
-        #     result = self.once(q)
-        #     self.episode_id = result['E']
-        # else:
-        #     q = 'mem_episode_start(E, [import:\'{}\']).'.format(path_to_old_episode)
-        #     result = self.once(q)
-        #     self.episode_id = result['E']
-        # return result != []
+    # if path_to_old_episode is None:
+    #     q = 'mem_episode_start(E).'
+    #     result = self.once(q)
+    #     self.episode_id = result['E']
+    # else:
+    #     q = 'mem_episode_start(E, [import:\'{}\']).'.format(path_to_old_episode)
+    #     result = self.once(q)
+    #     self.episode_id = result['E']
+    # return result != []
 
     def stop_episode(self):
         raise NotImplementedError()
