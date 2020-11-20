@@ -71,6 +71,7 @@
       shelf_classify(r,+,+,+),
       shelf_with_marker(r,r),
       marker_tag_to_erp_id(r,r),
+      shelf_with_erp_id(r,r),
       %shelf_estimate_pose/1,
       %%%%%
       belief_shelf_part_at/4,
@@ -841,7 +842,19 @@ marker_tag_to_erp_id(Tag, ID):-
   ((N mod 2 =:= 0) -> (Y is N-1);(Y = N)),
   ID is (Y+1)/2.
 marker_tag_to_erp_id(Tag, ID):-
-  ground(ID), atom_string(ID, IDasString), string_concat('tag_', IDasString, Tag).
+  ground(ID), 
+  ID2 is ID*2-1,
+  atom_string(ID2, IDasString), 
+  string_concat('tag_', IDasString, Tag_str), 
+  atom_string(Tag, Tag_str).
+
+shelf_with_erp_id(Shelf, ID):-
+  marker_tag_to_erp_id(Tag, ID), 
+  shelf_with_marker(Shelf, Tag), !.
+shelf_with_erp_id(Shelf, ID):-
+  shelf_with_marker(Shelf, Marker), 
+  holds(Marker, dmshop:markerId, Tag), 
+  marker_tag_to_erp_id(Tag, ID), !.
 
 %%
 %
