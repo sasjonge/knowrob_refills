@@ -1157,21 +1157,21 @@ pos_term(Axis, Pos, pos(Axis,Pos)).
 product_dimensions([D,W,H], [D,W,H]) :- !.
 
 product_dimensions(X,[D,W,H]):- 
-  subclass_of(X, R1), has_description(R1, value(shop:'depthOfProduct', D)),
+  (object_dimensions(X, D, W, H));
+  (subclass_of(X, R1), has_description(R1, value(shop:'depthOfProduct', D)),
   subclass_of(X, R2), has_description(R2, value(shop:'widthOfProduct', W)),
-  subclass_of(X, R3), has_description(R3, value(shop:'heightOfProduct', H)), !.
+  subclass_of(X, R3), has_description(R3, value(shop:'heightOfProduct', H))), !.
 product_dimensions(Type, [0.04,0.04,0.04]) :-
   print_message(warning, shop(Type,'No bounding box is defined')).
 
 product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   triple(Facing, shop:layerOfFacing, Layer),
-  triple(Facing, shop:'labelOfFacing', Label),
+  (triple(Facing, shop:'labelOfFacing', Label); triple(Facing, shop:'adjacentLabelOfFacing', Label)),
   triple(Label, shop:articleNumberOfLabel, ArticleNumber),
 
   product_dimensions(TypeOrBBOX, [Obj_D,_,Obj_H]),
   object_dimensions(Layer,Layer_D,_,_),
   Layer_D*0.5 > Offset_D + Obj_D*0.5 + 0.04,
-
   ( TypeOrBBOX=[D,W,H] -> (  
     belief_new_object(shop:'Product', Obj),
     tell(has_type(ProductShape, soma:'Shape')),
@@ -1182,7 +1182,6 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   ( instance_of(Obj,shop:'Product') -> true ;(
     print_message(warning, shop([Obj], 'Is not subclass of shop:Product.')),
     tell(has_type(Obj,shop:'Product')) )),
-    
   comp_facingPose(Facing, [_,[Facing_X,_, _], _]),
   %is_at(Facing, [_,[Facing_X,_,_],_]), 
   % FIXME: this should be handled by offsets from ontology
