@@ -11,6 +11,8 @@ project(knowrob_refills)
 
 find_package(catkin REQUIRED knowrob)
 
+catkin_python_setup()
+
 catkin_package(
   DEPENDS knowrob
 )
