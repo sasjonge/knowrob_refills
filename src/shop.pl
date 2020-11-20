@@ -469,7 +469,7 @@ shelf_label_insert(ShelfLayer,Label,Options) :-
   subclass_of(ShelfLabel, HeightRest), has_description(HeightRest, value(knowrob:'heightOfObject', LabelHeight)),
   subclass_of(ShelfLabel, DepthRest), has_description(DepthRest, value(knowrob:'depthOfObject', LabelDepth)),
   
-  subclass_of(ObjectType, ColorRest), has_description(ColorRest, value(knowrob:'mainColorOfObject', Color)), 
+  subclass_of(ShelfLabel, ColorRest), has_description(ColorRest, value(knowrob:'mainColorOfObject', Color)), 
   atomic_list_concat(ListColor,' ', Color), maplist(atom_number, ListColor, ObjectColor), 
   nth0(3, ObjectColor, _, RGBValue),
   
@@ -1018,9 +1018,16 @@ belief_shelf_part_at(Frame, Type, Pos, Obj, _Options) :-
   pos_term(y,Pos,PosTerm),
   perceived_part_at_axis__(Frame, Type, PosTerm, Obj), 
   rdf_split_url(_,ObjFrame,Obj),
-  transitive(subclass_of(Type, R1)), has_description(R1, value(knowrob:'heightOfObject', H)),
-  transitive(subclass_of(Type, R2)), has_description(R2, value(knowrob:'depthOfObject', D)),
-  transitive(subclass_of(Type, R3)), has_description(R3, value(knowrob:'widthOfObject', W)),
+
+  subclass_of(Type, ShelfType1), transitive(subclass_of(ShelfType1, shop:'ShelfLayer')),
+  subclass_of(ShelfType1, R1), has_description(R1, value(knowrob:'heightOfObject', H)), !,
+
+  subclass_of(Type, ShelfType2), transitive(subclass_of(ShelfType2, shop:'ShelfLayer')),
+  subclass_of(ShelfType2, R2), has_description(R2, value(knowrob:'depthOfObject', D)), !,
+
+  subclass_of(Type, ShelfType3), transitive(subclass_of(ShelfType3, shop:'ShelfLayer')),
+  subclass_of(ShelfType3, R3), has_description(R3, value(knowrob:'widthOfObject', W)), !,
+
   tell(holds(Obj, knowrob:frameName, ObjFrame)),
   
   % tell(holds(Obj, knowrob:depthOfObject, D)),
