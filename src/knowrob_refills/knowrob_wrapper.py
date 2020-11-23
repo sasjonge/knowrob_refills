@@ -65,6 +65,7 @@ class KnowRob(object):
         self.print_with_prefix('waiting for knowrob')
         self.prolog = Prolog()
         self.print_with_prefix('knowrob showed up')
+        rospy.sleep(5)
         self.query_lock = Lock()
         # rospy.wait_for_message('/visualization_marker_array')
         # self.reset_object_state_publisher = rospy.ServiceProxy('/visualization_marker_array',
@@ -72,6 +73,7 @@ class KnowRob(object):
         self.shelf_layer_from_facing = {}
         self.shelf_system_from_layer = {}
         if initial_mongo_db is not None:
+            self.republish_tf()
             self.republish_tf()
         self.order_dict = None
         self.parse_shelf_order_yaml()
@@ -595,6 +597,7 @@ class KnowRob(object):
         q = 'bulk_insert_floor(\'{}\', separators({}), labels({}))'.format(shelf_layer_id, separators_xs, barcodes)
         self.once(q)
         rospy.sleep(5)
+        self.republish_marker()
         # q = 'shelf_facings_mark_dirty(\'{}\')'.format(shelf_layer_id)
         # self.once(q)
 
@@ -793,6 +796,8 @@ class KnowRob(object):
         else:
             self.initial_beliefstate = path
         print('loading {} into mongo'.format(path))
+        # q = 'remember(\'{}\'),  tf_mng_remember(\'{}\').'.format(path, path)
+        # self.once(q)
         cmd = 'mongorestore -d roslog {}'.format(path)
         rospy.loginfo('executing: {}'.format(cmd))
         os.system(cmd)
@@ -867,6 +872,8 @@ class KnowRob(object):
 
         # print(os.getcwd())
         os.system('mongodump --db roslog --out {}'.format(path))
+        # q = 'tf_mng_memorize(\'{}\'),  memorize(\'{}\').'.format(path, path)
+        # self.once(q)
 
         # q = 'mem_episode_stop(\'{}\').'.format(self.episode_id)
         # return self.once(q) != []

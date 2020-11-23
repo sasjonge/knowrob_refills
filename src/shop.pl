@@ -961,7 +961,7 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
 	tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
  
   %%%% Assert perception feature
-  assert_perception_feature_(Shelf),
+  assert_perception_feature_(Shelf), !,
   marker_plugin:republish.
 
 %%
@@ -1037,7 +1037,7 @@ belief_shelf_part_at(Frame, Type, Pos, Obj, _Options) :-
   tell(triple(Obj,soma:hasShape,ShelfShape)),
   tell(object_dimensions(Obj, D, W, H)),
   once(assert_object_shape_(Obj)),
-  once(assert_perception_feature_(Obj)),
+  once(assert_perception_feature_(Obj)), !,
   % adding a new shelf floor has influence on facing size of
   % shelf floor siblings
   ( shelf_layer_below(Obj,Below) ->
@@ -1054,7 +1054,7 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
     shelf_separator_insert(Layer,Obj,Options) ;
     true ),
   belief_new_object(Type, Obj),
-  assert_perception_feature_(Obj).
+  assert_perception_feature_(Obj), !.
  
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
@@ -1065,7 +1065,7 @@ belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :-
     shelf_mounting_bar_insert(Layer,Obj,Options) ;
     true ),
   belief_new_object(Type, Obj),
-  assert_perception_feature_(Obj).
+  assert_perception_feature_(Obj), !.
 
 
 belief_shelf_part_at(Layer, Type, Pos, Obj, Options) :- 
@@ -1328,6 +1328,9 @@ assert_object_shape_(Object, D, W, H, RGBValue):-
   tell(object_color_rgb(Object, RGBValue)).
 
 assert_perception_feature_(Object) :-
+  once(assert_perception_feature__(Object)), !.
+
+assert_perception_feature__(Object) :-
   has_type(Object, ObjectType),
   subclass_of(ObjectType, R), is_restriction(R, exactly(soma:hasFeature, 1, PerceptionFeature)),
   subclass_of(PerceptionFeature, Desc), has_description(Desc, value(knowrob:pose, FeaturePose)),
