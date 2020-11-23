@@ -1219,25 +1219,19 @@ product_spawn_front_to_back(Facing, Obj) :-
   
 product_spawn_front_to_back(Facing, Obj, TypeOrBBOX) :-
   triple(Facing, shop:layerOfFacing, Layer),
-  writeln('Found layer'),
   product_dimensions(TypeOrBBOX, [Obj_D,_,_]),
   shelf_facing_products(Facing, ProductsFrontToBack),
-  writeln('got the facing products'),
   reverse(ProductsFrontToBack, ProductsBackToFront),
   ( ProductsBackToFront=[] -> (
-    writeln('No products in facing'),
     object_dimensions(Layer,Layer_D,_,_),
-    writeln('got obj dim'),
     Obj_Pos is -Layer_D*0.5 + Obj_D*0.5 + 0.01,
-    writeln('spawning pdts'),
     product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj));(
-    writeln('pdts in facing'),
     ProductsBackToFront=[(Last_Pos,Last)|_],
     has_type(Last, LastType),
     product_dimensions(LastType,[Last_D,_,_]),
     Obj_Pos is Last_Pos + 0.5*Last_D + 0.5*Obj_D + 0.02,
     product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj)
-  )), writeln('completes'), !.
+  )), !.
   
 shelf_facing_products(Facing, Products) :-
   findall((Pos,Product), (
