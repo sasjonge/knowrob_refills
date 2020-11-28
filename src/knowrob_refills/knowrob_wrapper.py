@@ -749,6 +749,61 @@ class KnowRob(object):
         q = 'instance_of(\'{}\', {})'.format(shelf_layer_id, SHELF_BOTTOM_LAYER)
         return self.once(q) != []
 
+    # Neem logging
+    def neem_init(self, robot_iri, store_iri):
+        q = 'tell([is_episode(Episode),is_setting_for(Episode,\'{}\'),is_setting_for(Episode,\'{}\')])'.format(robot_iri,store_iri)
+        return self.once(q) != []
+
+    def neem_stocktacking(self, store_iri, robot_iri, begin_act, end_act, episode_iri):
+        q = 'tell(['\
+            'is_action(Act),'\
+            'has_particpant(Act,\'{}\'),'\
+            'is_performed_by(Act,\'{}\'),'\
+            'occurs(Act) during [\'{}\',\'{}\'],'\
+            'has_type(Tsk,shop:\'Stocktaking\'),'\
+            'has_type(Role,soma:\'Location\'),'\
+            'has_task_role(Tsk,Role),'\
+            'executes_task(Act,Tsk)'\
+            'has_role(\'{}\',Role) during Act,'\
+            'is_setting_for(\'{}\',Act)'\
+            '])'.format(store_iri, robot_iri, begin_act, end_act, store_iri, episode_iri)
+        return self.once(q) != []
+
+    def neem_park_arm(self, robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri):
+        q = 'tell(['\
+        'is_action(Act),'\
+        'has_particpant(Act,\'{}\'),'\
+        'is_performed_by(Act,\'{}\'),'\
+        'occurs(Act) during [\'{}\',\'{}\'],'\
+        'has_type(Tsk,soma:\'ParkingArms\'),'\
+        'has_type(Role,soma:\'MovedObject\'),'\
+        'has_task_role(Tsk,Role),'\
+        'has_role(RobotArm,Role) during Act,'\
+        'executes_task(Act,Tsk),'\
+        'has_type(Mot,soma:\'LimbMotion\'),'\
+        'is_classified_by(Act,Mot),'\
+        'has_process_role(Mot,Role),'\
+        'has_phase(\'{}\',Act)'\
+        '])'.format(robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri)
+        return self.once(q) != []
+
+    def neem_navigate_to_shelf(self, shelve_row_iri, robot_iri, begin_act):
+        q = ''
+        return self.once(q) != []
+
+    def neem_shelf(self, shelve_iri, robot_iri, begin_act, end_act):
+        q =''
+        return self.once(q) != []
+
+    def neem_move_camera_top_to_bottom(self, shelve_iri, robot_iri, begin_act, end_act, parent_act_iri):
+        q =''
+        return self.once(q) != []
+
+    def neem_navigate_aliong_shelf(self, shelve_floor_iri, robot_iri, begin_act, end_act, parent_act_iri):
+        q =''
+        return self.once(q) != []
+
+
     # def clear_beliefstate(self, initial_beliefstate=None):
     #     """
     #     :rtype: bool
@@ -878,6 +933,8 @@ class KnowRob(object):
     # def stop_tf_logging(self):
     #     q = 'ros_logger_stop.'
     #     self.once(q)
+
+
 
 
 if __name__ == u'__main__':
