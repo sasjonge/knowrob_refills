@@ -750,15 +750,31 @@ class KnowRob(object):
         return self.once(q) != []
 
     # Neem logging
+    # helper to create an action
+    def neem_create_action(self):
+        q = 'tell(is_action(Act))'
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
+
     # initialize
     def neem_init(self, robot_iri, store_iri):
-        q = 'tell([is_episode(Episode),is_setting_for(Episode,\'{}\'),is_setting_for(Episode,\'{}\')])'.format(robot_iri,store_iri)
-        return self.once(q) != []
+        q = 'tf_logger_enable,'\
+            'tripledb_load(\'package://knowrob_refills/owl/iai-shop.owl\'),'\
+            'tripledb_load(\'package://knowrob/owl/robots/IIWA.owl\'),'\
+            'urdf_load(\'{}\', \'package://knowrob/urdf/IIWA.urdf\', [load_rdf]),'\
+            'tell([is_episode(Episode),'\
+            'is_setting_for(Episode,\'{}\'),'\
+            'is_setting_for(Episode,\'{}\')'\
+            '])'.format(robot_iri,store_iri,robot_iri,store_iri)
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
 
     # stocktaking
-    def neem_stocktacking(self, store_iri, robot_iri, begin_act, end_act, episode_iri):
+    def neem_stocktacking(self, act_iri, store_iri, robot_iri, begin_act, end_act, episode_iri):
         q = 'tell(['\
-            'is_action(Act),'\
+            'Act = \'{}\','\
             'has_particpant(Act,\'{}\'),'\
             'is_performed_by(Act,\'{}\'),'\
             'occurs(Act) during [\'{}\',\'{}\'],'\
@@ -768,8 +784,10 @@ class KnowRob(object):
             'executes_task(Act,Tsk)'\
             'has_role(\'{}\',Role) during Act,'\
             'is_setting_for(\'{}\',Act)'\
-            '])'.format(store_iri, robot_iri, begin_act, end_act, store_iri, episode_iri)
-        return self.once(q) != []
+            '])'.format(act_iri, store_iri, robot_iri, begin_act, end_act, store_iri, episode_iri)
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
 
     # a
     def neem_park_arm(self, robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri):
@@ -788,7 +806,9 @@ class KnowRob(object):
         'has_process_role(Mot,Role),'\
         'has_phase(\'{}\',Act)'\
         '])'.format(robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri)
-        return self.once(q) != []
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
 
     # b, c1, d2
     def neem_navigate_to_shelf(self, shelve_row_iri, robot_iri, begin_act, end_act, parent_act_iri):
@@ -806,12 +826,14 @@ class KnowRob(object):
             'has_role(\'{}\',Role) during Act,'\
             'has_phase(\'{}\',Act)'\
         '])'.format(shelve_row_iri, robot_iri, begin_act, end_act,shelve_row_iri, parent_act_iri)
-        return self.once(q) != []
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
 
     # c, d, e
-    def neem_shelf(self, shelve_iri, robot_iri, begin_act, end_act):
+    def neem_for_shelf(self, act_iri, shelve_iri, robot_iri, begin_act, end_act, parent_act_iri):
         q = 'tell(['\
-           'is_action(Act),'\
+           'Act = \'{}\','\
            'has_particpant(Act,\'{}\'),'\
            'is_performed_by(Act,\'{}\'),'\
            'occurs(Act) during [\'{}\',\'{}\'],'\
@@ -819,9 +841,12 @@ class KnowRob(object):
            'has_type(Role,soma:\'Location\'),'\
            'has_task_role(Tsk,Role),'\
            'executes_task(Act,Tsk)'\
-           'has_role(\'{}\',Role) during Act'\
-        '])'.format(shelve_iri, robot_iri, begin_act, end_act, shelve_iri)
-        return self.once(q) != []
+           'has_role(\'{}\',Role) during Act,'\
+            'has_phase(\'{}\',Act)'\
+        '])'.format(act_iri, shelve_iri, robot_iri, begin_act, end_act, shelve_iri, parent_act_iri)
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
 
     # c2
     def neem_camera_initial_scan_pose(self, robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri):
@@ -840,7 +865,9 @@ class KnowRob(object):
         'has_process_role(Mot,Role),'\
         'has_phase(\'{}\',Act)'\
         '])'.format(robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri)
-        return self.once(q) != []
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
 
     # c3
     def neem_navigate_to_middle_of_shelf(self, shelve_row_iri, robot_iri, begin_act, end_act, parent_act_iri):
@@ -858,7 +885,9 @@ class KnowRob(object):
             'has_role(\'{}\',Role) during Act,'\
             'has_phase(\'{}\',Act)'\
         '])'.format(shelve_row_iri, robot_iri, begin_act, end_act,shelve_row_iri, parent_act_iri)
-        return self.once(q) != []
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
 
     # c4
     def neem_move_camera_top_to_bottom(self, shelve_iri, robot_iri, begin_act, end_act, parent_act_iri):
@@ -879,7 +908,9 @@ class KnowRob(object):
            'has_role(RobotArm,Role2) during Act,'\
            'has_phase(\'{}\',Act)'\
            '])'.format(shelve_iri, robot_iri, begin_act, end_act,shelve_iri,parent_act_iri)
-        return self.once(q) != []
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
 
     # d1, e1
     def neem_position_camera_floor(self, robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri):
@@ -898,7 +929,9 @@ class KnowRob(object):
         'has_process_role(Mot,Role),'\
         'has_phase(\'{}\',Act)'\
         '])'.format(robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri)
-        return self.once(q) != []
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
 
     # d3, e2
     def neem_navigate_aliong_shelf(self, shelve_floor_iri, robot_iri, begin_act, end_act, parent_act_iri):
@@ -916,7 +949,9 @@ class KnowRob(object):
            'is_classified_by(Act,Mot),'\
           'has_phase(\'{}\',Act)'\
         '])'.format(shelve_floor_iri, robot_iri, begin_act, end_act, shelve_floor_iri, parent_act_iri)
-        return self.once(q) != []
+        solutions = self.all_solutions(q)
+        if solutions:
+            return solutions[0]
 
 
     # def clear_beliefstate(self, initial_beliefstate=None):
