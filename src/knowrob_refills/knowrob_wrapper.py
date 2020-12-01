@@ -782,7 +782,7 @@ class KnowRob(object):
             'has_type(Tsk,shop:\'Stocktaking\'),'\
             'has_type(Role,soma:\'Location\'),'\
             'has_task_role(Tsk,Role),'\
-            'executes_task(Act,Tsk)'\
+            'executes_task(Act,Tsk),'\
             'has_role(\'{}\',Role) during Act,'\
             'is_setting_for(\'{}\',Act)'\
             '])'.format(act_iri, store_iri, robot_iri, begin_act, end_act, store_iri, episode_iri)
