@@ -42,7 +42,7 @@ OBJECT_ACTED_ON = '\'http://knowrob.org/kb/knowrob.owl#objectActedOn\''
 GOAL_LOCATION = '\'http://knowrob.org/kb/knowrob.owl#goalLocation\''
 DETECTED_OBJECT = '\'http://knowrob.org/kb/knowrob.owl#detectedObject\''
 
-MAX_SHELF_HEIGHT = 1.1
+MAX_SHELF_HEIGHT = 1.35
 
 
 class KnowRob(object):
@@ -61,6 +61,8 @@ class KnowRob(object):
             self.mongo_load_database(initial_mongo_db)
             self.print_with_prefix('restored mongo, start knowrob')
         self.separators = {}
+        self.product_to_gtin = None
+        self.gtin_to_product = None
         self.perceived_frame_id_map = {}
         self.print_with_prefix('waiting for knowrob')
         self.prolog = Prolog()
@@ -72,8 +74,8 @@ class KnowRob(object):
         #                                                        Trigger)
         self.shelf_layer_from_facing = {}
         self.shelf_system_from_layer = {}
+        self.init_product_gtin_map()
         if initial_mongo_db is not None:
-            self.republish_tf()
             self.republish_tf()
         self.order_dict = None
         self.parse_shelf_order_yaml()
@@ -279,15 +281,18 @@ class KnowRob(object):
 
     def republish_tf(self):
         time = rospy.get_rostime()
-        q = 'holds(X, knowrob:frameName, Frame), has_type(X, O), transitive(subclass_of(O, dul:\'Object\')).'
-        bindings = self.all_solutions(q)
-        frame_names = []
-        for binding in bindings:
-            frame_names.append(str(binding['Frame']))
-        np.unique(frame_names).tolist()
+        frame_names = set()
+        for i in range(10):
+            q = 'holds(X, knowrob:frameName, Frame), has_type(X, O), transitive(subclass_of(O, dul:\'Object\')).'
+            bindings = self.all_solutions(q)
+            frame_names_tmp = set()
+            for binding in bindings:
+                frame_names.add(str(binding['Frame']))
+            if len(frame_names_tmp) > len(frame_names):
+                frame_names = frame_names_tmp
         q = 'forall( member(Frame, {0}), ' \
             '(tf_mng_lookup(Frame, _, {1}.{2}, P, _,_), ' \
-            'tf_mem_set_pose(Frame, P, {1}.{2}),!)).'.format(frame_names, time.secs, time.nsecs)
+            'tf_mem_set_pose(Frame, P, {1}.{2}),!)).'.format(list(frame_names), time.secs, time.nsecs)
         bindings = self.once(q)
         self.republish_marker()
 
@@ -420,6 +425,10 @@ class KnowRob(object):
         if solutions:
             return solutions['W']
         raise Exception('can\' compute facing width')
+
+    def compute_shelf_product_type(self, facing_id):
+        q = 'compute_shelf_facing_product_type(Facing, P)'.format(facing_id)
+        self.once(q)
 
     def belief_at_update(self, id, pose):
         """
@@ -614,18 +623,36 @@ class KnowRob(object):
         :return: list of str
         :rtype: list
         """
+        # this force knowrob to load everything
         q = 'findall(DAN, triple(AN, shop:dan, DAN), DANS).'
         dans = self.once(q)['DANS']
+        q = 'findall(DAN, triple(AN, shop:gtin, DAN), DANS)'
+        self.once(q)
         return dans
 
-    def add_objects(self, facing_id, number):
+    def init_product_gtin_map(self):
+        while True:
+            q = 'findall([P, G], product_to_gtin(P, G), L)'
+            l = self.once(q)['L']
+            if len(l) != 1817:
+                rospy.logwarn('got {} instead of 1817 products. trying again'.format(len(l)))
+            else:
+                break
+        self.product_to_gtin = {p:g for p,g in l}
+        self.gtin_to_product = {g:p for p,g in l}
+
+    def add_objects(self, facing_id, number, gtin):
         """
         Adds objects to the facing whose type is according to the barcode.
         :type facing_id: str
         :type number: int
         """
         for i in range(number):
-            q = 'product_spawn_front_to_back(\'{}\', ObjId)'.format(facing_id)
+            if gtin in self.gtin_to_product:
+                product = self.gtin_to_product[gtin]
+                q = 'product_spawn_front_to_back(\'{}\', ObjId, \'{}\')'.format(facing_id, product)
+            else:
+                q = 'product_spawn_front_to_back(\'{}\', ObjId)'.format(facing_id)
             self.once(q)
 
     def save_beliefstate(self, path=None):  ### beleifstate.owl might not be created. the data is stored in tripledb

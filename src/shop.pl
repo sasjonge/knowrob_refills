@@ -51,6 +51,7 @@
       shelf_layer_find_facing_at(r,r,r),
       shelf_facing(r,r),
       shelf_facing_product_type(r,r),
+      compute_shelf_facing_product_type(r,r),
       shelf_facings_mark_dirty(r),
       shelf_facings_assert_adjacent_label(r),
       shelf_separator_insert(r,r),
@@ -81,6 +82,8 @@
       product_spawn_front_to_back(r,r),
       product_spawn_front_to_back(r,r,r),
       %%%%%
+      dan_gtin(r,r),
+      product_to_gtin(r,r),
       create_article_type(r,r),
       create_article_type(r,r,r),
       create_article_number(r,r,r),
@@ -198,6 +201,14 @@ create_article_number(gtin(GTIN),AN) :-
   tell(instance_of(AN, shop:'ArticleNumber')),
   tell(holds(AN, shop:gtin, GTIN_atom)).
 
+dan_gtin(DAN, GTIN):-
+  triple(G, shop:gtin, GTIN), triple(G, shop:dan, DAN).
+
+product_to_gtin(ProductType, GTIN):-
+  subclass_of(ProductType, shop:'Product'), 
+  subclass_of(ProductType, D), 
+  has_description(D,value(shop:articleNumberOfProduct,ArticleNumber)),
+  triple(ArticleNumber, shop:gtin, GTIN).
 
 % TODO : Fix the shape of products in owl file before changing the below predicates
 create_article_type(AN,[D,W,H],ProductType) :-
@@ -581,16 +592,22 @@ get_adjacent_label_of_facing(Facing, ShelfLayer, AdjacentLabel) :-
 
 %% shelf_facing_product_type
 %
+% dont judge me :(
 shelf_facing_product_type(Facing, ProductType) :-
+  triple(Facing, shelf_facing_product_type, ProductType), !.
+shelf_facing_product_type(Facing, ProductType) :-
+  compute_shelf_facing_product_type(Facing, ProductType), !.
+shelf_facing_product_type(Facing, _) :-
+  print_message(warning, shop([Facing], 'Facing has no associated product type.')),
+  fail.
+
+compute_shelf_facing_product_type(Facing, ProductType) :-
   comp_preferredLabelOfFacing(Facing,Label),
   holds(Label,shop:articleNumberOfLabel,ArticleNumber),
   subclass_of(ProductType, shop:'Product'),
   subclass_of(ProductType, R),
-  has_description(R,value(shop:articleNumberOfProduct,ArticleNumber)), !.
-
-shelf_facing_product_type(Facing, _) :-
-  print_message(warning, shop([Facing], 'Facing has no associated product type.')),
-  fail.
+  has_description(R,value(shop:articleNumberOfProduct,ArticleNumber)), !,
+  tell(triple(Facing, shelf_facing_product_type, ProductType)).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
