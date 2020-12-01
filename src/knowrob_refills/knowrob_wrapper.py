@@ -286,6 +286,7 @@ class KnowRob(object):
         q = 'forall( member(Frame, {0}), ' \
             '(tf_mng_lookup(Frame, _, {1}.{2}, P, _,_), ' \
             'tf_mem_set_pose(Frame, P, {1}.{2}),!)).'.format(frame_names, time.secs, time.nsecs)
+        print q
         bindings = self.once(q)
         self.republish_marker()
 
@@ -762,7 +763,7 @@ class KnowRob(object):
         q = 'tf_logger_enable,'\
             'tripledb_load(\'package://knowrob_refills/owl/iai-shop.owl\'),'\
             'tripledb_load(\'package://knowrob/owl/robots/IIWA.owl\'),'\
-            'urdf_load(\'{}\', \'package://knowrob/urdf/IIWA.urdf\', [load_rdf]),'\
+            'urdf_load(\'{}\', \'package://knowrob/urdf/iiwa.urdf\', [load_rdf]),'\
             'tell([is_episode(Episode),'\
             'is_setting_for(Episode,\'{}\'),'\
             'is_setting_for(Episode,\'{}\')'\
@@ -775,7 +776,7 @@ class KnowRob(object):
     def neem_stocktacking(self, act_iri, store_iri, robot_iri, begin_act, end_act, episode_iri):
         q = 'tell(['\
             'Act = \'{}\','\
-            'has_particpant(Act,\'{}\'),'\
+            'has_participant(Act,\'{}\'),'\
             'is_performed_by(Act,\'{}\'),'\
             'occurs(Act) during [\'{}\',\'{}\'],'\
             'has_type(Tsk,shop:\'Stocktaking\'),'\
@@ -791,28 +792,31 @@ class KnowRob(object):
 
     # a
     def neem_park_arm(self, robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri):
-        q = 'tell(['\
-        'is_action(Act),'\
-        'has_particpant(Act,\'{}\'),'\
+        q = 'tell(is_action(Act)),'\
+        'notify_synchronize(event(A)),'\
+        'tell(['\
+        'has_participant(Act,\'{}\'),'\
         'is_performed_by(Act,\'{}\'),'\
         'occurs(Act) during [\'{}\',\'{}\'],'\
         'has_type(Tsk,soma:\'ParkingArms\'),'\
         'has_type(Role,soma:\'MovedObject\'),'\
         'has_task_role(Tsk,Role),'\
-        'has_role(RobotArm,Role) during Act,'\
+        'has_role(\'{}\',Role) during Act,'\
         'executes_task(Act,Tsk),'\
         'has_type(Mot,soma:\'LimbMotion\'),'\
         'is_classified_by(Act,Mot),'\
         'has_process_role(Mot,Role),'\
-        'has_phase(\'{}\',Act)'\
-        '])'.format(robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri)
+        'has_subevent(\'{}\',Act)'\
+        '])'.format(robot_arm_iri, robot_iri, begin_act, end_act, robot_arm_iri, parent_act_iri)
         solutions = self.all_solutions(q)
         if solutions:
             return solutions[0]
 
     # b, c1, d2
     def neem_navigate_to_shelf(self, shelve_row_iri, robot_iri, begin_act, end_act, parent_act_iri):
-        q = 'tell(['\
+        q = 'tell(is_action(Act)),'\
+            'notify_synchronize(event(A)),'\
+            'tell(['\
             'is_action(Act),'\
             'has_participant(Act,\'{}\'),'\
             'is_performed_by(Act,\'{}\'),'\
@@ -824,7 +828,7 @@ class KnowRob(object):
             'has_type(Mot,soma:\'Driving\'),'\
             'is_classified_by(Act,Mot),'\
             'has_role(\'{}\',Role) during Act,'\
-            'has_phase(\'{}\',Act)'\
+            'has_subevent(\'{}\',Act)'\
         '])'.format(shelve_row_iri, robot_iri, begin_act, end_act,shelve_row_iri, parent_act_iri)
         solutions = self.all_solutions(q)
         if solutions:
@@ -834,7 +838,7 @@ class KnowRob(object):
     def neem_for_shelf(self, act_iri, shelve_iri, robot_iri, begin_act, end_act, parent_act_iri):
         q = 'tell(['\
            'Act = \'{}\','\
-           'has_particpant(Act,\'{}\'),'\
+           'has_participant(Act,\'{}\'),'\
            'is_performed_by(Act,\'{}\'),'\
            'occurs(Act) during [\'{}\',\'{}\'],'\
            'has_type(Tsk,shop:\'Stocktaking\'),'\
@@ -842,7 +846,7 @@ class KnowRob(object):
            'has_task_role(Tsk,Role),'\
            'executes_task(Act,Tsk)'\
            'has_role(\'{}\',Role) during Act,'\
-            'has_phase(\'{}\',Act)'\
+            'has_subevent(\'{}\',Act)'\
         '])'.format(act_iri, shelve_iri, robot_iri, begin_act, end_act, shelve_iri, parent_act_iri)
         solutions = self.all_solutions(q)
         if solutions:
@@ -850,29 +854,31 @@ class KnowRob(object):
 
     # c2
     def neem_camera_initial_scan_pose(self, robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri):
-        q = 'tell(['\
-        'is_action(Act),'\
-        'has_particpant(Act,\'{}\'),'\
+        q = 'tell(is_action(Act)),'\
+        'notify_synchronize(event(Act)),'\
+        'tell(['\
+        'has_participant(Act,\'{}\'),'\
         'is_performed_by(Act,\'{}\'),'\
         'occurs(Act) during [\'{}\',\'{}\'],'\
         'has_type(Tsk,soma:\'AssumingArmPose\'),'\
         'has_type(Role,soma:\'MovedObject\'),'\
         'has_task_role(Tsk,Role),'\
-        'has_role(RobotArm,Role) during Act,'\
+        'has_role(\'{}\',Role) during Act,'\
         'executes_task(Act,Tsk),'\
         'has_type(Mot,soma:\'LimbMotion\'),'\
         'is_classified_by(Act,Mot),'\
         'has_process_role(Mot,Role),'\
-        'has_phase(\'{}\',Act)'\
-        '])'.format(robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri)
+        'has_subevent(\'{}\',Act)'\
+        '])'.format(robot_arm_iri, robot_iri, begin_act, end_act, robot_arm_iri, parent_act_iri)
         solutions = self.all_solutions(q)
         if solutions:
             return solutions[0]
 
     # c3
     def neem_navigate_to_middle_of_shelf(self, shelve_row_iri, robot_iri, begin_act, end_act, parent_act_iri):
-        q = 'tell(['\
-            'is_action(Act),'\
+        q = 'tell(is_action(Act)),'\
+            'notify_synchronize(event(A)),'\
+            'tell(['\
             'has_participant(Act,\'{}\'),'\
             'is_performed_by(Act,\'{}\'),'\
             'occurs(Act) during [\'{}\',\'{}\'],'\
@@ -883,16 +889,17 @@ class KnowRob(object):
             'has_type(Mot,soma:\'Driving\'),'\
             'is_classified_by(Act,Mot),'\
             'has_role(\'{}\',Role) during Act,'\
-            'has_phase(\'{}\',Act)'\
+            'has_subevent(\'{}\',Act)'\
         '])'.format(shelve_row_iri, robot_iri, begin_act, end_act,shelve_row_iri, parent_act_iri)
         solutions = self.all_solutions(q)
         if solutions:
             return solutions[0]
 
     # c4
-    def neem_move_camera_top_to_bottom(self, shelve_iri, robot_iri, begin_act, end_act, parent_act_iri):
-        q = 'tell(['\
-           'is_action(Act),'\
+    def neem_move_camera_top_to_bottom(self, shelve_iri, robot_iri, robot_arm_iri, begin_act, end_act, parent_act_iri):
+        q = 'tell(is_action(Act)),'\
+            'notify_synchronize(event(A)),'\
+            'tell(['\
            'has_participant(Act,\'{}\'),'\
            'is_performed_by(Act,\'{}\'),'\
            'occurs(Act) during [\'{}\',\'{}\'],'\
@@ -904,39 +911,41 @@ class KnowRob(object):
            'has_type(Mot,soma:\'LimbMotion\'),'\
            'is_classified_by(Act,Mot),'\
            'has_type(Role2,soma:\'MovedObject\'),'\
-           'has_process_role(Mot,Role2)),'\
-           'has_role(RobotArm,Role2) during Act,'\
-           'has_phase(\'{}\',Act)'\
-           '])'.format(shelve_iri, robot_iri, begin_act, end_act,shelve_iri,parent_act_iri)
+           'has_process_role(Mot,Role2),'\
+           'has_role(\'{}\',Role2) during Act,'\
+           'has_subevent(\'{}\',Act)'\
+           '])'.format(shelve_iri, robot_iri, begin_act, end_act,shelve_iri,robot_arm_iri,parent_act_iri)
         solutions = self.all_solutions(q)
         if solutions:
             return solutions[0]
 
     # d1, e1
     def neem_position_camera_floor(self, robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri):
-        q = 'tell(['\
-        'is_action(Act),'\
-        'has_particpant(Act,\'{}\'),'\
+        q = 'tell(is_action(Act)),'\
+        'notify_synchronize(event(A)),'\
+        'tell(['\
+        'has_participant(Act,\'{}\'),'\
         'is_performed_by(Act,\'{}\'),'\
         'occurs(Act) during [\'{}\',\'{}\'],'\
         'has_type(Tsk,soma:\'AssumingArmPose\'),'\
         'has_type(Role,soma:\'MovedObject\'),'\
         'has_task_role(Tsk,Role),'\
-        'has_role(RobotArm,Role) during Act,'\
+        'has_role(\'{}\',Role) during Act,'\
         'executes_task(Act,Tsk),'\
         'has_type(Mot,soma:\'LimbMotion\'),'\
         'is_classified_by(Act,Mot),'\
         'has_process_role(Mot,Role),'\
-        'has_phase(\'{}\',Act)'\
-        '])'.format(robot_arm_iri, robot_iri, begin_act, end_act, parent_act_iri)
+        'has_subevent(\'{}\',Act)'\
+        '])'.format(robot_arm_iri, robot_iri, begin_act, end_act, robot_arm_iri, parent_act_iri)
         solutions = self.all_solutions(q)
         if solutions:
             return solutions[0]
 
     # d3, e2
     def neem_navigate_aliong_shelf(self, shelve_floor_iri, robot_iri, begin_act, end_act, parent_act_iri):
-        q = 'tell(['\
-           'is_action(Act),'\
+        q = 'tell(is_action(Act)),'\
+            'notify_synchronize(event(A)),'\
+            'tell(['\
            'has_participant(Act,\'{}\'),'\
            'is_performed_by(Act,\'{}\'),'\
            'occurs(Act) during [\'{}\',\'{}\'],'\
@@ -947,7 +956,7 @@ class KnowRob(object):
            'has_role(\'{}\',Role) during Act,'\
            'has_type(Mot,soma:\'Navigation\'),'\
            'is_classified_by(Act,Mot),'\
-          'has_phase(\'{}\',Act)'\
+          'has_subevent(\'{}\',Act)'\
         '])'.format(shelve_floor_iri, robot_iri, begin_act, end_act, shelve_floor_iri, parent_act_iri)
         solutions = self.all_solutions(q)
         if solutions:
