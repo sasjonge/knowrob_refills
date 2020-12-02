@@ -286,7 +286,7 @@ class KnowRob(object):
         q = 'forall( member(Frame, {0}), ' \
             '(tf_mng_lookup(Frame, _, {1}.{2}, P, _,_), ' \
             'tf_mem_set_pose(Frame, P, {1}.{2}),!)).'.format(frame_names, time.secs, time.nsecs)
-        print q
+        print(q)
         bindings = self.once(q)
         self.republish_marker()
 
@@ -773,9 +773,10 @@ class KnowRob(object):
             return solutions[0]
 
     # stocktaking
-    def neem_stocktacking(self, act_iri, store_iri, robot_iri, begin_act, end_act, episode_iri):
-        q = 'tell(['\
-            'Act = \'{}\','\
+    def neem_stocktacking(self, store_iri, robot_iri, begin_act, end_act, episode_iri):
+        q = 'tell(is_action(Act)),'\
+            'notify_synchronize(event(A)),'\
+            'tell(['\
             'has_participant(Act,\'{}\'),'\
             'is_performed_by(Act,\'{}\'),'\
             'occurs(Act) during [\'{}\',\'{}\'],'\
@@ -785,7 +786,7 @@ class KnowRob(object):
             'executes_task(Act,Tsk),'\
             'has_role(\'{}\',Role) during Act,'\
             'is_setting_for(\'{}\',Act)'\
-            '])'.format(act_iri, store_iri, robot_iri, begin_act, end_act, store_iri, episode_iri)
+            '])'.format(store_iri, robot_iri, begin_act, end_act, store_iri, episode_iri)
         solutions = self.all_solutions(q)
         if solutions:
             return solutions[0]
@@ -835,19 +836,20 @@ class KnowRob(object):
             return solutions[0]
 
     # c, d, e
-    def neem_for_shelf(self, act_iri, shelve_iri, robot_iri, begin_act, end_act, parent_act_iri):
-        q = 'tell(['\
-           'Act = \'{}\','\
-           'has_participant(Act,\'{}\'),'\
-           'is_performed_by(Act,\'{}\'),'\
-           'occurs(Act) during [\'{}\',\'{}\'],'\
-           'has_type(Tsk,shop:\'Stocktaking\'),'\
-           'has_type(Role,soma:\'Location\'),'\
-           'has_task_role(Tsk,Role),'\
-           'executes_task(Act,Tsk)'\
-           'has_role(\'{}\',Role) during Act,'\
+    def neem_for_shelf(self, shelve_iri, robot_iri, begin_act, end_act, parent_act_iri):
+        q = 'tell(is_action(Act)),'\
+            'notify_synchronize(event(Act)),'\
+            'tell(['\
+            'has_participant(Act,\'{}\'),'\
+            'is_performed_by(Act,\'{}\'),'\
+            'occurs(Act) during [\'{}\',\'{}\'],'\
+            'has_type(Tsk,shop:\'Stocktaking\'),'\
+            'has_type(Role,soma:\'Location\'),'\
+            'has_task_role(Tsk,Role),'\
+            'executes_task(Act,Tsk),'\
+            'has_role(\'{}\',Role) during Act,'\
             'has_subevent(\'{}\',Act)'\
-        '])'.format(act_iri, shelve_iri, robot_iri, begin_act, end_act, shelve_iri, parent_act_iri)
+        '])'.format(shelve_iri, robot_iri, begin_act, end_act, shelve_iri, parent_act_iri)
         solutions = self.all_solutions(q)
         if solutions:
             return solutions[0]
