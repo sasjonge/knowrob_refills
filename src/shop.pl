@@ -538,20 +538,20 @@ shelf_layer_find_facing_at(ShelfLayer,Pos,Facing) :-
   member(Facing, Facings).
 
 facing_space_remaining_in_front(Facing,Obj) :-
-  is_at(Obj, [_,[_,Obj_pos,_], _]),
+  is_at(Obj, [_,[_,Obj_pos,_], _]), !,
   % object_pose(Obj, [_,_,[_,Obj_pos,_],_]),
   instance_of(Obj, Product),
   product_dimensions(Product,[Obj_depth,_,_]),
   object_dimensions(Facing,Facing_depth,_,_),
-  Obj_pos > Obj_depth + 0.06 - 0.5*Facing_depth.
+  once(Obj_pos > Obj_depth + 0.06 - 0.5*Facing_depth).
 
 facing_space_remaining_behind(Facing,Obj) :-
-  is_at(Obj, [_, [_,Obj_pos, _],_]),
+  is_at(Obj, [_, [_,Obj_pos, _],_]), !,
   % object_pose(Obj, [_,_,[_,Obj_pos,_],_]),
   instance_of(Obj, Product),
   product_dimensions(Product,[Obj_depth,_,_]),
   object_dimensions(Facing,Facing_depth,_,_),
-  Obj_pos < Facing_depth*0.5 - Obj_depth - 0.06.
+  once(Obj_pos < Facing_depth*0.5 - Obj_depth - 0.06).
 
 shelf_facings_assert_adjacent_label(ShelfLayer) :-
   findall(Facing, 
@@ -639,8 +639,8 @@ comp_isSpaceRemainingInFacing(Facing,Val_XSD) :-
     reverse(ProductsFrontToBack, ProductsBackToFront),
     ProductsFrontToBack=[(_,First)|_],
     ProductsBackToFront=[(_,Last)|_], (
-    facing_space_remaining_in_front(Facing,First);
-    facing_space_remaining_behind(Facing,Last))
+    once(facing_space_remaining_in_front(Facing,First));
+    once(facing_space_remaining_behind(Facing,Last)))
   )) ->
   xsd_boolean('true',Val_XSD);
   xsd_boolean('false',Val_XSD)),!.
@@ -1225,9 +1225,10 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   
   % update facing
   comp_mainColorOfFacing(Facing,Color),
-  atomic_list_concat(Color, ',', FacingColor),
+  nth0(3, Color, _, FacingColor),
   tell(holds(Facing, knowrob:'mainColorOfObject', FacingColor)),
-  show_marker(Facing, Facing).
+  marker_plugin:republish.
+  % show_marker(Facing, Facing).
 
 product_spawn_front_to_back(Facing, Obj) :-
   shelf_facing_product_type(Facing, ProductType),
@@ -1320,10 +1321,8 @@ assert_object_shape_(Object):-  %% TODO : Check if the object shape of facing an
 	tell(triple(Origin, soma:hasOrientationVector, term(Rot))).
 
 assert_object_shape_(Object, D, W, H, RGBValue):- 
-  has_type(Object, ObjectType),
-  
-  object_dimensions(Object, D, W, H);
-  (tell(has_type(Shape, soma:'Shape')),
+  (object_dimensions(Object, D, W, H) -> true;
+  tell(has_type(Shape, soma:'Shape')),
   tell(holds(Object,soma:hasShape,Shape)),
   tell(object_dimensions(Object, D, W, H))),
   holds(Shape,dul:hasRegion,ShapeRegion),
