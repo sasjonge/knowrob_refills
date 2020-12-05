@@ -594,7 +594,7 @@ get_adjacent_label_of_facing(Facing, ShelfLayer, AdjacentLabel) :-
 %
 % dont judge me :(
 shelf_facing_product_type(Facing, ProductType) :-
-  triple(Facing, shelf_facing_product_type, ProductType), !.
+  triple(Facing, shop:productLabelOfFacing, ProductType), !.
 shelf_facing_product_type(Facing, ProductType) :-
   compute_shelf_facing_product_type(Facing, ProductType), !.
 shelf_facing_product_type(Facing, _) :-
@@ -607,7 +607,7 @@ compute_shelf_facing_product_type(Facing, ProductType) :-
   subclass_of(ProductType, shop:'Product'),
   subclass_of(ProductType, R),
   has_description(R,value(shop:articleNumberOfProduct,ArticleNumber)), !,
-  tell(triple(Facing, shelf_facing_product_type, ProductType)).
+  tell(triple(Facing, shop:productLabelOfFacing, ProductType)).
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
