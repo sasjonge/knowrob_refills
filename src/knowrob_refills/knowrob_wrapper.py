@@ -986,7 +986,7 @@ class KnowRob(object):
                         )
         solutions = self.all_solutions(q)
         if solutions:
-            return solutions[0]
+            return solutions[0]['Episode']
 
     def neem_log_event(self, act_iri, participant_iri, robot_iri, begin_act, end_act, episode_iri=None,
                        parent_act_iri=None):
@@ -998,7 +998,7 @@ class KnowRob(object):
             'Act = \'{}\',' \
             'has_participant(Act,\'{}\'),' \
             'is_performed_by(Act,\'{}\'),' \
-            'occurs(Act) during [\'{}\',\'{}\'],' \
+            'occurs(Act) during [{},{}],' \
             'has_type(Tsk,shop:\'Stocktaking\'),' \
             'has_type(Role,soma:\'Location\'),' \
             'has_task_role(Tsk,Role),' \
@@ -1054,7 +1054,7 @@ class KnowRob(object):
             'tell([' \
             'has_participant(Act,\'{0}\'),' \
             'is_performed_by(Act,\'{1}\'),' \
-            'occurs(Act) during [\'{2}\',\'{3}\'],' \
+            'occurs(Act) during [{2},{3}],' \
             'has_type(Tsk,soma:\'LookingAt\'),' \
             'executes_task(Act,Tsk),' \
             'has_type(Role1,soma:\'Location\'),' \
