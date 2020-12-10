@@ -427,6 +427,14 @@ class KnowRob(object):
         self.floors = OrderedDict(floors)
         return self.floors
 
+    def get_shelve_systems_without_floor(self):
+        q = 'findall(R, (instance_of(R, {}), \+triple(R, dul:hasComponent, Floor)), Rs).'.format(SHELF_SYSTEM)
+        solutions = self.once(q)
+        if solutions:
+            return set(solutions['Rs'])
+        else:
+            return set()
+
     def get_object_of_facing(self, facing_id):
         q = 'shelf_facing_product_type(\'{}\', P)'.format(facing_id)
         solutions = self.all_solutions(q)
