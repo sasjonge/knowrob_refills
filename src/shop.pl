@@ -143,9 +143,9 @@
 :- rdf_db:rdf_register_ns(shop, 'http://knowrob.org/kb/shop.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(dmshop, 'http://knowrob.org/kb/dm-market.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(dul,
-		'http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#', [keep(true)]).
+    'http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#', [keep(true)]).
 :- rdf_db:rdf_register_ns(soma,
-		'http://www.ease-crc.org/ont/SOMA.owl#', [keep(true)]).
+    'http://www.ease-crc.org/ont/SOMA.owl#', [keep(true)]).
 
 % TODO: should be somewhere else
 % TODO: must work in both directions
@@ -213,22 +213,14 @@ product_to_gtin(ProductType, GTIN):-
 % TODO : Fix the shape of products in owl file before changing the below predicates
 create_article_type(AN,[D,W,H],ProductType) :-
   create_article_type(AN,ProductType),
-  % specify bounding box
-  xsd_float(D,D_XSD),
-  xsd_float(W,W_XSD),
-  xsd_float(H,H_XSD),
 
-  tell(has_description(W_R, 
-    value(shop:widthOfProduct, W_XSD))),
+  % specify bounding box - [D, W, H]
   tell(subclass_of(ProductType,W_R)),
-
-  tell(has_description(D_R, 
-    value(shop:depthOfProduct, D_XSD))), 
+  tell(is_restriction(W_R, value(shop:'widthOfProduct', W))),
   tell(subclass_of(ProductType,D_R)),
-
-  tell(has_description(H_R, 
-    value(shop:heightOfProduct, H_XSD))),
-  tell(subclass_of(ProductType,H_R)). 
+  tell(is_restriction(D_R, value(shop:'depthOfProduct', D))),
+  tell(subclass_of(ProductType,H_R)),
+  tell(is_restriction(H_R, value(shop:'heightOfProduct', H))).
 
 create_article_type(AN,ProductType) :-
   once((
@@ -239,9 +231,9 @@ create_article_type(AN,ProductType) :-
   
   tell(subclass_of(ProductType, shop:'Product')),
   
-  tell(has_description(AN_R, 
-    value(shop:articleNumberOfProduct, AN))),
-  tell(subclass_of(ProductType,AN_R)).
+  tell(subclass_of(ProductType,AN_R)),
+  tell(is_restriction(AN_R,
+    value(shop:articleNumberOfProduct, AN))).
   
 
 article_number_of_dan(DAN,AN) :-
@@ -654,6 +646,12 @@ shelf_facing_update(Facing) :-
   % tell(holds(Facing, knowrob:'depthOfObject', D)),
   % tell(holds(Facing, knowrob:'widthOfObject', W)),
   % tell(holds(Facing, knowrob:'heightOfObject', H)),
+ (object_dimensions(Facing, D, W, H ) ->
+ (tripledb_forget(Facing, soma:hasShape, Shape),
+  tripledb_forget(Shape,dul:hasRegion,ShapeRegion),
+  tripledb_forget(ShapeRegion, _, _),
+  tripledb_forget(Shape, _, _));
+  true),
   tell(has_type(FacingShape, soma:'Shape')),
   tell(triple(Facing, soma:hasShape, FacingShape)),
   tell(object_dimensions(Facing, D,W,H)),
@@ -666,6 +664,11 @@ shelf_facing_update(Facing) :-
     tell(holds(Facing,shop:preferredLabelOfFacing,Label)) ;
     true
   ),
+
+ (object_color_rgb(Facing, RGBValue ) ->
+ (tripledb_forget(Facing, soma:hasColor, ColorType),
+  tripledb_forget(ColorType,_, _));
+  true),
   % update color
   comp_mainColorOfFacing(Facing,Color),
   nth0(3, Color, _, RGB),
@@ -974,8 +977,8 @@ shelf_classify(Shelf,Height,NumTiles,Payload) :-
   Pos = [0,0,0], Rot = [0,0,0,1],
   tell(is_individual(Origin)),
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
-	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
-	tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
+  tell(triple(Origin, soma:hasPositionVector, term(Pos))),
+  tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
  
   %%%% Assert perception feature
   assert_perception_feature_(Shelf), !,
@@ -1195,7 +1198,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
     tell(triple(Obj, soma:'hasShape', Productshape)),
     tell(object_dimensions(Obj, D, W, H)));
     belief_new_object(TypeOrBBOX, Obj) ),
-  % enforce we have a product here   ASK: Below 3 lines, is it necessary
+  % enforce we have a product here
   ( instance_of(Obj,shop:'Product') -> true ;(
     print_message(warning, shop([Obj], 'Is not subclass of shop:Product.')),
     tell(has_type(Obj,shop:'Product')) )),
@@ -1317,8 +1320,8 @@ assert_object_shape_(Object):-  %% TODO : Check if the object shape of facing an
 
   tell(is_individual(Origin)),
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
-	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
-	tell(triple(Origin, soma:hasOrientationVector, term(Rot))).
+  tell(triple(Origin, soma:hasPositionVector, term(Pos))),
+  tell(triple(Origin, soma:hasOrientationVector, term(Rot))).
 
 assert_object_shape_(Object, D, W, H, RGBValue):- 
   (object_dimensions(Object, D, W, H) -> true;
@@ -1330,8 +1333,8 @@ assert_object_shape_(Object, D, W, H, RGBValue):-
   Pos = [0,0,0], Rot = [0,0,0,1],
   tell(is_individual(Origin)),
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
-	tell(triple(Origin, soma:hasPositionVector, term(Pos))),
-	tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
+  tell(triple(Origin, soma:hasPositionVector, term(Pos))),
+  tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
 
   tell(has_type(ColorType, soma:'Color')),
   tell(holds(Object,soma:hasColor,ColorType)),
