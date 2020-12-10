@@ -476,13 +476,16 @@ class KnowRob(object):
         time = rospy.get_rostime()
         frame_names = set()
         for i in range(10):
-            q = 'holds(X, knowrob:frameName, Frame), has_type(X, O), transitive(subclass_of(O, dul:\'Object\')).'
-            bindings = self.all_solutions(q)
-            frame_names_tmp = set()
-            for binding in bindings:
-                frame_names.add(str(binding['Frame']))
-            if len(frame_names_tmp) > len(frame_names):
-                frame_names = frame_names_tmp
+            try:
+                q = 'holds(X, knowrob:frameName, Frame), has_type(X, O), transitive(subclass_of(O, dul:\'Object\')).'
+                bindings = self.all_solutions(q)
+                frame_names_tmp = set()
+                for binding in bindings:
+                    frame_names.add(str(binding['Frame']))
+                if len(frame_names_tmp) > len(frame_names):
+                    frame_names = frame_names_tmp
+            except:
+                pass
         q = 'forall( member(Frame, {0}), ' \
             '(tf_mng_lookup(Frame, _, {1}.{2}, P, _,_), ' \
             'tf_mem_set_pose(Frame, P, {1}.{2}),!)).'.format(list(frame_names), time.secs, time.nsecs)
