@@ -994,8 +994,8 @@ class KnowRob(object):
             parent = 'is_setting_for(\'{}\',Act)'.format(episode_iri)
         else:
             parent = 'has_subevent(\'{}\',Act)'.format(parent_act_iri)
-        q = 'tell([' \
-            'Act = \'{}\',' \
+        q = 'Act = \'{}\',' \
+            'tell([' \
             'has_participant(Act,\'{}\'),' \
             'is_performed_by(Act,\'{}\'),' \
             'occurs(Act) during [{},{}],' \
