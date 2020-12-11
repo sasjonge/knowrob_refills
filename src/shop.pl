@@ -650,6 +650,13 @@ shelf_facing_update(Facing) :-
   tell(has_type(FacingShape, soma:'Shape')),
   tell(triple(Facing, soma:hasShape, FacingShape)),
   tell(object_dimensions(Facing, D,W,H)),
+  Pos = [0,0,0], 
+  Rot = [0.0, 0.0 , -0.70710678, 0.70710678],  
+  triple(FacingShape, dul:hasRegion, ShapeRegion),
+  tell(is_individual(Origin)),  
+  tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),  
+  tell(triple(Origin, soma:hasPositionVector, term(Pos))),  
+  tell(triple(Origin, soma:hasOrientationVector, term(Rot))),
   % update pose
   comp_facingPose(Facing, Pose),
   tell(is_at(Facing,Pose)),
@@ -665,9 +672,9 @@ shelf_facing_update(Facing) :-
  %%  tripledb_forget(ColorType,_, _));
  %%  true),
   % update color
-  comp_mainColorOfFacing(Facing,Color),
-  nth0(3, Color, _, RGB),
-  once(assert_object_shape_(Facing, D,W, H, RGB)),!.
+  update_facing_color(Facing), 
+  %% once(assert_object_shape_(Facing, H,W, D, RGB)),
+  !.
   % tell(object_color_rgb(Facing,Color)).
 
 %% comp_facingPose
@@ -675,7 +682,7 @@ shelf_facing_update(Facing) :-
 comp_facingPose(Facing, [FloorFrame,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
   holds(Facing, shop:leftSeparator, _), !,
   holds(Facing, shop:layerOfFacing, Layer),
-  holds(Facing, knowrob:frameName, FacingFrame),
+  %% holds(Facing, knowrob:frameName, FacingFrame),
   holds(Layer, knowrob:frameName, FloorFrame),
   object_dimensions(Facing, _, _, Facing_H),
   %holds(Facing, knowrob:'heightOfObject', Facing_H),
@@ -688,7 +695,7 @@ comp_facingPose(Facing, [FloorFrame,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
 comp_facingPose(Facing, [FloorFrame, [Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
   holds(Facing, shop:mountingBarOfFacing, _), !,
   holds(Facing, shop:layerOfFacing, Layer),
-  holds(Facing, knowrob:frameName, FacingFrame),
+  %% holds(Facing, knowrob:frameName, FacingFrame),
   holds(Layer, knowrob:frameName, FloorFrame),
   comp_facingHeight(Facing, Facing_H),
   shelf_facing_position(Facing,Pos_X),
@@ -1181,15 +1188,15 @@ product_dimensions(Type, [0.04,0.04,0.04]) :-
 
 product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   triple(Facing, shop:layerOfFacing, Layer),
-  (triple(Facing, shop:'labelOfFacing', Label); triple(Facing, shop:'adjacentLabelOfFacing', Label)),
-  triple(Label, shop:articleNumberOfLabel, ArticleNumber),
+  (triple(Facing, shop:'labelOfFacing', _); triple(Facing, shop:'adjacentLabelOfFacing', _)),
+  %% triple(Label, shop:articleNumberOfLabel, ArticleNumber),
   product_dimensions(TypeOrBBOX, [Obj_D,Obj_W,Obj_H]),
   object_dimensions(Layer,Layer_D,_,_),
   Layer_D*0.5 > Offset_D + Obj_D*0.5 + 0.04,
   ( TypeOrBBOX=[D,W,H] -> (  
     belief_new_object(shop:'Product', Obj),
     tell(has_type(ProductShape, soma:'Shape')),
-    tell(triple(Obj, soma:'hasShape', Productshape)),
+    tell(triple(Obj, soma:'hasShape', ProductShape)),
     tell(object_dimensions(Obj, D, W, H)));
     belief_new_object(TypeOrBBOX, Obj) ),
   % enforce we have a product here
@@ -1206,7 +1213,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
     Offset_H is -Obj_H*0.5 - 0.025 ),
   % HACK rotate if it has a mesh
   ( % object_mesh_path(Obj,_) CHECK
-    transitive(subclass_of(TypeOrBBOX, Restriction)), has_description(Restriction, value(knowrob:'pathToCadModel', Value)) ->  
+    transitive(subclass_of(TypeOrBBOX, Restriction)), has_description(Restriction, value(knowrob:'pathToCadModel', _)) ->  
     Rot=[0.0, 0.0, 1.0, 0.0] ;
     Rot=[0.0, 0.0, 0.0, 1.0] ),
   %Rot=[0.0, 0.0, 0.0, 1.0],
@@ -1214,18 +1221,27 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   holds(Layer, knowrob:frameName, LayerFrame),
   (once(assert_object_shape_(Obj)) ->
     true;
-    once(assert_object_shape_(Obj, Obj_H,Obj_W,Obj_D, [0.5,0.5,0.5]))),
+    once(assert_object_shape_(Obj, Obj_H,Obj_W,Obj_D, [0.5,0.5,0.5]))), % FIXME why are height and depth switched?
   tell(is_at(Obj, [LayerFrame, [Facing_X, Offset_D, Offset_H], Rot])),
   tell(holds(Facing, shop:productInFacing, Obj)),
   
   % update facing
-  comp_mainColorOfFacing(Facing,Color),
-  nth0(3, Color, _, FacingColor),
-  tell(has_type(ColorType, soma:'Color')),
-  tell(holds(Facing,soma:hasColor,ColorType)),
-  tell(object_color_rgb(Facing, FacingColor)),
+  update_facing_color(Facing),
   marker_plugin:republish.
   % show_marker(Facing, Facing).
+
+update_facing_color(Facing) :-
+  comp_mainColorOfFacing(Facing, [R,G,B,A]),
+  (object_color_rgb(Facing, [R,G,B]) ->
+    (holds(Facing,soma:hasColor,ColorType),
+      tripledb_forget(ColorType,dul:hasRegion,Region),
+      tripledb_forget(Region,soma:hasRGBValue,_));
+    (tell(has_type(ColorType, soma:'Color')),
+      tell(holds(Facing,soma:hasColor,ColorType)))),
+  tell(object_color_rgb(Facing, [R,G,B])),
+  triple(ColorType,dul:hasRegion,Region),
+  tell(triple(Region, soma:hasTransparencyValue, A)).
+
 
 product_spawn_front_to_back(Facing, Obj) :-
   shelf_facing_product_type(Facing, ProductType),
