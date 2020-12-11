@@ -630,6 +630,7 @@ comp_isSpaceRemainingInFacing(Facing,Val_XSD) :-
     once(facing_space_remaining_behind(Facing,Last)))
   )) ->
   xsd_boolean('true',Val_XSD);
+  tell(has_type(Facing, shop:'FullProductFacing')),
   xsd_boolean('false',Val_XSD)),!.
 
 shelf_facing_update(Facing) :-
@@ -797,10 +798,10 @@ comp_facingDepth(Facing, Selector, Offset, Value) :-
 
 comp_mainColorOfFacing(Facing, Color) :-
   holds(Facing, shop:layerOfFacing, _), !,
-  ((has_type(Facing, shop:'UnlabeledProductFacing'),Color=[1.0, 0.35, 0.0, 0.5]);
+  ((\+(triple(Facing, shop:labelOfFacing, _);triple(Facing, shop:adjacentLabelOfFacing,_)),Color=[1.0, 0.35, 0.0, 0.5]);
   % FIXME: MisplacedProductFacing seems slow, comp_MisplacedProductFacing is a bit faster
    (comp_MisplacedProductFacing(Facing),Color=[1.0, 0.0, 0.0, 0.5]);
-   (has_type(Facing, shop:'EmptyProductFacing'),Color=[1.0, 1.0, 0.0, 0.5]);
+   (\+ triple(Facing, shop:productInFacing, _),Color=[1.0, 1.0, 0.0, 0.5]);
    (has_type(Facing, shop:'FullProductFacing'),Color=[0.0, 0.25, 0.0, 0.5]);
    Color=[0.0, 1.0, 0.0, 0.5]), !.
 
@@ -814,7 +815,7 @@ comp_MisplacedProductFacing(Facing) :-
 comp_MisplacedProductFacing(Facing) :-
   holds(Facing,shop:productInFacing,Item),
   instance_of(Item,Product),
-  \+ subclass_of(Product, R), is_restriction(R, value(shop:articleNumberOfProduct,_)),!.
+  subclass_of(Product, R), \+ is_restriction(R, value(shop:articleNumberOfProduct,_)),!.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -1188,7 +1189,6 @@ product_dimensions(Type, [0.04,0.04,0.04]) :-
 
 product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   triple(Facing, shop:layerOfFacing, Layer),
-  (triple(Facing, shop:'labelOfFacing', _); triple(Facing, shop:'adjacentLabelOfFacing', _)),
   %% triple(Label, shop:articleNumberOfLabel, ArticleNumber),
   product_dimensions(TypeOrBBOX, [Obj_D,Obj_W,Obj_H]),
   object_dimensions(Layer,Layer_D,_,_),
@@ -1209,7 +1209,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   ( shelf_layer_standing(Layer) -> (
     shelf_layer_standing_bottom(Layer) ->
     Offset_H is  Obj_H*0.5 + 0.025 ;
-    Offset_H is  Obj_H*0.5 + 0.08 ) ;
+    Offset_H is  Obj_H*0.5 + 0.08 );
     Offset_H is -Obj_H*0.5 - 0.025 ),
   % HACK rotate if it has a mesh
   ( % object_mesh_path(Obj,_) CHECK
@@ -1234,10 +1234,10 @@ update_facing_color(Facing) :-
   comp_mainColorOfFacing(Facing, [R,G,B,A]),
   (object_color_rgb(Facing, [R,G,B]) ->
     (holds(Facing,soma:hasColor,ColorType),
-      tripledb_forget(ColorType,dul:hasRegion,Region),
-      tripledb_forget(Region,soma:hasRGBValue,_));
+    tripledb_forget(ColorType,dul:hasRegion,Region),
+    tripledb_forget(Region,soma:hasRGBValue,_));
     (tell(has_type(ColorType, soma:'Color')),
-      tell(holds(Facing,soma:hasColor,ColorType)))),
+    tell(holds(Facing,soma:hasColor,ColorType)))),
   tell(object_color_rgb(Facing, [R,G,B])),
   triple(ColorType,dul:hasRegion,Region),
   tell(triple(Region, soma:hasTransparencyValue, A)).
