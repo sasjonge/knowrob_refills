@@ -328,7 +328,7 @@ shelf_facings_mark_dirty(ShelfLayer) :-
     shelf_facing(ShelfLayer,X),
     shelf_facing_update(X)
   ), AllFacings),
-  show_marker(AllFacings, AllFacings).
+  marker_plugin:republish.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -810,12 +810,7 @@ comp_MisplacedProductFacing(Facing) :-
   instance_of(Item,Product),
   subclass_of(Product, R), is_restriction(R, value(shop:articleNumberOfProduct,AN)), 
   %holds(Product,shop:articleNumberOfProduct,AN),
-  forall( holds(Label,shop:articleNumberOfLabel,AN),
-          \+ comp_preferredLabelOfFacing(Facing,Label) ),!.
-comp_MisplacedProductFacing(Facing) :-
-  holds(Facing,shop:productInFacing,Item),
-  instance_of(Item,Product),
-  subclass_of(Product, R), \+ is_restriction(R, value(shop:articleNumberOfProduct,_)),!.
+  forall( holds(Label,shop:articleNumberOfLabel,AN),\+ comp_preferredLabelOfFacing(Facing,Label) ),!.
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -1221,7 +1216,7 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   holds(Layer, knowrob:frameName, LayerFrame),
   (once(assert_object_shape_(Obj)) ->
     true;
-    once(assert_object_shape_(Obj, Obj_H,Obj_W,Obj_D, [0.5,0.5,0.5]))), % FIXME why are height and depth switched?
+    once(assert_object_shape_(Obj, Obj_D,Obj_W,Obj_H, [0.5,0.5,0.5]))), % FIXME why are height and depth switched?
   tell(is_at(Obj, [LayerFrame, [Facing_X, Offset_D, Offset_H], Rot])),
   tell(holds(Facing, shop:productInFacing, Obj)),
   
@@ -1230,17 +1225,48 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   marker_plugin:republish.
   % show_marker(Facing, Facing).
 
+retract_entity(X) :-
+  tripledb_forget(X,_,_),
+  tripledb_forget(_,_,X).
+
+retract_region_of(Q) :-
+  forall(
+    triple(Q, dul:hasRegion, R),
+    retract_entity(R)
+  ).
+
+retract_color_of(X) :-
+  forall(
+    triple(X, soma:hasColor, CQ), 
+      (
+        ignore(retract_region_of(CQ)),
+        retract_entity(CQ)
+    )
+  ).
+
 update_facing_color(Facing) :-
   comp_mainColorOfFacing(Facing, [R,G,B,A]),
-  (object_color_rgb(Facing, [R,G,B]) ->
-    (holds(Facing,soma:hasColor,ColorType),
-    tripledb_forget(ColorType,dul:hasRegion,Region),
-    tripledb_forget(Region,soma:hasRGBValue,_));
-    (tell(has_type(ColorType, soma:'Color')),
-    tell(holds(Facing,soma:hasColor,ColorType)))),
+  % remove color quality and its regoins
+  retract_color_of(Facing),
+  % now we can add a new color quality
+  tell(has_type(CQ, soma:'Color')),
+  tell(holds(Facing,soma:hasColor,CQ)),
   tell(object_color_rgb(Facing, [R,G,B])),
-  triple(ColorType,dul:hasRegion,Region),
-  tell(triple(Region, soma:hasTransparencyValue, A)).
+  triple(CQ,dul:hasRegion,Region),
+  tell(triple(Region, soma:hasTransparencyValue, A)), !.
+
+
+  %% comp_mainColorOfFacing(Facing, [R,G,B,A]),
+  %% (object_color_rgb(Facing, [R,G,B]) ->
+  %%   %% (holds(Facing,soma:hasColor,ColorType),
+  %%   %% tripledb_forget(ColorType,dul:hasRegion,Region),
+  %%   %% tripledb_forget(Region,soma:hasRGBValue,_)
+  %%   true;
+  %%   (tell(has_type(ColorType, soma:'Color')),
+  %%   tell(holds(Facing,soma:hasColor,ColorType)))),
+  %% tell(object_color_rgb(Facing, [R,G,B])),
+  %% triple(ColorType,dul:hasRegion,Region),
+  %% tell(triple(Region, soma:hasTransparencyValue, A)).
 
 
 product_spawn_front_to_back(Facing, Obj) :-
@@ -1340,7 +1366,7 @@ assert_object_shape_(Object, D, W, H, RGBValue):-
   tell(object_dimensions(Object, D, W, H))),
   holds(Shape,dul:hasRegion,ShapeRegion),
 
-  Pos = [0,0,0], Rot = [0,0,0,1],
+  Pos = [0,0,0], Rot = [-0.0, -0.0, -0.70710678, 0.70710678],
   tell(is_individual(Origin)),
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
   tell(triple(Origin, soma:hasPositionVector, term(Pos))),
