@@ -682,9 +682,9 @@ shelf_facing_update(Facing) :-
 %
 comp_facingPose(Facing, [FloorFrame,[Pos_X,Pos_Y,Pos_Z],[0.0,0.0,0.0,1.0]]) :-
   holds(Facing, shop:leftSeparator, _), !,
-  holds(Facing, shop:layerOfFacing, Layer),
+  triple(Facing, shop:layerOfFacing, Layer),
   %% holds(Facing, knowrob:frameName, FacingFrame),
-  holds(Layer, knowrob:frameName, FloorFrame),
+  triple(Layer, knowrob:frameName, FloorFrame),
   object_dimensions(Facing, _, _, Facing_H),
   %holds(Facing, knowrob:'heightOfObject', Facing_H),
   shelf_facing_position(Facing, Pos_X),
@@ -1187,19 +1187,21 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   %% triple(Label, shop:articleNumberOfLabel, ArticleNumber),
   product_dimensions(TypeOrBBOX, [Obj_D,Obj_W,Obj_H]),
   object_dimensions(Layer,Layer_D,_,_),
-  Layer_D*0.5 > Offset_D + Obj_D*0.5 + 0.04,
-  ( TypeOrBBOX=[D,W,H] -> (  
-    belief_new_object(shop:'Product', Obj),
+    Layer_D*0.5 > Offset_D + Obj_D*0.5 + 0.04,
+    ( TypeOrBBOX=[D,W,H] -> (  
+      belief_new_object(shop:'Product', Obj),
     tell(has_type(ProductShape, soma:'Shape')),
     tell(triple(Obj, soma:'hasShape', ProductShape)),
+    tell(has_type(ShapeRegion, soma:'ShapeRegion')),
+    tell(holds(ProductShape,dul:hasRegion,ShapeRegion)),
     tell(object_dimensions(Obj, D, W, H)));
     belief_new_object(TypeOrBBOX, Obj) ),
-  % enforce we have a product here
+    % enforce we have a product here
   ( instance_of(Obj,shop:'Product') -> true ;(
     print_message(warning, shop([Obj], 'Is not subclass of shop:Product.')),
     tell(has_type(Obj,shop:'Product')) )),
-  comp_facingPose(Facing, [_,[Facing_X,_, _], _]),
-  %is_at(Facing, [_,[Facing_X,_,_],_]), 
+    comp_facingPose(Facing, [_,[Facing_X,_, _], _]),
+    %is_at(Facing, [_,[Facing_X,_,_],_]), 
   % FIXME: this should be handled by offsets from ontology
   ( shelf_layer_standing(Layer) -> (
     shelf_layer_standing_bottom(Layer) ->
@@ -1216,13 +1218,14 @@ product_spawn_at(Facing, TypeOrBBOX, Offset_D, Obj) :-
   holds(Layer, knowrob:frameName, LayerFrame),
   (once(assert_object_shape_(Obj)) ->
     true;
-    once(assert_object_shape_(Obj, Obj_D,Obj_W,Obj_H, [0.5,0.5,0.5]))), % FIXME why are height and depth switched?
+    assert_object_shape_(Obj, Obj_D,Obj_W,Obj_H, [0.5,0.5,0.5])),
   tell(is_at(Obj, [LayerFrame, [Facing_X, Offset_D, Offset_H], Rot])),
   tell(holds(Facing, shop:productInFacing, Obj)),
   
   % update facing
   update_facing_color(Facing),
-  marker_plugin:republish.
+  marker_plugin:republish, 
+  !.
   % show_marker(Facing, Facing).
 
 retract_entity(X) :-
@@ -1281,12 +1284,12 @@ product_spawn_front_to_back(Facing, Obj, TypeOrBBOX) :-
   reverse(ProductsFrontToBack, ProductsBackToFront),
   ( ProductsBackToFront=[] -> (
     object_dimensions(Layer,Layer_D,_,_),
-    Obj_Pos is -Layer_D*0.5 + Obj_D*0.5 + 0.01,
+    Obj_Pos is -Layer_D*0.5 + Obj_D*0.5 + 0.02,
     product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj));(
     ProductsBackToFront=[(Last_Pos,Last)|_],
     has_type(Last, LastType),
     product_dimensions(LastType,[Last_D,_,_]),
-    Obj_Pos is Last_Pos + 0.5*Last_D + 0.5*Obj_D + 0.02,
+    Obj_Pos is Last_Pos + 0.5*Last_D + 0.5*Obj_D + 0.03,
     product_spawn_at(Facing, TypeOrBBOX, Obj_Pos, Obj)
   )), !.
   
@@ -1342,15 +1345,15 @@ belief_new_object(ObjType, Obj) :-
 
 assert_object_shape_(Object):-  %% TODO : Check if the object shape of facing and labels are asserted, assert as box shape
   has_type(Object, ObjectType),
+  transitive(subclass_of(ObjectType, R1)), has_description(R1, value(knowrob:pathToCadModel, FilePath)),
   
-  ((triple(Object, soma:'Shape', Shape),
-  holds(Shape,dul:hasRegion,ShapeRegion));
+  ((triple(Object, soma:hasShape, Shape),
+  triple(Shape,dul:hasRegion,ShapeRegion));
   (tell(has_type(Shape, soma:'Shape')),
   tell(holds(Object,soma:hasShape,Shape)),
   tell(has_type(ShapeRegion, soma:'ShapeRegion')),
   tell(holds(Shape,dul:hasRegion,ShapeRegion)))),
 
-  transitive(subclass_of(ObjectType, R1)), has_description(R1, value(knowrob:pathToCadModel, FilePath)),
   tell(triple(ShapeRegion,soma:hasFilePath,FilePath)),
   Pos = [0,0,0], Rot = [0,0,0,1],
 
@@ -1360,12 +1363,14 @@ assert_object_shape_(Object):-  %% TODO : Check if the object shape of facing an
   tell(triple(Origin, soma:hasOrientationVector, term(Rot))).
 
 assert_object_shape_(Object, D, W, H, RGBValue):- 
-  (object_dimensions(Object, D, W, H) -> true;
+  (object_dimensions(Object, D, W, H) -> 
+    (triple(Object,soma:hasShape,Shape),
+  triple(Shape,dul:hasRegion,ShapeRegion));
   tell(has_type(Shape, soma:'Shape')),
   tell(holds(Object,soma:hasShape,Shape)),
-  tell(object_dimensions(Object, D, W, H))),
-  holds(Shape,dul:hasRegion,ShapeRegion),
-
+  tell(object_dimensions(Object, D, W, H)),
+  triple(Shape,dul:hasRegion,ShapeRegion)),
+  
   Pos = [0,0,0], Rot = [-0.0, -0.0, -0.70710678, 0.70710678],
   tell(is_individual(Origin)),
   tell(triple(ShapeRegion,'http://knowrob.org/kb/urdf.owl#hasOrigin',Origin)),
@@ -1374,7 +1379,10 @@ assert_object_shape_(Object, D, W, H, RGBValue):-
 
   tell(has_type(ColorType, soma:'Color')),
   tell(holds(Object,soma:hasColor,ColorType)),
-  tell(object_color_rgb(Object, RGBValue)).
+  tell(object_color_rgb(Object, RGBValue)), 
+  triple(ColorType,dul:hasRegion,Region),
+  tell(triple(Region, soma:hasTransparencyValue, 1)), !.
+!.
 
 assert_perception_feature_(Object) :-
   once(assert_perception_feature__(Object)), !.
