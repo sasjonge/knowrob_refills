@@ -648,9 +648,11 @@ shelf_facing_update(Facing) :-
  %%  tripledb_forget(ShapeRegion, _, _),
  %%  tripledb_forget(Shape, _, _));
  %%  true),
+  retract_shape_of(Facing),
   tell(has_type(FacingShape, soma:'Shape')),
   tell(triple(Facing, soma:hasShape, FacingShape)),
   tell(object_dimensions(Facing, D,W,H)),
+
   Pos = [0,0,0], 
   Rot = [0.0, 0.0 , -0.70710678, 0.70710678],  
   triple(FacingShape, dul:hasRegion, ShapeRegion),
@@ -1247,6 +1249,15 @@ retract_color_of(X) :-
     )
   ).
 
+retract_shape_of(X) :-
+  forall(
+    triple(X, soma:hasShape, CQ), 
+      (
+        ignore(retract_region_of(CQ)),
+        retract_entity(CQ)
+    )
+  ).
+
 update_facing_color(Facing) :-
   comp_mainColorOfFacing(Facing, [R,G,B,A]),
   % remove color quality and its regoins
@@ -1382,7 +1393,6 @@ assert_object_shape_(Object, D, W, H, RGBValue):-
   tell(object_color_rgb(Object, RGBValue)), 
   triple(ColorType,dul:hasRegion,Region),
   tell(triple(Region, soma:hasTransparencyValue, 1)), !.
-!.
 
 assert_perception_feature_(Object) :-
   once(assert_perception_feature__(Object)), !.

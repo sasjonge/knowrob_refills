@@ -67,7 +67,7 @@ class LogNeemArmMotion(object):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         end_act = time()
-        self.knowrob.neem_arm_motion(participant_iri=(self).participant_iri,
+        self.knowrob.neem_arm_motion(participant_iri=self.participant_iri,
                                      robot_iri=self.robot_iri,
                                      begin_act=self.begin_act,
                                      end_act=end_act,
@@ -1005,17 +1005,19 @@ class KnowRob(object):
             parent = 'is_setting_for(\'{}\',Act)'.format(episode_iri)
         else:
             parent = 'has_subevent(\'{}\',Act)'.format(parent_act_iri)
-        q = 'Act = \'{}\',' \
+        q = 'Act = \'{0}\',' \
             'tell([' \
-            'has_participant(Act,\'{}\'),' \
-            'is_performed_by(Act,\'{}\'),' \
-            'occurs(Act) during [{},{}],' \
+            'has_participant(Act,\'{1}\'),' \
+            'is_performed_by(Act,\'{2}\'),' \
+            'has_type(RobotRole, soma:\'AgentRole\'),' \
+            'has_role(\'{2}\', RobotRole),' \
+            'occurs(Act) during [{3},{4}],' \
             'has_type(Tsk,shop:\'Stocktaking\'),' \
             'has_type(Role,soma:\'Location\'),' \
             'has_task_role(Tsk,Role),' \
             'executes_task(Act,Tsk),' \
-            'has_role(\'{}\',Role) during Act,' \
-            '{}' \
+            'has_role(\'{5}\',Role) during Act,' \
+            '{6}' \
             '])'.format(act_iri, participant_iri, robot_iri, begin_act, end_act, participant_iri, parent)
         solutions = self.all_solutions(q)
         if solutions:
@@ -1036,6 +1038,8 @@ class KnowRob(object):
             'tell([' \
             'has_participant(Act,\'{0}\'),' \
             'is_performed_by(Act,\'{1}\'),' \
+            'has_type(RobotRole, soma:\'AgentRole\'),'\
+            'has_role(\'{1}\', RobotRole),'\
             'occurs(Act) during [{2},{3}],' \
             'has_type(Tsk,soma:\'{5}\'),' \
             'has_type(Role,soma:\'{6}\'),' \
@@ -1065,6 +1069,8 @@ class KnowRob(object):
             'tell([' \
             'has_participant(Act,\'{0}\'),' \
             'is_performed_by(Act,\'{1}\'),' \
+            'has_type(RobotRole, soma:\'AgentRole\'),' \
+            'has_role(\'{1}\', RobotRole),' \
             'occurs(Act) during [{2},{3}],' \
             'has_type(Tsk,soma:\'LookingAt\'),' \
             'executes_task(Act,Tsk),' \
@@ -1112,6 +1118,8 @@ class KnowRob(object):
             'tell([' \
             'has_participant(Act,\'{0}\'),' \
             'is_performed_by(Act,\'{1}\'),' \
+            'has_type(RobotRole, soma:\'AgentRole\'),' \
+            'has_role(\'{1}\', RobotRole),' \
             'occurs(Act) during [{2},{3}],' \
             'has_type(Tsk,soma:\'{5}\'),' \
             'has_type(Role,soma:\'{6}\'),' \
