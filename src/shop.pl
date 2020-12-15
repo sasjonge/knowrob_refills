@@ -1258,6 +1258,19 @@ retract_shape_of(X) :-
     )
   ).
 
+retract_shelf(Shelf) :-
+  forall(holds(Shelf, soma:hasPhysicalComponent, Layer),
+    (retract_parts_of_layer(Layer),
+     retract_entity(Layer))).
+
+retract_parts_of_layer(Layer) :-
+  %%% Forget separators and labels
+  forall(triple(Layer, soma:hasPhysicalComponent, Part),
+          retract_entity(Part)),
+  %%% Forget facings
+  forall(triple(Facing, shop:layerOfFacing, Layer),
+          retract_entity(Facing)).
+
 update_facing_color(Facing) :-
   comp_mainColorOfFacing(Facing, [R,G,B,A]),
   % remove color quality and its regoins
