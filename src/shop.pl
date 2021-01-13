@@ -205,9 +205,15 @@ dan_gtin(DAN, GTIN):-
   triple(G, shop:gtin, GTIN), triple(G, shop:dan, DAN).
 
 product_to_gtin(ProductType, GTIN):-
-  subclass_of(ProductType, shop:'Product'),
-  subclass_of(ProductType, D),
-  has_description(D,value(shop:articleNumberOfProduct,ArticleNumber)),
+  %% subclass_of(ProductType, shop:'Product'),
+  %% subclass_of(ProductType, D),
+  %% has_description(D,value(shop:articleNumberOfProduct,ArticleNumber)),
+  %% triple(ArticleNumber, shop:gtin, GTIN).
+
+  triple(ProductType, rdfs:subClassOf, shop:'Product'),
+  triple(ProductType, rdfs:subClassOf, D), 
+  triple(D, owl:onProperty, shop:articleNumberOfProduct),
+  triple(D, owl:hasValue, ArticleNumber),
   triple(ArticleNumber, shop:gtin, GTIN).
 
 % TODO : Fix the shape of products in owl file before changing the below predicates
@@ -262,7 +268,7 @@ shelf_layer_label(Layer,Part)        :- shelf_layer_part(Layer,shop:'ShelfLabel'
 %%
 shelf_layer_part(Layer, Type, Part) :-
   instance_of(Layer, shop:'ShelfLayer'),
-  holds(Layer, soma:hasPhysicalComponent, Part),
+  triple(Layer, soma:hasPhysicalComponent, Part),
   instance_of(Part, Type).
 
 %% shelf_layer_position

@@ -233,7 +233,7 @@ class LogNeemForEachShelf(object):
 class KnowRob(object):
     prefix = 'knowrob_wrapper'
 
-    def __init__(self, initial_mongo_db=None, clear_roslog=True):
+    def __init__(self, initial_mongo_db=None, clear_roslog=True, republish_tf=False, neem_mode=False):
         super(KnowRob, self).__init__()
         if clear_roslog or initial_mongo_db is not None:
             # if '/rosprolog/query' in rosservice.get_service_list():
@@ -242,7 +242,7 @@ class KnowRob(object):
             #     rospy.sleep(0.5)
             if clear_roslog:
                 self.mongo_drop_database('roslog')
-        if initial_mongo_db is not None:
+        if initial_mongo_db is not None and not neem_mode:
             self.mongo_load_database(initial_mongo_db)
             self.print_with_prefix('restored mongo, start knowrob')
         self.separators = {}
@@ -252,6 +252,8 @@ class KnowRob(object):
         self.print_with_prefix('waiting for knowrob')
         self.prolog = Prolog()
         self.print_with_prefix('knowrob showed up')
+        if neem_mode:
+            self.load_neem(initial_mongo_db)
         rospy.sleep(5)
         self.query_lock = Lock()
         # rospy.wait_for_message('/visualization_marker_array')
@@ -260,10 +262,13 @@ class KnowRob(object):
         self.shelf_layer_from_facing = {}
         self.shelf_system_from_layer = {}
         self.init_product_gtin_map()
-        if initial_mongo_db is not None:
+        if (initial_mongo_db is not None or republish_tf) and not neem_mode:
             self.republish_tf()
+        if neem_mode:
+            self.new_republish_tf()
         self.order_dict = None
         self.parse_shelf_order_yaml()
+
 
     def print_with_prefix(self, msg):
         """
@@ -427,6 +432,16 @@ class KnowRob(object):
         self.floors = OrderedDict(floors)
         return self.floors
 
+    def get_mesh(self, object_id):
+        q = 'triple(\'{}\', soma:hasShape, S), ' \
+            'triple(S,dul:hasRegion,R), ' \
+            'triple(R,soma:hasFilePath,P).'.format(object_id)
+        solutions = self.once(q)
+        if solutions:
+            return solutions['P']
+        else:
+            return None
+
     def get_shelve_systems_without_floor(self):
         q = 'findall(R, (instance_of(R, {}), \+triple(R, dul:hasComponent, Floor)), Rs).'.format(SHELF_SYSTEM)
         solutions = self.once(q)
@@ -475,7 +490,7 @@ class KnowRob(object):
     def republish_tf(self):
         time = rospy.get_rostime()
         frame_names = set()
-        for i in range(10):
+        for i in range(3):
             try:
                 q = 'holds(X, knowrob:frameName, Frame), has_type(X, O), transitive(subclass_of(O, dul:\'Object\')).'
                 bindings = self.all_solutions(q)
@@ -485,16 +500,37 @@ class KnowRob(object):
                 if len(frame_names_tmp) > len(frame_names):
                     frame_names = frame_names_tmp
             except:
-                pass
+                rospy.logwarn('failed to get frame names!')
         q = 'forall( member(Frame, {0}), ' \
             '(tf_mng_lookup(Frame, _, {1}.{2}, P, _,_), ' \
             'tf_mem_set_pose(Frame, P, {1}.{2}),!)).'.format(list(frame_names), time.secs, time.nsecs)
         bindings = self.once(q)
         self.republish_marker()
 
+    def new_republish_tf(self):
+        q = 'is_episode(E),triple(E,dul:includesAction,C),time_interval_data(C,Start,End),tf_plugin:tf_republish_set_goal(Start,End).'
+        if not self.once(q):
+            raise RuntimeError('failed to republish tf')
+
     def republish_marker(self):
         q = 'marker_plugin:republish'
         self.once(q)
+
+    def get_separator_from_layer(self, shelf_layer_id):
+        q = 'shelf_layer_separator(\'{}\', S).'.format(shelf_layer_id)
+        solutions = self.all_solutions(q)
+        separator_ids = []
+        for binding in solutions:
+            separator_ids.append(binding['S'])
+        return separator_ids
+
+    def get_label_from_layer(self, shelf_layer_id):
+        q = 'shelf_layer_label(\'{}\', L).'.format(shelf_layer_id)
+        solutions = self.all_solutions(q)
+        separator_ids = []
+        for binding in solutions:
+            separator_ids.append(binding['L'])
+        return separator_ids
 
     def get_facing_ids_from_layer(self, shelf_layer_id):
         """
@@ -510,8 +546,12 @@ class KnowRob(object):
             facing_pose = self.prolog_to_pose_msg(pose)
             facing_pose = transform_pose(self.get_perceived_frame_id(shelf_layer_id), facing_pose)
             facings.append((facing_id, facing_pose))
-        is_left = 1 if self.is_left(shelf_system_id) else -1
+        try:
+            is_left = 1 if self.is_left(shelf_system_id) else -1
+        except TypeError:
+            is_left = 1
         facings = list(sorted(facings, key=lambda x: x[1].pose.position.x * is_left))
+
         return OrderedDict(facings)
 
     def get_label_ids(self, layer_id):
@@ -826,11 +866,25 @@ class KnowRob(object):
         self.once(q)
         return dans
 
+    def get_products_in_facing(self, facing_id):
+        q = 'triple(\'{}\', shop:productInFacing, Obj).'.format(facing_id)
+        solutions = self.all_solutions(q)
+        products = []
+        for binding in solutions:
+            products.append(binding['Obj'])
+        return products
+
     def init_product_gtin_map(self):
         while True:
-            q = 'findall([P, G], product_to_gtin(P, G), L)'
+            q = 'findall([ProductType,GTIN], ' \
+                'ask(aggregate([triple(ProductType,rdfs:subClassOf, shop:\'Product\'),' \
+                'triple(ProductType,rdfs:subClassOf, D), ' \
+                'triple(D,owl:onProperty,shop:articleNumberOfProduct),' \
+                'triple(D,owl:hasValue,ArticleNumber),' \
+                'triple(ArticleNumber, shop:gtin, GTIN)])), L).'
+            # q = 'findall([P, G], product_to_gtin(P, G), L)'
             l = self.once(q)['L']
-            if len(l) != 1817:
+            if len(l) < 1817:
                 rospy.logwarn('got {} instead of 1817 products. trying again'.format(len(l)))
             else:
                 break
@@ -1255,6 +1309,11 @@ class KnowRob(object):
         # else:
         #     print_with_prefix('error loading initial beliefstate {}'.format(self.initial_beliefstate), self.prefix)
         #     return False
+
+    def load_neem(self, path):
+        q = 'remember(\'{0}\'), tf_mng_remember(\'{0}\').'.format(path)
+        bindings = self.once(q)
+        return bindings != []
 
     # def load_owl(self, path):
     #     """
