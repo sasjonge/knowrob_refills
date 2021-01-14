@@ -1063,9 +1063,9 @@ class KnowRob(object):
             'tell([' \
             'has_participant(Act,\'{1}\'),' \
             'is_performed_by(Act,\'{2}\'),' \
-            'has_type(RobotRole, soma:\'AgentRole\'),' \
-            'has_role(\'{2}\', RobotRole),' \
             'occurs(Act) during [{3},{4}],' \
+            'has_type(RobotRole, soma:\'AgentRole\'),' \
+            'has_role(\'{2}\', RobotRole) during Act,' \
             'has_type(Tsk,shop:\'Stocktaking\'),' \
             'has_type(Role,soma:\'Location\'),' \
             'has_task_role(Tsk,Role),' \
@@ -1092,9 +1092,9 @@ class KnowRob(object):
             'tell([' \
             'has_participant(Act,\'{0}\'),' \
             'is_performed_by(Act,\'{1}\'),' \
-            'has_type(RobotRole, soma:\'AgentRole\'),'\
-            'has_role(\'{1}\', RobotRole),'\
             'occurs(Act) during [{2},{3}],' \
+            'has_type(RobotRole, soma:\'AgentRole\'),'\
+            'has_role(\'{1}\', RobotRole) during Act,'\
             'has_type(Tsk,soma:\'{5}\'),' \
             'has_type(Role,soma:\'{6}\'),' \
             'has_task_role(Tsk,Role),' \
@@ -1123,9 +1123,9 @@ class KnowRob(object):
             'tell([' \
             'has_participant(Act,\'{0}\'),' \
             'is_performed_by(Act,\'{1}\'),' \
-            'has_type(RobotRole, soma:\'AgentRole\'),' \
-            'has_role(\'{1}\', RobotRole),' \
             'occurs(Act) during [{2},{3}],' \
+            'has_type(RobotRole, soma:\'AgentRole\'),' \
+            'has_role(\'{1}\', RobotRole) during Act,' \
             'has_type(Tsk,soma:\'LookingAt\'),' \
             'executes_task(Act,Tsk),' \
             'has_type(Role1,soma:\'Location\'),' \
@@ -1172,9 +1172,9 @@ class KnowRob(object):
             'tell([' \
             'has_participant(Act,\'{0}\'),' \
             'is_performed_by(Act,\'{1}\'),' \
-            'has_type(RobotRole, soma:\'AgentRole\'),' \
-            'has_role(\'{1}\', RobotRole),' \
             'occurs(Act) during [{2},{3}],' \
+            'has_type(RobotRole, soma:\'AgentRole\'),' \
+            'has_role(\'{1}\', RobotRole) during Act,' \
             'has_type(Tsk,soma:\'{5}\'),' \
             'has_type(Role,soma:\'{6}\'),' \
             'executes_task(Act,Tsk),' \
